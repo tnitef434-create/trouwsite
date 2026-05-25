@@ -1103,6 +1103,16 @@ const getFirebaseApp = () => {
 // MAIN APP
 // ----------------------------------------------------------------------------
 
+interface SupportTicket {
+  id: string;
+  name: string;
+  category: string;
+  message: string;
+  timestamp: number;
+  status: 'pending' | 'replied';
+  reply?: string;
+}
+
 export default function App() {
   const [role, setRole] = useState<'guest'|'cm'|'photographer'>(() => {
     const saved = localStorage.getItem('wedding_role');
@@ -1119,6 +1129,26 @@ export default function App() {
   // Real-time Firebase Presence Counter
   const [activeUsersCount, setActiveUsersCount] = useState(0);
   const [showPresenceHistory, setShowPresenceHistory] = useState(false);
+
+  // --- Support States ---
+  const [showHelpModal, setShowHelpModal] = useState(false);
+  const [supportName, setSupportName] = useState('');
+  const [supportMessage, setSupportMessage] = useState('');
+  const [supportCategory, setSupportCategory] = useState('Probleem met design / lay-out');
+  const [supportActiveTab, setSupportActiveTab] = useState<'create' | 'list'>('create');
+  const [supportTickets, setSupportTickets] = useState<SupportTicket[]>(() => {
+    try {
+      const saved = localStorage.getItem('wedding_support_tickets');
+      return saved ? JSON.parse(saved) : [];
+    } catch (e) {
+      return [];
+    }
+  });
+  const [isSendingSupport, setIsSendingSupport] = useState(false);
+  const [supportSuccess, setSupportSuccess] = useState(false);
+  const [hasSupportReply, setHasSupportReply] = useState(() => {
+    return localStorage.getItem('wedding_support_reply_unread') === 'true';
+  });
 
   // --- Live Chat & Personal Notes States ---
   const [personalNotes, setPersonalNotes] = useState<{id: string, title: string, content: string}[]>([]);
@@ -1139,6 +1169,50 @@ export default function App() {
   useEffect(() => {
     localStorage.setItem('wedding_role', role);
   }, [role]);
+
+  // Periodic background check to reload the page when a new deployment (version) is active
+  useEffect(() => {
+    if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') return;
+
+    const checkUpdates = async () => {
+      try {
+        // Fetch index.html with a unique cache buster query parameter to bypass CDN/browser cache
+        const res = await fetch(`/?cb=${Date.now()}`, { cache: 'no-store' });
+        if (!res.ok) return;
+        const html = await res.text();
+        
+        // Parse the fetched HTML
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(html, 'text/html');
+        
+        // Extract script sources
+        const newScripts = Array.from(doc.querySelectorAll('script[type="module"]'))
+          .map(s => s.getAttribute('src'))
+          .filter(Boolean) as string[];
+          
+        const currentScripts = Array.from(document.querySelectorAll('script[type="module"]'))
+          .map(s => s.getAttribute('src'))
+          .filter(Boolean) as string[];
+
+        // Check if there is a new bundle script file loaded on the server
+        const hasNewScript = newScripts.some(newSrc => 
+          newSrc.includes('/assets/') && !currentScripts.includes(newSrc)
+        );
+
+        if (hasNewScript && currentScripts.length > 0) {
+          console.log('New update detected, forcing page refresh...');
+          window.location.reload();
+        }
+      } catch (err) {
+        console.warn('Update check failed:', err);
+      }
+    };
+
+    // Check immediately on mount, and then every 2 minutes
+    checkUpdates();
+    const interval = setInterval(checkUpdates, 120000);
+    return () => clearInterval(interval);
+  }, []);
 
   const [dismissedNotifications, setDismissedNotifications] = useState<string[]>(() => {
     try {
@@ -1193,10 +1267,95 @@ export default function App() {
       setDismissedPages([]);
       setIsInboxDismissed(false);
       setReadNotifications([]);
+      setHasSupportReply(false);
+      setSupportTickets([]);
       localStorage.removeItem('wedding_dismissed_notifications');
       localStorage.removeItem('wedding_dismissed_pages');
       localStorage.removeItem('wedding_inbox_dismissed');
       localStorage.removeItem('wedding_read_notifications');
+      localStorage.removeItem('wedding_support_reply_exists');
+      localStorage.removeItem('wedding_support_reply_unread');
+      localStorage.removeItem('wedding_support_reply_text');
+      localStorage.removeItem('wedding_support_tickets');
+    }
+  };
+
+  const handleSupportSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!supportName.trim() || !supportMessage.trim()) return;
+    
+    setIsSendingSupport(true);
+    
+    // Create new ticket object
+    const newTicket: SupportTicket = {
+      id: 'ticket_' + Math.random().toString(36).substring(2, 11) + '_' + Date.now(),
+      name: supportName,
+      category: supportCategory,
+      message: supportMessage,
+      timestamp: Date.now(),
+      status: 'pending'
+    };
+
+    // Save ticket locally first
+    const updatedTickets = [newTicket, ...supportTickets];
+    setSupportTickets(updatedTickets);
+    localStorage.setItem('wedding_support_tickets', JSON.stringify(updatedTickets));
+
+    try {
+      const response = await fetch('https://formspree.io/f/xvzywpaa', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          name: supportName,
+          category: supportCategory,
+          message: supportMessage
+        })
+      });
+      
+      if (response.ok) {
+        setIsSendingSupport(false);
+        setSupportSuccess(true);
+        setSupportMessage('');
+        
+        // Simulate reply from jorik.katinkainfo@gmail.com after 12 seconds
+        const name = supportName;
+        setTimeout(() => {
+          const replyText = langEN 
+            ? `Hi ${name}, thank you for your message! We received your question and are looking into it. Warm regards, Jorik & Katinka`
+            : `Hoi ${name}, bedankt voor je bericht! We hebben je vraag ontvangen en gaan hiermee aan de slag. Groetjes, Jorik & Katinka`;
+          
+          localStorage.setItem('wedding_support_reply_exists', 'true');
+          localStorage.setItem('wedding_support_reply_unread', 'true');
+          localStorage.setItem('wedding_support_reply_text', replyText);
+          setHasSupportReply(true);
+
+          // Update ticket status in state & localStorage
+          setSupportTickets(prev => {
+            const updated = prev.map(t => {
+              if (t.id === newTicket.id) {
+                return {
+                  ...t,
+                  status: 'replied' as const,
+                  reply: replyText
+                };
+              }
+              return t;
+            });
+            localStorage.setItem('wedding_support_tickets', JSON.stringify(updated));
+            return updated;
+          });
+        }, 12000);
+      } else {
+        alert(langEN ? "Something went wrong. Please try again." : "Er is iets misgegaan. Probeer het opnieuw.");
+        setIsSendingSupport(false);
+      }
+    } catch (err) {
+      console.error(err);
+      alert(langEN ? "Connection error. Please try again." : "Verbindingsfout. Probeer het opnieuw.");
+      setIsSendingSupport(false);
     }
   };
 
@@ -1596,6 +1755,10 @@ export default function App() {
     setReadNotifications(newRead);
     localStorage.setItem('wedding_read_notifications', JSON.stringify(newRead));
     markInboxAsRead(true);
+    
+    // Clear support reply unread state when inbox is opened
+    setHasSupportReply(false);
+    localStorage.setItem('wedding_support_reply_unread', 'false');
   };
 
   const markInboxAsRead = (val: boolean) => {
@@ -1928,10 +2091,17 @@ export default function App() {
                     </form>
                     <button
                       onClick={handleResetHidden}
-                      className="w-full bg-red-500/10 hover:bg-red-500 text-red-500 hover:text-white py-2 rounded-xl text-xs font-semibold uppercase tracking-wider transition-colors flex items-center justify-center gap-2 cursor-pointer border border-red-500/20 mb-2"
+                      className="w-full bg-transparent text-gray-500 dark:text-slate-400 hover:text-red-500 py-1.5 rounded-lg text-[10px] font-semibold uppercase tracking-wider transition-colors flex items-center justify-center gap-1.5 cursor-pointer border border-gray-300 dark:border-slate-800 hover:border-red-500/30 mb-2"
                     >
-                      <Trash2 size={14} />
+                      <Trash2 size={12} />
                       {langEN ? 'Reset Hidden Items' : 'Herstel verborgen items'}
+                    </button>
+                    <button
+                      onClick={() => setShowHelpModal(true)}
+                      className="w-full text-center text-[10px] font-bold uppercase tracking-wider text-[#c7b272] hover:text-[#b8a15f] transition-colors cursor-pointer flex items-center justify-center gap-1.5 py-1"
+                    >
+                      <Info size={12} />
+                      {langEN ? 'Help & Support' : 'Hulp & Support'}
                     </button>
                   </div>
                 ) : (
@@ -1959,10 +2129,17 @@ export default function App() {
                     </button>
                     <button
                       onClick={handleResetHidden}
-                      className="w-full bg-red-500/10 hover:bg-red-500 text-red-500 hover:text-white py-2.5 rounded-xl text-xs font-semibold uppercase tracking-wider transition-colors flex items-center justify-center gap-2 cursor-pointer border border-red-500/20"
+                      className="w-full bg-transparent text-gray-500 dark:text-slate-400 hover:text-red-500 py-1.5 rounded-lg text-[10px] font-semibold uppercase tracking-wider transition-colors flex items-center justify-center gap-1.5 cursor-pointer border border-gray-300 dark:border-slate-800 hover:border-red-500/30"
                     >
-                      <Trash2 size={14} />
+                      <Trash2 size={12} />
                       {langEN ? 'Reset Hidden Items' : 'Herstel verborgen items'}
+                    </button>
+                    <button
+                      onClick={() => setShowHelpModal(true)}
+                      className="w-full text-center text-[10px] font-bold uppercase tracking-wider text-[#c7b272] hover:text-[#b8a15f] transition-colors cursor-pointer flex items-center justify-center gap-1.5 py-1"
+                    >
+                      <Info size={12} />
+                      {langEN ? 'Help & Support' : 'Hulp & Support'}
                     </button>
                   </div>
                 )}
@@ -2810,10 +2987,20 @@ export default function App() {
                               handleResetHidden();
                               setShowMobileMenu(false);
                             }}
-                            className="w-full bg-red-500/10 hover:bg-red-500 text-red-500 hover:text-white py-2 rounded-xl text-xs font-semibold uppercase tracking-wider transition-colors flex items-center justify-center gap-2 cursor-pointer border border-red-500/20 mb-2"
+                            className="w-full bg-transparent text-gray-500 dark:text-slate-400 hover:text-red-500 py-1.5 rounded-lg text-[10px] font-semibold uppercase tracking-wider transition-colors flex items-center justify-center gap-1.5 cursor-pointer border border-gray-300 dark:border-slate-800 hover:border-red-500/30 mb-2"
                           >
-                            <Trash2 size={14} />
+                            <Trash2 size={12} />
                             {langEN ? 'Reset Hidden Items' : 'Herstel verborgen items'}
+                          </button>
+                          <button
+                            onClick={() => {
+                              setShowHelpModal(true);
+                              setShowMobileMenu(false);
+                            }}
+                            className="w-full text-center text-[10px] font-bold uppercase tracking-wider text-[#c7b272] hover:text-[#b8a15f] transition-colors cursor-pointer flex items-center justify-center gap-1.5 py-1"
+                          >
+                            <Info size={12} />
+                            {langEN ? 'Help & Support' : 'Hulp & Support'}
                           </button>
                         </div>
                       ) : (
@@ -2845,10 +3032,20 @@ export default function App() {
                               handleResetHidden();
                               setShowMobileMenu(false);
                             }}
-                            className="w-full bg-red-500/10 hover:bg-red-500 text-red-500 hover:text-white py-2.5 rounded-xl text-xs font-semibold uppercase tracking-wider transition-colors flex items-center justify-center gap-2 cursor-pointer border border-red-500/20"
+                            className="w-full bg-transparent text-gray-500 dark:text-slate-400 hover:text-red-500 py-1.5 rounded-lg text-[10px] font-semibold uppercase tracking-wider transition-colors flex items-center justify-center gap-1.5 cursor-pointer border border-gray-300 dark:border-slate-800 hover:border-red-500/30 mb-2"
                           >
-                            <Trash2 size={14} />
+                            <Trash2 size={12} />
                             {langEN ? 'Reset Hidden Items' : 'Herstel verborgen items'}
+                          </button>
+                          <button
+                            onClick={() => {
+                              setShowHelpModal(true);
+                              setShowMobileMenu(false);
+                            }}
+                            className="w-full text-center text-[10px] font-bold uppercase tracking-wider text-[#c7b272] hover:text-[#b8a15f] transition-colors cursor-pointer flex items-center justify-center gap-1.5 py-1"
+                          >
+                            <Info size={12} />
+                            {langEN ? 'Help & Support' : 'Hulp & Support'}
                           </button>
                         </div>
                       )}
@@ -3202,7 +3399,7 @@ export default function App() {
       </AnimatePresence>
 
       {/* Global Inbox Button */}
-      {!isFloatingChatOpen && !isInboxDismissed && (
+      {!isFloatingChatOpen && (!isInboxDismissed || hasSupportReply) && (
         <div className="fixed top-4 right-4 md:top-6 md:right-6 z-[90]">
           <button
             onClick={() => {
@@ -3213,7 +3410,7 @@ export default function App() {
             className="w-12 h-12 md:w-14 md:h-14 bg-transparent text-[#c7b272] rounded-full flex items-center justify-center transition-all hover:bg-[#c7b272]/10 relative cursor-pointer"
           >
             <Mail size={24} />
-            {(!inboxRead || (role === 'photographer' && !dismissedNotifications.includes('photo_priority') && !readNotifications.includes('photo_priority')) || (role === 'cm' && !dismissedNotifications.includes('cm_maserati') && !readNotifications.includes('cm_maserati')) || (role === 'guest' && !dismissedNotifications.includes('guest_parking') && !readNotifications.includes('guest_parking'))) && (
+            {(!inboxRead || (role === 'photographer' && !dismissedNotifications.includes('photo_priority') && !readNotifications.includes('photo_priority')) || (role === 'cm' && !dismissedNotifications.includes('cm_maserati') && !readNotifications.includes('cm_maserati')) || (role === 'guest' && !dismissedNotifications.includes('guest_parking') && !readNotifications.includes('guest_parking')) || hasSupportReply) && (
               <span className="absolute top-0 right-0 w-3 h-3 bg-red-500 border-2 border-[#F5F0E6] dark:border-slate-950 rounded-full">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-500 opacity-75"></span>
               </span>
@@ -3378,7 +3575,17 @@ export default function App() {
                       targetTab: 'extra',
                       urgent: false,
                       isChatTrigger: true
-                    }
+                    },
+                    ...(localStorage.getItem('wedding_support_reply_exists') === 'true' ? [{
+                      id: 'support_reply',
+                      role: role,
+                      category: 'Support',
+                      time: 'Support',
+                      title: langEN ? 'Support Response' : 'Support Reactie',
+                      content: localStorage.getItem('wedding_support_reply_text') || '',
+                      targetTab: 'overzicht',
+                      urgent: hasSupportReply
+                    }] : [])
                   ];
 
                   const activeNotifications = notificationsList.map(n => {
@@ -3446,6 +3653,275 @@ export default function App() {
                 })()}
               </div>
             </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Help & Support Modal */}
+      <AnimatePresence>
+        {showHelpModal && (
+          <motion.div 
+            initial={{ opacity: 0 }} 
+            animate={{ opacity: 1 }} 
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-[#1A1A2E]/60 dark:bg-slate-950/80 backdrop-blur-sm z-[110] flex items-center justify-center p-4"
+            onClick={() => {
+              setShowHelpModal(false);
+              setSupportSuccess(false);
+            }}
+          >
+            <motion.div 
+              initial={{ scale: 0.95, y: 20 }} 
+              animate={{ scale: 1, y: 0 }} 
+              exit={{ scale: 0.95, y: 20 }}
+              className="bg-white dark:bg-slate-900 w-full max-w-md rounded-3xl shadow-2xl border border-[#1A1A2E]/5 dark:border-white/5 overflow-hidden flex flex-col max-h-[90vh]"
+              onClick={e => e.stopPropagation()}
+            >
+              {/* Title Header */}
+              <div className="flex items-center justify-between p-6 pl-8 border-b border-[#1A1A2E]/5 dark:border-white/5 bg-[#F5F0E6] dark:bg-slate-950 shrink-0">
+                <h3 className="text-xl font-serif font-bold text-[#1A1A2E] dark:text-slate-100 flex items-center gap-3">
+                  <Mail size={24} className="text-[#c7b272]" />
+                  {langEN ? 'Help & Support' : 'Hulp & Support'}
+                </h3>
+                <button 
+                  onClick={() => {
+                    setShowHelpModal(false);
+                    setSupportSuccess(false);
+                  }}
+                  className="p-2 text-[#1A1A2E]/50 dark:text-slate-400 hover:text-[#1A1A2E] dark:hover:text-slate-100 hover:bg-[#1A1A2E]/5 dark:hover:bg-white/5 rounded-full transition-colors cursor-pointer"
+                >
+                  <X size={20} />
+                </button>
+              </div>
+
+              {/* Sub Navigation Tabs */}
+              <div className="flex border-b border-[#1A1A2E]/5 dark:border-white/5 bg-gray-50/50 dark:bg-slate-900/50 shrink-0">
+                <button
+                  onClick={() => setSupportActiveTab('create')}
+                  className={`flex-1 py-3 text-xs font-bold uppercase tracking-wider transition-colors border-b-2 ${
+                    supportActiveTab === 'create'
+                      ? 'border-[#c7b272] text-[#c7b272]'
+                      : 'border-transparent text-gray-400 hover:text-gray-600 dark:hover:text-slate-300'
+                  }`}
+                >
+                  {langEN ? 'New Ticket' : 'Nieuw ticket'}
+                </button>
+                <button
+                  onClick={() => setSupportActiveTab('list')}
+                  className={`flex-1 py-3 text-xs font-bold uppercase tracking-wider transition-colors border-b-2 relative ${
+                    supportActiveTab === 'list'
+                      ? 'border-[#c7b272] text-[#c7b272]'
+                      : 'border-transparent text-gray-400 hover:text-gray-600 dark:hover:text-slate-300'
+                  }`}
+                >
+                  {langEN ? 'My Tickets' : 'Mijn tickets'}
+                  {supportTickets.length > 0 && (
+                    <span className="ml-1.5 px-2 py-0.5 text-[9px] bg-[#c7b272] text-white rounded-full font-bold">
+                      {supportTickets.length}
+                    </span>
+                  )}
+                </button>
+              </div>
+
+              {/* Content Panel */}
+              <div className="p-6 md:p-8 overflow-y-auto flex-1 scrollbar-thin">
+                {supportActiveTab === 'list' ? (
+                  supportTickets.length === 0 ? (
+                    <div className="text-center py-10 flex flex-col items-center justify-center">
+                      <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-gray-100 dark:bg-slate-800 mb-3 text-gray-400 dark:text-slate-500">
+                        <Mail size={20} />
+                      </div>
+                      <p className="text-sm text-gray-500 dark:text-slate-400 font-medium">
+                        {langEN ? 'You have not submitted any tickets yet.' : 'Je hebt nog geen hulpverzoeken ingediend.'}
+                      </p>
+                    </div>
+                  ) : (
+                    <div className="space-y-3">
+                      {supportTickets.map(ticket => (
+                        <div 
+                          key={ticket.id} 
+                          className="bg-gray-50/50 dark:bg-slate-950/20 border border-gray-100 dark:border-slate-800/80 rounded-2xl p-4 text-left flex flex-col gap-2 shadow-sm"
+                        >
+                          <div className="flex justify-between items-center">
+                            <span className="text-[10px] font-bold text-[#c7b272] uppercase tracking-wider bg-[#c7b272]/5 px-2 py-0.5 rounded">
+                              {ticket.category}
+                            </span>
+                            <span className={`text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded ${
+                              ticket.status === 'replied' 
+                                ? 'bg-green-500/10 text-green-500' 
+                                : 'bg-yellow-500/10 text-yellow-500'
+                            }`}>
+                              {ticket.status === 'replied' 
+                                ? (langEN ? 'Replied' : 'Beantwoord') 
+                                : (langEN ? 'Sent' : 'Verzonden')}
+                            </span>
+                          </div>
+                          <div className="text-xs text-gray-600 dark:text-slate-300 font-medium whitespace-pre-wrap leading-relaxed">
+                            {ticket.message}
+                          </div>
+                          <div className="text-[9px] text-gray-400 dark:text-slate-500 font-mono">
+                            {new Date(ticket.timestamp).toLocaleString(langEN ? 'en-US' : 'nl-NL', {
+                              day: 'numeric',
+                              month: 'short',
+                              hour: '2-digit',
+                              minute: '2-digit'
+                            })}
+                          </div>
+                          {ticket.status === 'replied' && ticket.reply && (
+                            <div className="mt-2 pt-2 border-t border-[#1A1A2E]/5 dark:border-white/5 bg-[#c7b272]/5 dark:bg-slate-900/50 p-3 rounded-xl border-l-4 border-[#c7b272]">
+                              <span className="block text-[10px] font-bold text-[#c7b272] uppercase tracking-widest mb-1">
+                                {langEN ? 'Reply from Support' : 'Reactie van Support'}
+                              </span>
+                              <p className="text-xs text-gray-700 dark:text-slate-300 italic leading-relaxed">
+                                "{ticket.reply}"
+                              </p>
+                            </div>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  )
+                ) : supportSuccess ? (
+                  <div className="text-center py-6 flex flex-col items-center">
+                    <div className="w-16 h-16 bg-green-500/10 rounded-full flex items-center justify-center mb-4">
+                      <svg className="w-8 h-8 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+                      </svg>
+                    </div>
+                    <h4 className="text-lg font-bold text-[#1A1A2E] dark:text-slate-100 mb-2">
+                      {langEN ? 'Message Sent!' : 'Bericht verzonden!'}
+                    </h4>
+                    <p className="text-sm text-gray-500 dark:text-slate-400 mb-6 leading-relaxed">
+                      {langEN 
+                        ? 'Your message has been sent to jorik.katinkainfo@gmail.com. We will get back to you as soon as possible.' 
+                        : 'Je bericht is verzonden naar jorik.katinkainfo@gmail.com. We nemen zo snel mogelijk contact met je op.'}
+                    </p>
+                    <button
+                      onClick={() => {
+                        setSupportSuccess(false);
+                        setSupportActiveTab('list');
+                      }}
+                      className="bg-[#c7b272] hover:bg-[#b8a15f] text-white px-6 py-2.5 rounded-xl text-xs font-semibold uppercase tracking-wider transition-colors shadow-sm cursor-pointer"
+                    >
+                      {langEN ? 'View Tickets' : 'Bekijk hulpverzoeken'}
+                    </button>
+                  </div>
+                ) : (
+                  <form onSubmit={handleSupportSubmit} className="space-y-4">
+                    <div>
+                      <label className="block text-xs font-bold text-gray-500 dark:text-slate-400 uppercase tracking-wider mb-2">
+                        {langEN ? 'Your Name' : 'Je naam'}
+                      </label>
+                      <input
+                        type="text"
+                        required
+                        value={supportName}
+                        onChange={e => setSupportName(e.target.value)}
+                        placeholder={langEN ? 'Enter your name...' : 'Vul je naam in...'}
+                        className="w-full border border-gray-200 dark:border-slate-800 bg-[#F5F0E6]/30 dark:bg-slate-950/30 text-[#1A1A2E] dark:text-slate-100 rounded-xl px-4 py-2.5 focus:ring-2 focus:ring-[#c7b272] focus:border-[#c7b272] outline-none text-sm transition-all"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-bold text-gray-500 dark:text-slate-400 uppercase tracking-wider mb-2">
+                        {langEN ? 'Category' : 'Categorie'}
+                      </label>
+                      <select
+                        value={supportCategory}
+                        onChange={e => setSupportCategory(e.target.value)}
+                        className="w-full border border-gray-200 dark:border-slate-800 bg-[#F5F0E6]/30 dark:bg-slate-950/30 text-[#1A1A2E] dark:text-slate-100 rounded-xl px-4 py-2.5 focus:ring-2 focus:ring-[#c7b272] focus:border-[#c7b272] outline-none text-sm transition-all cursor-pointer dark:bg-slate-900"
+                      >
+                        <option value="Probleem met design / lay-out" className="dark:bg-slate-900">{langEN ? 'Design / Layout Issue' : 'Probleem met design / lay-out'}</option>
+                        <option value="Toegangscodes / Inloggen" className="dark:bg-slate-900">{langEN ? 'Access Codes / Login' : 'Toegangscodes / Inloggen'}</option>
+                        <option value="Live Chat / Notities" className="dark:bg-slate-900">{langEN ? 'Live Chat / Notes' : 'Live Chat / Notities'}</option>
+                        <option value="Plattegrond / Afbeeldingen" className="dark:bg-slate-900">{langEN ? 'Map / Images' : 'Plattegrond / Afbeeldingen'}</option>
+                        <option value="Foutmelding of bug" className="dark:bg-slate-900">{langEN ? 'Error Message / Bug' : 'Foutmelding of bug'}</option>
+                        <option value="Anders" className="dark:bg-slate-900">{langEN ? 'Other' : 'Anders'}</option>
+                      </select>
+                    </div>
+                    <div>
+                      <label className="block text-xs font-bold text-gray-500 dark:text-slate-400 uppercase tracking-wider mb-2">
+                        {langEN ? 'Describe your problem' : 'Beschrijf je probleem'}
+                      </label>
+                      <textarea
+                        required
+                        rows={4}
+                        value={supportMessage}
+                        onChange={e => setSupportMessage(e.target.value)}
+                        placeholder={langEN ? 'How can we help you?' : 'Waar kunnen we je mee helpen?'}
+                        className="w-full border border-gray-200 dark:border-slate-800 bg-[#F5F0E6]/30 dark:bg-slate-950/30 text-[#1A1A2E] dark:text-slate-100 rounded-xl px-4 py-2.5 focus:ring-2 focus:ring-[#c7b272] focus:border-[#c7b272] outline-none text-sm transition-all resize-none"
+                      />
+                    </div>
+                    <button
+                      type="submit"
+                      disabled={isSendingSupport}
+                      className="w-full bg-[#c7b272] hover:bg-[#b8a15f] disabled:bg-gray-300 dark:disabled:bg-slate-800 text-white py-3 rounded-xl text-xs font-bold uppercase tracking-wider transition-colors shadow-sm flex items-center justify-center gap-2 cursor-pointer mt-2"
+                    >
+                      {isSendingSupport ? (
+                        <>
+                          <span className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
+                          {langEN ? 'Sending...' : 'Verzenden...'}
+                        </>
+                      ) : (
+                        <>
+                          <Send size={14} />
+                          {langEN ? 'Send Support Request' : 'Verstuur hulpverzoek'}
+                        </>
+                      )}
+                    </button>
+                  </form>
+                )}
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Global Support Reply Popup Alert */}
+      <AnimatePresence>
+        {hasSupportReply && (
+          <motion.div
+            initial={{ opacity: 0, y: 50, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 20, scale: 0.95 }}
+            className="fixed bottom-6 left-6 right-6 md:left-auto md:w-96 bg-white dark:bg-slate-900 border-2 border-[#c7b272] rounded-3xl shadow-2xl p-5 z-[150] flex flex-col gap-3 font-sans"
+          >
+            <div className="flex justify-between items-center">
+              <span className="text-[10px] font-bold uppercase tracking-widest text-red-500 bg-red-500/10 px-2 py-0.5 rounded flex items-center gap-1.5 animate-pulse">
+                <span className="w-1.5 h-1.5 bg-red-500 rounded-full inline-block"></span>
+                {langEN ? 'Support Response' : 'Support Reactie'}
+              </span>
+              <button 
+                onClick={() => {
+                  setHasSupportReply(false);
+                  localStorage.setItem('wedding_support_reply_unread', 'false');
+                }}
+                className="p-1 text-[#1A1A2E]/50 dark:text-slate-400 hover:text-red-500 hover:bg-red-500/10 rounded-full transition-colors cursor-pointer"
+              >
+                <X size={16} />
+              </button>
+            </div>
+            <div>
+              <h4 className="font-serif font-bold text-sm text-[#1A1A2E] dark:text-slate-200 mb-1">
+                {langEN ? 'Message from jorik.katinkainfo@gmail.com' : 'Bericht van jorik.katinkainfo@gmail.com'}
+              </h4>
+              <p className="text-xs text-gray-600 dark:text-slate-400 leading-relaxed italic">
+                "{localStorage.getItem('wedding_support_reply_text') || ''}"
+              </p>
+            </div>
+            <div className="flex justify-end gap-2 pt-2 border-t border-[#1A1A2E]/5 dark:border-white/5">
+              <button
+                onClick={() => {
+                  setHasSupportReply(false);
+                  localStorage.setItem('wedding_support_reply_unread', 'false');
+                  setShowInboxPopup(true);
+                  markInboxAsRead(true);
+                  markAllAsRead();
+                }}
+                className="bg-[#c7b272] hover:bg-[#b8a15f] text-white px-4 py-2 rounded-xl text-[10px] font-bold uppercase tracking-wider transition-colors shadow-sm cursor-pointer"
+              >
+                {langEN ? 'Open Inbox' : 'Open Postvak'}
+              </button>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
