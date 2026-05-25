@@ -1103,15 +1103,6 @@ const getFirebaseApp = () => {
 // MAIN APP
 // ----------------------------------------------------------------------------
 
-interface SupportTicket {
-  id: string;
-  name: string;
-  category: string;
-  message: string;
-  timestamp: number;
-  status: 'pending' | 'replied';
-  reply?: string;
-}
 
 export default function App() {
   const [role, setRole] = useState<'guest'|'cm'|'photographer'>(() => {
@@ -1133,23 +1124,11 @@ export default function App() {
   // --- Support States ---
   const [showHelpModal, setShowHelpModal] = useState(false);
   const [supportName, setSupportName] = useState('');
+  const [supportEmail, setSupportEmail] = useState('');
   const [supportMessage, setSupportMessage] = useState('');
   const [supportCategory, setSupportCategory] = useState('Probleem met design / lay-out');
-  const [supportActiveTab, setSupportActiveTab] = useState<'create' | 'list'>('create');
-  const [selectedSupportTicketId, setSelectedSupportTicketId] = useState<string | null>(null);
-  const [supportTickets, setSupportTickets] = useState<SupportTicket[]>(() => {
-    try {
-      const saved = localStorage.getItem('wedding_support_tickets');
-      return saved ? JSON.parse(saved) : [];
-    } catch (e) {
-      return [];
-    }
-  });
   const [isSendingSupport, setIsSendingSupport] = useState(false);
   const [supportSuccess, setSupportSuccess] = useState(false);
-  const [hasSupportReply, setHasSupportReply] = useState(() => {
-    return localStorage.getItem('wedding_support_reply_unread') === 'true';
-  });
 
 
 
@@ -1270,8 +1249,6 @@ export default function App() {
       setDismissedPages([]);
       setIsInboxDismissed(false);
       setReadNotifications([]);
-      setHasSupportReply(false);
-      setSupportTickets([]);
       localStorage.removeItem('wedding_dismissed_notifications');
       localStorage.removeItem('wedding_dismissed_pages');
       localStorage.removeItem('wedding_inbox_dismissed');
@@ -1285,28 +1262,12 @@ export default function App() {
 
   const handleSupportSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!supportName.trim() || !supportMessage.trim()) return;
+    if (!supportName.trim() || !supportEmail.trim() || !supportMessage.trim()) return;
     
     setIsSendingSupport(true);
-    
-    // Create new ticket object
-    const ticketId = 'ticket_' + Math.random().toString(36).substring(2, 11) + '_' + Date.now();
-    const newTicket: SupportTicket = {
-      id: ticketId,
-      name: supportName,
-      category: supportCategory,
-      message: supportMessage,
-      timestamp: Date.now(),
-      status: 'pending'
-    };
-
-    // Save ticket locally first
-    const updatedTickets = [newTicket, ...supportTickets];
-    setSupportTickets(updatedTickets);
-    localStorage.setItem('wedding_support_tickets', JSON.stringify(updatedTickets));
 
     try {
-      // 1. Submit to Formspree first (primary action)
+      // Submit to Formspree
       const response = await fetch('https://formspree.io/f/xvzywpaa', {
         method: 'POST',
         headers: {
@@ -1314,9 +1275,8 @@ export default function App() {
           'Accept': 'application/json'
         },
         body: JSON.stringify({
-          ticketId: ticketId,
           name: supportName,
-          email: 'hot.tt.fyp@gmail.com',
+          email: supportEmail,
           category: supportCategory,
           message: supportMessage
         })
@@ -1326,114 +1286,16 @@ export default function App() {
         throw new Error('Formspree response not ok');
       }
 
-      // 2. Write the ticket details into Firebase Firestore under support_tickets collection in a non-blocking way
-      try {
-        const app = await getFirebaseApp();
-        const { getFirestore, doc, setDoc } = await import('https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js');
-        const db = getFirestore(app);
-        const ticketDocRef = doc(db, 'support_tickets', ticketId);
-        
-        await setDoc(ticketDocRef, {
-          id: ticketId,
-          name: supportName,
-          email: 'hot.tt.fyp@gmail.com',
-          category: supportCategory,
-          message: supportMessage,
-          timestamp: Date.now(),
-          status: 'pending'
-        });
-      } catch (dbErr) {
-        console.warn('Failed to write support ticket to Firestore (replies will not work), but email was sent:', dbErr);
-      }
-
       setIsSendingSupport(false);
       setSupportSuccess(true);
       setSupportMessage('');
+      setSupportEmail('');
     } catch (err) {
       console.error('Formspree connection error:', err);
       alert(langEN ? "Connection error with Formspree. Please try again." : "Verbindingsfout met Formspree. Probeer het opnieuw.");
       setIsSendingSupport(false);
     }
   };
-
-  const handleDeleteTicket = (ticketId: string) => {
-    if (window.confirm(langEN ? "Are you sure you want to delete this support request?" : "Weet je zeker dat je dit hulpverzoek wilt verwijderen?")) {
-      const updated = supportTickets.filter(t => t.id !== ticketId);
-      setSupportTickets(updated);
-      localStorage.setItem('wedding_support_tickets', JSON.stringify(updated));
-      if (selectedSupportTicketId === ticketId) {
-        setSelectedSupportTicketId(null);
-      }
-    }
-  };
-
-  // Listen for real-time support ticket replies from Firestore
-  useEffect(() => {
-    const activePendingTickets = supportTickets.filter(t => t.status === 'pending');
-    if (activePendingTickets.length === 0) return;
-
-    let unsubscribes: (() => void)[] = [];
-
-    const listenToTickets = async () => {
-      try {
-        const app = await getFirebaseApp();
-        const { getFirestore, doc, onSnapshot } = await import('https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js');
-        const db = getFirestore(app);
-
-        activePendingTickets.forEach(ticket => {
-          const docRef = doc(db, 'support_tickets', ticket.id);
-          const unsub = onSnapshot(docRef, (docSnap) => {
-            if (docSnap.exists()) {
-              const data = docSnap.data();
-              if (data && data.status === 'replied' && data.reply) {
-                // Update local tickets list
-                setSupportTickets(prev => {
-                  const updated = prev.map(t => {
-                    if (t.id === ticket.id) {
-                      return {
-                        ...t,
-                        status: 'replied' as const,
-                        reply: data.reply
-                      };
-                    }
-                    return t;
-                  });
-                  localStorage.setItem('wedding_support_tickets', JSON.stringify(updated));
-                  return updated;
-                });
-
-                // Trigger popup notification
-                localStorage.setItem('wedding_support_reply_exists', 'true');
-                localStorage.setItem('wedding_support_reply_unread', 'true');
-                localStorage.setItem('wedding_support_reply_text', data.reply);
-                setHasSupportReply(true);
-              }
-            }
-          });
-          unsubscribes.push(unsub);
-        });
-      } catch (err) {
-        console.error('Failed to listen to support tickets:', err);
-      }
-    };
-
-    listenToTickets();
-
-    return () => {
-      unsubscribes.forEach(unsub => unsub());
-    };
-  }, [supportTickets]);
-
-  // Clear unread support reply flag when viewing the replied ticket
-  useEffect(() => {
-    if (selectedSupportTicketId) {
-      const selectedTicket = supportTickets.find(t => t.id === selectedSupportTicketId);
-      if (selectedTicket && selectedTicket.status === 'replied') {
-        setHasSupportReply(false);
-        localStorage.setItem('wedding_support_reply_unread', 'false');
-      }
-    }
-  }, [selectedSupportTicketId, supportTickets]);
 
 
 
@@ -1833,10 +1695,6 @@ export default function App() {
     setReadNotifications(newRead);
     localStorage.setItem('wedding_read_notifications', JSON.stringify(newRead));
     markInboxAsRead(true);
-    
-    // Clear support reply unread state when inbox is opened
-    setHasSupportReply(false);
-    localStorage.setItem('wedding_support_reply_unread', 'false');
   };
 
   const markInboxAsRead = (val: boolean) => {
@@ -3481,7 +3339,7 @@ export default function App() {
       </AnimatePresence>
 
       {/* Global Inbox Button */}
-      {!isFloatingChatOpen && (!isInboxDismissed || hasSupportReply) && (
+      {!isFloatingChatOpen && !isInboxDismissed && (
         <div className="fixed top-4 right-4 md:top-6 md:right-6 z-[90]">
           <button
             onClick={() => {
@@ -3492,7 +3350,7 @@ export default function App() {
             className="w-12 h-12 md:w-14 md:h-14 bg-transparent text-[#c7b272] rounded-full flex items-center justify-center transition-all hover:bg-[#c7b272]/10 relative cursor-pointer"
           >
             <Mail size={24} />
-            {(!inboxRead || (role === 'photographer' && !dismissedNotifications.includes('photo_priority') && !readNotifications.includes('photo_priority')) || (role === 'cm' && !dismissedNotifications.includes('cm_maserati') && !readNotifications.includes('cm_maserati')) || (role === 'guest' && !dismissedNotifications.includes('guest_parking') && !readNotifications.includes('guest_parking')) || hasSupportReply) && (
+            {(!inboxRead || (role === 'photographer' && !dismissedNotifications.includes('photo_priority') && !readNotifications.includes('photo_priority')) || (role === 'cm' && !dismissedNotifications.includes('cm_maserati') && !readNotifications.includes('cm_maserati')) || (role === 'guest' && !dismissedNotifications.includes('guest_parking') && !readNotifications.includes('guest_parking'))) && (
               <span className="absolute top-0 right-0 w-3 h-3 bg-red-500 border-2 border-[#F5F0E6] dark:border-slate-950 rounded-full">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-500 opacity-75"></span>
               </span>
@@ -3657,17 +3515,7 @@ export default function App() {
                       targetTab: 'extra',
                       urgent: false,
                       isChatTrigger: true
-                    },
-                    ...(localStorage.getItem('wedding_support_reply_exists') === 'true' ? [{
-                      id: 'support_reply',
-                      role: role,
-                      category: 'Support',
-                      time: 'Support',
-                      title: langEN ? 'Support Response' : 'Support Reactie',
-                      content: localStorage.getItem('wedding_support_reply_text') || '',
-                      targetTab: 'overzicht',
-                      urgent: hasSupportReply
-                    }] : [])
+                    }
                   ];
 
                   const activeNotifications = notificationsList.map(n => {
@@ -3712,23 +3560,11 @@ export default function App() {
                       <div className="flex items-center justify-between mt-2 pt-2 border-t border-[#1A1A2E]/5 dark:border-white/5">
                         <button
                           onClick={() => {
-                            if (n.id === 'support_reply') {
-                              setShowInboxPopup(false);
-                              setShowHelpModal(true);
-                              setSupportActiveTab('list');
-                              const repliedTicket = supportTickets.find(t => t.status === 'replied');
-                              if (repliedTicket) {
-                                setSelectedSupportTicketId(repliedTicket.id);
-                              } else if (supportTickets.length > 0) {
-                                setSelectedSupportTicketId(supportTickets[0].id);
-                              }
-                            } else {
-                              setActiveTab(n.targetTab);
-                              setShowInboxPopup(false);
-                              if (n.isChatTrigger) {
-                                setIsFloatingChatOpen(true);
-                                scrollToBottom();
-                              }
+                            setActiveTab(n.targetTab);
+                            setShowInboxPopup(false);
+                            if (n.isChatTrigger) {
+                              setIsFloatingChatOpen(true);
+                              scrollToBottom();
                             }
                           }}
                           className="text-[10px] font-bold text-[#c7b272] hover:text-[#b8a15f] flex items-center gap-1 cursor-pointer transition-colors"
@@ -3744,13 +3580,6 @@ export default function App() {
                       </div>
                     </div>
                   ));
-                })()}
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
       {/* Help & Support Modal */}
       <AnimatePresence>
         {showHelpModal && (
@@ -3762,7 +3591,6 @@ export default function App() {
             onClick={() => {
               setShowHelpModal(false);
               setSupportSuccess(false);
-              setSelectedSupportTicketId(null);
             }}
           >
             <motion.div 
@@ -3782,7 +3610,6 @@ export default function App() {
                   onClick={() => {
                     setShowHelpModal(false);
                     setSupportSuccess(false);
-                    setSelectedSupportTicketId(null);
                   }}
                   className="p-2 text-[#1A1A2E]/50 dark:text-slate-400 hover:text-[#1A1A2E] dark:hover:text-slate-100 hover:bg-[#1A1A2E]/5 dark:hover:bg-white/5 rounded-full transition-colors cursor-pointer"
                 >
@@ -3790,257 +3617,9 @@ export default function App() {
                 </button>
               </div>
 
-              {/* Sub Navigation Tabs */}
-              <div className="flex border-b border-[#1A1A2E]/5 dark:border-white/5 bg-gray-50/50 dark:bg-slate-900/50 shrink-0">
-                <button
-                  onClick={() => { setSupportActiveTab('create'); setSelectedSupportTicketId(null); }}
-                  className={`flex-1 py-3 text-xs font-bold uppercase tracking-wider transition-colors border-b-2 ${
-                    supportActiveTab === 'create'
-                      ? 'border-[#c7b272] text-[#c7b272]'
-                      : 'border-transparent text-gray-400 hover:text-gray-600 dark:hover:text-slate-300'
-                  }`}
-                >
-                  {langEN ? 'New Ticket' : 'Nieuw ticket'}
-                </button>
-                <button
-                  onClick={() => { setSupportActiveTab('list'); setSelectedSupportTicketId(null); }}
-                  className={`flex-1 py-3 text-xs font-bold uppercase tracking-wider transition-colors border-b-2 relative ${
-                    supportActiveTab === 'list'
-                      ? 'border-[#c7b272] text-[#c7b272]'
-                      : 'border-transparent text-gray-400 hover:text-gray-600 dark:hover:text-slate-300'
-                  }`}
-                >
-                  {langEN ? 'My Tickets' : 'Mijn tickets'}
-                  {supportTickets.length > 0 && (
-                    <span className="ml-1.5 px-2 py-0.5 text-[9px] bg-[#c7b272] text-white rounded-full font-bold">
-                      {supportTickets.length}
-                    </span>
-                  )}
-                </button>
-              </div>
-
               {/* Content Panel */}
               <div className="p-6 md:p-8 overflow-y-auto flex-1 scrollbar-thin">
-                {supportActiveTab === 'list' ? (
-                  selectedSupportTicketId ? (() => {
-                    const ticket = supportTickets.find(t => t.id === selectedSupportTicketId);
-                    if (!ticket) return null;
-                    return (
-                      <div className="flex flex-col gap-5 text-left">
-                        {/* Back Button & Delete Button Row */}
-                        <div className="flex justify-between items-center w-full">
-                          <button 
-                            onClick={() => setSelectedSupportTicketId(null)} 
-                            className="inline-flex items-center gap-1.5 text-xs font-bold text-[#c7b272] hover:text-[#b8a15f] transition-colors cursor-pointer select-none"
-                          >
-                            <ArrowLeft size={14} />
-                            {langEN ? 'Back to tickets' : 'Terug naar overzicht'}
-                          </button>
-                          <button 
-                            onClick={() => handleDeleteTicket(ticket.id)} 
-                            className="inline-flex items-center gap-1.5 text-xs font-bold text-red-500/60 hover:text-red-600 transition-colors cursor-pointer select-none"
-                          >
-                            <Trash2 size={13} />
-                            {langEN ? 'Delete request' : 'Verwijder verzoek'}
-                          </button>
-                        </div>
-
-                        {/* Stepper (Process Tracker) */}
-                        <div className="flex flex-col gap-3 bg-gray-50/50 dark:bg-slate-950/40 p-4 rounded-2xl border border-[#1A1A2E]/5 dark:border-white/5 shadow-sm">
-                          <h4 className="text-[10px] font-bold uppercase tracking-wider text-gray-400 dark:text-slate-500">
-                            {langEN ? 'Ticket Progress' : 'Voortgang status'}
-                          </h4>
-                          <div className="flex flex-col gap-4 relative pl-5 mt-2">
-                            {/* Stepper line */}
-                            <div className="absolute left-[6px] top-1.5 bottom-1.5 w-0.5 bg-gray-200 dark:bg-slate-800"></div>
-                            
-                            {/* Step 1 */}
-                            <div className="flex items-start gap-3 relative">
-                              <div className="absolute left-[-24px] top-0.5 w-3.5 h-3.5 rounded-full bg-green-500 border-2 border-white dark:border-slate-900 flex items-center justify-center">
-                                <Check size={8} className="text-white font-bold" />
-                              </div>
-                              <div>
-                                <p className="text-xs font-bold text-gray-700 dark:text-slate-200">{langEN ? 'Ticket Submitted' : 'Ticket ingediend'}</p>
-                                <p className="text-[9px] text-gray-400 dark:text-slate-500">{langEN ? 'Your request has been logged successfully' : 'Hulpverzoek is geregistreerd'}</p>
-                              </div>
-                            </div>
-                            
-                            {/* Step 2 */}
-                            <div className="flex items-start gap-3 relative">
-                              <div className="absolute left-[-24px] top-0.5 w-3.5 h-3.5 rounded-full bg-green-500 border-2 border-white dark:border-slate-900 flex items-center justify-center">
-                                <Check size={8} className="text-white font-bold" />
-                              </div>
-                              <div>
-                                <p className="text-xs font-bold text-gray-700 dark:text-slate-200">{langEN ? 'Delivered to Support' : 'Verzonden naar Support'}</p>
-                                <p className="text-[9px] text-gray-400 dark:text-slate-500">
-                                  {langEN ? 'Sent email notification to jorik.katinkainfo@gmail.com' : 'E-mail verstuurd naar jorik.katinkainfo@gmail.com'}
-                                </p>
-                              </div>
-                            </div>
-
-                            {/* Step 3 */}
-                            <div className="flex items-start gap-3 relative">
-                              <div className={`absolute left-[-24px] top-0.5 w-3.5 h-3.5 rounded-full border-2 border-white dark:border-slate-900 flex items-center justify-center ${
-                                ticket.status === 'replied' ? 'bg-green-500' : 'bg-amber-500 animate-pulse'
-                              }`}>
-                                {ticket.status === 'replied' ? <Check size={8} className="text-white font-bold" /> : <div className="w-1.5 h-1.5 bg-white rounded-full"></div>}
-                              </div>
-                              <div>
-                                <p className="text-xs font-bold text-gray-700 dark:text-slate-200">{langEN ? 'Under Review' : 'In behandeling'}</p>
-                                <p className="text-[9px] text-gray-400 dark:text-slate-500">
-                                  {ticket.status === 'replied' 
-                                    ? (langEN ? 'Review completed' : 'Beoordeeld door Jorik & Katinka') 
-                                    : (langEN ? 'Awaiting response from Jorik & Katinka' : 'Wachten op reactie van Jorik & Katinka')}
-                                </p>
-                              </div>
-                            </div>
-
-                            {/* Step 4 */}
-                            <div className="flex items-start gap-3 relative">
-                              <div className={`absolute left-[-24px] top-0.5 w-3.5 h-3.5 rounded-full border-2 border-white dark:border-slate-900 flex items-center justify-center ${
-                                ticket.status === 'replied' ? 'bg-[#c7b272]' : 'bg-gray-200 dark:bg-slate-800'
-                              }`}>
-                                {ticket.status === 'replied' ? <Check size={8} className="text-white font-bold" /> : null}
-                              </div>
-                              <div>
-                                <p className={`text-xs font-bold ${ticket.status === 'replied' ? 'text-[#c7b272]' : 'text-gray-400 dark:text-slate-500'}`}>
-                                  {langEN ? 'Reply Received' : 'Antwoord ontvangen'}
-                                </p>
-                                <p className="text-[9px] text-gray-400 dark:text-slate-500 font-medium">
-                                  {ticket.status === 'replied' 
-                                    ? (langEN ? 'Check response in conversation below' : 'Reactie toegevoegd aan de chat') 
-                                    : (langEN ? 'A notification will pop up on the site when resolved' : 'Melding volgt op de site zodra er antwoord is')}
-                                </p>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-
-                        {/* Chat Messages */}
-                        <div className="flex flex-col gap-4 mt-2">
-                          <h4 className="text-[10px] font-bold uppercase tracking-wider text-gray-400 dark:text-slate-500">
-                            {langEN ? 'Conversation' : 'Gesprek'}
-                          </h4>
-                          
-                          <div className="flex flex-col gap-4 bg-gray-50/30 dark:bg-slate-950/20 p-4 rounded-2xl border border-[#1A1A2E]/5 dark:border-white/5 min-h-[120px]">
-                            {/* User original request */}
-                            <div className="flex flex-col gap-1 items-end self-end max-w-[85%]">
-                              <div className="flex items-center gap-1.5 text-[9px] text-gray-400 dark:text-slate-500 mr-1 font-mono">
-                                <span className="font-bold">{ticket.name}</span>
-                                <span>•</span>
-                                <span>{new Date(ticket.timestamp).toLocaleTimeString(langEN ? 'en-US' : 'nl-NL', { hour: '2-digit', minute: '2-digit' })}</span>
-                              </div>
-                              <div className="bg-[#1A1A2E]/5 dark:bg-slate-800 text-[#1A1A2E] dark:text-slate-100 rounded-2xl rounded-tr-none px-4 py-2.5 text-xs leading-relaxed shadow-sm font-medium whitespace-pre-wrap text-left">
-                                {ticket.message}
-                              </div>
-                              <span className="text-[8px] uppercase tracking-wider text-[#c7b272] font-semibold bg-[#c7b272]/5 px-2 py-0.5 rounded border border-[#c7b272]/10 mt-1">
-                                {ticket.category}
-                              </span>
-                            </div>
-
-                            {/* Reply message */}
-                            {ticket.status === 'replied' && ticket.reply ? (
-                              <div className="flex flex-col gap-1 items-start self-start max-w-[85%] mt-1">
-                                <div className="flex items-center gap-1.5 text-[9px] text-[#c7b272] ml-1 font-mono">
-                                  <span className="font-bold flex items-center gap-1">
-                                    <Heart size={10} className="fill-[#c7b272] text-[#c7b272]" /> 
-                                    Jorik & Katinka Support
-                                  </span>
-                                  <span>•</span>
-                                  <span>{langEN ? 'Organizer' : 'Organisator'}</span>
-                                </div>
-                                <div className="bg-[#c7b272]/10 dark:bg-[#c7b272]/15 border border-[#c7b272]/30 text-[#1A1A2E] dark:text-slate-100 rounded-2xl rounded-tl-none px-4 py-2.5 text-xs leading-relaxed shadow-sm border-l-4 border-l-[#c7b272] text-left font-medium whitespace-pre-wrap">
-                                  {ticket.reply}
-                                </div>
-                              </div>
-                            ) : (
-                              <div className="flex items-center gap-3 bg-amber-50/50 dark:bg-slate-950/20 border border-dashed border-amber-200/50 dark:border-slate-800/80 p-4 rounded-xl mt-1 text-left">
-                                <div className="flex shrink-0 items-center justify-center w-8 h-8 rounded-full bg-amber-100 dark:bg-slate-900 text-amber-500">
-                                  <Clock size={16} className="animate-spin" style={{ animationDuration: '3s' }} />
-                                </div>
-                                <div>
-                                  <h5 className="text-xs font-bold text-amber-600 dark:text-amber-500">
-                                    {langEN ? 'Awaiting response...' : 'Wachten op antwoord...'}
-                                  </h5>
-                                  <p className="text-[10px] text-gray-500 dark:text-slate-400 leading-relaxed mt-0.5">
-                                    {langEN 
-                                      ? 'Your ticket is forwarded. Once Jorik replies to the email notification, the response will show up here instantly!' 
-                                      : 'Je hulpverzoek is doorgestuurd. Zodra Jorik de e-mail beantwoordt, verschijnt het antwoord direct hier!'}
-                                  </p>
-                                </div>
-                              </div>
-                            )}
-                          </div>
-                        </div>
-                      </div>
-                    );
-                  })() : (
-                    supportTickets.length === 0 ? (
-                      <div className="text-center py-10 flex flex-col items-center justify-center">
-                        <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-gray-100 dark:bg-slate-800 mb-3 text-gray-400 dark:text-slate-500">
-                          <Mail size={20} />
-                        </div>
-                        <p className="text-sm text-gray-500 dark:text-slate-400 font-medium">
-                          {langEN ? 'You have not submitted any tickets yet.' : 'Je hebt nog geen hulpverzoeken ingediend.'}
-                        </p>
-                      </div>
-                    ) : (
-                      <div className="space-y-3">
-                        {supportTickets.map(ticket => (
-                          <div 
-                            key={ticket.id} 
-                            onClick={() => setSelectedSupportTicketId(ticket.id)}
-                            className="group bg-gray-50/50 hover:bg-white dark:bg-slate-950/20 dark:hover:bg-slate-900/50 border border-gray-100 hover:border-[#c7b272]/30 dark:border-slate-800/80 rounded-2xl p-4 text-left flex flex-col gap-3 shadow-sm transition-all cursor-pointer relative"
-                          >
-                            <div className="flex justify-between items-center">
-                              <span className="text-[9px] font-bold text-[#c7b272] uppercase tracking-wider bg-[#c7b272]/5 px-2 py-0.5 rounded border border-[#c7b272]/10">
-                                {ticket.category}
-                              </span>
-                              <div className="flex items-center gap-2">
-                                <span className={`text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded flex items-center gap-1.5 ${
-                                  ticket.status === 'replied' 
-                                    ? 'bg-green-500/10 text-green-500' 
-                                    : 'bg-yellow-500/10 text-yellow-500'
-                                }`}>
-                                  {ticket.status !== 'replied' && <span className="w-1.5 h-1.5 bg-yellow-500 rounded-full inline-block animate-pulse"></span>}
-                                  {ticket.status === 'replied' 
-                                    ? (langEN ? 'Replied' : 'Beantwoord') 
-                                    : (langEN ? 'Sent' : 'Verzonden')}
-                                </span>
-                                <button
-                                  onClick={(e) => {
-                                    e.stopPropagation();
-                                    handleDeleteTicket(ticket.id);
-                                  }}
-                                  className="p-1 text-gray-400 hover:text-red-500 hover:bg-red-500/10 rounded-full transition-colors cursor-pointer"
-                                  title={langEN ? 'Delete request' : 'Verwijder verzoek'}
-                                >
-                                  <Trash2 size={12} />
-                                </button>
-                              </div>
-                            </div>
-                            <div className="text-xs text-gray-600 dark:text-slate-300 font-medium line-clamp-2 leading-relaxed">
-                              {ticket.message}
-                            </div>
-                            <div className="flex justify-between items-center pt-2 border-t border-[#1A1A2E]/5 dark:border-white/5 text-[9px] text-gray-400 dark:text-slate-500 font-mono">
-                              <span>
-                                {new Date(ticket.timestamp).toLocaleString(langEN ? 'en-US' : 'nl-NL', {
-                                  day: 'numeric',
-                                  month: 'short',
-                                  hour: '2-digit',
-                                  minute: '2-digit'
-                                })}
-                              </span>
-                              <span className="text-[#c7b272] font-semibold group-hover:translate-x-0.5 transition-transform flex items-center gap-1">
-                                {langEN ? 'View status & chat' : 'Bekijk status & chat'} →
-                              </span>
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    )
-                  )
-                ) : supportSuccess ? (
+                {supportSuccess ? (
                   <div className="text-center py-6 flex flex-col items-center">
                     <div className="w-16 h-16 bg-green-500/10 rounded-full flex items-center justify-center mb-4">
                       <svg className="w-8 h-8 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -4058,12 +3637,11 @@ export default function App() {
                     <button
                       onClick={() => {
                         setSupportSuccess(false);
-                        setSupportActiveTab('list');
-                        setSelectedSupportTicketId(null);
+                        setShowHelpModal(false);
                       }}
                       className="bg-[#c7b272] hover:bg-[#b8a15f] text-white px-6 py-2.5 rounded-xl text-xs font-semibold uppercase tracking-wider transition-colors shadow-sm cursor-pointer"
                     >
-                      {langEN ? 'View Tickets' : 'Bekijk hulpverzoeken'}
+                      {langEN ? 'Close' : 'Sluiten'}
                     </button>
                   </div>
                 ) : (
@@ -4078,6 +3656,20 @@ export default function App() {
                         value={supportName}
                         onChange={e => setSupportName(e.target.value)}
                         placeholder={langEN ? 'Enter your name...' : 'Vul je naam in...'}
+                        className="w-full border border-gray-200 dark:border-slate-800 bg-[#F5F0E6]/30 dark:bg-slate-950/30 text-[#1A1A2E] dark:text-slate-100 rounded-xl px-4 py-2.5 focus:ring-2 focus:ring-[#c7b272] focus:border-[#c7b272] outline-none text-[16px] md:text-sm transition-all"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-xs font-bold text-gray-500 dark:text-slate-400 uppercase tracking-wider mb-2">
+                        {langEN ? 'Your Email' : 'Je e-mailadres'}
+                      </label>
+                      <input
+                        type="email"
+                        required
+                        value={supportEmail}
+                        onChange={e => setSupportEmail(e.target.value)}
+                        placeholder={langEN ? 'Enter your email...' : 'Vul je e-mailadres in...'}
                         className="w-full border border-gray-200 dark:border-slate-800 bg-[#F5F0E6]/30 dark:bg-slate-950/30 text-[#1A1A2E] dark:text-slate-100 rounded-xl px-4 py-2.5 focus:ring-2 focus:ring-[#c7b272] focus:border-[#c7b272] outline-none text-[16px] md:text-sm transition-all"
                       />
                     </div>
@@ -4133,61 +3725,6 @@ export default function App() {
                 )}
               </div>
             </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      {/* Global Support Reply Popup Alert */}
-      <AnimatePresence>
-        {hasSupportReply && (
-          <motion.div
-            initial={{ opacity: 0, y: 50, scale: 0.95 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 20, scale: 0.95 }}
-            className="fixed bottom-6 left-6 right-6 md:left-auto md:w-96 bg-white dark:bg-slate-900 border-2 border-[#c7b272] rounded-3xl shadow-2xl p-5 z-[150] flex flex-col gap-3 font-sans"
-          >
-            <div className="flex justify-between items-center">
-              <span className="text-[10px] font-bold uppercase tracking-widest text-red-500 bg-red-500/10 px-2 py-0.5 rounded flex items-center gap-1.5 animate-pulse">
-                <span className="w-1.5 h-1.5 bg-red-500 rounded-full inline-block"></span>
-                {langEN ? 'Support Response' : 'Support Reactie'}
-              </span>
-              <button 
-                onClick={() => {
-                  setHasSupportReply(false);
-                  localStorage.setItem('wedding_support_reply_unread', 'false');
-                }}
-                className="p-1 text-[#1A1A2E]/50 dark:text-slate-400 hover:text-red-500 hover:bg-red-500/10 rounded-full transition-colors cursor-pointer"
-              >
-                <X size={16} />
-              </button>
-            </div>
-            <div>
-              <h4 className="font-serif font-bold text-sm text-[#1A1A2E] dark:text-slate-200 mb-1">
-                {langEN ? 'Message from jorik.katinkainfo@gmail.com' : 'Bericht van jorik.katinkainfo@gmail.com'}
-              </h4>
-              <p className="text-xs text-gray-600 dark:text-slate-400 leading-relaxed italic">
-                "{localStorage.getItem('wedding_support_reply_text') || ''}"
-              </p>
-            </div>
-            <div className="flex justify-end gap-2 pt-2 border-t border-[#1A1A2E]/5 dark:border-white/5">
-              <button
-                onClick={() => {
-                  setHasSupportReply(false);
-                  localStorage.setItem('wedding_support_reply_unread', 'false');
-                  setShowHelpModal(true);
-                  setSupportActiveTab('list');
-                  const repliedTicket = supportTickets.find(t => t.status === 'replied');
-                  if (repliedTicket) {
-                    setSelectedSupportTicketId(repliedTicket.id);
-                  } else if (supportTickets.length > 0) {
-                    setSelectedSupportTicketId(supportTickets[0].id);
-                  }
-                }}
-                className="bg-[#c7b272] hover:bg-[#b8a15f] text-white px-4 py-2 rounded-xl text-[10px] font-bold uppercase tracking-wider transition-colors shadow-sm cursor-pointer"
-              >
-                {langEN ? 'View Response' : 'Bekijk reactie'}
-              </button>
-            </div>
           </motion.div>
         )}
       </AnimatePresence>
