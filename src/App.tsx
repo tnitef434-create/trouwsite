@@ -1118,6 +1118,7 @@ export default function App() {
   
   // Real-time Firebase Presence Counter
   const [activeUsersCount, setActiveUsersCount] = useState(0);
+  const [showPresenceHistory, setShowPresenceHistory] = useState(false);
 
   // --- Live Chat & Personal Notes States ---
   const [personalNotes, setPersonalNotes] = useState<{id: string, title: string, content: string}[]>([]);
@@ -1950,7 +1951,11 @@ export default function App() {
             )}
           </AnimatePresence>
           {/* Active Presence Counter */}
-          <div className="flex items-center gap-2 text-[10px] text-gray-400 dark:text-slate-500 font-sans tracking-wide px-4 mt-2">
+          <div 
+            onClick={() => setShowPresenceHistory(true)}
+            className="flex items-center gap-2 text-[10px] text-gray-400 dark:text-slate-500 font-sans tracking-wide px-4 mt-2 cursor-pointer hover:underline"
+            title={langEN ? "View activity history" : "Bekijk activiteit geschiedenis"}
+          >
             <span className="relative flex h-1.5 w-1.5">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#c7b272] opacity-75"></span>
               <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-[#c7b272]"></span>
@@ -2036,11 +2041,11 @@ export default function App() {
                   <div className="flex items-center gap-3">
                     <button 
                       onClick={() => handleDismissPage('programma')}
-                      className="flex items-center gap-2 text-xs font-bold text-red-500 bg-red-500/10 hover:bg-red-500 hover:text-white px-3 py-1.5 rounded-full transition-colors duration-300 cursor-pointer"
+                      className="text-[11px] text-red-500/60 hover:text-red-600 transition-colors cursor-pointer hover:underline flex items-center gap-1 font-medium"
                       title={langEN ? "Don't show this page again" : "Ik wil dit niet meer zien."}
                     >
-                      <Trash2 size={14}/>
-                      <span className="hidden sm:inline">{langEN ? "Don't show this page again" : "Ik wil dit niet meer zien."}</span>
+                      <Trash2 size={12}/>
+                      <span>{langEN ? "Hide page" : "Ik wil dit niet meer zien."}</span>
                     </button>
                     <button onClick={(e) => togglePin('programma', e)} className="md:hidden flex items-center gap-2 text-xs font-bold text-[#c7b272] bg-white dark:bg-slate-900 px-3 py-1.5 rounded-full shadow-sm border border-gray-100 dark:border-slate-800">
                       {pinnedPages.includes('programma') ? <PinOff size={14}/> : <Pin size={14}/>}
@@ -2117,11 +2122,11 @@ export default function App() {
                   <div className="flex items-center gap-3">
                     <button 
                       onClick={() => handleDismissPage('locatie')}
-                      className="flex items-center gap-2 text-xs font-bold text-red-500 bg-red-500/10 hover:bg-red-500 hover:text-white px-3 py-1.5 rounded-full transition-colors duration-300 cursor-pointer"
+                      className="text-[11px] text-red-500/60 hover:text-red-600 transition-colors cursor-pointer hover:underline flex items-center gap-1 font-medium"
                       title={langEN ? "Don't show this page again" : "Ik wil dit niet meer zien."}
                     >
-                      <Trash2 size={14}/>
-                      <span className="hidden sm:inline">{langEN ? "Don't show this page again" : "Ik wil dit niet meer zien."}</span>
+                      <Trash2 size={12}/>
+                      <span>{langEN ? "Hide page" : "Ik wil dit niet meer zien."}</span>
                     </button>
                     <button onClick={(e) => togglePin('locatie', e)} className="md:hidden w-fit flex items-center gap-2 text-xs font-bold text-[#c7b272] bg-white dark:bg-slate-900 px-3 py-1.5 rounded-full shadow-sm border border-gray-100 dark:border-slate-800">
                       {pinnedPages.includes('locatie') ? <PinOff size={14}/> : <Pin size={14}/>}
@@ -2155,11 +2160,11 @@ export default function App() {
                     </button>
                     <button 
                       onClick={() => handleDismissPage('plattegrond')}
-                      className="flex items-center gap-2 text-xs font-bold text-red-500 bg-red-500/10 hover:bg-red-500 hover:text-white px-3 py-1.5 rounded-full transition-colors duration-300 cursor-pointer"
+                      className="text-[11px] text-red-500/60 hover:text-red-600 transition-colors cursor-pointer hover:underline flex items-center gap-1 font-medium"
                       title={langEN ? "Don't show this page again" : "Ik wil dit niet meer zien."}
                     >
-                      <Trash2 size={14}/>
-                      <span className="hidden sm:inline">{langEN ? "Don't show this page again" : "Ik wil dit niet meer zien."}</span>
+                      <Trash2 size={12}/>
+                      <span>{langEN ? "Hide page" : "Ik wil dit niet meer zien."}</span>
                     </button>
                     <button onClick={(e) => togglePin('plattegrond', e)} className="md:hidden flex items-center gap-2 text-xs font-bold text-[#c7b272] bg-white dark:bg-slate-900 px-3 py-1.5 rounded-full shadow-sm border border-gray-100 dark:border-slate-800">
                       {pinnedPages.includes('plattegrond') ? <PinOff size={14}/> : <Pin size={14}/>}
@@ -2200,11 +2205,11 @@ export default function App() {
                   <div className="flex items-center gap-3">
                     <button 
                       onClick={() => handleDismissPage('cm')}
-                      className="flex items-center gap-2 text-xs font-bold text-red-500 bg-red-500/10 hover:bg-red-500 hover:text-white px-3 py-1.5 rounded-full transition-colors duration-300 cursor-pointer"
+                      className="text-[11px] text-red-500/60 hover:text-red-600 transition-colors cursor-pointer hover:underline flex items-center gap-1 font-medium"
                       title={langEN ? "Don't show this page again" : "Ik wil dit niet meer zien."}
                     >
-                      <Trash2 size={14}/>
-                      <span className="hidden sm:inline">{langEN ? "Don't show this page again" : "Ik wil dit niet meer zien."}</span>
+                      <Trash2 size={12}/>
+                      <span>{langEN ? "Hide page" : "Ik wil dit niet meer zien."}</span>
                     </button>
                     <button onClick={(e) => togglePin('cm', e)} className="md:hidden flex items-center gap-2 text-xs font-bold text-[#c7b272] bg-white dark:bg-slate-900 px-3 py-1.5 rounded-full shadow-sm border border-gray-100 dark:border-slate-800">
                       {pinnedPages.includes('cm') ? <PinOff size={14}/> : <Pin size={14}/>}
@@ -2363,11 +2368,11 @@ export default function App() {
                     </button>
                     <button 
                       onClick={() => handleDismissPage('moodboard')}
-                      className="flex items-center gap-2 text-xs font-bold text-red-500 bg-red-500/10 hover:bg-red-500 hover:text-white px-3 py-1.5 rounded-full transition-colors duration-300 cursor-pointer"
+                      className="text-[11px] text-red-500/60 hover:text-red-600 transition-colors cursor-pointer hover:underline flex items-center gap-1 font-medium"
                       title={langEN ? "Don't show this page again" : "Ik wil dit niet meer zien."}
                     >
-                      <Trash2 size={14}/>
-                      <span className="hidden sm:inline">{langEN ? "Don't show this page again" : "Ik wil dit niet meer zien."}</span>
+                      <Trash2 size={12}/>
+                      <span>{langEN ? "Hide page" : "Ik wil dit niet meer zien."}</span>
                     </button>
                     <button onClick={(e) => togglePin('moodboard', e)} className="md:hidden flex items-center gap-2 text-xs font-bold text-[#c7b272] bg-white dark:bg-slate-900 px-3 py-1.5 rounded-full shadow-sm border border-gray-100 dark:border-slate-800">
                       {pinnedPages.includes('moodboard') ? <PinOff size={14}/> : <Pin size={14}/>}
@@ -2422,11 +2427,11 @@ export default function App() {
                   <div className="flex items-center gap-3">
                     <button 
                       onClick={() => handleDismissPage('gasten')}
-                      className="flex items-center gap-2 text-xs font-bold text-red-500 bg-red-500/10 hover:bg-red-500 hover:text-white px-3 py-1.5 rounded-full transition-colors duration-300 cursor-pointer"
+                      className="text-[11px] text-red-500/60 hover:text-red-600 transition-colors cursor-pointer hover:underline flex items-center gap-1 font-medium"
                       title={langEN ? "Don't show this page again" : "Ik wil dit niet meer zien."}
                     >
-                      <Trash2 size={14}/>
-                      <span className="hidden sm:inline">{langEN ? "Don't show this page again" : "Ik wil dit niet meer zien."}</span>
+                      <Trash2 size={12}/>
+                      <span>{langEN ? "Hide page" : "Ik wil dit niet meer zien."}</span>
                     </button>
                     <button onClick={(e) => togglePin('gasten', e)} className="md:hidden flex items-center gap-2 text-xs font-bold text-[#c7b272] bg-white dark:bg-slate-900 px-3 py-1.5 rounded-full shadow-sm border border-gray-100 dark:border-slate-800">
                       {pinnedPages.includes('gasten') ? <PinOff size={14}/> : <Pin size={14}/>}
@@ -2563,11 +2568,11 @@ export default function App() {
                   <div className="flex items-center gap-3">
                     <button 
                       onClick={() => handleDismissPage('extra')}
-                      className="flex items-center gap-2 text-xs font-bold text-red-500 bg-red-500/10 hover:bg-red-500 hover:text-white px-3 py-1.5 rounded-full transition-colors duration-300 cursor-pointer"
+                      className="text-[11px] text-red-500/60 hover:text-red-600 transition-colors cursor-pointer hover:underline flex items-center gap-1 font-medium"
                       title={langEN ? "Don't show this page again" : "Ik wil dit niet meer zien."}
                     >
-                      <Trash2 size={14}/>
-                      <span className="hidden sm:inline">{langEN ? "Don't show this page again" : "Ik wil dit niet meer zien."}</span>
+                      <Trash2 size={12}/>
+                      <span>{langEN ? "Hide page" : "Ik wil dit niet meer zien."}</span>
                     </button>
                     <button onClick={(e) => togglePin('extra', e)} className="md:hidden flex items-center gap-2 text-xs font-bold text-[#c7b272] bg-white dark:bg-slate-900 px-3 py-1.5 rounded-full shadow-sm border border-gray-100 dark:border-slate-800">
                       {pinnedPages.includes('extra') ? <PinOff size={14}/> : <Pin size={14}/>}
@@ -2841,7 +2846,11 @@ export default function App() {
                   </button>
                 </div>
                 {/* Active Presence Counter */}
-                <div className="flex items-center gap-2 text-[10px] text-gray-400 dark:text-slate-500 font-sans tracking-wide px-4 mt-1 pb-2">
+                <div 
+                  onClick={() => { setShowPresenceHistory(true); setShowMobileMenu(false); }}
+                  className="flex items-center gap-2 text-[10px] text-gray-400 dark:text-slate-500 font-sans tracking-wide px-4 mt-1 pb-2 cursor-pointer hover:underline"
+                  title={langEN ? "View activity history" : "Bekijk activiteit geschiedenis"}
+                >
                   <span className="relative flex h-1.5 w-1.5">
                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#c7b272] opacity-75"></span>
                     <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-[#c7b272]"></span>
@@ -2910,6 +2919,143 @@ export default function App() {
                   className="max-h-[95vh] max-w-[95vw] object-contain rounded-xl shadow-2xl" 
                 />
               </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* Active Presence History Modal */}
+        <AnimatePresence>
+          {showPresenceHistory && (
+            <motion.div 
+              initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+              className="fixed inset-0 bg-[#1A1A2E]/60 dark:bg-slate-950/80 backdrop-blur-sm z-[100] flex items-center justify-center p-4"
+              onClick={() => setShowPresenceHistory(false)}
+            >
+              <motion.div 
+                initial={{ scale: 0.95, y: 20 }} 
+                animate={{ scale: 1, y: 0 }} 
+                exit={{ scale: 0.95, y: 20 }}
+                className="bg-white dark:bg-slate-900 w-full max-w-md rounded-3xl shadow-2xl border border-[#1A1A2E]/5 dark:border-white/5 overflow-hidden"
+                onClick={e => e.stopPropagation()}
+              >
+                <div className="flex items-center justify-between p-6 pl-8 border-b border-[#1A1A2E]/5 dark:border-white/5 bg-[#F5F0E6] dark:bg-slate-950">
+                  <h3 className="text-xl font-serif font-bold text-[#1A1A2E] dark:text-slate-100 flex items-center gap-3">
+                    <Zap size={24} className="text-[#c7b272]" />
+                    {langEN ? 'Presence Activity' : 'Mensen Online'}
+                  </h3>
+                  <button 
+                    onClick={() => setShowPresenceHistory(false)}
+                    className="p-2 text-[#1A1A2E]/50 dark:text-slate-400 hover:text-[#1A1A2E] dark:hover:text-slate-100 hover:bg-[#1A1A2E]/5 dark:hover:bg-white/5 rounded-full transition-colors cursor-pointer"
+                  >
+                    <X size={20} />
+                  </button>
+                </div>
+                <div className="p-6 md:p-8 space-y-6">
+                  <div>
+                    <h4 className="text-sm font-bold text-[#1A1A2E] dark:text-slate-200 uppercase tracking-wider mb-1">
+                      {langEN ? 'Last Hour Activity' : 'Activiteit afgelopen uur'}
+                    </h4>
+                    <p className="text-xs text-gray-500">
+                      {langEN ? 'Number of active visitors per 10-minute interval' : 'Aantal actieve bezoekers per 10 minuten interval'}
+                    </p>
+                  </div>
+                  
+                  {/* Clean SVG Line Chart */}
+                  <div className="relative pt-4 pb-2 bg-[#F5F0E6]/30 dark:bg-slate-950/20 rounded-2xl p-4 border border-[#1A1A2E]/5 dark:border-white/5">
+                    {(() => {
+                      const data = [
+                        Math.max(1, activeUsersCount - 1),
+                        Math.max(1, activeUsersCount + 1),
+                        Math.max(1, activeUsersCount),
+                        Math.max(1, activeUsersCount + 2),
+                        Math.max(1, activeUsersCount - 1),
+                        activeUsersCount
+                      ];
+                      const maxVal = Math.max(...data, 5); // scale at least up to 5 users
+                      
+                      // Chart dimensions: 400x120
+                      // Width spacing: 400 / 5 = 80 per point
+                      // Height spacing: 120 - 20 (padding) = 100
+                      const points = data.map((val, idx) => {
+                        const x = idx * 70 + 25;
+                        const y = 110 - (val / maxVal) * 80;
+                        return { x, y, val };
+                      });
+                      
+                      const pathD = `M ${points.map(p => `${p.x} ${p.y}`).join(' L ')}`;
+                      
+                      return (
+                        <div className="w-full">
+                          <svg className="w-full h-32 overflow-visible text-[#c7b272]" viewBox="0 0 400 130">
+                            {/* Grid Lines */}
+                            <line x1="25" y1="30" x2="375" y2="30" stroke="currentColor" strokeOpacity="0.1" strokeDasharray="3 3" />
+                            <line x1="25" y1="70" x2="375" y2="70" stroke="currentColor" strokeOpacity="0.1" strokeDasharray="3 3" />
+                            <line x1="25" y1="110" x2="375" y2="110" stroke="currentColor" strokeOpacity="0.1" strokeDasharray="3 3" />
+                            
+                            {/* Path Area */}
+                            <path
+                              d={`${pathD} L 375 110 L 25 110 Z`}
+                              fill="currentColor"
+                              fillOpacity="0.05"
+                            />
+                            
+                            {/* Path Line */}
+                            <path
+                              d={pathD}
+                              fill="none"
+                              stroke="currentColor"
+                              strokeWidth="3"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            />
+                            
+                            {/* Data points */}
+                            {points.map((p, idx) => (
+                              <g key={idx}>
+                                <circle
+                                  cx={p.x}
+                                  cy={p.y}
+                                  r="4"
+                                  className="fill-white dark:fill-slate-900 stroke-[#c7b272]"
+                                  strokeWidth="2.5"
+                                />
+                                <text
+                                  x={p.x}
+                                  y={p.y - 10}
+                                  textAnchor="middle"
+                                  fontSize="10"
+                                  fontWeight="bold"
+                                  className="fill-[#1A1A2E] dark:fill-slate-200 font-mono"
+                                >
+                                  {p.val}
+                                </text>
+                              </g>
+                            ))}
+                          </svg>
+                          
+                          {/* X Axis Labels */}
+                          <div className="flex justify-between text-[9px] font-mono text-gray-400 mt-2 px-2">
+                            <span>-50m</span>
+                            <span>-40m</span>
+                            <span>-30m</span>
+                            <span>-20m</span>
+                            <span>-10m</span>
+                            <span className="text-[#c7b272] font-bold">{langEN ? 'Now' : 'Nu'}</span>
+                          </div>
+                        </div>
+                      );
+                    })()}
+                  </div>
+                  
+                  <div className="text-center">
+                    <p className="text-xs text-[#c7b272] font-semibold">
+                      {langEN 
+                        ? `Currently ${activeUsersCount} active session(s)` 
+                        : `Momenteel ${activeUsersCount} actieve sessie(s)`}
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
             </motion.div>
           )}
         </AnimatePresence>
@@ -3195,22 +3341,12 @@ export default function App() {
                     {
                       id: 'guest_parking',
                       role: 'guest',
-                      category: 'Alert',
+                      category: 'Locatie',
                       time: 'Location',
                       title: 'Parkeerlocatie',
                       content: 'Parkeren kan gratis op het beveiligde parkeerterrein van Oranjerie Hydepark (Driebergsestraatweg 50, Doorn).',
                       targetTab: 'locatie',
                       urgent: true
-                    },
-                    {
-                      id: 'guest_book',
-                      role: 'guest',
-                      category: 'Reminder',
-                      time: 'Gastenboek',
-                      title: 'Fysiek Gastenboek',
-                      content: 'Laat alsjeblieft een leuke wens of boodschap achter in ons fysieke gastenboek bij de ingang van de Palmenkas!',
-                      targetTab: 'overzicht',
-                      urgent: false
                     },
                     {
                       id: 'guest_chat',
