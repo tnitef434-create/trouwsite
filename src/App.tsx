@@ -1307,23 +1307,7 @@ export default function App() {
     localStorage.setItem('wedding_support_tickets', JSON.stringify(updatedTickets));
 
     try {
-      // 1. Write the ticket details into Firebase Firestore under support_tickets collection
-      const app = await getFirebaseApp();
-      const { getFirestore, doc, setDoc } = await import('https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js');
-      const db = getFirestore(app);
-      const ticketDocRef = doc(db, 'support_tickets', ticketId);
-      
-      await setDoc(ticketDocRef, {
-        id: ticketId,
-        name: supportName,
-        email: supportEmail.trim() || 'Geen e-mailadres',
-        category: supportCategory,
-        message: supportMessage,
-        timestamp: Date.now(),
-        status: 'pending'
-      });
-
-      // 2. Submit to Formspree so jorik receives a real email
+      // 1. Submit to Formspree first (primary action)
       const response = await fetch('https://formspree.io/f/xvzywpaa', {
         method: 'POST',
         headers: {
@@ -1338,19 +1322,49 @@ export default function App() {
           message: supportMessage
         })
       });
-      
-      if (response.ok) {
-        setIsSendingSupport(false);
-        setSupportSuccess(true);
-        setSupportMessage('');
-      } else {
-        alert(langEN ? "Something went wrong. Please try again." : "Er is iets misgegaan. Probeer het opnieuw.");
-        setIsSendingSupport(false);
+
+      if (!response.ok) {
+        throw new Error('Formspree response not ok');
       }
-    } catch (err) {
-      console.error(err);
-      alert(langEN ? "Connection error. Please try again." : "Verbindingsfout. Probeer het opnieuw.");
+
+      // 2. Write the ticket details into Firebase Firestore under support_tickets collection in a non-blocking way
+      try {
+        const app = await getFirebaseApp();
+        const { getFirestore, doc, setDoc } = await import('https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js');
+        const db = getFirestore(app);
+        const ticketDocRef = doc(db, 'support_tickets', ticketId);
+        
+        await setDoc(ticketDocRef, {
+          id: ticketId,
+          name: supportName,
+          email: supportEmail.trim() || 'Geen e-mailadres',
+          category: supportCategory,
+          message: supportMessage,
+          timestamp: Date.now(),
+          status: 'pending'
+        });
+      } catch (dbErr) {
+        console.warn('Failed to write support ticket to Firestore (replies will not work), but email was sent:', dbErr);
+      }
+
       setIsSendingSupport(false);
+      setSupportSuccess(true);
+      setSupportMessage('');
+    } catch (err) {
+      console.error('Formspree connection error:', err);
+      alert(langEN ? "Connection error with Formspree. Please try again." : "Verbindingsfout met Formspree. Probeer het opnieuw.");
+      setIsSendingSupport(false);
+    }
+  };
+
+  const handleDeleteTicket = (ticketId: string) => {
+    if (window.confirm(langEN ? "Are you sure you want to delete this support request?" : "Weet je zeker dat je dit hulpverzoek wilt verwijderen?")) {
+      const updated = supportTickets.filter(t => t.id !== ticketId);
+      setSupportTickets(updated);
+      localStorage.setItem('wedding_support_tickets', JSON.stringify(updated));
+      if (selectedSupportTicketId === ticketId) {
+        setSelectedSupportTicketId(null);
+      }
     }
   };
 
@@ -3814,14 +3828,23 @@ export default function App() {
                     if (!ticket) return null;
                     return (
                       <div className="flex flex-col gap-5 text-left">
-                        {/* Back Button */}
-                        <button 
-                          onClick={() => setSelectedSupportTicketId(null)} 
-                          className="inline-flex items-center gap-1.5 text-xs font-bold text-[#c7b272] hover:text-[#b8a15f] transition-colors cursor-pointer select-none self-start"
-                        >
-                          <ArrowLeft size={14} />
-                          {langEN ? 'Back to tickets' : 'Terug naar overzicht'}
-                        </button>
+                        {/* Back Button & Delete Button Row */}
+                        <div className="flex justify-between items-center w-full">
+                          <button 
+                            onClick={() => setSelectedSupportTicketId(null)} 
+                            className="inline-flex items-center gap-1.5 text-xs font-bold text-[#c7b272] hover:text-[#b8a15f] transition-colors cursor-pointer select-none"
+                          >
+                            <ArrowLeft size={14} />
+                            {langEN ? 'Back to tickets' : 'Terug naar overzicht'}
+                          </button>
+                          <button 
+                            onClick={() => handleDeleteTicket(ticket.id)} 
+                            className="inline-flex items-center gap-1.5 text-xs font-bold text-red-500/60 hover:text-red-600 transition-colors cursor-pointer select-none"
+                          >
+                            <Trash2 size={13} />
+                            {langEN ? 'Delete request' : 'Verwijder verzoek'}
+                          </button>
+                        </div>
 
                         {/* Stepper (Process Tracker) */}
                         <div className="flex flex-col gap-3 bg-gray-50/50 dark:bg-slate-950/40 p-4 rounded-2xl border border-[#1A1A2E]/5 dark:border-white/5 shadow-sm">
@@ -3974,16 +3997,28 @@ export default function App() {
                               <span className="text-[9px] font-bold text-[#c7b272] uppercase tracking-wider bg-[#c7b272]/5 px-2 py-0.5 rounded border border-[#c7b272]/10">
                                 {ticket.category}
                               </span>
-                              <span className={`text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded flex items-center gap-1.5 ${
-                                ticket.status === 'replied' 
-                                  ? 'bg-green-500/10 text-green-500' 
-                                  : 'bg-yellow-500/10 text-yellow-500'
-                              }`}>
-                                {ticket.status !== 'replied' && <span className="w-1.5 h-1.5 bg-yellow-500 rounded-full inline-block animate-pulse"></span>}
-                                {ticket.status === 'replied' 
-                                  ? (langEN ? 'Replied' : 'Beantwoord') 
-                                  : (langEN ? 'Sent' : 'Verzonden')}
-                              </span>
+                              <div className="flex items-center gap-2">
+                                <span className={`text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded flex items-center gap-1.5 ${
+                                  ticket.status === 'replied' 
+                                    ? 'bg-green-500/10 text-green-500' 
+                                    : 'bg-yellow-500/10 text-yellow-500'
+                                }`}>
+                                  {ticket.status !== 'replied' && <span className="w-1.5 h-1.5 bg-yellow-500 rounded-full inline-block animate-pulse"></span>}
+                                  {ticket.status === 'replied' 
+                                    ? (langEN ? 'Replied' : 'Beantwoord') 
+                                    : (langEN ? 'Sent' : 'Verzonden')}
+                                </span>
+                                <button
+                                  onClick={(e) => {
+                                    e.stopPropagation();
+                                    handleDeleteTicket(ticket.id);
+                                  }}
+                                  className="p-1 text-gray-400 hover:text-red-500 hover:bg-red-500/10 rounded-full transition-colors cursor-pointer"
+                                  title={langEN ? 'Delete request' : 'Verwijder verzoek'}
+                                >
+                                  <Trash2 size={12} />
+                                </button>
+                              </div>
                             </div>
                             <div className="text-xs text-gray-600 dark:text-slate-300 font-medium line-clamp-2 leading-relaxed">
                               {ticket.message}
