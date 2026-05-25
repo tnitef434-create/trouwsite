@@ -1260,6 +1260,47 @@ export default function App() {
     }
   };
 
+  const handleStartLiveChat = () => {
+    // Close the help modal so it doesn't overlay the chat window
+    setShowHelpModal(false);
+
+    const anyWindow = window as any;
+    if (anyWindow.Tawk_API && typeof anyWindow.Tawk_API.showWidget === 'function') {
+      anyWindow.Tawk_API.showWidget();
+      anyWindow.Tawk_API.maximize();
+    } else {
+      anyWindow.Tawk_API = anyWindow.Tawk_API || {};
+      anyWindow.Tawk_LoadStart = new Date();
+      
+      anyWindow.Tawk_API.onLoad = function() {
+        if (anyWindow.Tawk_API && typeof anyWindow.Tawk_API.hideWidget === 'function') {
+          anyWindow.Tawk_API.hideWidget();
+          anyWindow.Tawk_API.maximize();
+        }
+      };
+
+      anyWindow.Tawk_API.onChatMinimized = function() {
+        if (anyWindow.Tawk_API && typeof anyWindow.Tawk_API.hideWidget === 'function') {
+          anyWindow.Tawk_API.hideWidget();
+        }
+      };
+      
+      anyWindow.Tawk_API.onChatHidden = function() {
+        if (anyWindow.Tawk_API && typeof anyWindow.Tawk_API.hideWidget === 'function') {
+          anyWindow.Tawk_API.hideWidget();
+        }
+      };
+
+      const s1 = document.createElement("script");
+      const s0 = document.getElementsByTagName("script")[0] || document.head;
+      s1.async = true;
+      s1.src = 'https://embed.tawk.to/6a148db2d9e5ba1c3421fc36/1jpg4j0ro';
+      s1.charset = 'UTF-8';
+      s1.setAttribute('crossorigin', '*');
+      s0.parentNode?.insertBefore(s1, s0);
+    }
+  };
+
   const handleSupportSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!supportName.trim() || !supportEmail.trim() || !supportMessage.trim()) return;
@@ -3722,6 +3763,19 @@ export default function App() {
                       )}
                     </button>
                   </form>
+                  <div className="mt-6 pt-6 border-t border-gray-100 dark:border-slate-800 text-center shrink-0">
+                    <p className="text-xs text-gray-500 dark:text-slate-400 mb-3 font-medium">
+                      {langEN ? 'Prefer real-time human contact?' : 'Liever direct menselijk contact?'}
+                    </p>
+                    <button
+                      type="button"
+                      onClick={handleStartLiveChat}
+                      className="w-full inline-flex items-center justify-center gap-2 px-5 py-3 bg-[#c7b272]/10 hover:bg-[#c7b272]/20 text-[#c7b272] border border-[#c7b272]/30 rounded-xl text-xs font-bold uppercase tracking-wider transition-colors cursor-pointer"
+                    >
+                      <MessageSquare size={14} />
+                      {langEN ? 'Start Live Chat' : 'Start Live Chat'}
+                    </button>
+                  </div>
                 )}
               </div>
             </motion.div>
