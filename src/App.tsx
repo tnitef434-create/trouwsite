@@ -3735,11 +3735,11 @@ export default function App() {
           const scrollables = document.querySelectorAll('main .overflow-y-auto');
           scrollables.forEach(el => el.scrollTo({ top: 0, behavior: 'smooth' }));
         }}
-        className="fixed bottom-6 right-6 z-[80] w-10 h-10 bg-[#c7b272]/90 hover:bg-[#b8a15f] text-white rounded-full shadow-lg transition-all hover:scale-105 active:scale-95 flex items-center justify-center cursor-pointer border border-[#c7b272]/20"
+        className="fixed bottom-6 right-6 z-[80] w-10 h-10 bg-[#c7b272] bg-opacity-90 hover:bg-[#b8a15f] text-white rounded-full shadow-lg transition-all hover:scale-105 active:scale-95 flex items-center justify-center cursor-pointer border border-white border-opacity-20"
         title={langEN ? 'Scroll to top' : 'Naar boven'}
       >
         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-          <path d="m18 15-6-6-6 6"/>
+          <path d="m18 15-6-6-6 6"></path>
         </svg>
       </button>
 
