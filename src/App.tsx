@@ -1192,9 +1192,11 @@ export default function App() {
       setDismissedNotifications([]);
       setDismissedPages([]);
       setIsInboxDismissed(false);
+      setReadNotifications([]);
       localStorage.removeItem('wedding_dismissed_notifications');
       localStorage.removeItem('wedding_dismissed_pages');
       localStorage.removeItem('wedding_inbox_dismissed');
+      localStorage.removeItem('wedding_read_notifications');
     }
   };
 
@@ -1578,6 +1580,23 @@ export default function App() {
   const [inboxRead, setInboxRead] = useState(() => {
     return localStorage.getItem('wedding_inbox_read') === 'true';
   });
+
+  const [readNotifications, setReadNotifications] = useState<string[]>(() => {
+    try {
+      const saved = localStorage.getItem('wedding_read_notifications');
+      return saved ? JSON.parse(saved) : [];
+    } catch (e) {
+      return [];
+    }
+  });
+
+  const markAllAsRead = () => {
+    const unreadIds = ['photo_priority', 'cm_maserati', 'guest_parking'];
+    const newRead = Array.from(new Set([...readNotifications, ...unreadIds]));
+    setReadNotifications(newRead);
+    localStorage.setItem('wedding_read_notifications', JSON.stringify(newRead));
+    markInboxAsRead(true);
+  };
 
   const markInboxAsRead = (val: boolean) => {
     setInboxRead(val);
@@ -3189,11 +3208,12 @@ export default function App() {
             onClick={() => {
               setShowInboxPopup(true);
               markInboxAsRead(true);
+              markAllAsRead();
             }}
             className="w-12 h-12 md:w-14 md:h-14 bg-transparent text-[#c7b272] rounded-full flex items-center justify-center transition-all hover:bg-[#c7b272]/10 relative cursor-pointer"
           >
             <Mail size={24} />
-            {(!inboxRead || (role === 'photographer' && !dismissedNotifications.includes('photo_priority')) || (role === 'cm' && !dismissedNotifications.includes('cm_maserati')) || (role === 'guest' && !dismissedNotifications.includes('guest_parking'))) && (
+            {(!inboxRead || (role === 'photographer' && !dismissedNotifications.includes('photo_priority') && !readNotifications.includes('photo_priority')) || (role === 'cm' && !dismissedNotifications.includes('cm_maserati') && !readNotifications.includes('cm_maserati')) || (role === 'guest' && !dismissedNotifications.includes('guest_parking') && !readNotifications.includes('guest_parking'))) && (
               <span className="absolute top-0 right-0 w-3 h-3 bg-red-500 border-2 border-[#F5F0E6] dark:border-slate-950 rounded-full">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-500 opacity-75"></span>
               </span>
@@ -3361,7 +3381,12 @@ export default function App() {
                     }
                   ];
 
-                  const activeNotifications = notificationsList.filter(
+                  const activeNotifications = notificationsList.map(n => {
+                    if (readNotifications.includes(n.id)) {
+                      return { ...n, urgent: false };
+                    }
+                    return n;
+                  }).filter(
                     n => n.role === role && !dismissedNotifications.includes(n.id)
                   );
 
