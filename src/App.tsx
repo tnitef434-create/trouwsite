@@ -2079,7 +2079,7 @@ export default function App() {
                         value={settingsCode}
                         onChange={(e) => setSettingsCode(e.target.value)}
                         placeholder={langEN ? 'Access Code' : 'Toegangscode'}
-                        className="flex-1 min-w-0 border border-gray-200 dark:border-slate-800 bg-[#F5F0E6]/50 dark:bg-slate-900 text-[#1A1A2E] dark:text-slate-100 rounded-xl px-4 py-2 focus:ring-2 focus:ring-[#c7b272] focus:border-[#c7b272] outline-none text-sm transition-all"
+                        className="flex-1 min-w-0 border border-gray-200 dark:border-slate-800 bg-[#F5F0E6]/50 dark:bg-slate-900 text-[#1A1A2E] dark:text-slate-100 rounded-xl px-4 py-2 focus:ring-2 focus:ring-[#c7b272] focus:border-[#c7b272] outline-none text-[16px] md:text-sm transition-all"
                       />
                       <button 
                         type="submit" 
@@ -2972,7 +2972,7 @@ export default function App() {
                               value={settingsCode}
                               onChange={(e) => setSettingsCode(e.target.value)}
                               placeholder={langEN ? 'Access Code' : 'Toegangscode'}
-                              className="flex-1 min-w-0 border border-gray-200 dark:border-slate-800 bg-[#F5F0E6]/50 dark:bg-slate-900 text-[#1A1A2E] dark:text-slate-100 rounded-xl px-4 py-2 focus:ring-2 focus:ring-[#c7b272] focus:border-[#c7b272] outline-none text-sm transition-all"
+                              className="flex-1 min-w-0 border border-gray-200 dark:border-slate-800 bg-[#F5F0E6]/50 dark:bg-slate-900 text-[#1A1A2E] dark:text-slate-100 rounded-xl px-4 py-2 focus:ring-2 focus:ring-[#c7b272] focus:border-[#c7b272] outline-none text-[16px] md:text-sm transition-all"
                             />
                             <button 
                               type="submit" 
@@ -3818,7 +3818,7 @@ export default function App() {
                         value={supportName}
                         onChange={e => setSupportName(e.target.value)}
                         placeholder={langEN ? 'Enter your name...' : 'Vul je naam in...'}
-                        className="w-full border border-gray-200 dark:border-slate-800 bg-[#F5F0E6]/30 dark:bg-slate-950/30 text-[#1A1A2E] dark:text-slate-100 rounded-xl px-4 py-2.5 focus:ring-2 focus:ring-[#c7b272] focus:border-[#c7b272] outline-none text-sm transition-all"
+                        className="w-full border border-gray-200 dark:border-slate-800 bg-[#F5F0E6]/30 dark:bg-slate-950/30 text-[#1A1A2E] dark:text-slate-100 rounded-xl px-4 py-2.5 focus:ring-2 focus:ring-[#c7b272] focus:border-[#c7b272] outline-none text-[16px] md:text-sm transition-all"
                       />
                     </div>
                     <div>
@@ -3828,7 +3828,7 @@ export default function App() {
                       <select
                         value={supportCategory}
                         onChange={e => setSupportCategory(e.target.value)}
-                        className="w-full border border-gray-200 dark:border-slate-800 bg-[#F5F0E6]/30 dark:bg-slate-950/30 text-[#1A1A2E] dark:text-slate-100 rounded-xl px-4 py-2.5 focus:ring-2 focus:ring-[#c7b272] focus:border-[#c7b272] outline-none text-sm transition-all cursor-pointer dark:bg-slate-900"
+                        className="w-full border border-gray-200 dark:border-slate-800 bg-[#F5F0E6]/30 dark:bg-slate-950/30 text-[#1A1A2E] dark:text-slate-100 rounded-xl px-4 py-2.5 focus:ring-2 focus:ring-[#c7b272] focus:border-[#c7b272] outline-none text-[16px] md:text-sm transition-all cursor-pointer dark:bg-slate-900"
                       >
                         <option value="Probleem met design / lay-out" className="dark:bg-slate-900">{langEN ? 'Design / Layout Issue' : 'Probleem met design / lay-out'}</option>
                         <option value="Toegangscodes / Inloggen" className="dark:bg-slate-900">{langEN ? 'Access Codes / Login' : 'Toegangscodes / Inloggen'}</option>
@@ -3848,7 +3848,7 @@ export default function App() {
                         value={supportMessage}
                         onChange={e => setSupportMessage(e.target.value)}
                         placeholder={langEN ? 'How can we help you?' : 'Waar kunnen we je mee helpen?'}
-                        className="w-full border border-gray-200 dark:border-slate-800 bg-[#F5F0E6]/30 dark:bg-slate-950/30 text-[#1A1A2E] dark:text-slate-100 rounded-xl px-4 py-2.5 focus:ring-2 focus:ring-[#c7b272] focus:border-[#c7b272] outline-none text-sm transition-all resize-none"
+                        className="w-full border border-gray-200 dark:border-slate-800 bg-[#F5F0E6]/30 dark:bg-slate-950/30 text-[#1A1A2E] dark:text-slate-100 rounded-xl px-4 py-2.5 focus:ring-2 focus:ring-[#c7b272] focus:border-[#c7b272] outline-none text-[16px] md:text-sm transition-all resize-none"
                       />
                     </div>
                     <button
