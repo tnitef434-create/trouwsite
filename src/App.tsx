@@ -1286,7 +1286,7 @@ export default function App() {
 
   const handleSupportSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!supportName.trim() || !supportEmail.trim() || !supportMessage.trim()) return;
+    if (!supportName.trim() || !supportMessage.trim()) return;
     
     setIsSendingSupport(true);
     
@@ -1316,7 +1316,7 @@ export default function App() {
       await setDoc(ticketDocRef, {
         id: ticketId,
         name: supportName,
-        email: supportEmail,
+        email: supportEmail.trim() || 'Geen e-mailadres',
         category: supportCategory,
         message: supportMessage,
         timestamp: Date.now(),
@@ -1333,7 +1333,7 @@ export default function App() {
         body: JSON.stringify({
           ticketId: ticketId,
           name: supportName,
-          email: supportEmail,
+          email: supportEmail.trim() || 'no-reply@example.com',
           category: supportCategory,
           message: supportMessage
         })
@@ -4049,14 +4049,13 @@ export default function App() {
                     </div>
                     <div>
                       <label className="block text-xs font-bold text-gray-500 dark:text-slate-400 uppercase tracking-wider mb-2">
-                        {langEN ? 'Your Email' : 'Je e-mailadres'}
+                        {langEN ? 'Your Email (Optional)' : 'Je e-mailadres (optioneel)'}
                       </label>
                       <input
                         type="email"
-                        required
                         value={supportEmail}
                         onChange={e => setSupportEmail(e.target.value)}
-                        placeholder={langEN ? 'Enter your email...' : 'Vul je e-mailadres in...'}
+                        placeholder={langEN ? 'Enter your email (optional)...' : 'Vul je e-mailadres in (optioneel)...'}
                         className="w-full border border-gray-200 dark:border-slate-800 bg-[#F5F0E6]/30 dark:bg-slate-950/30 text-[#1A1A2E] dark:text-slate-100 rounded-xl px-4 py-2.5 focus:ring-2 focus:ring-[#c7b272] focus:border-[#c7b272] outline-none text-[16px] md:text-sm transition-all"
                       />
                     </div>
