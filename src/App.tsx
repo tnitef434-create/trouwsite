@@ -3732,6 +3732,7 @@ export default function App() {
       {/* Scroll to Top QoL Button */}
       <button
         onClick={() => {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
           const scrollables = document.querySelectorAll('main .overflow-y-auto');
           scrollables.forEach(el => el.scrollTo({ top: 0, behavior: 'smooth' }));
         }}
