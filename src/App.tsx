@@ -3646,88 +3646,102 @@ export default function App() {
                   </div>
                 ) : (
                   <form onSubmit={handleSupportSubmit} className="space-y-4">
-                      <div>
-                        <label className="block text-xs font-bold text-gray-500 dark:text-slate-400 uppercase tracking-wider mb-2">
-                          {langEN ? 'Your Name' : 'Je naam'}
-                        </label>
-                        <input
-                          type="text"
-                          required
-                          value={supportName}
-                          onChange={e => setSupportName(e.target.value)}
-                          placeholder={langEN ? 'Enter your name...' : 'Vul je naam in...'}
-                          className="w-full border border-gray-200 dark:border-slate-800 bg-[#F5F0E6]/30 dark:bg-slate-950/30 text-[#1A1A2E] dark:text-slate-100 rounded-xl px-4 py-2.5 focus:ring-2 focus:ring-[#c7b272] focus:border-[#c7b272] outline-none text-[16px] md:text-sm transition-all"
-                        />
-                      </div>
+                    <div>
+                      <label className="block text-xs font-bold text-gray-500 dark:text-slate-400 uppercase tracking-wider mb-2">
+                        {langEN ? 'Your Name' : 'Je naam'}
+                      </label>
+                      <input
+                        type="text"
+                        required
+                        value={supportName}
+                        onChange={e => setSupportName(e.target.value)}
+                        placeholder={langEN ? 'Enter your name...' : 'Vul je naam in...'}
+                        className="w-full border border-gray-200 dark:border-slate-800 bg-[#F5F0E6]/30 dark:bg-slate-950/30 text-[#1A1A2E] dark:text-slate-100 rounded-xl px-4 py-2.5 focus:ring-2 focus:ring-[#c7b272] focus:border-[#c7b272] outline-none text-[16px] md:text-sm transition-all"
+                      />
+                    </div>
 
-                      <div>
-                        <label className="block text-xs font-bold text-gray-500 dark:text-slate-400 uppercase tracking-wider mb-2">
-                          {langEN ? 'Your Email' : 'Je e-mailadres'}
-                        </label>
-                        <input
-                          type="email"
-                          required
-                          value={supportEmail}
-                          onChange={e => setSupportEmail(e.target.value)}
-                          placeholder={langEN ? 'Enter your email...' : 'Vul je e-mailadres in...'}
-                          className="w-full border border-gray-200 dark:border-slate-800 bg-[#F5F0E6]/30 dark:bg-slate-950/30 text-[#1A1A2E] dark:text-slate-100 rounded-xl px-4 py-2.5 focus:ring-2 focus:ring-[#c7b272] focus:border-[#c7b272] outline-none text-[16px] md:text-sm transition-all"
-                        />
-                      </div>
+                    <div>
+                      <label className="block text-xs font-bold text-gray-500 dark:text-slate-400 uppercase tracking-wider mb-2">
+                        {langEN ? 'Your Email' : 'Je e-mailadres'}
+                      </label>
+                      <input
+                        type="email"
+                        required
+                        value={supportEmail}
+                        onChange={e => setSupportEmail(e.target.value)}
+                        placeholder={langEN ? 'Enter your email...' : 'Vul je e-mailadres in...'}
+                        className="w-full border border-gray-200 dark:border-slate-800 bg-[#F5F0E6]/30 dark:bg-slate-950/30 text-[#1A1A2E] dark:text-slate-100 rounded-xl px-4 py-2.5 focus:ring-2 focus:ring-[#c7b272] focus:border-[#c7b272] outline-none text-[16px] md:text-sm transition-all"
+                      />
+                    </div>
 
-                      <div>
-                        <label className="block text-xs font-bold text-gray-500 dark:text-slate-400 uppercase tracking-wider mb-2">
-                          {langEN ? 'Category' : 'Categorie'}
-                        </label>
-                        <select
-                          value={supportCategory}
-                          onChange={e => setSupportCategory(e.target.value)}
-                          className="w-full border border-gray-200 dark:border-slate-800 bg-[#F5F0E6]/30 dark:bg-slate-950/30 text-[#1A1A2E] dark:text-slate-100 rounded-xl px-4 py-2.5 focus:ring-2 focus:ring-[#c7b272] focus:border-[#c7b272] outline-none text-[16px] md:text-sm transition-all cursor-pointer dark:bg-slate-900"
-                        >
-                          <option value="Probleem met design / lay-out" className="dark:bg-slate-900">{langEN ? 'Design / Layout Issue' : 'Probleem met design / lay-out'}</option>
-                          <option value="Toegangscodes / Inloggen" className="dark:bg-slate-900">{langEN ? 'Access Codes / Login' : 'Toegangscodes / Inloggen'}</option>
-                          <option value="Live Chat / Notities" className="dark:bg-slate-900">{langEN ? 'Live Chat / Notes' : 'Live Chat / Notities'}</option>
-                          <option value="Plattegrond / Afbeeldingen" className="dark:bg-slate-900">{langEN ? 'Map / Images' : 'Plattegrond / Afbeeldingen'}</option>
-                          <option value="Foutmelding of bug" className="dark:bg-slate-900">{langEN ? 'Error Message / Bug' : 'Foutmelding of bug'}</option>
-                          <option value="Anders" className="dark:bg-slate-900">{langEN ? 'Other' : 'Anders'}</option>
-                        </select>
-                      </div>
-                      <div>
-                        <label className="block text-xs font-bold text-gray-500 dark:text-slate-400 uppercase tracking-wider mb-2">
-                          {langEN ? 'Describe your problem' : 'Beschrijf je probleem'}
-                        </label>
-                        <textarea
-                          required
-                          rows={4}
-                          value={supportMessage}
-                          onChange={e => setSupportMessage(e.target.value)}
-                          placeholder={langEN ? 'How can we help you?' : 'Waar kunnen we je mee helpen?'}
-                          className="w-full border border-gray-200 dark:border-slate-800 bg-[#F5F0E6]/30 dark:bg-slate-950/30 text-[#1A1A2E] dark:text-slate-100 rounded-xl px-4 py-2.5 focus:ring-2 focus:ring-[#c7b272] focus:border-[#c7b272] outline-none text-[16px] md:text-sm transition-all resize-none"
-                        />
-                      </div>
-                      <button
-                        type="submit"
-                        disabled={isSendingSupport}
-                        className="w-full bg-[#c7b272] hover:bg-[#b8a15f] disabled:bg-gray-300 dark:disabled:bg-slate-800 text-white py-3 rounded-xl text-xs font-bold uppercase tracking-wider transition-colors shadow-sm flex items-center justify-center gap-2 cursor-pointer mt-2"
+                    <div>
+                      <label className="block text-xs font-bold text-gray-500 dark:text-slate-400 uppercase tracking-wider mb-2">
+                        {langEN ? 'Category' : 'Categorie'}
+                      </label>
+                      <select
+                        value={supportCategory}
+                        onChange={e => setSupportCategory(e.target.value)}
+                        className="w-full border border-gray-200 dark:border-slate-800 bg-[#F5F0E6]/30 dark:bg-slate-950/30 text-[#1A1A2E] dark:text-slate-100 rounded-xl px-4 py-2.5 focus:ring-2 focus:ring-[#c7b272] focus:border-[#c7b272] outline-none text-[16px] md:text-sm transition-all cursor-pointer dark:bg-slate-900"
                       >
-                        {isSendingSupport ? (
-                          <>
-                            <span className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
-                            {langEN ? 'Sending...' : 'Verzenden...'}
-                          </>
-                        ) : (
-                          <>
-                            <Send size={14} />
-                            {langEN ? 'Send Support Request' : 'Verstuur hulpverzoek'}
-                          </>
-                        )}
-                      </button>
-                    </form>
-                  )}
+                        <option value="Probleem met design / lay-out" className="dark:bg-slate-900">{langEN ? 'Design / Layout Issue' : 'Probleem met design / lay-out'}</option>
+                        <option value="Toegangscodes / Inloggen" className="dark:bg-slate-900">{langEN ? 'Access Codes / Login' : 'Toegangscodes / Inloggen'}</option>
+                        <option value="Live Chat / Notities" className="dark:bg-slate-900">{langEN ? 'Live Chat / Notes' : 'Live Chat / Notities'}</option>
+                        <option value="Plattegrond / Afbeeldingen" className="dark:bg-slate-900">{langEN ? 'Map / Images' : 'Plattegrond / Afbeeldingen'}</option>
+                        <option value="Foutmelding of bug" className="dark:bg-slate-900">{langEN ? 'Error Message / Bug' : 'Foutmelding of bug'}</option>
+                        <option value="Anders" className="dark:bg-slate-900">{langEN ? 'Other' : 'Anders'}</option>
+                      </select>
+                    </div>
+                    <div>
+                      <label className="block text-xs font-bold text-gray-500 dark:text-slate-400 uppercase tracking-wider mb-2">
+                        {langEN ? 'Describe your problem' : 'Beschrijf je probleem'}
+                      </label>
+                      <textarea
+                        required
+                        rows={4}
+                        value={supportMessage}
+                        onChange={e => setSupportMessage(e.target.value)}
+                        placeholder={langEN ? 'How can we help you?' : 'Waar kunnen we je mee helpen?'}
+                        className="w-full border border-gray-200 dark:border-slate-800 bg-[#F5F0E6]/30 dark:bg-slate-950/30 text-[#1A1A2E] dark:text-slate-100 rounded-xl px-4 py-2.5 focus:ring-2 focus:ring-[#c7b272] focus:border-[#c7b272] outline-none text-[16px] md:text-sm transition-all resize-none"
+                      />
+                    </div>
+                    <button
+                      type="submit"
+                      disabled={isSendingSupport}
+                      className="w-full bg-[#c7b272] hover:bg-[#b8a15f] disabled:bg-gray-300 dark:disabled:bg-slate-800 text-white py-3 rounded-xl text-xs font-bold uppercase tracking-wider transition-colors shadow-sm flex items-center justify-center gap-2 cursor-pointer mt-2"
+                    >
+                      {isSendingSupport ? (
+                        <>
+                          <span className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
+                          {langEN ? 'Sending...' : 'Verzenden...'}
+                        </>
+                      ) : (
+                        <>
+                          <Send size={14} />
+                          {langEN ? 'Send Support Request' : 'Verstuur hulpverzoek'}
+                        </>
+                      )}
+                    </button>
+                  </form>
+                )}
               </div>
             </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Scroll to Top QoL Button */}
+      <button
+        onClick={() => {
+          const scrollables = document.querySelectorAll('main .overflow-y-auto');
+          scrollables.forEach(el => el.scrollTo({ top: 0, behavior: 'smooth' }));
+        }}
+        className="fixed bottom-6 right-6 z-[80] w-10 h-10 bg-[#c7b272]/90 hover:bg-[#b8a15f] text-white rounded-full shadow-lg transition-all hover:scale-105 active:scale-95 flex items-center justify-center cursor-pointer border border-[#c7b272]/20"
+        title={langEN ? 'Scroll to top' : 'Naar boven'}
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+          <path d="m18 15-6-6-6 6"/>
+        </svg>
+      </button>
 
     </div>
   );
