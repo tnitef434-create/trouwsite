@@ -1151,10 +1151,7 @@ export default function App() {
     return localStorage.getItem('wedding_support_reply_unread') === 'true';
   });
 
-  // --- Admin Support States ---
-  const [adminTickets, setAdminTickets] = useState<any[]>([]);
-  const [replyInputs, setReplyInputs] = useState<Record<string, string>>({});
-  const [isSubmittingReply, setIsSubmittingReply] = useState<Record<string, boolean>>({});
+
 
   // --- Live Chat & Personal Notes States ---
   const [personalNotes, setPersonalNotes] = useState<{id: string, title: string, content: string}[]>([]);
@@ -1413,66 +1410,7 @@ export default function App() {
     };
   }, [supportTickets]);
 
-  // Fetch all tickets for Admin Support Dashboard
-  useEffect(() => {
-    if (activeTab !== 'support_admin') return;
 
-    let unsubscribe: (() => void) | null = null;
-
-    const fetchTickets = async () => {
-      try {
-        const app = await getFirebaseApp();
-        const { getFirestore, collection, query, onSnapshot } = await import('https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js');
-        const db = getFirestore(app);
-        const q = query(collection(db, 'support_tickets'));
-        
-        unsubscribe = onSnapshot(q, (snapshot) => {
-          const ticketsList: any[] = [];
-          snapshot.forEach(doc => {
-            ticketsList.push({ id: doc.id, ...doc.data() });
-          });
-          // Sort by timestamp desc
-          ticketsList.sort((a, b) => b.timestamp - a.timestamp);
-          setAdminTickets(ticketsList);
-        });
-      } catch (err) {
-        console.error('Failed to fetch admin tickets:', err);
-      }
-    };
-
-    fetchTickets();
-
-    return () => {
-      if (unsubscribe) unsubscribe();
-    };
-  }, [activeTab]);
-
-  const handleAdminReplySubmit = async (ticketId: string) => {
-    const replyText = replyInputs[ticketId];
-    if (!replyText || !replyText.trim()) return;
-
-    setIsSubmittingReply(prev => ({ ...prev, [ticketId]: true }));
-
-    try {
-      const app = await getFirebaseApp();
-      const { getFirestore, doc, updateDoc } = await import('https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js');
-      const db = getFirestore(app);
-      const docRef = doc(db, 'support_tickets', ticketId);
-
-      await updateDoc(docRef, {
-        status: 'replied',
-        reply: replyText.trim()
-      });
-
-      // Clear input
-      setReplyInputs(prev => ({ ...prev, [ticketId]: '' }));
-    } catch (err) {
-      console.error('Failed to send admin reply:', err);
-      alert('Kon reactie niet verzenden. Probeer het opnieuw.');
-    } finally {
-      setIsSubmittingReply(prev => ({ ...prev, [ticketId]: false }));
-    }
-  };
 
   // Load chat nickname and personal notes on mount
   useEffect(() => {
@@ -2070,9 +2008,7 @@ export default function App() {
     pages.push({ id: 'inbox_temp', icon: <Mail size={20}/>, label: langEN ? 'Inbox' : 'Postvak IN' });
   }
 
-  if (role === 'cm') {
-    pages.push({ id: 'support_admin', icon: <Mail size={20}/>, label: langEN ? 'Support Tickets' : 'Support Tickets' });
-  }
+
 
   // Sort by pinned
   const sortedPages = [...pages]
@@ -2992,118 +2928,7 @@ export default function App() {
             </motion.div>
           )}
 
-          {/* TAB: SUPPORT ADMIN TICKETS */}
-          {activeTab === 'support_admin' && role === 'cm' && (
-            <motion.div 
-              key="support_admin" 
-              initial={{ opacity: 0, y: 10 }} 
-              animate={{ opacity: 1, y: 0 }} 
-              exit={{ opacity: 0, scale: 0.98 }} 
-              className="absolute inset-0 overflow-y-auto p-6 md:p-12 pb-32 md:pb-12"
-            >
-              <div className="max-w-3xl mx-auto">
-                <div className="border-b border-[#1A1A2E]/10 dark:border-white/10 pb-6 mb-8 mt-4">
-                  <h2 className="font-serif text-4xl md:text-5xl font-medium tracking-tight text-[#1A1A2E] dark:text-slate-100 flex items-center gap-3">
-                    <Mail className="text-[#c7b272]" size={32} />
-                    Support Tickets
-                  </h2>
-                  <p className="text-xs md:text-sm text-gray-500 dark:text-slate-400 mt-2">
-                    {langEN 
-                      ? 'Read and respond to visitor support requests in real-time.' 
-                      : 'Lees en beantwoord hulpverzoeken van bezoekers in real-time.'}
-                  </p>
-                </div>
 
-                {adminTickets.length === 0 ? (
-                  <div className="text-center py-16 bg-white dark:bg-slate-900 rounded-[2rem] border border-[#1A1A2E]/5 dark:border-white/5 p-8 shadow-sm">
-                    <p className="text-gray-500 dark:text-slate-400 font-medium">
-                      {langEN ? 'No support tickets found.' : 'Geen hulpverzoeken gevonden.'}
-                    </p>
-                  </div>
-                ) : (
-                  <div className="space-y-6">
-                    {adminTickets.map(ticket => (
-                      <div 
-                        key={ticket.id} 
-                        className="bg-white dark:bg-slate-900 border border-[#1A1A2E]/5 dark:border-white/5 p-6 rounded-[2rem] shadow-sm flex flex-col gap-4 text-left"
-                      >
-                        <div className="flex flex-wrap justify-between items-center gap-2">
-                          <div className="flex items-center gap-3">
-                            <span className="font-serif font-bold text-lg text-[#1A1A2E] dark:text-slate-100">
-                              {ticket.name}
-                            </span>
-                            <span className="text-[10px] font-mono text-gray-400 dark:text-slate-500">
-                              ({ticket.email || 'Geen e-mail'})
-                            </span>
-                          </div>
-                          <div className="flex items-center gap-2">
-                            <span className="text-[10px] font-bold text-[#c7b272] uppercase tracking-wider bg-[#c7b272]/10 px-2.5 py-1 rounded-md">
-                              {ticket.category}
-                            </span>
-                            <span className={`text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-md ${
-                              ticket.status === 'replied' 
-                                ? 'bg-green-500/10 text-green-500' 
-                                : 'bg-yellow-500/10 text-yellow-500'
-                            }`}>
-                              {ticket.status === 'replied' 
-                                ? (langEN ? 'Replied' : 'Beantwoord') 
-                                : (langEN ? 'Pending' : 'In afwachting')}
-                            </span>
-                          </div>
-                        </div>
-
-                        <div className="text-sm text-gray-700 dark:text-slate-300 leading-relaxed bg-[#F5F0E6]/30 dark:bg-slate-950/30 p-4 rounded-xl">
-                          {ticket.message}
-                        </div>
-
-                        <div className="text-[10px] text-gray-400 dark:text-slate-500 font-mono">
-                          {new Date(ticket.timestamp).toLocaleString(langEN ? 'en-US' : 'nl-NL')}
-                        </div>
-
-                        {ticket.status === 'replied' ? (
-                          <div className="pt-4 border-t border-gray-100 dark:border-slate-800 flex flex-col gap-1.5 bg-[#c7b272]/5 dark:bg-slate-900/50 p-4 rounded-xl border-l-4 border-[#c7b272]">
-                            <span className="text-[10px] font-bold uppercase tracking-widest text-[#c7b272]">
-                              {langEN ? 'Your Reply:' : 'Jouw antwoord:'}
-                            </span>
-                            <p className="text-xs text-gray-600 dark:text-slate-300 italic">
-                              "{ticket.reply}"
-                            </p>
-                          </div>
-                        ) : (
-                          <div className="pt-4 border-t border-gray-100 dark:border-slate-800 flex flex-col gap-3">
-                            <textarea
-                              rows={3}
-                              value={replyInputs[ticket.id] || ''}
-                              onChange={e => setReplyInputs(prev => ({ ...prev, [ticket.id]: e.target.value }))}
-                              placeholder={langEN ? 'Type your response...' : 'Type je antwoord...'}
-                              className="w-full border border-gray-200 dark:border-slate-800 bg-[#F5F0E6]/30 dark:bg-slate-950/30 text-[#1A1A2E] dark:text-slate-100 rounded-xl px-4 py-2.5 focus:ring-2 focus:ring-[#c7b272] focus:border-[#c7b272] outline-none text-[16px] md:text-sm transition-all resize-none dark:bg-slate-900"
-                            />
-                            <button
-                              onClick={() => handleAdminReplySubmit(ticket.id)}
-                              disabled={isSubmittingReply[ticket.id] || !(replyInputs[ticket.id] || '').trim()}
-                              className="w-full bg-[#c7b272] hover:bg-[#b8a15f] disabled:bg-gray-300 dark:disabled:bg-slate-800 text-white py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider transition-colors shadow-sm flex items-center justify-center gap-2 cursor-pointer mt-1"
-                            >
-                              {isSubmittingReply[ticket.id] ? (
-                                <>
-                                  <span className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
-                                  {langEN ? 'Sending...' : 'Verzenden...'}
-                                </>
-                              ) : (
-                                <>
-                                  <Send size={12} />
-                                  {langEN ? 'Send Reply' : 'Verstuur antwoord'}
-                                </>
-                              )}
-                            </button>
-                          </div>
-                        )}
-                      </div>
-                    ))}
-                  </div>
-                )}
-              </div>
-            </motion.div>
-          )}
 
         </AnimatePresence>
       </main>
