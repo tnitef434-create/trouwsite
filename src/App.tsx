@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Search, Filter, MessageSquare, MapPin, Clock, Calendar, Info, Heart, Send, ChevronRight, Settings, Map as MapIcon, Pin, PinOff, X, Zap, Maximize, Menu, Cloud, Sun, Droplets, Trash2, Plus, Mail, Music, Camera, LogOut, FileText, Image } from 'lucide-react';
+import { Search, Filter, MessageSquare, MapPin, Clock, Calendar, Info, Heart, Send, ChevronRight, Settings, Map as MapIcon, Pin, PinOff, X, Zap, Maximize, Menu, Cloud, Sun, Droplets, Trash2, Plus, Mail, Music, Camera, LogOut, FileText, Image, ArrowLeft, Check } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 
 const LiveClock = ({ langEN }: { langEN: boolean }) => {
@@ -1137,6 +1137,7 @@ export default function App() {
   const [supportMessage, setSupportMessage] = useState('');
   const [supportCategory, setSupportCategory] = useState('Probleem met design / lay-out');
   const [supportActiveTab, setSupportActiveTab] = useState<'create' | 'list'>('create');
+  const [selectedSupportTicketId, setSelectedSupportTicketId] = useState<string | null>(null);
   const [supportTickets, setSupportTickets] = useState<SupportTicket[]>(() => {
     try {
       const saved = localStorage.getItem('wedding_support_tickets');
@@ -1409,6 +1410,17 @@ export default function App() {
       unsubscribes.forEach(unsub => unsub());
     };
   }, [supportTickets]);
+
+  // Clear unread support reply flag when viewing the replied ticket
+  useEffect(() => {
+    if (selectedSupportTicketId) {
+      const selectedTicket = supportTickets.find(t => t.id === selectedSupportTicketId);
+      if (selectedTicket && selectedTicket.status === 'replied') {
+        setHasSupportReply(false);
+        localStorage.setItem('wedding_support_reply_unread', 'false');
+      }
+    }
+  }, [selectedSupportTicketId, supportTickets]);
 
 
 
@@ -3687,11 +3699,23 @@ export default function App() {
                       <div className="flex items-center justify-between mt-2 pt-2 border-t border-[#1A1A2E]/5 dark:border-white/5">
                         <button
                           onClick={() => {
-                            setActiveTab(n.targetTab);
-                            setShowInboxPopup(false);
-                            if (n.isChatTrigger) {
-                              setIsFloatingChatOpen(true);
-                              scrollToBottom();
+                            if (n.id === 'support_reply') {
+                              setShowInboxPopup(false);
+                              setShowHelpModal(true);
+                              setSupportActiveTab('list');
+                              const repliedTicket = supportTickets.find(t => t.status === 'replied');
+                              if (repliedTicket) {
+                                setSelectedSupportTicketId(repliedTicket.id);
+                              } else if (supportTickets.length > 0) {
+                                setSelectedSupportTicketId(supportTickets[0].id);
+                              }
+                            } else {
+                              setActiveTab(n.targetTab);
+                              setShowInboxPopup(false);
+                              if (n.isChatTrigger) {
+                                setIsFloatingChatOpen(true);
+                                scrollToBottom();
+                              }
                             }
                           }}
                           className="text-[10px] font-bold text-[#c7b272] hover:text-[#b8a15f] flex items-center gap-1 cursor-pointer transition-colors"
@@ -3725,6 +3749,7 @@ export default function App() {
             onClick={() => {
               setShowHelpModal(false);
               setSupportSuccess(false);
+              setSelectedSupportTicketId(null);
             }}
           >
             <motion.div 
@@ -3744,6 +3769,7 @@ export default function App() {
                   onClick={() => {
                     setShowHelpModal(false);
                     setSupportSuccess(false);
+                    setSelectedSupportTicketId(null);
                   }}
                   className="p-2 text-[#1A1A2E]/50 dark:text-slate-400 hover:text-[#1A1A2E] dark:hover:text-slate-100 hover:bg-[#1A1A2E]/5 dark:hover:bg-white/5 rounded-full transition-colors cursor-pointer"
                 >
@@ -3754,7 +3780,7 @@ export default function App() {
               {/* Sub Navigation Tabs */}
               <div className="flex border-b border-[#1A1A2E]/5 dark:border-white/5 bg-gray-50/50 dark:bg-slate-900/50 shrink-0">
                 <button
-                  onClick={() => setSupportActiveTab('create')}
+                  onClick={() => { setSupportActiveTab('create'); setSelectedSupportTicketId(null); }}
                   className={`flex-1 py-3 text-xs font-bold uppercase tracking-wider transition-colors border-b-2 ${
                     supportActiveTab === 'create'
                       ? 'border-[#c7b272] text-[#c7b272]'
@@ -3764,7 +3790,7 @@ export default function App() {
                   {langEN ? 'New Ticket' : 'Nieuw ticket'}
                 </button>
                 <button
-                  onClick={() => setSupportActiveTab('list')}
+                  onClick={() => { setSupportActiveTab('list'); setSelectedSupportTicketId(null); }}
                   className={`flex-1 py-3 text-xs font-bold uppercase tracking-wider transition-colors border-b-2 relative ${
                     supportActiveTab === 'list'
                       ? 'border-[#c7b272] text-[#c7b272]'
@@ -3783,60 +3809,202 @@ export default function App() {
               {/* Content Panel */}
               <div className="p-6 md:p-8 overflow-y-auto flex-1 scrollbar-thin">
                 {supportActiveTab === 'list' ? (
-                  supportTickets.length === 0 ? (
-                    <div className="text-center py-10 flex flex-col items-center justify-center">
-                      <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-gray-100 dark:bg-slate-800 mb-3 text-gray-400 dark:text-slate-500">
-                        <Mail size={20} />
-                      </div>
-                      <p className="text-sm text-gray-500 dark:text-slate-400 font-medium">
-                        {langEN ? 'You have not submitted any tickets yet.' : 'Je hebt nog geen hulpverzoeken ingediend.'}
-                      </p>
-                    </div>
-                  ) : (
-                    <div className="space-y-3">
-                      {supportTickets.map(ticket => (
-                        <div 
-                          key={ticket.id} 
-                          className="bg-gray-50/50 dark:bg-slate-950/20 border border-gray-100 dark:border-slate-800/80 rounded-2xl p-4 text-left flex flex-col gap-2 shadow-sm"
+                  selectedSupportTicketId ? (() => {
+                    const ticket = supportTickets.find(t => t.id === selectedSupportTicketId);
+                    if (!ticket) return null;
+                    return (
+                      <div className="flex flex-col gap-5 text-left">
+                        {/* Back Button */}
+                        <button 
+                          onClick={() => setSelectedSupportTicketId(null)} 
+                          className="inline-flex items-center gap-1.5 text-xs font-bold text-[#c7b272] hover:text-[#b8a15f] transition-colors cursor-pointer select-none self-start"
                         >
-                          <div className="flex justify-between items-center">
-                            <span className="text-[10px] font-bold text-[#c7b272] uppercase tracking-wider bg-[#c7b272]/5 px-2 py-0.5 rounded">
-                              {ticket.category}
-                            </span>
-                            <span className={`text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded ${
-                              ticket.status === 'replied' 
-                                ? 'bg-green-500/10 text-green-500' 
-                                : 'bg-yellow-500/10 text-yellow-500'
-                            }`}>
-                              {ticket.status === 'replied' 
-                                ? (langEN ? 'Replied' : 'Beantwoord') 
-                                : (langEN ? 'Sent' : 'Verzonden')}
-                            </span>
-                          </div>
-                          <div className="text-xs text-gray-600 dark:text-slate-300 font-medium whitespace-pre-wrap leading-relaxed">
-                            {ticket.message}
-                          </div>
-                          <div className="text-[9px] text-gray-400 dark:text-slate-500 font-mono">
-                            {new Date(ticket.timestamp).toLocaleString(langEN ? 'en-US' : 'nl-NL', {
-                              day: 'numeric',
-                              month: 'short',
-                              hour: '2-digit',
-                              minute: '2-digit'
-                            })}
-                          </div>
-                          {ticket.status === 'replied' && ticket.reply && (
-                            <div className="mt-2 pt-2 border-t border-[#1A1A2E]/5 dark:border-white/5 bg-[#c7b272]/5 dark:bg-slate-900/50 p-3 rounded-xl border-l-4 border-[#c7b272]">
-                              <span className="block text-[10px] font-bold text-[#c7b272] uppercase tracking-widest mb-1">
-                                {langEN ? 'Reply from Support' : 'Reactie van Support'}
-                              </span>
-                              <p className="text-xs text-gray-700 dark:text-slate-300 italic leading-relaxed">
-                                "{ticket.reply}"
-                              </p>
+                          <ArrowLeft size={14} />
+                          {langEN ? 'Back to tickets' : 'Terug naar overzicht'}
+                        </button>
+
+                        {/* Stepper (Process Tracker) */}
+                        <div className="flex flex-col gap-3 bg-gray-50/50 dark:bg-slate-950/40 p-4 rounded-2xl border border-[#1A1A2E]/5 dark:border-white/5 shadow-sm">
+                          <h4 className="text-[10px] font-bold uppercase tracking-wider text-gray-400 dark:text-slate-500">
+                            {langEN ? 'Ticket Progress' : 'Voortgang status'}
+                          </h4>
+                          <div className="flex flex-col gap-4 relative pl-5 mt-2">
+                            {/* Stepper line */}
+                            <div className="absolute left-[6px] top-1.5 bottom-1.5 w-0.5 bg-gray-200 dark:bg-slate-800"></div>
+                            
+                            {/* Step 1 */}
+                            <div className="flex items-start gap-3 relative">
+                              <div className="absolute left-[-24px] top-0.5 w-3.5 h-3.5 rounded-full bg-green-500 border-2 border-white dark:border-slate-900 flex items-center justify-center">
+                                <Check size={8} className="text-white font-bold" />
+                              </div>
+                              <div>
+                                <p className="text-xs font-bold text-gray-700 dark:text-slate-200">{langEN ? 'Ticket Submitted' : 'Ticket ingediend'}</p>
+                                <p className="text-[9px] text-gray-400 dark:text-slate-500">{langEN ? 'Your request has been logged successfully' : 'Hulpverzoek is geregistreerd'}</p>
+                              </div>
                             </div>
-                          )}
+                            
+                            {/* Step 2 */}
+                            <div className="flex items-start gap-3 relative">
+                              <div className="absolute left-[-24px] top-0.5 w-3.5 h-3.5 rounded-full bg-green-500 border-2 border-white dark:border-slate-900 flex items-center justify-center">
+                                <Check size={8} className="text-white font-bold" />
+                              </div>
+                              <div>
+                                <p className="text-xs font-bold text-gray-700 dark:text-slate-200">{langEN ? 'Delivered to Support' : 'Verzonden naar Support'}</p>
+                                <p className="text-[9px] text-gray-400 dark:text-slate-500">
+                                  {langEN ? 'Sent email notification to jorik.katinkainfo@gmail.com' : 'E-mail verstuurd naar jorik.katinkainfo@gmail.com'}
+                                </p>
+                              </div>
+                            </div>
+
+                            {/* Step 3 */}
+                            <div className="flex items-start gap-3 relative">
+                              <div className={`absolute left-[-24px] top-0.5 w-3.5 h-3.5 rounded-full border-2 border-white dark:border-slate-900 flex items-center justify-center ${
+                                ticket.status === 'replied' ? 'bg-green-500' : 'bg-amber-500 animate-pulse'
+                              }`}>
+                                {ticket.status === 'replied' ? <Check size={8} className="text-white font-bold" /> : <div className="w-1.5 h-1.5 bg-white rounded-full"></div>}
+                              </div>
+                              <div>
+                                <p className="text-xs font-bold text-gray-700 dark:text-slate-200">{langEN ? 'Under Review' : 'In behandeling'}</p>
+                                <p className="text-[9px] text-gray-400 dark:text-slate-500">
+                                  {ticket.status === 'replied' 
+                                    ? (langEN ? 'Review completed' : 'Beoordeeld door Jorik & Katinka') 
+                                    : (langEN ? 'Awaiting response from Jorik & Katinka' : 'Wachten op reactie van Jorik & Katinka')}
+                                </p>
+                              </div>
+                            </div>
+
+                            {/* Step 4 */}
+                            <div className="flex items-start gap-3 relative">
+                              <div className={`absolute left-[-24px] top-0.5 w-3.5 h-3.5 rounded-full border-2 border-white dark:border-slate-900 flex items-center justify-center ${
+                                ticket.status === 'replied' ? 'bg-[#c7b272]' : 'bg-gray-200 dark:bg-slate-800'
+                              }`}>
+                                {ticket.status === 'replied' ? <Check size={8} className="text-white font-bold" /> : null}
+                              </div>
+                              <div>
+                                <p className={`text-xs font-bold ${ticket.status === 'replied' ? 'text-[#c7b272]' : 'text-gray-400 dark:text-slate-500'}`}>
+                                  {langEN ? 'Reply Received' : 'Antwoord ontvangen'}
+                                </p>
+                                <p className="text-[9px] text-gray-400 dark:text-slate-500 font-medium">
+                                  {ticket.status === 'replied' 
+                                    ? (langEN ? 'Check response in conversation below' : 'Reactie toegevoegd aan de chat') 
+                                    : (langEN ? 'A notification will pop up on the site when resolved' : 'Melding volgt op de site zodra er antwoord is')}
+                                </p>
+                              </div>
+                            </div>
+                          </div>
                         </div>
-                      ))}
-                    </div>
+
+                        {/* Chat Messages */}
+                        <div className="flex flex-col gap-4 mt-2">
+                          <h4 className="text-[10px] font-bold uppercase tracking-wider text-gray-400 dark:text-slate-500">
+                            {langEN ? 'Conversation' : 'Gesprek'}
+                          </h4>
+                          
+                          <div className="flex flex-col gap-4 bg-gray-50/30 dark:bg-slate-950/20 p-4 rounded-2xl border border-[#1A1A2E]/5 dark:border-white/5 min-h-[120px]">
+                            {/* User original request */}
+                            <div className="flex flex-col gap-1 items-end self-end max-w-[85%]">
+                              <div className="flex items-center gap-1.5 text-[9px] text-gray-400 dark:text-slate-500 mr-1 font-mono">
+                                <span className="font-bold">{ticket.name}</span>
+                                <span>•</span>
+                                <span>{new Date(ticket.timestamp).toLocaleTimeString(langEN ? 'en-US' : 'nl-NL', { hour: '2-digit', minute: '2-digit' })}</span>
+                              </div>
+                              <div className="bg-[#1A1A2E]/5 dark:bg-slate-800 text-[#1A1A2E] dark:text-slate-100 rounded-2xl rounded-tr-none px-4 py-2.5 text-xs leading-relaxed shadow-sm font-medium whitespace-pre-wrap text-left">
+                                {ticket.message}
+                              </div>
+                              <span className="text-[8px] uppercase tracking-wider text-[#c7b272] font-semibold bg-[#c7b272]/5 px-2 py-0.5 rounded border border-[#c7b272]/10 mt-1">
+                                {ticket.category}
+                              </span>
+                            </div>
+
+                            {/* Reply message */}
+                            {ticket.status === 'replied' && ticket.reply ? (
+                              <div className="flex flex-col gap-1 items-start self-start max-w-[85%] mt-1">
+                                <div className="flex items-center gap-1.5 text-[9px] text-[#c7b272] ml-1 font-mono">
+                                  <span className="font-bold flex items-center gap-1">
+                                    <Heart size={10} className="fill-[#c7b272] text-[#c7b272]" /> 
+                                    Jorik & Katinka Support
+                                  </span>
+                                  <span>•</span>
+                                  <span>{langEN ? 'Organizer' : 'Organisator'}</span>
+                                </div>
+                                <div className="bg-[#c7b272]/10 dark:bg-[#c7b272]/15 border border-[#c7b272]/30 text-[#1A1A2E] dark:text-slate-100 rounded-2xl rounded-tl-none px-4 py-2.5 text-xs leading-relaxed shadow-sm border-l-4 border-l-[#c7b272] text-left font-medium whitespace-pre-wrap">
+                                  {ticket.reply}
+                                </div>
+                              </div>
+                            ) : (
+                              <div className="flex items-center gap-3 bg-amber-50/50 dark:bg-slate-950/20 border border-dashed border-amber-200/50 dark:border-slate-800/80 p-4 rounded-xl mt-1 text-left">
+                                <div className="flex shrink-0 items-center justify-center w-8 h-8 rounded-full bg-amber-100 dark:bg-slate-900 text-amber-500">
+                                  <Clock size={16} className="animate-spin" style={{ animationDuration: '3s' }} />
+                                </div>
+                                <div>
+                                  <h5 className="text-xs font-bold text-amber-600 dark:text-amber-500">
+                                    {langEN ? 'Awaiting response...' : 'Wachten op antwoord...'}
+                                  </h5>
+                                  <p className="text-[10px] text-gray-500 dark:text-slate-400 leading-relaxed mt-0.5">
+                                    {langEN 
+                                      ? 'Your ticket is forwarded. Once Jorik replies to the email notification, the response will show up here instantly!' 
+                                      : 'Je hulpverzoek is doorgestuurd. Zodra Jorik de e-mail beantwoordt, verschijnt het antwoord direct hier!'}
+                                  </p>
+                                </div>
+                              </div>
+                            )}
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })() : (
+                    supportTickets.length === 0 ? (
+                      <div className="text-center py-10 flex flex-col items-center justify-center">
+                        <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-gray-100 dark:bg-slate-800 mb-3 text-gray-400 dark:text-slate-500">
+                          <Mail size={20} />
+                        </div>
+                        <p className="text-sm text-gray-500 dark:text-slate-400 font-medium">
+                          {langEN ? 'You have not submitted any tickets yet.' : 'Je hebt nog geen hulpverzoeken ingediend.'}
+                        </p>
+                      </div>
+                    ) : (
+                      <div className="space-y-3">
+                        {supportTickets.map(ticket => (
+                          <div 
+                            key={ticket.id} 
+                            onClick={() => setSelectedSupportTicketId(ticket.id)}
+                            className="group bg-gray-50/50 hover:bg-white dark:bg-slate-950/20 dark:hover:bg-slate-900/50 border border-gray-100 hover:border-[#c7b272]/30 dark:border-slate-800/80 rounded-2xl p-4 text-left flex flex-col gap-3 shadow-sm transition-all cursor-pointer relative"
+                          >
+                            <div className="flex justify-between items-center">
+                              <span className="text-[9px] font-bold text-[#c7b272] uppercase tracking-wider bg-[#c7b272]/5 px-2 py-0.5 rounded border border-[#c7b272]/10">
+                                {ticket.category}
+                              </span>
+                              <span className={`text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded flex items-center gap-1.5 ${
+                                ticket.status === 'replied' 
+                                  ? 'bg-green-500/10 text-green-500' 
+                                  : 'bg-yellow-500/10 text-yellow-500'
+                              }`}>
+                                {ticket.status !== 'replied' && <span className="w-1.5 h-1.5 bg-yellow-500 rounded-full inline-block animate-pulse"></span>}
+                                {ticket.status === 'replied' 
+                                  ? (langEN ? 'Replied' : 'Beantwoord') 
+                                  : (langEN ? 'Sent' : 'Verzonden')}
+                              </span>
+                            </div>
+                            <div className="text-xs text-gray-600 dark:text-slate-300 font-medium line-clamp-2 leading-relaxed">
+                              {ticket.message}
+                            </div>
+                            <div className="flex justify-between items-center pt-2 border-t border-[#1A1A2E]/5 dark:border-white/5 text-[9px] text-gray-400 dark:text-slate-500 font-mono">
+                              <span>
+                                {new Date(ticket.timestamp).toLocaleString(langEN ? 'en-US' : 'nl-NL', {
+                                  day: 'numeric',
+                                  month: 'short',
+                                  hour: '2-digit',
+                                  minute: '2-digit'
+                                })}
+                              </span>
+                              <span className="text-[#c7b272] font-semibold group-hover:translate-x-0.5 transition-transform flex items-center gap-1">
+                                {langEN ? 'View status & chat' : 'Bekijk status & chat'} →
+                              </span>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    )
                   )
                 ) : supportSuccess ? (
                   <div className="text-center py-6 flex flex-col items-center">
@@ -3857,6 +4025,7 @@ export default function App() {
                       onClick={() => {
                         setSupportSuccess(false);
                         setSupportActiveTab('list');
+                        setSelectedSupportTicketId(null);
                       }}
                       className="bg-[#c7b272] hover:bg-[#b8a15f] text-white px-6 py-2.5 rounded-xl text-xs font-semibold uppercase tracking-wider transition-colors shadow-sm cursor-pointer"
                     >
@@ -3983,13 +4152,18 @@ export default function App() {
                 onClick={() => {
                   setHasSupportReply(false);
                   localStorage.setItem('wedding_support_reply_unread', 'false');
-                  setShowInboxPopup(true);
-                  markInboxAsRead(true);
-                  markAllAsRead();
+                  setShowHelpModal(true);
+                  setSupportActiveTab('list');
+                  const repliedTicket = supportTickets.find(t => t.status === 'replied');
+                  if (repliedTicket) {
+                    setSelectedSupportTicketId(repliedTicket.id);
+                  } else if (supportTickets.length > 0) {
+                    setSelectedSupportTicketId(supportTickets[0].id);
+                  }
                 }}
                 className="bg-[#c7b272] hover:bg-[#b8a15f] text-white px-4 py-2 rounded-xl text-[10px] font-bold uppercase tracking-wider transition-colors shadow-sm cursor-pointer"
               >
-                {langEN ? 'Open Inbox' : 'Open Postvak'}
+                {langEN ? 'View Response' : 'Bekijk reactie'}
               </button>
             </div>
           </motion.div>
