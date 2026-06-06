@@ -206,664 +206,984 @@ const NotesWidget = ({ langEN }: { langEN: boolean }) => {
 
 // --- DATA ---
 
-const scheduleNL = [
-  { id: 1, time: "12:15 - 12:45", title: "Welkom & aankomst", desc: "Koffie en lekkers staan voor je klaar.\nSchrijf je gelukswensen aan het bruidspaar in het gastenboek bij de ingang.", location: "Palmenkas & Terras", roles: ["Iedereen"] },
-  { id: 2, time: "12:45 - 13:00", title: "Naar de haag", desc: "Je wordt uitgenodigd om buiten bij 'de haag' het bruidspaar op te wachten.", location: "Buiten", roles: ["Iedereen"] },
-  { id: 3, time: "13:00 - 13:05", title: "Aankomst bruidspaar", desc: "Het bruidspaar arriveert.", location: "Buiten", roles: ["Iedereen"] },
-  { id: 4, time: "13:05 - 13:15", title: "Stoet naar de Oranjerie", desc: "Samen met het bruidspaar loop je richting de Oranjerie.", location: "Buiten", roles: ["Iedereen"] },
-  { id: 5, time: "13:15 - 13:25", title: "Plaatsnemen in Oranjekas", desc: "Iedereen zoekt een mooi plekje op. Voor naaste familie zijn vooraan stoelen gereserveerd.", location: "Oranjekas", roles: ["Iedereen"] },
-  { id: 6, time: "13:15 - 13:25", title: "Welkom door BABS", desc: "De Bijzonder Ambtenaar Burgerlijke Stand heet jullie welkom.", location: "Oranjekas", roles: ["Iedereen"] },
-  { id: 7, time: "13:25 - 13:27", title: "Intocht bruidegom", desc: "Alle gasten gaan staan.", location: "Oranjekas", roles: ["Iedereen"] },
-  { id: 8, time: "13:27 - 13:30", title: "Intocht bruid", desc: "Alle gasten blijven staan.", location: "Oranjekas", roles: ["Iedereen"] },
-  { id: 9, time: "13:30 - 14:00", title: "Huwelijksvoltrekking", desc: "Het ja-woord, de ringen en de geloften.", location: "Oranjekas", roles: ["Iedereen"] },
-  { id: 10, time: "14:05 - 14:20", title: "Zegen en speeches", desc: "", location: "Oranjekas", roles: ["Iedereen"] },
-  { id: 11, time: "14:20 - 14:25", title: "Bloemenhulde", desc: "Iedereen gaat staan en strooit bloemblaadjes als het bruidspaar langsloopt.", location: "Oranjekas", roles: ["Iedereen"] },
-  { id: 12, time: "14:25 - 14:45", title: "Felicitatiemoment", desc: "Alle gasten lopen vanaf de voorste rijen langs het bruidspaar voor felicitaties en de gelegenheid om een cadeau te overhandigen.", location: "Oranjekas", roles: ["Iedereen"] },
-  { id: 13, time: "14:45 - 15:00", title: "Gasten gaan naar de Palmenkas en korte pauze", desc: "", location: "Palmenkas", roles: ["Iedereen"] },
-  { id: 14, time: "15:00 - 15:30", title: "Toost en taart", desc: "Het bruidspaar snijdt de taart aan, deze wordt rondgedeeld vergezeld van een glas alcoholvrije prosecco.\nEr wordt getoost en er zijn twee creatieve bijdragen.", location: "Palmenkas", roles: ["Iedereen"] },
-  { id: 15, time: "15:30 - 17:30", title: "Receptie & groepsfoto's", desc: "Geniet van hapjes en drankjes.\nDe fotograaf maakt groepsfoto's.", location: "Palmenkas & Terras", roles: ["Iedereen"] },
-  { id: 16, time: "17:30 - 17:45", title: "Einde receptie & uitzwaaien", desc: "Vergeet je persoonlijke spullen niet en neem een presentje mee dat bij de ingang ligt.", location: "Haag buiten", roles: ["Iedereen"] }
+export const scheduleNL = [
+  {
+    "id": 1,
+    "time": "12.15 - 12.45",
+    "title": "Welkom & lekkers",
+    "desc": "Eten en drinken staan voor je klaar.\nSchrijf nu of tijdens de receptie je gelukswensen aan het bruidspaar in het gastenboek op de tekentafel in de Palmenkas.",
+    "location": "Palmenkas/Terras",
+    "roles": [
+      "Iedereen"
+    ]
+  },
+  {
+    "id": 2,
+    "time": "12.45 - 13.00",
+    "title": "Naar 'de haag'",
+    "desc": "Je wordt uitgenodigd om buiten bij 'de haag' het bruidspaar op te wachten.",
+    "location": "Buiten bij de haag",
+    "roles": [
+      "Iedereen"
+    ]
+  },
+  {
+    "id": 3,
+    "time": "13.00 - 13.15",
+    "title": "Aankomst bruidspaar",
+    "desc": "Het bruidspaar arriveert.",
+    "location": "Buiten bij de haag",
+    "roles": [
+      "Iedereen"
+    ]
+  },
+  {
+    "id": 4,
+    "time": "13.15 - 13.25",
+    "title": "Plaatsnemen in de Oranjekas",
+    "desc": "Iedereen zoekt een mooi plekje op. Voor naaste familie zijn vooraan stoelen gereserveerd.",
+    "location": "Oranjekas",
+    "roles": [
+      "Iedereen"
+    ]
+  },
+  {
+    "id": 5,
+    "time": "13.25 - 14.25",
+    "title": "Ceremonie",
+    "desc": "Het ja-woord, de ringen en de geloften.",
+    "location": "Oranjekas",
+    "roles": [
+      "Iedereen"
+    ]
+  },
+  {
+    "id": 6,
+    "time": "14.25 - 14.45",
+    "title": "Erehaag met bloemen & felicitaties",
+    "desc": "Vanaf het gangpad bloemblaadjes werpen naar het bruidspaar & gelegenheid tot felicitaties.",
+    "location": "Oranjekas",
+    "roles": [
+      "Iedereen"
+    ]
+  },
+  {
+    "id": 7,
+    "time": "14.45 - 15.00",
+    "title": "Pauze",
+    "desc": "",
+    "location": "Palmenkas/privéruimte",
+    "roles": [
+      "Iedereen"
+    ]
+  },
+  {
+    "id": 8,
+    "time": "15.00 - 15.30",
+    "title": "Toost & Bruidstaart",
+    "desc": "",
+    "location": "Palmenkas",
+    "roles": [
+      "Iedereen"
+    ]
+  },
+  {
+    "id": 9,
+    "time": "15.30 - 16.00",
+    "title": "Receptie start en groepsfoto's",
+    "desc": "De fotograaf maakt dit half uur groepsfoto's in 5 grote groepen:\n1. Familie Prins 2. Familie Mekking 3. Familie Uiterwijk 4. Familie Herlaar 5. Vrienden & Collega's.\nZie de lijst met namen bij 'Toon aanvullende context' en uitgeprint op de tekentafel in de Palmenkas.",
+    "location": "Palmenkas/Terras",
+    "roles": [
+      "Iedereen"
+    ]
+  },
+  {
+    "id": 10,
+    "time": "16.00 - 17.30",
+    "title": "Receptie vervolg",
+    "desc": "Geniet van hapjes en drankjes.",
+    "location": "",
+    "roles": [
+      "Iedereen"
+    ]
+  },
+  {
+    "id": 11,
+    "time": "17.30 - 17.45",
+    "title": "Einde receptie & uitzwaaien",
+    "desc": "Vergeet je persoonlijke spullen niet en neem een presentje mee dat bij het gastenboek op de tekentafel in de Palmenkas ligt.\nDank je wel dat je deze dag met ons samen hebt gevierd!",
+    "location": "Haag buiten",
+    "roles": [
+      "Iedereen"
+    ]
+  }
 ];
-
-const scheduleEN = [
-  { id: 1, time: "12:15 - 12:45", title: "Welcome & Arrival", desc: "Coffee and treats are waiting for you.\nWrite your best wishes for the couple in the guestbook at the entrance.", location: "Palmenkas & Terrace", roles: ["Everyone"] },
-  { id: 2, time: "12:45 - 13:00", title: "To the Hedge", desc: "You are invited to wait outside by 'the hedge' for the couple.", location: "Outside", roles: ["Everyone"] },
-  { id: 3, time: "13:00 - 13:05", title: "Arrival of Couple", desc: "The couple arrives.", location: "Outside", roles: ["Everyone"] },
-  { id: 4, time: "13:05 - 13:15", title: "Procession to Oranjerie", desc: "Together with the couple, you walk towards the Oranjerie.", location: "Outside", roles: ["Everyone"] },
-  { id: 5, time: "13:15 - 13:25", title: "Take Seats in Oranjekas", desc: "Everyone finds a nice spot. Seats at the front are reserved for close family.", location: "Oranjekas", roles: ["Everyone"] },
-  { id: 6, time: "13:15 - 13:25", title: "Welcome by Officiant", desc: "The wedding officiant welcomes you.", location: "Oranjekas", roles: ["Everyone"] },
-  { id: 7, time: "13:25 - 13:27", title: "Groom's Entrance", desc: "All guests stand.", location: "Oranjekas", roles: ["Everyone"] },
-  { id: 8, time: "13:27 - 13:30", title: "Bride's Entrance", desc: "All guests remain standing.", location: "Oranjekas", roles: ["Everyone"] },
-  { id: 9, time: "13:30 - 14:00", title: "Marriage Ceremony", desc: "The official vows, rings, and promises.", location: "Oranjekas", roles: ["Everyone"] },
-  { id: 10, time: "14:05 - 14:20", title: "Blessings & Speeches", desc: "", location: "Oranjekas", roles: ["Everyone"] },
-  { id: 11, time: "14:20 - 14:25", title: "Flower Tribute", desc: "Everyone stands and scatters flower petals as the couple walks by.", location: "Oranjekas", roles: ["Everyone"] },
-  { id: 12, time: "14:25 - 14:45", title: "Congratulations", desc: "All guests walk past the couple from the front rows for congratulations and an opportunity to hand over a gift.", location: "Oranjekas", roles: ["Everyone"] },
-  { id: 13, time: "14:45 - 15:00", title: "Break / Guests to Palmenkas", desc: "", location: "Palmenkas", roles: ["Everyone"] },
-  { id: 14, time: "15:00 - 15:30", title: "Toast & Cake", desc: "The couple cuts the cake, which is distributed accompanied by a glass of alcohol-free prosecco.\nThere is a toast and two creative contributions.", location: "Palmenkas", roles: ["Everyone"] },
-  { id: 15, time: "15:30 - 17:30", title: "Reception & Group Photos", desc: "Enjoy drinks and snacks.\nThe photographer takes group photos.", location: "Palmenkas & Terrace", roles: ["Everyone"] },
-  { id: 16, time: "17:30 - 17:45", title: "End of Reception & Waving Off", desc: "Don't forget your personal belongings and take a small gift located at the entrance.", location: "Hedge outside", roles: ["Everyone"] }
+export const scheduleEN = [
+  {
+    "id": 1,
+    "time": "12.15 - 12.45",
+    "title": "Welcome & treats",
+    "desc": "Food and drinks are waiting for you.\nWrite your wishes for the couple in the guestbook on the drawing table in the Palm Greenhouse now or during the reception.",
+    "location": "Palm Greenhouse/Terrace",
+    "roles": [
+      "Everyone"
+    ]
+  },
+  {
+    "id": 2,
+    "time": "12.45 - 13.00",
+    "title": "To 'the hedge'",
+    "desc": "You are invited to wait outside by 'the hedge' for the couple.",
+    "location": "Outside by 'the hedge'",
+    "roles": [
+      "Everyone"
+    ]
+  },
+  {
+    "id": 3,
+    "time": "13.00 - 13.15",
+    "title": "Arrival of the couple",
+    "desc": "The couple arrives.",
+    "location": "Outside by 'the hedge'",
+    "roles": [
+      "Everyone"
+    ]
+  },
+  {
+    "id": 4,
+    "time": "13.15 - 13.25",
+    "title": "Taking seats in the Orange Greenhouse",
+    "desc": "Everyone finds a nice spot. Seats at the front are reserved for close family.",
+    "location": "Orange Greenhouse",
+    "roles": [
+      "Everyone"
+    ]
+  },
+  {
+    "id": 5,
+    "time": "13.25 - 14.25",
+    "title": "Ceremonie",
+    "desc": "Het ja-woord, de ringen en de geloften.",
+    "location": "Orange Greenhouse",
+    "roles": [
+      "Everyone"
+    ]
+  },
+  {
+    "id": 6,
+    "time": "14.25 - 14.45",
+    "title": "Flower arch & congratulations",
+    "desc": "Throw flower petals at the couple from the aisle & opportunity for congratulations.",
+    "location": "Orange Greenhouse",
+    "roles": [
+      "Everyone"
+    ]
+  },
+  {
+    "id": 7,
+    "time": "14.45 - 15.00",
+    "title": "Pauze",
+    "desc": "",
+    "location": "Palm Greenhouse/Private Area",
+    "roles": [
+      "Everyone"
+    ]
+  },
+  {
+    "id": 8,
+    "time": "15.00 - 15.30",
+    "title": "Toast",
+    "desc": "",
+    "location": "Palm Greenhouse",
+    "roles": [
+      "Everyone"
+    ]
+  },
+  {
+    "id": 9,
+    "time": "15.30 - 16.00",
+    "title": "Reception start & group photos",
+    "desc": "The photographer will take group photos in 5 large groups during this half-hour:\n1. Prins family 2. Mekking family 3. Uiterwijk family 4. Herlaar family 5. Friends & Colleagues.\nSee the list of names under 'Show additional context' and printed on the drawing table in the Palm Greenhouse.",
+    "location": "Palm Greenhouse/Terrace",
+    "roles": [
+      "Everyone"
+    ]
+  },
+  {
+    "id": 10,
+    "time": "16.00 - 17.30",
+    "title": "Reception continues",
+    "desc": "Enjoy snacks and drinks.",
+    "location": "",
+    "roles": [
+      "Everyone"
+    ]
+  },
+  {
+    "id": 11,
+    "time": "17.30 - 17.45",
+    "title": "End of reception & waving off",
+    "desc": "Don't forget your personal belongings and take a gift with you located near the guestbook on the drawing table in the Palm Greenhouse.\nThank you for celebrating this day with us!",
+    "location": "Hedge outside",
+    "roles": [
+      "Everyone"
+    ]
+  }
 ];
-
-const cmTasksNL = [
+export const cmTasksNL = [
   {
     "id": 1,
     "time": "9.30 - 11.00",
-    "action": "Opbouw locatie door ceremoniemeesters",
-    "who": "- Aanwezig op locatie, alles klaarzetten en controleren. Met hulp van de Oranjerie.\n- Decoratie hebben jullie bij je. Bloemen volgen vanaf 10.30.\n- Zie bijlage Uitwerking Taken.",
-    "desc": "CM zijn aanwezig op locatie, lopen alles na en zetten alles klaar, met hulp van de Oranjerie.\nZij hebben zelf ook decoratie meegekregen van Jorik eerder die week.\nWilma en Fleur doen tussen 11.00 - 11.45 een eindcontrole.\nZie bijlage Uitwerking Taken."
+    "action": "Opbouw locatie",
+    "who": "*Aanwezig op locatie, alles klaarzetten en controleren. Met hulp van Team Oranjerie. \n*Jullie plannen terplekke een meeting in met Team Oranjerie.\n*Matthew is eerste aanspreekpunt. \n*Decoratie hebben jullie meegekregen van Jorik.\n*Bloemdecoratie volgt om 10.30 van Jorik, daarna graag overal neerzetten.\n*Zie pagina 'Bijlage' voor: Borden Parkeerplaats, Ceremonie Stoelschikking, Diner Stoelschikking en Diner Tafeldekking.\n*Zie 'Toon aanvullende context' hieronder voor de Opbouw van de locatie.",
+    "desc": "Opbouw locatie \n\nParkeerplaats\nZie pagina 'Bijlage'.\n\nEntree \n*schildersezel met welkomstbord erop, \n*asbakken indien ze daar staan, weghalen bij entree en ook niet bij de hoek waar de Maserati komt te staan - verplaatsen naar de andere kant van het gebouw.  \n\nPalmenkas \n*op de tafels vaasjes met bloemen, \n*een van de vazen van de locatie klaarzetten met water voor het bruidsboeket, \n*ervoor zorgen dat de Oranjerie weet dat de taart op een hoge, ronde tafel in het midden van de Palmenkas moet komen te staan, met een wit tafelkleed eronder, \n*hoge, ronde tafel met een mandje erop (Fleur en Wilma doen in dat mandje de presentjes voor de gasten), het gastenboek met pen en uitgeprint programma en print van overzicht groepsfoto's, \n*drankarrangement uitgeprint neerleggen. \n\nOranjekas ceremonie\n*namen neerleggen ivm gereserveerde plekken (zie pagina 'Bijlage'), \n*twee stoelen reserveren (meer aan de zijkanten achteraan) voor de CM zodat jullie overzicht hebben, \n*twee stoelen bij het gangpad achter alvast weghalen om ruimte te maken voor de felicitatierij straks, \n*lage tafel neerzetten in de Oranjekas, direct na de ingang rechts (direct naast de deur – het bruidspaar gaat daar na de ceremonie voor de felicitaties staan), \n*daarop het kistje voor de cadeaus en ruimte voor andere cadeaus, \n*deze tafel laten staan tijdens het diner (staat sfeervol), \n*aan het gangpad om en om een mandje met bloemblaadjes neerzetten onder de eerste stoel. Per rijen 4 mandjes, dus 8 mandjes totaal (bloemen volgen om 10.30), \n*ons bankje staat links schuin,\n*hoge, ronde tafel vooraan (vlakbij de spreekstoel voor de BABS) voor het ondertekenen,  \n*daarop een foto van de ouders van Katinka, vaasje met bloemen en de houder met waxinelichtje, \n*nb bij slecht weer kunnen de donkergroene voorzet-deuren open in de Oranjekas voor het zicht, de glazen deuren blijven dan dicht, \n*bij mooi weer gaan zowel de donkergroene voorzet-deuren als de glazen deuren open. \n\nTerrein en terras \n*aan locatie vragen om van het hele terrein peuken/afval/achtergebleven glazen etc te verwijderen, \n*is het netjes achtergelaten na de bruiloft van de dag ervoor? \n\nToiletruimte \n*zijn er voldoende toiletpapier/handdoekjes, \n*is het schoon, \n*ook tijdens de dag af en toe controleren, \n*doorgeven aan manager als er iets gedaan moet worden. \n\nPrivéruimte \n*zorgen dat de deur van de privéruimte naar het toilet open is en ook de deur die vanaf daar naar buiten gaat.",
+    "location": "Palmenkas/Oranjekas/Terras/Tuin en parkeerplaats"
   },
   {
     "id": 2,
     "time": "9.00 - 9.30",
-    "action": "Bruidspaar thuis, intieme setting met alleen gezin",
-    "who": "",
-    "desc": "Jorik komt aanrijden in Maserati en wordt boven ontvangen door de kinderen.\nFleur haalt Katinka op in de slaapkamer en brengt Katinka naar de woonkamer. We zien elkaar daar voor het eerst ❤️\nFleur en Samuel maken foto's."
+    "action": "Bruidspaar thuis met gezin",
+    "who": "Ter info",
+    "desc": "",
+    "location": "Thuis in Rijswijk"
   },
   {
     "id": 3,
     "time": "9.30 - 10.30",
-    "action": "Bruidspaar vertrek naar Oranjerie",
-    "who": "",
-    "desc": "We vertrekken naar de Oranjerie. Fleur en Samuel rijden met ons mee.\nWil rijdt mee met Wilma en Rob en volgen later vanuit Den Haag.\nKatinka: NB logeerspullen, bruidsboeket, tasje, repen, water etc mee."
+    "action": "Bruidspaar onderweg naar de Oranjerie",
+    "who": "*De Italiaanse playlist laten spelen in de Palmenkas als \nwelkom voor het bruidspaar. Aan laten totdat jullie met alle gasten richting 'de haag' gaan om 12.45.\n*Zie 'Toon aanvullende context' hieronder voor de Muziek.",
+    "desc": "Hoe moet de muziek aangeleverd worden? \n\n*Offline bestand. \n*Werktelefoon Katinka op vliegtuigstand. \n*Spotify (Joriks account) ivm geen reclame. \n*Back-up: Katinka's huidige telefoon. \n*Muziek gaat apart in beide zalen. \n*Playlist op repeat. \n* 'Holy Forever' (bij het naar voren lopen van het bruidspaar) wordt los aangeleverd omdat dat liedje ook los aangezet moet worden.\n \nMuziek bij de ontvangst van het bruidspaar en de gasten:\n\n10.30 - 12.45 \n*Italiaanse playlist.",
+    "location": "Reistijd"
   },
   {
     "id": 4,
     "time": "10.30 - 11.00",
-    "action": "Aankomst bruidspaar op locatie",
-    "who": "- De Italiaanse playlist laten spelen in de Palmenkas als welkom voor het bruidspaar, aan laten totdat jullie met alle gasten richting 'de haag' gaan om 12.45.\n- Wij hebben de bruidstaart bij ons.",
-    "desc": "We zetten zelf de auto aan de zijkant van het pand.\nKoffie met lekkers.\nKatinka: logeerspullen, make-up etc in privé-ruimte.\nTaak CM: de Italiaanse playlist laten spelen in de Palmenkas als welkom voor het bruidspaar, aan laten totdat jullie met alle gasten richting de haag gaan om 12.45."
+    "action": "Aankomst bruidspaar",
+    "who": "*Koffie/drinken met lekkers.\n*Het bruidspaar heeft de bloemdecoratie bij zich, die kan nu neergezet worden.\n*Het bruidspaar zet zelf de auto aan de zijkant van het pand.\n*En vertrekt om 11.45 uur naar een rustige plek.",
+    "desc": "",
+    "location": "Palmenkas/Terras/privéruimte"
   },
   {
     "id": 5,
     "time": "10.45 - 11.00",
     "action": "Aankomst Wilma/Rob en Wil",
-    "who": "",
-    "desc": "Knuffelmoment met bruidspaar ❤️"
+    "who": "*Koffie/drinken met lekkers.\n*Wilma heeft de bruidstaart bij zich.",
+    "desc": "",
+    "location": "Palmenkas/Terras"
   },
   {
     "id": 6,
-    "time": "11.00 - 13.00",
-    "action": "Het bruidspaar rijdt weg van het landgoed",
-    "who": "",
-    "desc": "Naar een onopvallende plek.\nK: tasje, bruidsboeket, eten en drinken mee."
+    "time": "11.00 - 12.00",
+    "action": "Eindcheck door Wilma en Fleur",
+    "who": "*Wilma en Fleur doen een eindcheck op de decoratie.\nIn principe is alles voor die tijd al klaar.",
+    "desc": "",
+    "location": "Palmenkas/Oranjekas/Terras/Tuin en parkeerplaats"
   },
   {
     "id": 7,
-    "time": "11.00 - 12.00",
-    "action": "Eindcheck door Wilma en Fleur",
-    "who": "- Wilma en Fleur doen een eindcheck op de decoratie.",
-    "desc": "Koffie met lekkers voor Wil, Wilma en Rob. Wilma en Fleur hebben nu tijd om de decoratie te controleren, finishing touch. De CM hebben alles al klaargezet met de locatie. En rekening houden met het welkom heten van vroege gasten."
+    "time": "11.30 - 11.45",
+    "action": "Bruidspaar vertrekt van de Oranjerie",
+    "who": "Het bruidspaar komt om 13.00 uur weer terug.",
+    "desc": "",
+    "location": "Reistijd"
   },
   {
     "id": 8,
-    "time": "12.15 - 12.45",
-    "action": "Aankomst overige gasten (68 p)",
-    "who": "- Welkom heten en aanspreekpunt voor gasten.",
-    "desc": "Koffie en lekkers.\nTaak CM: welkom heten en aanspreekpunt voor gasten."
+    "time": "12.00 - 12.15",
+    "action": "Aankomst fotograaf",
+    "who": "Audra: 06 - 27 59 13 63\nZet zelf zijn spullen klaar.",
+    "desc": "",
+    "location": ""
   },
   {
     "id": 9,
-    "time": "12.45 - 13.00",
-    "action": "Gasten meenemen naar de haag",
-    "who": "- Gasten om 12.45 uur leiden naar de voorkant van 'de haag' om het bruidspaar op te wachten.",
-    "desc": "Taak CM: de gasten om 12.45 uur leiden naar 'de haag' en vertellen wat de bedoeling is:\n\nalle gasten moeten om 12.55 klaar staan buiten vóór de haag aan de kant van de weg en wachten daar het bruidspaar op,\nervoor zorgen dat de naaste familie aan de kant bij de haag staan omdat zij het bruidspaar straks ook als eerste volgen.\nNB wij komen vanaf de kant rijden met de lange bochtige weg als je met je rug naar de locatie staat, de weg aan de rechterkant."
+    "time": "12.15 - 12.45",
+    "action": "Aankomst overige gasten (68 p)",
+    "who": "*Koffie/drinken met lekkers.\n*Derek: gasten welkom heten bij de ingang van de Oranjerie. \n*CM zijn aanspreekpunt voor gasten.\n*In totaal zijn we deze dag met 78 personen, zie bijlage Gastenlijst.\n*Zie 'Toon aanvullende context' hieronder voor de Gastenlijst.",
+    "desc": "Gastenlijst:\n\n1.\tJorik\n2.\tKatinka\n3.\tFleur\n4.\tSamuel\n5.\tRinske \n6.\tWil\n7.\tEmma\n8.\tJet\n9.\tAnna\n10.\tOpa\n11.\tWilma\n12.\tRob\n13.\tLisa\n14.\tJaikishen\n15.\tArthur\n16.\tCor\n17.\tAnca\n18.\tSara\n19.\tHerman\n20.\tMylene\n21.\tMerian\n22.\tJim\n23.\tLeanne\n24.\tJasper\n25.\tBernhard\n26.\tYvonne\n27.\tRoos\n28.\tDerek\n29.\tMarianne\n30.\tMatthew\n31.\tJoke\n32.\tGerard\n33.\tSander (neef J)\n34.\tIneke\n35.\tNicole\n36.\tWilfred \n37.\tPatricia\n38.\tArjan \n39.\tMike\n40.\tMercedes\n41.\tMaik\n42.\tJustin\n43.\tRik\n44.\tLorena\n45.\tMark\n46.\tSander Uphus\n47.\tLydia\n48.\tChris\n49.\tDesi\n50.\tBas\n51.\tCharlotte\n52.\tTim\n53.\tSanne\n54.\tKarima\n55.\tFelix \n56.\tThalita\n57.\tNaomi\n58.\tRoelfien\n59.\tAda \n60.\tPaul (man van Ada) \n61.\tDara\n62.\tAnne\n63.\tHelian\n64.\tBarbara\n65.\tAnita\n66.\tAnnette\n67.\tNorbert\n68.\tJessica\n69.\tJurjen\n70.\tMiriam \n71.\tMonique\n72.\tSander (neef K)\n73.\tLize\n74.\tErwin\n75.\tAnja\n76.\tRuud\n77.\tSuzanne\n78.\tGijsbert",
+    "location": "Palmenkas/Terras"
   },
   {
     "id": 10,
-    "time": "13.00 - 13.05",
-    "action": "Aankomst bruidspaar tot halverwege de haag",
-    "who": "- Aangeven dat de gasten achter de auto aan mogen lopen. De auto stopt halverwege. Daar allemaal wachten.\n- Naaste familie altijd het meest in de buurt.",
-    "desc": "Taak CM: aangeven dat de gasten achter de auto aan mogen lopen. De auto stopt halverwege. Daar allemaal wachten. Naaste familie altijd het meest in de buurt. Jorik stapt uit en houdt de autodeur voor Katinka open."
+    "time": "12.45 - 13.00",
+    "action": "Gasten meenemen naar 'de haag'",
+    "who": "*Gasten om 12.45 uur leiden naar 'de haag' om het bruidspaar op te wachten.\n*De gasten vormen een haag in 'de haag'. \n*Alle gasten moeten om 12.55 klaar staan. \n*Ervoor zorgen dat Fleur, Samuel en opa (en de naaste familie) vooraan staat in 'de haag' omdat zij het bruidspaar straks ook als eerste volgen.",
+    "desc": "",
+    "location": "Buiten bij de haag"
   },
   {
     "id": 11,
-    "time": "13.05 - 13.15",
-    "action": "Bruidspaar loopt met stoet achter zich aan naar de Oranjerie",
-    "who": "- Zorgen dat the gasten achter ons aanlopen.\n- Fleur, Samuel en opa direct achter ons omdat zij naar een aparte ruimte met ons gaan.",
-    "desc": "Het bruidspaar loopt richting de Oranjerie.\nTaak CM: zorgen dat de gasten achter ons aanlopen. En zorgen dat Fleur, Samuel en opa direct achter ons lopen. Zij gaan namelijk straks met ons mee naar onze privéruimte."
+    "time": "13.00 - 13.10",
+    "action": "Aankomst BABS",
+    "who": "Matthew: BABS welkom heten en eventuele vragen beantwoorden.",
+    "desc": "",
+    "location": ""
   },
   {
     "id": 12,
-    "time": "13.15 - 13.25",
-    "action": "Bruidspaar, opa, Fleur en Samuel nemen plaats in onze privé-ruimte / korte pauze",
-    "who": "- Zorgen dat opa, Fleur en Samuel bij het bruidspaar in de privé-ruimte zijn.",
-    "desc": "Vanaf daar lopen wij ongezien met hen buiten langs om weer bij de ingang te komen."
+    "time": "13.00 - 13.05",
+    "action": "Aankomst bruidspaar bij 'de haag'",
+    "who": "De auto stopt halverwege.\nJorik laat Katinka uitstappen.",
+    "desc": "",
+    "location": "Buiten bij de haag"
   },
   {
     "id": 13,
-    "time": "13.15 - 13.25",
-    "action": "Gasten nemen hun plek in de Oranjekas",
-    "who": "- Aangeven dat de gasten plaats mogen nemen in de Oranjekas.\n- Zie stoelschikking in bijlage Uitwerking Taken eerste 2 rijen voor hoofdgasten.\n- 2 stoelen achter aan de zijkant reserveren voor de CM zodat jullie goed overzicht hebben.",
-    "desc": "Taak CM: aangeven dat de gasten plaats mogen nemen in de Oranjekas. Voor het bruidspaar staan vooraan twee speciale stoelen klaar. Ook zijn de eerste rijen gereserveerd voor de naaste familie. Jorik en Katinka zitten half schuin. Katinka zit aan de rechterkant van Jorik.\nFilm: Jay zet zijn camera klaar."
+    "time": "13.05 - 13.15",
+    "action": "Stoet naar de Oranjerie",
+    "who": "*Het bruidspaar loopt rechtsom.\n*Zorgen dat de gasten achter ons aanlopen. \n*Fleur, Samuel en opa direct achter ons omdat zij naar een aparte ruimte met ons gaan.",
+    "desc": "",
+    "location": "Lopend naar de Oranjerie"
   },
   {
     "id": 14,
     "time": "13.15 - 13.25",
-    "action": "De BABS heet de gasten welkom",
-    "who": "",
-    "desc": "De BABS vertelt wat nu bij de aanvang van de gasten verwacht wordt:\n\ndat de gasten op haar teken moeten gaan staan,\ndat zo het bruidspaar binnen zal komen,\ndat de gasten weer moeten gaan zitten als zij het aangeeft."
+    "action": "Privé-ruimte en pauze",
+    "who": "*Het bruidspaar, Fleur, Samuel en opa nemen plaats in de privé-ruimte.\n*Vanaf daar lopen zij achterlangs weer naar de ingang van de Oranjerie als alle gasten zitten.",
+    "desc": "",
+    "location": "Privéruimte"
   },
   {
     "id": 15,
-    "time": "13.25 - 13.27",
-    "action": "Jorik wordt door zijn opa naar voren geleid",
-    "who": "- Zorgen dat het liedje Holy Forever afspeelt zodra Jorik met opa bij de ingang klaarstaat.",
-    "desc": "Jorik en opa staan bij de deur bij de ingang van de zaal.\nAlle gasten staan.\nTaak CM: zorgen dat de muziek wordt afgespeeld als Jorik en zijn opa klaarstaan.\nJorik en opa lopen naar voren als de muziek begint. Ze blijven even samen vooraan staan, waarna opa plaats neemt op zijn gereserveerde stoel.\nJorik wacht daar vooraan staand in het midden met zijn gezicht richting de voordeur op Katinka.\nFilm: Jay filmt de gehele ceremonie vanaf het moment vlak voordat de muziek start.\nFilm ceremonie: het naar voren lopen, de ceremonie, de zegen door Derek, speech Wilma, speech Fleur tot en met lopen door haag met bloemblaadjes en felicitatiemoment.\nJorik: dit aan Jay doorgeven."
+    "time": "13.15 - 13.25",
+    "action": "Gasten plaatsnemen in de Oranjekas",
+    "who": "*Aangeven dat de gasten plaats mogen nemen in de Oranjekas. \n*Zie pagina 'Bijlage' voor de Ceremonie Stoelschikking, de eerste 2 rijen zijn met naambordjes gereserveerd voor hoofdgasten.\n*2 stoelen achter aan de zijkant reserveren voor de CM zodat jullie goed overzicht hebben.",
+    "desc": "",
+    "location": "Oranjekas"
   },
   {
     "id": 16,
-    "time": "13.27 - 13.30",
-    "action": "Katinka wordt door Fleur en Samuel naar Jorik geleid",
-    "who": "- Zorgen dat het liedje Holy Forever blijft doorspelen.\n- De deuren sluiten achter Katinka",
-    "desc": "De gasten blijven staan en de muziek speelt door. Katinka: bruidsboeket en tasje bij me.\nTaak CM: zorgen dat de deuren bij de ingang achter Katinka sluiten.\nJorik en Katinka treffen elkaar vooraan en knuffelen elkaar ❤️. We blijven nog even staan, dan vervaagt de muziek, wij gaan zitten.\nDe BABS zegt dat de gasten ook moeten gaan zitten.\nTaak CM: zorgen dat de muziek stopt."
+    "time": "13.15 - 13.25",
+    "action": "Welkom door de BABS",
+    "who": "De BABS heet iedereen welkom en vertelt de gasten wat van hen verwacht wordt.\n\"Geen foto's tijdens ceremonie en dat alle gasten moeten gaan staan op haar teken.\"",
+    "desc": "",
+    "location": "Oranjekas"
   },
   {
     "id": 17,
-    "time": "13.30 - 14.00",
-    "action": "Gemeentelijke huwelijksvoltrekking door BABS",
-    "who": "- Zorgen dat de muziek stopt zodra de BABS zegt dat iedereen kan gaan zitten.",
-    "desc": "zij vertelt dat we de ouders van Katinka: Leo en Gonnie, moeten missen,\nzij vertelt ons verhaal,\nwettelijk deel en ja-woord,\nzij vraagt Sara naar voren met het doosje met de ringen,\nringen en uitspreken beloften naar elkaar,\nJorik en Katinka kussen elkaar ❤️,\nJorik en Katinka tekenen, dan de getuigen (Wil, Cor en Wilma) en daarna de BABS."
+    "time": "13.25 - 13.27",
+    "action": "Intocht Jorik met opa",
+    "who": "*Zorgen dat het liedje 'Holy Forever' afspeelt zodra Jorik met opa bij de ingang klaarstaat. \n*Jorik en opa lopen naar voren als de muziek begint. \n*Ze blijven even samen vooraan staan, waarna opa plaats neemt op zijn gereserveerde stoel. \n*Jorik wacht daar vooraan staand in het midden met zijn gezicht richting de voordeur op Katinka. \n*Zie 'Toon aanvullende context' hieronder voor de Muziek.",
+    "desc": "Muziek bij het naar voren lopen van het bruidspaar\nNB dit wordt los aangeleverd, gaat om 1 liedje dat doorspeelt bij Jorik en Katinka:\n\n13.25 - 13.30\n*Holy Forever \nSax Instrumental / Chris Tomlin (cover) / Uriel Vega",
+    "location": "Oranjekas"
   },
   {
     "id": 18,
-    "time": "13.45 - 14.45",
-    "action": "Opbouw bruidstaart",
-    "who": "- Ervoor zorgen dat de Oranjerie weet dat de taart op een hoge, ronde tafel in het midden van de Palmenkas moet komen te staan, met een wit tafelkleed eronder.",
-    "desc": "Door het locatiepersoneel wordt in de Palmenkas de bruidstaart klaargezet. Zij hebben het mobiele nummer van Matthew in geval van \"nood\". In principe hoeven de CM hier niets aan te doen, behalve zorgen dat het op de juiste tafel komt."
+    "time": "13.27 - 13.30",
+    "action": "Intocht Katinka met Fleur en Samuel",
+    "who": "*Zorgen dat het liedje 'Holy Forever' blijft doorspelen.  \n*Katinka loopt met de kinderen naar voren, deuren achter haar sluiten.\n*Vooraan komt het bruidspaar samen en gaan de kinderen zitten.\n*Het bruidspaar blijft staan totdat de muziek vervaagt.\n*De BABS zegt dat de iedereen moet gaan zitten.\n*Zorgen dat de muziek stopt.\n*Zie 'Toon aanvullende context' hieronder voor de Muziek.",
+    "desc": "Muziek bij het naar voren lopen van het bruidspaar\nNB dit wordt los aangeleverd, gaat om 1 liedje dat doorspeelt bij Jorik en Katinka:\n\n13.25 - 13.30\n*Holy Forever \nSax Instrumental / Chris Tomlin (cover) / Uriel Vega",
+    "location": "Oranjekas"
   },
   {
     "id": 19,
-    "time": "14.00 - 14.05",
-    "action": "Afronding door BABS",
-    "who": "",
-    "desc": "zij vertelt dat neef Derek een zegen gaat uitspreken, moeder van Jorik een dankwoord en dochter Fleur een speech,\ndat daarna iedereen moet gaan staan, mandjes met bloemen doorgeven per rij en iedereen een handje bloemen pakken,\nbloemen naar het bruidspaar werpen terwijl het bruidspaar langsloopt,\ndat het bruidspaar bij de ingang blijft staan,\ndat de gasten, te beginnen vanaf de naaste familie op de voorste rijen, naar voren moeten lopen voor kort felicitatiemoment en gelegenheid tot overhandigen cadeaus,\ndat meer gelegenheid is tot gesprekken tijdens de aansluitende receptie, daarom nu de felicitaties graag kort houden,\ndat er na het feliciteren een kwartier pauze is en dat de gasten naar de andere zaal moeten gaan voor het toostmoment met aansluitend receptie vanaf 15.00 tot 17.30."
+    "time": "13.30 - 14.00",
+    "action": "Huwelijksvoltrekking",
+    "who": "Het ja-woord, de ringen en de geloften.",
+    "desc": "",
+    "location": "Oranjekas"
   },
   {
     "id": 20,
-    "time": "14.05 - 14.20",
-    "action": "Zegen Derek, speech Wilma en speech Fleur",
-    "who": "",
-    "desc": "Er is een microfoon aanwezig. Jullie gaan staan op de plek van de BABS.\nBij de zegen van Derek zegt hij dat iedereen moet gaan staan. Als hij klaar is, zegt hij dat iedereen weer moet gaan zitten.\nBij de bijdragen van Wilma en Fleur blijft iedereen zitten."
+    "time": "13.45 - 14.45",
+    "action": "Opbouw bruidstaart",
+    "who": "Door Team Oranjerie wordt ondertussen in de Palmenkas de bruidstaart klaargezet.\nCM: zorgen dat Team Oranjerie weet dat de taart op een ronde, hoge tafel in het midden van de Palmenkas moet komen, met tafelkleed eronder.",
+    "desc": "",
+    "location": "Palmenkas"
   },
   {
     "id": 21,
-    "time": "14.20 - 14.25",
-    "action": "Bruidspaar loopt door het gangpad naar voren",
-    "who": "- Zorgen dat het liedje Felicitat aangaat en daarna de rest van de Italiaanse playlist.\n- Zorgen dat de mandjes met bloemen doorgegeven worden en dat iedereen een handje met bloemen heeft.",
-    "desc": "Taak CM: zorgen dat de juiste muziek aangaat (\"Felicitat\"), daarna moet de Italiaanse playlist doorlopen.\nIedereen gaat staan. Bruidspaar loopt naar de ingang van de zaal, de gasten werpen bloemen naar hen. Dit staat in mandjes klaar bij elke rij.\nTaak CM: zorgen dat de mandjes met bloemen doorgegeven worden en dat iedereen een handje met bloemen heeft. Bruidspaar blijft nadat ze door het middenpad zijn gelopen bij de ingang staan."
+    "time": "14.00 - 14.05",
+    "action": "Afronding door de BABS",
+    "who": "De BABS vertelt dat Derek een zegen gaat uitspreken.\nDaarna gaat zij weg.",
+    "desc": "",
+    "location": "Oranjekas"
   },
   {
     "id": 22,
-    "time": "14.25 - 14.45",
-    "action": "Felicitatiemoment",
-    "who": "",
-    "desc": "De gasten komen vanaf de eregasten van de voorste rijen naar de ingang van de zaal langs het bruidspaar om hen te feliciteren en cadeaus te overhandigen.\nAchter het bruidspaar staat een tafel met een mooi kisjet waarin het bruidspaar de cadeaus doen.\nNB de bloemblaadjes moeten hierna gelijk opgeruimd worden, door Wilma en Fleur."
+    "time": "14.05 - 14.20",
+    "action": "Zegen en speeches",
+    "who": "Derek spreekt een zegen uit.\n\nDaarna vertelt hij wat hierna komt:\n*Bijdragen van de moeder van de bruidegom: Wilma, en de kinderen van Katinka: Fleur en Samuel.",
+    "desc": "*Er is een microfoon aanwezig en jullie staan op de plek van de BABS.",
+    "location": "Oranjekas"
   },
   {
     "id": 23,
-    "time": "14.45 - 14.50",
-    "action": "Maserati verplaatsen",
-    "who": "- De Maserati naar de zijkant van het gebouw rijden.",
-    "desc": "De Maserati wordt naar de zijkant van het gebouw gereden. Als je met de rug naar de Oranjerie staat dan rechtsvoor op het terras.\n(Zie plattegrond)\nTaak Matthew: Maserati naar de zijkant van de Oranjerie rijden (behalve Jorik mag maar 1 ander rijden)."
+    "time": "14.20 - 14.25",
+    "action": "Erehaag met bloemen",
+    "who": "Derek komt weer naar voren en vertelt dat: \n*Iedereen moet gaan staan terwijl het bruidspaar naar voren loopt.\n*De mensen aan het gangpad met een bloemenmandje onder hun stoel bloemblaadjes mogen pakken en straks hoog in de lucht mogen werpen als het bruidspaar langsloopt. \n*De gasten vanaf de voorste rijen kunnen gaan feliciteren en gelegenheid tot het geven van hun cadeaus.\n\nCM: Zorgen dat het liedje 'Felicita' aangaat en daarna de rest van de Italiaanse playlist. \n*Zie 'Toon aanvullende context' hieronder voor de Muziek en aanvullende info.\n*Het bruidspaar loopt door de rij naar de ingang van de zaal en blijft naast de deur staan.",
+    "desc": "*De CM hebben vooraf twee stoelen achterin weggehaald om ruimte te creeeren.\n*De mandjes staan onder de stoelen bij het gangpad om en om, dus 4 mandjes per rij, dat zijn in totaal 8 mandjes langs het gehele gangpad. \n\nMuziek bij de erehaag met bloemen\nNB Is het eerste nummer van de Italiaanse playlist, met dit nummer wordt begonnen. Daarna kan de Italiaanse playlist verder gaan:\n\n14.20 - 14.25\n*Felicita",
+    "location": "Oranjekas"
   },
   {
     "id": 24,
-    "time": "14.45 - 15.00",
-    "action": "Gasten gaan naar de Palmenkas / bruidspaar naar privéruimte — korte pauze",
-    "who": "- Zorgen dat de gasten naar de Palmenkas gaan.\n- Zorgen dat in de Palmenkas de Italiaanse playlist aan gaat.",
-    "desc": "Bruidspaar heeft korte pauze in privéruimte.\nTaak CM: Zorgen dat de gasten naar de Palmenkas gaan.\nTaak CM: zorgen dat in de Palmenkas de Italiaanse playlist aan gaat via Spotify op mobiel (vliegtuigstand) van Katinka."
+    "time": "14.25 - 14.45",
+    "action": "Felicitaties",
+    "who": "*De gasten komen vanaf de voorste rijen naar de ingang van de zaal om het bruidspaar te feliciteren en cadeaus te overhandigen. \n*Achter het bruidspaar staat een tafel met een mooi kistje waarin het bruidspaar de enveloppen kan doen en waar andere cadeaus op gelegd kunnen worden.\n*Zie 'Toon aanvullende context' hieronder voor de Muziek en aanvullende info.",
+    "desc": "Muziek bij de felicitaties:\n\n14.25 - 14.45\n*Na Felicita speelt nu de Italiaanse playlist door\n\n*Derek staat naast het bruidspaar om de cadeaus aan te pakken en het bruidsboeket erbij te leggen (niet in water).\n*Matthew staat bij de ingang van de Palmenkas om de gasten door te geleiden.\n*NB de bloemblaadjes moeten hierna opgeruimd worden, door Wilma en Fleur.",
+    "location": "Oranjekas"
   },
   {
     "id": 25,
-    "time": "15.00 - 15.30",
-    "action": "Toostmoment",
-    "who": "- Bruidspaar komt aan in Palmenkas.\n- Zorgen dat Fleur en Samuel bij de bruidstaart staan.\n- Vertellen wat gaat gebeuren en zorgen dat alle gasten in de Palmenkas zijn, dus niet op het terras.\n- Aansnijden bruidstaart, toost van Cor en daarna lied van vriendin Katinka (Roelfien) en gedicht Lisa. Aansluitend begint de receptie tot 17.30.\n- Muziek uit zodra Cor begint met de toost.\n- Zorgen dat de muziek van Roelfien aangaat op haar signaal.\n- Zorgen dat nadat Lisa klaar is de Italiaanse playlist weer aan gaat.",
-    "desc": "Bruidspaar komt aan in Palmenkas.\nTaak CM: vertellen wat gaat gebeuren en zorgen dat alle gasten in de Palmenkas zijn (dus niet op het terras).\n\"Aansnijden bruidstaart, toost van Cor en daarna lied van vriendin Katinka (Roelfien) en gedicht Lisa. Aansluitend begint de receptie tot 17.30.\"\nNB Er is geen microfoon voor Cor, Lisa en Roelfien.\nTaak CM: zorgen dat de Italiaanse playlist uit gaat zodra Cor gaat toosten en totdat Roelfien en Lisa ook klaar zijn. Daarna de muziek weer aan.\nTaak CM: zorgen dat de begeleidende muziek van Roelfien aan gaat.\nTaak CM: zorgen dat Fleur en Samuel naast het bruidspaar bij de bruidstaart staan.\nFilm: Jay filmt het gehele toostmoment, inclusief bijdragen Cor, Roelfien en Lisa, aansnijden van de taart, heffen van glas."
+    "time": "14.35 - 14.50",
+    "action": "Maserati verplaatsen",
+    "who": "Matthew: de Maserati naar de zijkant van het gebouw rijden.",
+    "desc": "Als je met je rug naar de Oranjerie staat dan rechtsvoor op het terras.",
+    "location": "Zijkant Oranjerie"
   },
   {
     "id": 26,
-    "time": "15.00 - 17.30",
-    "action": "Ombouw Oranjekas voor diner",
-    "who": "- Indien nodig beschikbaar voor het geven van aanwijzingen.\n- We laten de Oranjerie vooraf via het bijlage Uitwerking Taken zien hoe de tafels gedekt moeten worden.",
-    "desc": "Tijdens de receptie wordt door het team van de Oranjerie de Oranjekas omgebouwd voor het diner.\nWe laten hen vooraf via de bijlage Uitwerking Taken zien hoe de tafels gedekt moeten worden.\nDe CM zijn indien nodig beschikbaar voor het geven van aanwijzingen.\nWilma en Fleur zijn beschikbaar voor een eindcontrole vanaf 18.00 uur als alle gasten weg zijn."
+    "time": "14.45 - 15.00",
+    "action": "Naar Palmenkas en korte pauze",
+    "who": "*Zorgen dat de gasten naar de Palmenkas gaan.\n*Zorgen dat in de Palmenkas de Italiaanse playlist aan gaat. \n*Bruidspaar heeft korte pauze in privéruimte.  \n*Zie 'Toon aanvullende context' hieronder voor de Muziek.",
+    "desc": "Muziek in pauze\nNB dit moet met de tweede telefoon (de andere telefoon is nog met muziek in de Oranjekas):\n\n14.45 - 15.00 \n*Italiaanse playlist aan vanaf 14.45 uur en uit vanaf het moment dat Cor gaat toosten, lied vriendin Katinka en gedicht Lisa.",
+    "location": "Palmenkas/privéruimte"
   },
   {
     "id": 27,
-    "time": "15.30 - 17.30",
-    "action": "Receptie + groepsfoto's",
-    "who": "- Zorgen dat de Italiaanse playlist aan blijft.\n- Bruid af en toe meeroepen zodat zij in de privéruimte iets kan eten/drinken (vragen of het personeel daar ook een paar hapjes wil neerzetten) en zich kan opfrissen.\n- Jorik graag ook 1 keer meenemen, zodat het bruidspaar even samen kan zijn in de privéruimte.\n- Helpen fotograaf bij het bijeenroepen van mensen voor op de groepsfoto's.",
-    "desc": "Taak CM: zorgen dat de Italiaanse playlist aan gaat.\nTaak CM: bruid af en toe meeroepen zodat Katinka even in de privéruimte iets kan eten/drinken (vragen of het personeel daar ook een paar hapjes wil neerzetten) en me kan opfrissen.\nKatinka's ervaring is (op bijvoorbeeld begrafenissen dat je anders moeilijk wegkomt uit gesprekken als eregast en daardoor niet aan eten/drinken/rust toekomt.)\nGraag ook 1 keer een moment dat ik samen met J even naar de privéruimte kan om even bij te praten/te knuffelen.\nTaak CM: helpen fotograaf bij het bijeenroepen van mensen voor op de groepsfoto's."
+    "time": "15.00 - 15.30",
+    "action": "Toostmoment",
+    "who": "*Zorgen dat alle gasten in de Palmenkas zijn, dus niet op het terras.\n*Bruidspaar komt aan in Palmenkas.\n*Zorgen dat Fleur en Samuel bij de bruidstaart staan.\n*Gasten in een cirkel om het bruidspaar heen.\n*Derek: vertellen dat na de toost de receptie begint en dat mensen tijdens de receptie worden opgeroepen voor de groepsfoto's: de lijst vinden ze uitgeprint in de Palmenkas en in de app en ze worden in 5 keer meegeroepen per familie/groep. \n*Muziek uit zodra Cor begint met de toost.\n*Zorgen dat de muziek van Roelfien aangaat op haar signaal.\n*Zie 'Toon aanvullende context' hieronder voor de Muziek.",
+    "desc": "NB Er is geen microfoon voor Cor, Lisa en Roelfien. Daar zoeken we nog naar.\n\nMuziek:\n\n*Muziek uit vanaf moment dat Cor gaat speechen,\n*15.15 muziek van Roelfien, vriendin Katinka (zij levert dit bij Derek aan) \n*Daarna stilte voor gedicht Lisa,\n*Daarna de Italiaanse playlist op repeat.",
+    "location": "Palmenkas"
   },
   {
     "id": 28,
-    "time": "17.15 - 17.20",
-    "action": "Maserati verplaatsen",
-    "who": "- De Maserati wordt van de zijkant van het gebouw weer naar de haag gereden met de achterkant naar de Oranjerie toe (door Matthew).",
-    "desc": "De Maserati wordt van de zijkant van het gebouw weer naar de haag gereden met de achterkant naar de Oranjerie toe (door Matthew)."
+    "time": "15.00 - 17.30",
+    "action": "Ombouw Oranjekas voor diner",
+    "who": "*Tijdens de receptie wordt door Team Oranjerie de Oranjekas in de basis omgebouwd voor het diner. \n*De CM zijn indien nodig beschikbaar voor het geven van aanwijzingen.\n*Wilma en Fleur voegen de decoratie en tafelschikking toe tussen 18.00 - 19.00 als alle gasten weg zijn. \n*Zie pagina 'Bijlage' voor Diner Tafelschikking en Diner Tafeldekking.",
+    "desc": "",
+    "location": "Oranjekas"
   },
   {
     "id": 29,
-    "time": "17.25 - 17.30",
-    "action": "Aankondiging einde feestelijkheden",
-    "who": "- De gasten het afrondende programma vertellen, dat:\n  - De feestelijkheden om 17.30 uur ten einde zijn.\n  - Nu gelegenheid tot toilet en verzamelen tassen/jassen.\n  - Er een presentje voor hen klaarligt bij de ingang van de locatie.\n  - De gasten met hun jas etc om 17.35 uur achter het bruidspaar moeten aanlopen naar de haag.\n  - De gasten daar het bruidspaar uitzwaaien.\n  - Daarmee de dag ten einde is en hen gevraagd wordt om het terrein te verlaten.",
-    "desc": "Taak CM: de gasten het afrondende programma vertellen:\ndat de feestelijkheden om 17.30 uur ten einde zijn,\nnu gelegenheid tot toilet en verzamelen tassen/jassen,\ndat er een presentje voor hen klaarligt bij de ingang van de locatie,\ndat de gasten met hun jas etc om 17.35 uur achter het bruidspaar moeten aanlopen naar de haag,\ndat de gasten daar het bruidspaar uitzwaaien,\nen daarmee de dag ten einde is en hen gevraagd wordt om het terrein te verlaten."
+    "time": "15.30 - 16.00",
+    "action": "Receptie start & groepsfoto's",
+    "who": "*CM zorgen dat de Italiaanse playlist aan gaat.\n*CM faciliteren fotograaf om de juiste groepen bij elkaar te krijgen.\n*Zie uitgeprint overzicht van de Groepsfoto's bij het gastenboek op de tekentafel in Palmenkas.\n*Zie 'Toon aanvullende context' hieronder voor het overzicht Groepsfoto's en Muziek.\n*Handig om de mensen per 5 grote groepen mee te nemen:\n1. Familie Prins 2. Familie Mekking 3. Familie Uiterwijk 4. Familie Herlaar 5. Vrienden & collega's\nNB Fleur en Samuel zijn net als het bruidspaar bij alle foto's.",
+    "desc": "Muziek tijdens receptie en pauze:\n\n15.30 - 19.00 Receptie & pauze (Palmenkas)\n*Italiaanse playlist. \n\nGroepsfoto's \n\n1. Familie Prins & aanhang (en Wilma, Fleur en Samuel)\n*Familie Prins met aanhang \n*Familie Prins klein: Cor, Anca, Sara, Lisa, Jai, Fleur en Samuel  \n*Ouders bruidspaar: Wilma en Cor & Gonnie en Leo\n*(Schoon)zussen Lisa, Sara \n*Fleur en Samuel \n\n2. Familie Mekking & aanhang (en Fleur en Samuel)\n*Familie Mekking met aanhang \n*Familie Mekking klein: Opa, Wilma, Rob, Arthur, Lisa, Jai, Fleur en Samuel  \n*Opa Mekking \n\n3. Familie Uiterwijk & aanhang (en Fleur en Samuel)\n*Familie Uiterwijk: Katinka, Fleur, Samuel, Rinske, Emma, Anna, Jet, Norbert, Jessica, Jurjen en Miriam \n*Familie Uiterwijk klein: Fleur, Samuel, Rinske, Emma, Anna, Jet \n*Rinske \n\n4. Familie Herlaar & aanhang (en Fleur en Samuel)\n*Familie Herlaar: Katinka, Fleur, Samuel, Rinske, Emma, Anna, Jet, Wil, Lize, Ruud, Monique, Sander, Erwin en Anja \n*Familie Herlaar klein: Fleur, Samuel, Wil, Rinske, Emma, Anna, Jet \n*Wil  \n\n5. Vrienden & collega's \n*Vriendengroep Jorik\n*Collega's Katinka\n*Karima en Felix\n*Suzanne en Gijsbert\n*Ceremoniemeesters  \n\n6. Totaal\n*Alle gasten",
+    "location": "Palmenkas/Terras"
   },
   {
     "id": 30,
-    "time": "17.30 - 17.45",
-    "action": "Einde receptie en uitzwaaien bruidspaar",
-    "who": "- Zorgen dat gasten met hun spullen achter het bruidspaar aan lopen.\n- Uitzwaaien bruidspaar bij de 'haag'.",
-    "desc": "Taak CM: Zorgen dat gasten weten dat ze achter het bruidspaar aan moeten lopen om hen uit te zwaaien en dat geen mensen achterblijven. Alleen de naaste familie blijft.\nKatinka: tasje en bloemen mee."
+    "time": "16.00 - 17.30",
+    "action": "Receptie vervolg",
+    "who": "*Zorgen dat de Italiaanse playlist aan blijft.\n*Bruid twee keer even meeroepen zodat zij in de privéruimte iets kan eten/drinken/opfrissen. Dus om 16.00 en om 17.00. \n*Jorik graag ook 1 keer meenemen, zodat het bruidspaar even samen kan zijn in de privéruimte.",
+    "desc": "",
+    "location": ""
   },
   {
     "id": 31,
-    "time": "17.45 - 18.00",
-    "action": "Wegrijden receptiegasten",
-    "who": "- Zorgen dat iedereen rond 18.00 van het terrein is.\n- Tijd is nodig voor decoratie dinertafels + tafelschikking. Zie bijlage Uitwerking Taken.\n- Ook even rust voor de naaste familie.\n- En het bruidspaar heeft van 18.00 - 18.30 een fotoshoot op het terrein.",
-    "desc": "Taak CM: zorgen dat iedereen rond 18.00 van het terrein is. Zo hebben F/W tijd om de dinertafels in de Oranjezaal te controleren. Ook even rust voor de naaste familie.\nHet bruidspaar komt om 18.00 terug voor een fotoshoot met de fotograaf, dan moeten de gasten dus echt weg zijn."
+    "time": "17.15 - 17.20",
+    "action": "Maserati verplaatsen",
+    "who": "Matthew: de Maserati van de zijkant van het gebouw weer naar de haag rijden met de achterkant naar de Oranjerie toe.",
+    "desc": "",
+    "location": "Buiten bij de haag"
   },
   {
     "id": 32,
-    "time": "18.00 - 18.30",
-    "action": "Eindcontrole dinertafels en pauze voor naaste familie",
-    "who": "- Samen met Wilma en Fleur eindcontrole op dinertafels incl. tafelschikking.",
-    "desc": "Fleur en Wilma hebben tijd voor de eindcontrole van de Oranjekas (dinertafel) inclusief tafelschikking.\nWij komen om 18.00 terug voor een fotoshoot met de fotograaf."
+    "time": "17.25 - 17.30",
+    "action": "Aankondiging einde feestelijkheden",
+    "who": "Derek: de gasten vertellen dat:\n*De receptie ten einde loopt.  \n*Denken aan toilet, persoonlijke spullen en presentje (ligt bij het gastenboek op de tekentafel in de Palmenkas).\n*Iedereen om 17.35 uur achter het bruidspaar aan loopt naar 'de haag'.\n*Daar het bruidspaar uitzwaaien en de dag ten einde is.",
+    "desc": "",
+    "location": ""
   },
   {
     "id": 33,
-    "time": "18.00 - 18.30",
-    "action": "Bruidspaar komt weer terugrijden + fotoshoot fotograaf",
-    "who": "",
-    "desc": "Zetten Maserati zelf bij de zijkant van het gebouw. Tijd voor fotoshoot met fotograaf. Familie wacht op hen in de Palmenkas. Zij gaan daarna met het bruidspaar voorop samen naar de Oranjekas."
+    "time": "17.30 - 17.45",
+    "action": "Einde receptie en uitzwaaien bruidspaar",
+    "who": "*Zorgen dat gasten met hun spullen achter het bruidspaar aan lopen. \n*Het bruidspaar loopt via de andere kant.\n*Uitzwaaien bruidspaar bij 'de haag'.",
+    "desc": "",
+    "location": "Haag buiten"
   },
   {
     "id": 34,
-    "time": "18.30 - 20.30",
-    "action": "Shared dining met naaste familie",
-    "who": "- Zorgen dat de Italiaanse playlist op staat.",
-    "desc": "20p\nTaak CM: Italiaanse playlist op zetten."
+    "time": "17.45 - 18.00",
+    "action": "Vertrek receptiegasten",
+    "who": "*Zorgen dat iedereen om 18.00 van het terrein is ivm de fotoshoot van het bruidspaar. \n*Napraten op de parkeerplaats kan natuurlijk wel.\n*Belangrijk dat Wilma en Fleur op tijd (uiterlijk 18.00) teruggaan naar de Oranjekas voor de decoratie van de dinertafels.",
+    "desc": "",
+    "location": "Haag buiten/parkeerterrein"
   },
   {
     "id": 35,
-    "time": "20.30 - 20.45",
-    "action": "Afscheid en uitzwaaien",
-    "who": "- Zorgen dat dit afscheid om 20.45 klaar is, we zullen allemaal moe genoeg zijn en er moet ook nog opgeruimd worden.",
-    "desc": "Taak CM: ervoor zorgen dat dit afscheid om 20.45 klaar is, we zullen allemaal moe genoeg zijn en er moet ook nog opgeruimd worden.\nJorik/Katinka: NB logeerkoffers, persoonlijk tasje, cadeaus mee."
+    "time": "18.00 - 19.00",
+    "action": "Eindcontrole dinertafels en pauze",
+    "who": "*CM samen met Wilma en Fleur eindcontrole op dinertafels incl. tafelschikking.\n*Rust voor naaste familie.\n*Zie pagina 'Bijlage' voor Diner Stoelschikking en Diner Tafeldekking.",
+    "desc": "",
+    "location": "Oranjekas/Palmenkas/Terras"
   },
   {
     "id": 36,
-    "time": "20.45 - 21.15",
+    "time": "18.00 - 18.30",
+    "action": "Bruidspaar pauze en crewmaaltijd fotograaf",
+    "who": "Ter info",
+    "desc": "",
+    "location": ""
+  },
+  {
+    "id": 37,
+    "time": "18.30 - 19.00",
+    "action": "Fotoshoot bruidspaar",
+    "who": "*Bruidspaar is terug op locatie om 18.30 voor fotoshoot.\n*Zetten Maserati zelf bij de zijkant van het gebouw. \n*Familie wacht op hen in de Palmenkas. \n*Zij gaan om 19.00 samen met het bruidspaar naar de Oranjekas.",
+    "desc": "",
+    "location": "Palmenkas/Terras"
+  },
+  {
+    "id": 38,
+    "time": "19.00 - 21.00",
+    "action": "Shared dining met naaste familie",
+    "who": "Zorgen dat de Italiaanse playlist op staat.\n*Zie 'Toon aanvullende context' hieronder voor de Muziek.",
+    "desc": "Muziek tijdens diner:\n\n19.00 - 21.00 Diner (Oranjekas)\n*Italiaanse playlist.",
+    "location": "Oranjekas"
+  },
+  {
+    "id": 39,
+    "time": "21.00 - 21.15",
+    "action": "Afscheid en uitzwaaien",
+    "who": "Tijd bewaken en zorgen dat dit afscheid om 21.15 klaar is, we zullen allemaal moe genoeg zijn en er moet ook nog opgeruimd worden.",
+    "desc": "",
+    "location": "Terras"
+  },
+  {
+    "id": 40,
+    "time": "21.15 - 21.45",
     "action": "Opruimen",
-    "who": "- Alles opruimen, met hulp van locatie, Fleur, Samuel, Wilma en Wil.\n- Zorgen dat alles mee naar huis gaat wat van ons is.\n- Zie bijlage Uitwerking Taken.",
-    "desc": "Fleur, Wilma, Samuel, Wil en de CM moeten nu alles opruimen. De Oranjerie helpt hierbij.\nNB zorgen dat alles mee naar huis gaat wat van ons is, zie daarvoor ook de bijlage Uitwerking Taken."
+    "who": "*Alles opruimen, met hulp van Team Oranjerie, Fleur, Samuel, Wilma en Wil. \n*Team Oranjerie ruimt hun deel op, jullie ons deel.\n*Zorgen dat alles mee naar huis gaat wat van ons is.\n*Zie 'Toon aanvullende context' hieronder voor info bij Opruimen.   \n*Fleur en Samuel rijden met Cor en Anca/Sara mee naar huis en nemen de eventuele resten van de bruidstaart mee.\n*Opa en Wil rijden mee terug met Wilma en Rob.",
+    "desc": "Opruimen:\n\n*De locatie is verantwoordelijk voor hun spullen en de CM voor die van ons, \n*Wilma, Wil, Fleur en Samuel helpen ook mee met het opruimen van onze eigen spullen, \nDie moeten ook weer mee terug naar huis, het gaat dan om (afhankelijk van wat we huren): \n*vaasjes met bloemen \n*kandelaren \n*tafelkleden \n*servetten \n*eucalyptus \n*tafelschikking-naambordjes \n*menukaarten \n*naamkaartjes van de ceremoniestoelen \n*mandje voor gastencadeautjes \n*mandjes waarin de rozenblaadjes zaten \n*welkomstborden en bewegwijzering parkeerplaats \n*rest van de bruidstaart mee met Fleur en Samuel \n*schildersezel \n*bankje",
+    "location": "Palmenkas/Oranjekas/Terras en parkeerterrein"
   }
 ];
-
-const cmTasksEN = [
+export const cmTasksEN = [
   {
     "id": 1,
     "time": "9.30 - 11.00",
-    "action": "Opbouw locatie door ceremoniemeesters",
-    "who": "Aanwezig op locatie, alles klaarzetten en controleren. Met hulp van de Oranjerie. Decoratie hebben jullie bij je. Bloemen volgen vanaf 10.30. Zie bijlage Uitwerking Taken.",
-    "desc": "CM zijn aanwezig op locatie, lopen alles na en zetten alles klaar, met hulp van de Oranjerie.\nZij hebben zelf ook decoratie meegekregen van Jorik eerder die week.\nWilma en Fleur doen tussen 11.00 - 11.45 een eindcontrole.\nZie bijlage Uitwerking Taken."
+    "action": "Venue setup",
+    "who": "*Aanwezig op locatie, alles klaarzetten en controleren. Met hulp van Team Oranjerie. \n*Jullie plannen terplekke een meeting in met Team Oranjerie.\n*Matthew is eerste aanspreekpunt. \n*Decoratie hebben jullie meegekregen van Jorik.\n*Bloemdecoratie volgt om 10.30 van Jorik, daarna graag overal neerzetten.\n*Zie pagina 'Bijlage' voor: Borden Parkeerplaats, Ceremonie Stoelschikking, Diner Stoelschikking en Diner Tafeldekking.\n*Zie 'Toon aanvullende context' hieronder voor de Opbouw van de locatie.",
+    "desc": "Opbouw locatie \n\nParkeerplaats\nZie pagina 'Bijlage'.\n\nEntree \n*schildersezel met welkomstbord erop, \n*asbakken indien ze daar staan, weghalen bij entree en ook niet bij de hoek waar de Maserati komt te staan - verplaatsen naar de andere kant van het gebouw.  \n\nPalmenkas \n*op de tafels vaasjes met bloemen, \n*een van de vazen van de locatie klaarzetten met water voor het bruidsboeket, \n*ervoor zorgen dat de Oranjerie weet dat de taart op een hoge, ronde tafel in het midden van de Palmenkas moet komen te staan, met een wit tafelkleed eronder, \n*hoge, ronde tafel met een mandje erop (Fleur en Wilma doen in dat mandje de presentjes voor de gasten), het gastenboek met pen en uitgeprint programma en print van overzicht groepsfoto's, \n*drankarrangement uitgeprint neerleggen. \n\nOranjekas ceremonie\n*namen neerleggen ivm gereserveerde plekken (zie pagina 'Bijlage'), \n*twee stoelen reserveren (meer aan de zijkanten achteraan) voor de CM zodat jullie overzicht hebben, \n*twee stoelen bij het gangpad achter alvast weghalen om ruimte te maken voor de felicitatierij straks, \n*lage tafel neerzetten in de Oranjekas, direct na de ingang rechts (direct naast de deur – het bruidspaar gaat daar na de ceremonie voor de felicitaties staan), \n*daarop het kistje voor de cadeaus en ruimte voor andere cadeaus, \n*deze tafel laten staan tijdens het diner (staat sfeervol), \n*aan het gangpad om en om een mandje met bloemblaadjes neerzetten onder de eerste stoel. Per rijen 4 mandjes, dus 8 mandjes totaal (bloemen volgen om 10.30), \n*ons bankje staat links schuin,\n*hoge, ronde tafel vooraan (vlakbij de spreekstoel voor de BABS) voor het ondertekenen,  \n*daarop een foto van de ouders van Katinka, vaasje met bloemen en de houder met waxinelichtje, \n*nb bij slecht weer kunnen de donkergroene voorzet-deuren open in de Oranjekas voor het zicht, de glazen deuren blijven dan dicht, \n*bij mooi weer gaan zowel de donkergroene voorzet-deuren als de glazen deuren open. \n\nTerrein en terras \n*aan locatie vragen om van het hele terrein peuken/afval/achtergebleven glazen etc te verwijderen, \n*is het netjes achtergelaten na de bruiloft van de dag ervoor? \n\nToiletruimte \n*zijn er voldoende toiletpapier/handdoekjes, \n*is het schoon, \n*ook tijdens de dag af en toe controleren, \n*doorgeven aan manager als er iets gedaan moet worden. \n\nPrivéruimte \n*zorgen dat de deur van de privéruimte naar het toilet open is en ook de deur die vanaf daar naar buiten gaat.",
+    "location": "Palmenkas/Oranjekas/Terras/Tuin en parkeerplaats"
   },
   {
     "id": 2,
     "time": "9.00 - 9.30",
-    "action": "Bruidspaar thuis, intieme setting met alleen gezin",
-    "who": "",
-    "desc": "Jorik komt aanrijden in Maserati en wordt boven ontvangen door de kinderen.\nFleur haalt Katinka op in de slaapkamer en brengt Katinka naar de woonkamer. We zien elkaar daar voor het eerst ❤️\nFleur en Samuel maken foto's."
-  },
-  {
-    "id": 3,
-    "time": "9.30 - 10.30",
-    "action": "Bruidspaar vertrek naar Oranjerie",
-    "who": "",
-    "desc": "We vertrekken naar de Oranjerie. Fleur en Samuel rijden met ons mee.\nWil rijdt mee met Wilma en Rob en volgen later vanuit Den Haag.\nKatinka: NB logeerspullen, bruidsboeket, tasje, repen, water etc mee."
-  },
-  {
-    "id": 4,
-    "time": "10.30 - 11.00",
-    "action": "Aankomst bruidspaar op locatie",
-    "who": "De Italiaanse playlist laten spelen in de Palmenkas als welkom voor het bruidspaar, aan laten totdat jullie met alle gasten richting de haag gaan om 12.45. Wij hebben de bruidstaart bij ons.",
-    "desc": "We zetten zelf de auto aan de zijkant van het pand.\nKoffie met lekkers.\nKatinka: logeerspullen, make-up etc in privé-ruimte.\nTaak CM: de Italiaanse playlist laten spelen in de Palmenkas als welkom voor het bruidspaar, aan laten totdat jullie met alle gasten richting de haag gaan om 12.45."
-  },
-  {
-    "id": 5,
-    "time": "10.45 - 11.00",
-    "action": "Aankomst Wilma/Rob en Wil",
-    "who": "",
-    "desc": "Knuffelmoment met bruidspaar ❤️"
-  },
-  {
-    "id": 6,
-    "time": "11.00 - 13.00",
-    "action": "Het bruidspaar rijdt weg van het landgoed",
-    "who": "",
-    "desc": "Naar een onopvallende plek.\nK: tasje, bruidsboeket, eten en drinken mee."
-  },
-  {
-    "id": 7,
-    "time": "11.00 - 12.00",
-    "action": "Eindcheck door Wilma en Fleur",
-    "who": "Wilma en Fleur doen een eindcheck op de decoratie.",
-    "desc": "Koffie met lekkers voor Wil, Wilma en Rob. Wilma en Fleur hebben nu tijd om de decoratie te controleren, finishing touch. De CM hebben alles al klaargezet met de locatie. En rekening houden met het welkom heten van vroege gasten."
-  },
-  {
-    "id": 8,
-    "time": "12.15 - 12.45",
-    "action": "Aankomst overige gasten (68 p)",
-    "who": "Welkom heten en aanspreekpunt voor gasten.",
-    "desc": "Koffie en lekkers.\nTaak CM: welkom heten en aanspreekpunt voor gasten."
-  },
-  {
-    "id": 9,
-    "time": "12.45 - 13.00",
-    "action": "Gasten meenemen naar de haag",
-    "who": "Gasten om 12.45 uur leiden naar de voorkant van 'de haag' om het bruidspaar op te wachten.",
-    "desc": "Taak CM: de gasten om 12.45 uur leiden naar 'de haag' en vertellen wat de bedoeling is:\n\nalle gasten moeten om 12.55 klaar staan buiten vóór de haag aan de kant van de weg en wachten daar het bruidspaar op,\nervoor zorgen dat de naaste familie aan de kant bij de haag staan omdat zij het bruidspaar straks ook als eerste volgen.\nNB wij komen vanaf de kant rijden met de lange bochtige weg als je met je rug naar de locatie staat, de weg aan de rechterkant."
-  },
-  {
-    "id": 10,
-    "time": "13.00 - 13.05",
-    "action": "Aankomst bruidspaar tot halverwege de haag",
-    "who": "Aangeven dat de gasten achter de auto aan mogen lopen. De auto stopt halverwege. Daar allemaal wachten. Naaste familie altijd het meest in de buurt.",
-    "desc": "Taak CM: aangeven dat de gasten achter de auto aan mogen lopen. De auto stopt halverwege. Daar allemaal wachten. Naaste familie altijd het meest in de buurt. Jorik stapt uit en houdt de autodeur voor Katinka open."
-  },
-  {
-    "id": 11,
-    "time": "13.05 - 13.15",
-    "action": "Bruidspaar loopt met stoet achter zich aan naar de Oranjerie",
-    "who": "Zorgen dat de gasten achter ons aanlopen. Fleur, Samuel en opa direct achter ons omdat zij naar een aparte ruimte met ons gaan.",
-    "desc": "Het bruidspaar loopt richting de Oranjerie.\nTaak CM: zorgen dat de gasten achter ons aanlopen. En zorgen dat Fleur, Samuel en opa direct achter ons lopen. Zij gaan namelijk straks met ons mee naar onze privéruimte."
-  },
-  {
-    "id": 12,
-    "time": "13.15 - 13.25",
-    "action": "Bruidspaar, opa, Fleur en Samuel nemen plaats in onze privé-ruimte / korte pauze",
-    "who": "Zorgen dat opa, Fleur en Samuel bij het bruidspaar in de privé-ruimte zijn.",
-    "desc": "Vanaf daar lopen wij ongezien met hen buiten langs om weer bij de ingang te komen."
-  },
-  {
-    "id": 13,
-    "time": "13.15 - 13.25",
-    "action": "Gasten nemen hun plek in de Oranjekas",
-    "who": "Aangeven dat de gasten plaats mogen nemen in de Oranjekas.\nZie stoelschikking in bijlage Uitwerking Taken — eerste 2 rijen voor hoofdgasten.\n2 stoelen achter aan de zijkant reserveren voor de CM zodat jullie goed overzicht hebben.",
-    "desc": "Taak CM: aangeven dat de gasten plaats mogen nemen in de Oranjekas. Voor het bruidspaar staan vooraan twee speciale stoelen klaar. Ook zijn de eerste rijen gereserveerd voor de naaste familie. Jorik en Katinka zitten half schuin. Katinka zit aan de rechterkant van Jorik.\nFilm: Jay zet zijn camera klaar."
-  },
-  {
-    "id": 14,
-    "time": "13.15 - 13.25",
-    "action": "De BABS heet de gasten welkom",
-    "who": "",
-    "desc": "De BABS vertelt wat nu bij de aanvang van de gasten verwacht wordt:\n\ndat de gasten op haar teken moeten gaan staan,\ndat zo het bruidspaar binnen zal komen,\ndat de gasten weer moeten gaan zitten als zij het aangeeft."
-  },
-  {
-    "id": 15,
-    "time": "13.25 - 13.27",
-    "action": "Jorik wordt door zijn opa naar voren geleid",
-    "who": "Zorgen dat het liedje Holy Forever afspeelt zodra Jorik met opa bij de ingang klaarstaat.",
-    "desc": "Jorik en opa staan bij de deur bij de ingang van de zaal.\nAlle gasten staan.\nTaak CM: zorgen dat de muziek wordt afgespeeld als Jorik en zijn opa klaarstaan.\nJorik en opa lopen naar voren als de muziek begint. Ze blijven even samen vooraan staan, waarna opa plaats neemt op zijn gereserveerde stoel.\nJorik wacht daar vooraan staand in het midden met zijn gezicht richting de voordeur op Katinka.\nFilm: Jay filmt de gehele ceremonie vanaf het moment vlak voordat de muziek start.\nFilm ceremonie: het naar voren lopen, de ceremonie, de zegen door Derek, speech Wilma, speech Fleur tot en met lopen door haag met bloemblaadjes en felicitatiemoment.\nJorik: dit aan Jay doorgeven."
-  },
-  {
-    "id": 16,
-    "time": "13.27 - 13.30",
-    "action": "Katinka wordt door Fleur en Samuel naar Jorik geleid",
-    "who": "Zorgen dat het liedje Holy Forever blijft doorspelen.\nDe deuren sluiten achter Katinka.",
-    "desc": "De gasten blijven staan en de muziek speelt door. Katinka: bruidsboeket en tasje bij me.\nTaak CM: zorgen dat de deuren bij de ingang achter Katinka sluiten.\nJorik en Katinka treffen elkaar vooraan en knuffelen elkaar ❤️. We blijven nog even staan, dan vervaagt de muziek, wij gaan zitten.\nDe BABS zegt dat de gasten ook moeten gaan zitten.\nTaak CM: zorgen dat de muziek stopt."
-  },
-  {
-    "id": 17,
-    "time": "13.30 - 14.00",
-    "action": "Gemeentelijke huwelijksvoltrekking door BABS",
-    "who": "Zorgen dat de muziek stopt zodra de BABS zegt dat iedereen kan gaan zitten.",
-    "desc": "zij vertelt dat we de ouders van Katinka: Leo en Gonnie, moeten missen,\nzij vertelt ons verhaal,\nwettelijk deel en ja-woord,\nzij vraagt Sara naar voren met het doosje met de ringen,\nringen en uitspreken beloften naar elkaar,\nJorik en Katinka kussen elkaar ❤️,\nJorik en Katinka tekenen, dan de getuigen (Wil, Cor en Wilma) en daarna de BABS."
-  },
-  {
-    "id": 18,
-    "time": "13.45 - 14.45",
-    "action": "Opbouw bruidstaart",
-    "who": "Ervoor zorgen dat de Oranjerie weet dat de taart op een hoge, ronde tafel in het midden van de Palmenkas moet komen te staan, met een wit tafelkleed eronder.",
-    "desc": "Door het locatiepersoneel wordt in de Palmenkas de bruidstaart klaargezet. Zij hebben het mobiele nummer van Matthew in geval van \"nood\". In principe hoeven de CM hier niets aan te doen, behalve zorgen dat het op de juiste tafel komt."
-  },
-  {
-    "id": 19,
-    "time": "14.00 - 14.05",
-    "action": "Afronding door BABS",
-    "who": "",
-    "desc": "zij vertelt dat neef Derek een zegen gaat uitspreken, moeder van Jorik een dankwoord en dochter Fleur een speech,\ndat daarna iedereen moet gaan staan, mandjes met bloemen doorgeven per rij en iedereen een handje bloemen pakken,\nbloemen naar het bruidspaar werpen terwijl het bruidspaar langsloopt,\ndat het bruidspaar bij de ingang blijft staan,\ndat de gasten, te beginnen vanaf de naaste familie op de voorste rijen, naar voren moeten lopen voor kort felicitatiemoment en gelegenheid tot overhandigen cadeaus,\ndat meer gelegenheid is tot gesprekken tijdens de aansluitende receptie, daarom nu de felicitaties graag kort houden,\ndat er na het feliciteren een kwartier pauze is en dat de gasten naar de andere zaal moeten gaan voor het toostmoment met aansluitend receptie vanaf 15.00 tot 17.30."
-  },
-  {
-    "id": 20,
-    "time": "14.05 - 14.20",
-    "action": "Zegen Derek, speech Wilma en speech Fleur",
-    "who": "",
-    "desc": "Er is een microfoon aanwezig. Jullie gaan staan op de plek van de BABS.\nBij de zegen van Derek zegt hij dat iedereen moet gaan staan. Als hij klaar is, zegt hij dat iedereen weer moet gaan zitten.\nBij de bijdragen van Wilma en Fleur blijft iedereen zitten."
-  },
-  {
-    "id": 21,
-    "time": "14.20 - 14.25",
-    "action": "Bruidspaar loopt door het gangpad naar voren",
-    "who": "Zorgen dat het liedje Felicitat aangaat en daarna de rest van de Italiaanse playlist.\nZorgen dat de mandjes met bloemen doorgegeven worden en dat iedereen een handje met bloemen heeft.",
-    "desc": "Taak CM: zorgen dat de juiste muziek aangaat (\"Felicitat\"), daarna moet de Italiaanse playlist doorlopen.\nIedereen gaat staan. Bruidspaar loopt naar de ingang van de zaal, de gasten werpen bloemen naar hen. Dit staat in mandjes klaar bij elke rij.\nTaak CM: zorgen dat de mandjes met bloemen doorgegeven worden en dat iedereen een handje met bloemen heeft. Bruidspaar blijft nadat ze door het middenpad zijn gelopen bij de ingang staan."
-  },
-  {
-    "id": 22,
-    "time": "14.25 - 14.45",
-    "action": "Felicitatiemoment",
-    "who": "",
-    "desc": "De gasten komen vanaf de eregasten van de voorste rijen naar de ingang van de zaal langs het bruidspaar om hen te feliciteren en cadeaus te overhandigen.\nAchter het bruidspaar staat een tafel met een mooi kisjet waarin het bruidspaar de cadeaus doen.\nNB de bloemblaadjes moeten hierna gelijk opgeruimd worden, door Wilma en Fleur."
-  },
-  {
-    "id": 23,
-    "time": "14.45 - 14.50",
-    "action": "Maserati verplaatsen",
-    "who": "De Maserati naar de zijkant van het gebouw rijden.",
-    "desc": "De Maserati wordt naar de zijkant van het gebouw gereden. Als je met de rug naar de Oranjerie staat dan rechtsvoor op het terras.\n(Zie plattegrond)\nTaak Matthew: Maserati naar de zijkant van de Oranjerie rijden (behalve Jorik mag maar 1 ander rijden)."
-  },
-  {
-    "id": 24,
-    "time": "14.45 - 15.00",
-    "action": "Gasten gaan naar de Palmenkas / bruidspaar naar privéruimte — korte pauze",
-    "who": "Zorgen dat de gasten naar de Palmenkas gaan.\nZorgen dat in de Palmenkas de Italiaanse playlist aan gaat via Spotify op mobiel (vliegtuigstand) van Katinka.",
-    "desc": "Bruidspaar heeft korte pauze in privéruimte.\nTaak CM: Zorgen dat de gasten naar de Palmenkas gaan.\nTaak CM: zorgen dat in de Palmenkas de Italiaanse playlist aan gaat via Spotify op mobiel (vliegtuigstand) van Katinka."
-  },
-  {
-    "id": 25,
-    "time": "15.00 - 15.30",
-    "action": "Toostmoment",
-    "who": "Bruidspaar komt aan in Palmenkas.\nZorgen dat Fleur en Samuel bij de bruidstaart staan.\nVertellen wat gaat gebeuren en zorgen dat alle gasten in de Palmenkas zijn, dus niet op het terras.\n\"Aansnijden bruidstaart, toost van Cor en daarna lied van vriendin Katinka (Roelfien) en gedicht Lisa. Aansluitend begint de receptie tot 17.30.\"\nMuziek uit zodra Cor begint met de toost.\nZorgen dat de muziek van Roelfien aangaat op haar signaal.\nZorgen dat nadat Lisa klaar is de Italiaanse playlist weer aan gaat.",
-    "desc": "Bruidspaar komt aan in Palmenkas.\nTaak CM: vertellen wat gaat gebeuren en zorgen dat alle gasten in de Palmenkas zijn (dus niet op het terras).\n\"Aansnijden bruidstaart, toost van Cor en daarna lied van vriendin Katinka (Roelfien) en gedicht Lisa. Aansluitend begint de receptie tot 17.30.\"\nNB Er is geen microfoon voor Cor, Lisa en Roelfien.\nTaak CM: zorgen dat de Italiaanse playlist uit gaat zodra Cor gaat toosten en totdat Roelfien en Lisa ook klaar zijn. Daarna de muziek weer aan.\nTaak CM: zorgen dat de begeleidende muziek van Roelfien aan gaat.\nTaak CM: zorgen dat Fleur en Samuel naast het bruidspaar bij de bruidstaart staan.\nFilm: Jay filmt het gehele toostmoment, inclusief bijdragen Cor, Roelfien en Lisa, aansnijden van de taart, heffen van glas."
-  },
-  {
-    "id": 26,
-    "time": "15.00 - 17.30",
-    "action": "Ombouw Oranjekas voor diner",
-    "who": "Indien nodig beschikbaar voor het geven van aanwijzingen.\nWe laten de Oranjerie vooraf via het bijlage Uitwerking Taken zien hoe de tafels gedekt moeten worden.",
-    "desc": "Tijdens de receptie wordt door het team van de Oranjerie de Oranjekas omgebouwd voor het diner.\nWe laten hen vooraf via de bijlage Uitwerking Taken zien hoe de tafels gedekt moeten worden.\nDe CM zijn indien nodig beschikbaar voor het geven van aanwijzingen.\nWilma en Fleur zijn beschikbaar voor een eindcontrole vanaf 18.00 uur als alle gasten weg zijn."
-  },
-  {
-    "id": 27,
-    "time": "15.30 - 17.30",
-    "action": "Receptie + groepsfoto's",
-    "who": "Bruid af en toe meeroepen zodat zij in de privéruimte iets kan eten/drinken (vragen of het personeel daar ook een paar hapjes wil neerzetten) en zich kan opfrissen.\nJorik graag ook 1 keer meenemen, zodat het bruidspaar even samen kan zijn in de privéruimte.\nHelpen fotograaf bij het bijeenroepen van mensen voor op de groepsfoto's.",
-    "desc": "Taak CM: zorgen dat de Italiaanse playlist aan gaat.\nTaak CM: bruid af en toe meeroepen zodat Katinka even in de privéruimte iets kan eten/drinken (vragen of het personeel daar ook een paar hapjes wil neerzetten) en me kan opfrissen.\nKatinka's ervaring is (op bijvoorbeeld begrafenissen dat je anders moeilijk wegkomt uit gesprekken als eregast en daardoor niet aan eten/drinken/rust toekomt.)\nGraag ook 1 keer een moment dat ik samen met J even naar de privéruimte kan om even bij te praten/te knuffelen.\nTaak CM: helpen fotograaf bij het bijeenroepen van mensen voor op de groepsfoto's."
-  },
-  {
-    "id": 28,
-    "time": "17.15 - 17.20",
-    "action": "Maserati verplaatsen",
-    "who": "De Maserati wordt van de zijkant van het gebouw weer naar de haag gereden met de achterkant naar de Oranjerie toe (door Matthew).",
-    "desc": "De Maserati wordt van de zijkant van het gebouw weer naar de haag gereden met de achterkant naar de Oranjerie toe (door Matthew)."
-  },
-  {
-    "id": 29,
-    "time": "17.25 - 17.30",
-    "action": "Aankondiging einde feestelijkheden",
-    "who": "De gasten het afrondende programma vertellen:\ndat de feestelijkheden om 17.30 uur ten einde zijn,\nnu gelegenheid tot toilet en verzamelen tassen/jassen,\ndat er een presentje voor hen klaarligt bij de ingang van de locatie,\ndat de gasten met hun jas etc om 17.35 uur achter het bruidspaar moeten aanlopen naar de haag,\ndat de gasten daar het bruidspaar uitzwaaien,\nen daarmee de dag ten einde is en hen gevraagd wordt om het terrein te verlaten.",
-    "desc": "Taak CM: de gasten het afrondende programma vertellen:\ndat de feestelijkheden om 17.30 uur ten einde zijn,\nnu gelegenheid tot toilet en verzamelen tassen/jassen,\ndat er een presentje voor hen klaarligt bij de ingang van de locatie,\ndat de gasten met hun jas etc om 17.35 uur achter het bruidspaar moeten aanlopen naar de haag,\ndat de gasten daar het bruidspaar uitzwaaien,\nen daarmee de dag ten einde is en hen gevraagd wordt om het terrein te verlaten."
-  },
-  {
-    "id": 30,
-    "time": "17.30 - 17.45",
-    "action": "Einde receptie en uitzwaaien bruidspaar",
-    "who": "Zorgen dat gasten met hun spullen achter het bruidspaar aan lopen.\nUitzwaaien bruidspaar bij de \"haag\".",
-    "desc": "Taak CM: Zorgen dat gasten weten dat ze achter het bruidspaar aan moeten lopen om hen uit te zwaaien en dat geen mensen achterblijven. Alleen de naaste familie blijft.\nKatinka: tasje en bloemen mee."
-  },
-  {
-    "id": 31,
-    "time": "17.45 - 18.00",
-    "action": "Wegrijden receptiegasten",
-    "who": "Zorgen dat iedereen rond 18.00 van het terrein is.\nTijd is nodig voor decoratie dinertafels + tafelschikking. Zie bijlage Uitwerking Taken.\nOok even rust voor de naaste familie.\nEn het bruidspaar heeft van 18.00 - 18.30 een fotoshoot op het terrein.",
-    "desc": "Taak CM: zorgen dat iedereen rond 18.00 van het terrein is. Zo hebben F/W tijd om de dinertafels in de Oranjezaal te controleren. Ook even rust voor de naaste familie.\nHet bruidspaar komt om 18.00 terug voor een fotoshoot met de fotograaf, dan moeten de gasten dus echt weg zijn."
-  },
-  {
-    "id": 32,
-    "time": "18.00 - 18.30",
-    "action": "Eindcontrole dinertafels en pauze voor naaste familie",
-    "who": "Samen met Wilma en Fleur eindcontrole op dinertafels incl. tafelschikking.",
-    "desc": "Fleur en Wilma hebben tijd voor de eindcontrole van de Oranjekas (dinertafel) inclusief tafelschikking.\nWij komen om 18.00 terug voor een fotoshoot met de fotograaf."
-  },
-  {
-    "id": 33,
-    "time": "18.00 - 18.30",
-    "action": "Bruidspaar komt weer terugrijden + fotoshoot fotograaf",
-    "who": "",
-    "desc": "Zetten Maserati zelf bij de zijkant van het gebouw. Tijd voor fotoshoot met fotograaf. Familie wacht op hen in de Palmenkas. Zij gaan daarna met het bruidspaar voorop samen naar de Oranjekas."
-  },
-  {
-    "id": 34,
-    "time": "18.30 - 20.30",
-    "action": "Shared dining met naaste familie",
-    "who": "Zorgen dat de Italiaanse playlist op staat.",
-    "desc": "20p\nTaak CM: Italiaanse playlist op zetten."
-  },
-  {
-    "id": 35,
-    "time": "20.30 - 20.45",
-    "action": "Afscheid en uitzwaaien",
-    "who": "Zorgen dat dit afscheid om 20.45 klaar is, we zullen allemaal moe genoeg zijn en er moet ook nog opgeruimd worden.",
-    "desc": "Taak CM: ervoor zorgen dat dit afscheid om 20.45 klaar is, we zullen allemaal moe genoeg zijn en er moet ook nog opgeruimd worden.\nJorik/Katinka: NB logeerkoffers, persoonlijk tasje, cadeaus mee."
-  },
-  {
-    "id": 36,
-    "time": "20.45 - 21.15",
-    "action": "Opruimen",
-    "who": "Alles opruimen, met hulp van locatie, Fleur, Samuel, Wilma en Wil. Zorgen dat alles mee naar huis gaat wat van ons is.\nZie bijlage Uitwerking Taken.",
-    "desc": "Fleur, Wilma, Samuel, Wil en de CM moeten nu alles opruimen. De Oranjerie helpt hierbij.\nNB zorgen dat alles mee naar huis gaat wat van ons is, zie daarvoor ook de bijlage Uitwerking Taken."
-  }
-];
-
-const photographerTasks = [
-  {
-    "id": 1,
-    "time": "9.30 - 11.00",
-    "action": "Setup at the venue",
-    "photographer": "for your information",
-    "attachments": "for your information",
-    "location": "Palm Greenhouse/Orange Greenhouse/Terrace/Garden and Parking Lot"
-  },
-  {
-    "id": 2,
-    "time": "9.00 - 9.30",
-    "action": "The bride and groom at home with their family",
-    "photographer": "for your information",
-    "attachments": "for your information",
-    "location": "At Home in Rijswijk"
+    "action": "The bride and groom at home with family",
+    "who": "Ter info",
+    "desc": "",
+    "location": "Thuis in Rijswijk"
   },
   {
     "id": 3,
     "time": "9.30 - 10.30",
     "action": "The bride and groom on their way to the Oranjerie",
-    "photographer": "for your information",
-    "attachments": "for your information",
-    "location": "Travel Time"
+    "who": "*De Italiaanse playlist laten spelen in de Palmenkas als \nwelkom voor het bruidspaar. Aan laten totdat jullie met alle gasten richting 'de haag' gaan om 12.45.\n*Zie 'Toon aanvullende context' hieronder voor de Muziek.",
+    "desc": "Hoe moet de muziek aangeleverd worden? \n\n*Offline bestand. \n*Werktelefoon Katinka op vliegtuigstand. \n*Spotify (Joriks account) ivm geen reclame. \n*Back-up: Katinka's huidige telefoon. \n*Muziek gaat apart in beide zalen. \n*Playlist op repeat. \n* 'Holy Forever' (bij het naar voren lopen van het bruidspaar) wordt los aangeleverd omdat dat liedje ook los aangezet moet worden.\n \nMuziek bij de ontvangst van het bruidspaar en de gasten:\n\n10.30 - 12.45 \n*Italiaanse playlist.",
+    "location": "Reistijd"
   },
   {
     "id": 4,
     "time": "10.30 - 11.00",
     "action": "Arrival of the bride and groom",
-    "photographer": "for your information",
-    "attachments": "for your information",
-    "location": "Palm Greenhouse/Terrace/Private Area"
+    "who": "*Koffie/drinken met lekkers.\n*Het bruidspaar heeft de bloemdecoratie bij zich, die kan nu neergezet worden.\n*Het bruidspaar zet zelf de auto aan de zijkant van het pand.\n*En vertrekt om 11.45 uur naar een rustige plek.",
+    "desc": "",
+    "location": "Palmenkas/Terras/privéruimte"
   },
   {
     "id": 5,
     "time": "10.45 - 11.00",
-    "action": "Arrival of Wilma/Rob and Wil",
-    "photographer": "for your information",
-    "attachments": "for your information",
+    "action": "Aankomst Wilma/Rob en Wil",
+    "who": "*Koffie/drinken met lekkers.\n*Wilma heeft de bruidstaart bij zich.",
+    "desc": "",
     "location": "Palm Greenhouse/Terrace"
   },
   {
     "id": 6,
     "time": "11.00 - 12.00",
     "action": "Final check by Wilma and Fleur",
-    "photographer": "for your information",
-    "attachments": "for your information",
-    "location": "Palm Greenhouse/Orange Greenhouse/Terrace/Garden and Parking Lot"
+    "who": "*Wilma en Fleur doen een eindcheck op de decoratie.\nIn principe is alles voor die tijd al klaar.",
+    "desc": "",
+    "location": "Palmenkas/Oranjekas/Terras/Tuin en parkeerplaats"
   },
   {
     "id": 7,
-    "time": "12.00 - 12.15",
-    "action": "Arrival of the photographer",
-    "photographer": "12:00 PM Photographer arrives\n*Setup time and lunch.",
-    "attachments": "Parking Information\nAddress: Oranjerie Hydepark Doorn \nDriebergsestraatweg 50 \n3941 ZX Doorn \n \nFrom Utrecht Central Station: \n30 minutes by car, 40 minutes by bus, 1 hour by bike. \nWe will reimburse travel expenses. \n\nContact Information\nDerek: 06 - 40 83 03 61\nMatthew: 06 - 45 43 20 39\nAudra: 06 - 27 59 13 63\nLocation Manager: to be announced on the day",
-    "location": ""
+    "time": "11.30 - 11.45",
+    "action": "Bruidspaar vertrekt van de Oranjerie",
+    "who": "Het bruidspaar komt om 13.00 uur weer terug.",
+    "desc": "",
+    "location": "Reistijd"
   },
   {
     "id": 8,
-    "time": "11.30 - 11.45",
-    "action": "The bride and groom leave the Oranjerie",
-    "photographer": "for your information",
-    "attachments": "for your information",
-    "location": "Travel time"
+    "time": "12.00 - 12.15",
+    "action": "Arrival of the photographer",
+    "who": "Audra: 06 - 27 59 13 63\nZet zelf zijn spullen klaar.",
+    "desc": "",
+    "location": ""
   },
   {
     "id": 9,
     "time": "12.15 - 12.45",
-    "action": "Arrival of the remaining guests (68 people)",
-    "photographer": "If time permits: photos of the surroundings and the building\n*Photos of the rooms, the building, and the surroundings.",
-    "attachments": "Important people \n\n1st priority (see profile photos)\n*Fleur: daughter \n*Samuel: son \n*Leo and Gonnie: Katinka’s parents, deceased—we want to be photographed holding their photo  \n*Wilma: Jorik’s mother \n*Cor: Jorik’s father \n*Grandpa: Jorik’s grandfather \n\n2nd priority (see profile photos)\n*Lisa: Jorik’s sister \n*Wil: Katinka’s aunt \n*Sara: Jorik’s half-sister\n*Rob: stepfather \n*Anca: stepmother \n*Arthur: stepbrother \n*Rinske: Katinka’s sister \n\n\nGeneral\nAll other guests",
+    "action": "Arrival of other guests (68 people)",
+    "who": "*Koffie/drinken met lekkers.\n*Derek: gasten welkom heten bij de ingang van de Oranjerie. \n*CM zijn aanspreekpunt voor gasten.\n*In totaal zijn we deze dag met 78 personen, zie bijlage Gastenlijst.\n*Zie 'Toon aanvullende context' hieronder voor de Gastenlijst.",
+    "desc": "Gastenlijst:\n\n1.\tJorik\n2.\tKatinka\n3.\tFleur\n4.\tSamuel\n5.\tRinske \n6.\tWil\n7.\tEmma\n8.\tJet\n9.\tAnna\n10.\tOpa\n11.\tWilma\n12.\tRob\n13.\tLisa\n14.\tJaikishen\n15.\tArthur\n16.\tCor\n17.\tAnca\n18.\tSara\n19.\tHerman\n20.\tMylene\n21.\tMerian\n22.\tJim\n23.\tLeanne\n24.\tJasper\n25.\tBernhard\n26.\tYvonne\n27.\tRoos\n28.\tDerek\n29.\tMarianne\n30.\tMatthew\n31.\tJoke\n32.\tGerard\n33.\tSander (neef J)\n34.\tIneke\n35.\tNicole\n36.\tWilfred \n37.\tPatricia\n38.\tArjan \n39.\tMike\n40.\tMercedes\n41.\tMaik\n42.\tJustin\n43.\tRik\n44.\tLorena\n45.\tMark\n46.\tSander Uphus\n47.\tLydia\n48.\tChris\n49.\tDesi\n50.\tBas\n51.\tCharlotte\n52.\tTim\n53.\tSanne\n54.\tKarima\n55.\tFelix \n56.\tThalita\n57.\tNaomi\n58.\tRoelfien\n59.\tAda \n60.\tPaul (man van Ada) \n61.\tDara\n62.\tAnne\n63.\tHelian\n64.\tBarbara\n65.\tAnita\n66.\tAnnette\n67.\tNorbert\n68.\tJessica\n69.\tJurjen\n70.\tMiriam \n71.\tMonique\n72.\tSander (neef K)\n73.\tLize\n74.\tErwin\n75.\tAnja\n76.\tRuud\n77.\tSuzanne\n78.\tGijsbert",
     "location": "Palm Greenhouse/Terrace"
   },
   {
     "id": 10,
-    "time": "13.00 - 13.10",
-    "action": "Arrival of the civil officiant",
-    "photographer": "for your information",
-    "attachments": "for your information",
-    "location": ""
+    "time": "12.45 - 13.00",
+    "action": "Taking guests to 'the hedge'",
+    "who": "*Gasten om 12.45 uur leiden naar 'de haag' om het bruidspaar op te wachten.\n*De gasten vormen een haag in 'de haag'. \n*Alle gasten moeten om 12.55 klaar staan. \n*Ervoor zorgen dat Fleur, Samuel en opa (en de naaste familie) vooraan staat in 'de haag' omdat zij het bruidspaar straks ook als eerste volgen.",
+    "desc": "",
+    "location": "Outside by 'the hedge'"
   },
   {
     "id": 11,
-    "time": "12.45 - 13.00",
-    "action": "Escorting guests to ‘The hedge’",
-    "photographer": "for your information",
-    "attachments": "for your information",
-    "location": "Outside by ‘The hedge’"
+    "time": "13.00 - 13.10",
+    "action": "Arrival of the BABS",
+    "who": "Matthew: BABS welkom heten en eventuele vragen beantwoorden.",
+    "desc": "",
+    "location": ""
   },
   {
     "id": 12,
     "time": "13.00 - 13.05",
-    "action": "Arrival of the bride and groom at ‘The hedge’",
-    "photographer": "Photos of the arrival at ‘The hedge’\n*The car from the front as the bride and groom drive up,\n*The car with the guests gathered around it in ‘The hedge’ with the Orangery in the background,\n*Jorik helping Katinka out of the car.",
-    "attachments": "",
-    "location": "Outside by ‘The hedge’"
+    "action": "Aankomst bruidspaar bij 'de haag'",
+    "who": "De auto stopt halverwege.\nJorik laat Katinka uitstappen.",
+    "desc": "",
+    "location": "Outside by 'the hedge'"
   },
   {
     "id": 13,
     "time": "13.05 - 13.15",
-    "action": "Procession to the Oranjerie",
-    "photographer": "Procession\n*Of the bride and groom with the procession following behind them as they walk to the Orangery (photos from both the front and the back).",
-    "attachments": "",
-    "location": "Walking to the Orangery"
+    "action": "Stoet naar de Oranjerie",
+    "who": "*Het bruidspaar loopt rechtsom.\n*Zorgen dat de gasten achter ons aanlopen. \n*Fleur, Samuel en opa direct achter ons omdat zij naar een aparte ruimte met ons gaan.",
+    "desc": "",
+    "location": "Lopend naar de Oranjerie"
   },
   {
     "id": 14,
     "time": "13.15 - 13.25",
     "action": "Private room and break",
-    "photographer": "Taking photos of guests and the atmosphere\n*Photos of the guests in attendance,\n*Close-up shots of the venue or decorations.",
+    "who": "*Het bruidspaar, Fleur, Samuel en opa nemen plaats in de privé-ruimte.\n*Vanaf daar lopen zij achterlangs weer naar de ingang van de Oranjerie als alle gasten zitten.",
+    "desc": "",
+    "location": "Privéruimte"
+  },
+  {
+    "id": 15,
+    "time": "13.15 - 13.25",
+    "action": "Gasten plaatsnemen in de Oranjekas",
+    "who": "*Aangeven dat de gasten plaats mogen nemen in de Oranjekas. \n*Zie pagina 'Bijlage' voor de Ceremonie Stoelschikking, de eerste 2 rijen zijn met naambordjes gereserveerd voor hoofdgasten.\n*2 stoelen achter aan de zijkant reserveren voor de CM zodat jullie goed overzicht hebben.",
+    "desc": "",
+    "location": "Orange Greenhouse"
+  },
+  {
+    "id": 16,
+    "time": "13.15 - 13.25",
+    "action": "Welcome by the BABS",
+    "who": "De BABS heet iedereen welkom en vertelt de gasten wat van hen verwacht wordt.\n\"Geen foto's tijdens ceremonie en dat alle gasten moeten gaan staan op haar teken.\"",
+    "desc": "",
+    "location": "Orange Greenhouse"
+  },
+  {
+    "id": 17,
+    "time": "13.25 - 13.27",
+    "action": "Procession of Jorik with his grandfather",
+    "who": "*Zorgen dat het liedje 'Holy Forever' afspeelt zodra Jorik met opa bij de ingang klaarstaat. \n*Jorik en opa lopen naar voren als de muziek begint. \n*Ze blijven even samen vooraan staan, waarna opa plaats neemt op zijn gereserveerde stoel. \n*Jorik wacht daar vooraan staand in het midden met zijn gezicht richting de voordeur op Katinka. \n*Zie 'Toon aanvullende context' hieronder voor de Muziek.",
+    "desc": "Muziek bij het naar voren lopen van het bruidspaar\nNB dit wordt los aangeleverd, gaat om 1 liedje dat doorspeelt bij Jorik en Katinka:\n\n13.25 - 13.30\n*Holy Forever \nSax Instrumental / Chris Tomlin (cover) / Uriel Vega",
+    "location": "Orange Greenhouse"
+  },
+  {
+    "id": 18,
+    "time": "13.27 - 13.30",
+    "action": "Procession of Katinka with Fleur and Samuel",
+    "who": "*Zorgen dat het liedje 'Holy Forever' blijft doorspelen.  \n*Katinka loopt met de kinderen naar voren, deuren achter haar sluiten.\n*Vooraan komt het bruidspaar samen en gaan de kinderen zitten.\n*Het bruidspaar blijft staan totdat de muziek vervaagt.\n*De BABS zegt dat de iedereen moet gaan zitten.\n*Zorgen dat de muziek stopt.\n*Zie 'Toon aanvullende context' hieronder voor de Muziek.",
+    "desc": "Muziek bij het naar voren lopen van het bruidspaar\nNB dit wordt los aangeleverd, gaat om 1 liedje dat doorspeelt bij Jorik en Katinka:\n\n13.25 - 13.30\n*Holy Forever \nSax Instrumental / Chris Tomlin (cover) / Uriel Vega",
+    "location": "Orange Greenhouse"
+  },
+  {
+    "id": 19,
+    "time": "13.30 - 14.00",
+    "action": "Wedding ceremony",
+    "who": "Het ja-woord, de ringen en de geloften.",
+    "desc": "",
+    "location": "Orange Greenhouse"
+  },
+  {
+    "id": 20,
+    "time": "13.45 - 14.45",
+    "action": "Setting up the wedding cake",
+    "who": "Door Team Oranjerie wordt ondertussen in de Palmenkas de bruidstaart klaargezet.\nCM: zorgen dat Team Oranjerie weet dat de taart op een ronde, hoge tafel in het midden van de Palmenkas moet komen, met tafelkleed eronder.",
+    "desc": "",
+    "location": "Palm Greenhouse"
+  },
+  {
+    "id": 21,
+    "time": "14.00 - 14.05",
+    "action": "Afronding door de BABS",
+    "who": "De BABS vertelt dat Derek een zegen gaat uitspreken.\nDaarna gaat zij weg.",
+    "desc": "",
+    "location": "Orange Greenhouse"
+  },
+  {
+    "id": 22,
+    "time": "14.05 - 14.20",
+    "action": "Zegen en speeches",
+    "who": "Derek spreekt een zegen uit.\n\nDaarna vertelt hij wat hierna komt:\n*Bijdragen van de moeder van de bruidegom: Wilma, en de kinderen van Katinka: Fleur en Samuel.",
+    "desc": "*Er is een microfoon aanwezig en jullie staan op de plek van de BABS.",
+    "location": "Orange Greenhouse"
+  },
+  {
+    "id": 23,
+    "time": "14.20 - 14.25",
+    "action": "Flower arch",
+    "who": "Derek komt weer naar voren en vertelt dat: \n*Iedereen moet gaan staan terwijl het bruidspaar naar voren loopt.\n*De mensen aan het gangpad met een bloemenmandje onder hun stoel bloemblaadjes mogen pakken en straks hoog in de lucht mogen werpen als het bruidspaar langsloopt. \n*De gasten vanaf de voorste rijen kunnen gaan feliciteren en gelegenheid tot het geven van hun cadeaus.\n\nCM: Zorgen dat het liedje 'Felicita' aangaat en daarna de rest van de Italiaanse playlist. \n*Zie 'Toon aanvullende context' hieronder voor de Muziek en aanvullende info.\n*Het bruidspaar loopt door de rij naar de ingang van de zaal en blijft naast de deur staan.",
+    "desc": "*De CM hebben vooraf twee stoelen achterin weggehaald om ruimte te creeeren.\n*De mandjes staan onder de stoelen bij het gangpad om en om, dus 4 mandjes per rij, dat zijn in totaal 8 mandjes langs het gehele gangpad. \n\nMuziek bij de erehaag met bloemen\nNB Is het eerste nummer van de Italiaanse playlist, met dit nummer wordt begonnen. Daarna kan de Italiaanse playlist verder gaan:\n\n14.20 - 14.25\n*Felicita",
+    "location": "Orange Greenhouse"
+  },
+  {
+    "id": 24,
+    "time": "14.25 - 14.45",
+    "action": "Congratulations",
+    "who": "*De gasten komen vanaf de voorste rijen naar de ingang van de zaal om het bruidspaar te feliciteren en cadeaus te overhandigen. \n*Achter het bruidspaar staat een tafel met een mooi kistje waarin het bruidspaar de enveloppen kan doen en waar andere cadeaus op gelegd kunnen worden.\n*Zie 'Toon aanvullende context' hieronder voor de Muziek en aanvullende info.",
+    "desc": "Muziek bij de felicitaties:\n\n14.25 - 14.45\n*Na Felicita speelt nu de Italiaanse playlist door\n\n*Derek staat naast het bruidspaar om de cadeaus aan te pakken en het bruidsboeket erbij te leggen (niet in water).\n*Matthew staat bij de ingang van de Palmenkas om de gasten door te geleiden.\n*NB de bloemblaadjes moeten hierna opgeruimd worden, door Wilma en Fleur.",
+    "location": "Orange Greenhouse"
+  },
+  {
+    "id": 25,
+    "time": "14.35 - 14.50",
+    "action": "Moving the Maserati",
+    "who": "Matthew: de Maserati naar de zijkant van het gebouw rijden.",
+    "desc": "Als je met je rug naar de Oranjerie staat dan rechtsvoor op het terras.",
+    "location": "Zijkant Oranjerie"
+  },
+  {
+    "id": 26,
+    "time": "14.45 - 15.00",
+    "action": "To the Palm Greenhouse and short break",
+    "who": "*Zorgen dat de gasten naar de Palmenkas gaan.\n*Zorgen dat in de Palmenkas de Italiaanse playlist aan gaat. \n*Bruidspaar heeft korte pauze in privéruimte.  \n*Zie 'Toon aanvullende context' hieronder voor de Muziek.",
+    "desc": "Muziek in pauze\nNB dit moet met de tweede telefoon (de andere telefoon is nog met muziek in de Oranjekas):\n\n14.45 - 15.00 \n*Italiaanse playlist aan vanaf 14.45 uur en uit vanaf het moment dat Cor gaat toosten, lied vriendin Katinka en gedicht Lisa.",
+    "location": "Palm Greenhouse/Private Area"
+  },
+  {
+    "id": 27,
+    "time": "15.00 - 15.30",
+    "action": "Toast",
+    "who": "*Zorgen dat alle gasten in de Palmenkas zijn, dus niet op het terras.\n*Bruidspaar komt aan in Palmenkas.\n*Zorgen dat Fleur en Samuel bij de bruidstaart staan.\n*Gasten in een cirkel om het bruidspaar heen.\n*Derek: vertellen dat na de toost de receptie begint en dat mensen tijdens de receptie worden opgeroepen voor de groepsfoto's: de lijst vinden ze uitgeprint in de Palmenkas en in de app en ze worden in 5 keer meegeroepen per familie/groep. \n*Muziek uit zodra Cor begint met de toost.\n*Zorgen dat de muziek van Roelfien aangaat op haar signaal.\n*Zie 'Toon aanvullende context' hieronder voor de Muziek.",
+    "desc": "NB Er is geen microfoon voor Cor, Lisa en Roelfien. Daar zoeken we nog naar.\n\nMuziek:\n\n*Muziek uit vanaf moment dat Cor gaat speechen,\n*15.15 muziek van Roelfien, vriendin Katinka (zij levert dit bij Derek aan) \n*Daarna stilte voor gedicht Lisa,\n*Daarna de Italiaanse playlist op repeat.",
+    "location": "Palm Greenhouse"
+  },
+  {
+    "id": 28,
+    "time": "15.00 - 17.30",
+    "action": "Rearranging the Orange Greenhouse for dinner",
+    "who": "*Tijdens de receptie wordt door Team Oranjerie de Oranjekas in de basis omgebouwd voor het diner. \n*De CM zijn indien nodig beschikbaar voor het geven van aanwijzingen.\n*Wilma en Fleur voegen de decoratie en tafelschikking toe tussen 18.00 - 19.00 als alle gasten weg zijn. \n*Zie pagina 'Bijlage' voor Diner Tafelschikking en Diner Tafeldekking.",
+    "desc": "",
+    "location": "Orange Greenhouse"
+  },
+  {
+    "id": 29,
+    "time": "15.30 - 16.00",
+    "action": "Reception start & group photos",
+    "who": "*CM zorgen dat de Italiaanse playlist aan gaat.\n*CM faciliteren fotograaf om de juiste groepen bij elkaar te krijgen.\n*Zie uitgeprint overzicht van de Groepsfoto's bij het gastenboek op de tekentafel in Palmenkas.\n*Zie 'Toon aanvullende context' hieronder voor het overzicht Groepsfoto's en Muziek.\n*Handig om de mensen per 5 grote groepen mee te nemen:\n1. Familie Prins 2. Familie Mekking 3. Familie Uiterwijk 4. Familie Herlaar 5. Vrienden & collega's\nNB Fleur en Samuel zijn net als het bruidspaar bij alle foto's.",
+    "desc": "Muziek tijdens receptie en pauze:\n\n15.30 - 19.00 Receptie & pauze (Palmenkas)\n*Italiaanse playlist. \n\nGroepsfoto's \n\n1. Familie Prins & aanhang (en Wilma, Fleur en Samuel)\n*Familie Prins met aanhang \n*Familie Prins klein: Cor, Anca, Sara, Lisa, Jai, Fleur en Samuel  \n*Ouders bruidspaar: Wilma en Cor & Gonnie en Leo\n*(Schoon)zussen Lisa, Sara \n*Fleur en Samuel \n\n2. Familie Mekking & aanhang (en Fleur en Samuel)\n*Familie Mekking met aanhang \n*Familie Mekking klein: Opa, Wilma, Rob, Arthur, Lisa, Jai, Fleur en Samuel  \n*Opa Mekking \n\n3. Familie Uiterwijk & aanhang (en Fleur en Samuel)\n*Familie Uiterwijk: Katinka, Fleur, Samuel, Rinske, Emma, Anna, Jet, Norbert, Jessica, Jurjen en Miriam \n*Familie Uiterwijk klein: Fleur, Samuel, Rinske, Emma, Anna, Jet \n*Rinske \n\n4. Familie Herlaar & aanhang (en Fleur en Samuel)\n*Familie Herlaar: Katinka, Fleur, Samuel, Rinske, Emma, Anna, Jet, Wil, Lize, Ruud, Monique, Sander, Erwin en Anja \n*Familie Herlaar klein: Fleur, Samuel, Wil, Rinske, Emma, Anna, Jet \n*Wil  \n\n5. Vrienden & collega's \n*Vriendengroep Jorik\n*Collega's Katinka\n*Karima en Felix\n*Suzanne en Gijsbert\n*Ceremoniemeesters  \n\n6. Totaal\n*Alle gasten",
+    "location": "Palm Greenhouse/Terrace"
+  },
+  {
+    "id": 30,
+    "time": "16.00 - 17.30",
+    "action": "Reception continues",
+    "who": "*Zorgen dat de Italiaanse playlist aan blijft.\n*Bruid twee keer even meeroepen zodat zij in de privéruimte iets kan eten/drinken/opfrissen. Dus om 16.00 en om 17.00. \n*Jorik graag ook 1 keer meenemen, zodat het bruidspaar even samen kan zijn in de privéruimte.",
+    "desc": "",
+    "location": ""
+  },
+  {
+    "id": 31,
+    "time": "17.15 - 17.20",
+    "action": "Moving the Maserati",
+    "who": "Matthew: de Maserati van de zijkant van het gebouw weer naar de haag rijden met de achterkant naar de Oranjerie toe.",
+    "desc": "",
+    "location": "Outside by 'the hedge'"
+  },
+  {
+    "id": 32,
+    "time": "17.25 - 17.30",
+    "action": "Announcement of the end of the festivities",
+    "who": "Derek: de gasten vertellen dat:\n*De receptie ten einde loopt.  \n*Denken aan toilet, persoonlijke spullen en presentje (ligt bij het gastenboek op de tekentafel in de Palmenkas).\n*Iedereen om 17.35 uur achter het bruidspaar aan loopt naar 'de haag'.\n*Daar het bruidspaar uitzwaaien en de dag ten einde is.",
+    "desc": "",
+    "location": ""
+  },
+  {
+    "id": 33,
+    "time": "17.30 - 17.45",
+    "action": "End of reception and waving off the bride and groom",
+    "who": "*Zorgen dat gasten met hun spullen achter het bruidspaar aan lopen. \n*Het bruidspaar loopt via de andere kant.\n*Uitzwaaien bruidspaar bij 'de haag'.",
+    "desc": "",
+    "location": "Hedge outside"
+  },
+  {
+    "id": 34,
+    "time": "17.45 - 18.00",
+    "action": "Departure of reception guests",
+    "who": "*Zorgen dat iedereen om 18.00 van het terrein is ivm de fotoshoot van het bruidspaar. \n*Napraten op de parkeerplaats kan natuurlijk wel.\n*Belangrijk dat Wilma en Fleur op tijd (uiterlijk 18.00) teruggaan naar de Oranjekas voor de decoratie van de dinertafels.",
+    "desc": "",
+    "location": "Haag buiten/parkeerterrein"
+  },
+  {
+    "id": 35,
+    "time": "18.00 - 19.00",
+    "action": "Eindcontrole dinertafels en pauze",
+    "who": "*CM samen met Wilma en Fleur eindcontrole op dinertafels incl. tafelschikking.\n*Rust voor naaste familie.\n*Zie pagina 'Bijlage' voor Diner Stoelschikking en Diner Tafeldekking.",
+    "desc": "",
+    "location": "Oranjekas/Palmenkas/Terras"
+  },
+  {
+    "id": 36,
+    "time": "18.00 - 18.30",
+    "action": "Break for the bride and groom and crew meal for the photographer",
+    "who": "Ter info",
+    "desc": "",
+    "location": ""
+  },
+  {
+    "id": 37,
+    "time": "18.30 - 19.00",
+    "action": "Fotoshoot bruidspaar",
+    "who": "*Bruidspaar is terug op locatie om 18.30 voor fotoshoot.\n*Zetten Maserati zelf bij de zijkant van het gebouw. \n*Familie wacht op hen in de Palmenkas. \n*Zij gaan om 19.00 samen met het bruidspaar naar de Oranjekas.",
+    "desc": "",
+    "location": "Palm Greenhouse/Terrace"
+  },
+  {
+    "id": 38,
+    "time": "19.00 - 21.00",
+    "action": "Shared dining with close family",
+    "who": "Zorgen dat de Italiaanse playlist op staat.\n*Zie 'Toon aanvullende context' hieronder voor de Muziek.",
+    "desc": "Muziek tijdens diner:\n\n19.00 - 21.00 Diner (Oranjekas)\n*Italiaanse playlist.",
+    "location": "Orange Greenhouse"
+  },
+  {
+    "id": 39,
+    "time": "21.00 - 21.15",
+    "action": "Farewells and seeing off",
+    "who": "Tijd bewaken en zorgen dat dit afscheid om 21.15 klaar is, we zullen allemaal moe genoeg zijn en er moet ook nog opgeruimd worden.",
+    "desc": "",
+    "location": "Terras"
+  },
+  {
+    "id": 40,
+    "time": "21.15 - 21.45",
+    "action": "Cleanup",
+    "who": "*Alles opruimen, met hulp van Team Oranjerie, Fleur, Samuel, Wilma en Wil. \n*Team Oranjerie ruimt hun deel op, jullie ons deel.\n*Zorgen dat alles mee naar huis gaat wat van ons is.\n*Zie 'Toon aanvullende context' hieronder voor info bij Opruimen.   \n*Fleur en Samuel rijden met Cor en Anca/Sara mee naar huis en nemen de eventuele resten van de bruidstaart mee.\n*Opa en Wil rijden mee terug met Wilma en Rob.",
+    "desc": "Opruimen:\n\n*De locatie is verantwoordelijk voor hun spullen en de CM voor die van ons, \n*Wilma, Wil, Fleur en Samuel helpen ook mee met het opruimen van onze eigen spullen, \nDie moeten ook weer mee terug naar huis, het gaat dan om (afhankelijk van wat we huren): \n*vaasjes met bloemen \n*kandelaren \n*tafelkleden \n*servetten \n*eucalyptus \n*tafelschikking-naambordjes \n*menukaarten \n*naamkaartjes van de ceremoniestoelen \n*mandje voor gastencadeautjes \n*mandjes waarin de rozenblaadjes zaten \n*welkomstborden en bewegwijzering parkeerplaats \n*rest van de bruidstaart mee met Fleur en Samuel \n*schildersezel \n*bankje",
+    "location": "Palmenkas/Oranjekas/Terras en parkeerterrein"
+  }
+];
+export const photographerTasks = [
+  {
+    "id": 1,
+    "time": "9.30 - 11.00",
+    "action": "Setup at the venue",
+    "photographer": "For your information",
+    "attachments": "",
+    "location": ""
+  },
+  {
+    "id": 2,
+    "time": "9.00 - 9.30",
+    "action": "The bride and groom at home with their family",
+    "photographer": "For your information",
+    "attachments": "",
+    "location": ""
+  },
+  {
+    "id": 3,
+    "time": "9.30 - 10.30",
+    "action": "The bride and groom on their way to the Oranjerie",
+    "photographer": "For your information",
+    "attachments": "",
+    "location": ""
+  },
+  {
+    "id": 4,
+    "time": "10.30 - 11.00",
+    "action": "Arrival of the bride and groom",
+    "photographer": "For your information",
+    "attachments": "",
+    "location": ""
+  },
+  {
+    "id": 5,
+    "time": "10.45 - 11.00",
+    "action": "Arrival of Wilma/Rob and Wil",
+    "photographer": "For your information",
+    "attachments": "",
+    "location": ""
+  },
+  {
+    "id": 6,
+    "time": "11.00 - 12.00",
+    "action": "Final check by Wilma and Fleur",
+    "photographer": "For your information",
+    "attachments": "",
+    "location": ""
+  },
+  {
+    "id": 7,
+    "time": "11.30 - 11.45",
+    "action": "The bride and groom leave the Oranjerie",
+    "photographer": "For your information",
+    "attachments": "",
+    "location": ""
+  },
+  {
+    "id": 8,
+    "time": "12.00 - 12.15",
+    "action": "Arrival of the photographer",
+    "photographer": "*Preparation time and lunch.",
+    "attachments": "Parking Information\nAddress: Oranjerie Hydepark Doorn \nDriebergsestraatweg 50 \n3941 ZX Doorn \n \nFrom Utrecht Central Station: 30 minutes by car, 40 minutes by bus, 1 hour by bike. \nWe will reimburse travel expenses. \n\nContact Information\nDerek: 06 - 40 83 03 61\nMatthew: 06 - 45 43 20 39\nAudra: 06 - 27 59 13 63\nLocation Manager: to be announced on the day",
+    "location": "Palm Greenhouse"
+  },
+  {
+    "id": 9,
+    "time": "12.15 - 12.45",
+    "action": "Arrival of other guests (68 people)",
+    "photographer": "*A total of 78 guests throughout the day.",
+    "attachments": "Important people \n\n1st priority (see profile photos)\n\n*Fleur: daughter \n*Samuel: son \n*Leo and Gonnie: Katinka’s parents, deceased—we want to be photographed holding their photo  \n*Wilma: Jorik’s mother \n*Cor: Jorik’s father \n*Grandpa: Jorik’s grandfather \n*Lisa: Jorik’s sister \n\n\n2nd priority (see profile photos)\n\n*Wil: Katinka’s aunt \n*Sara: Jorik’s half-sister \n*Rob: stepfather \n*Anca: stepmother \n*Arthur: stepbrother \n*Rinske: Katinka’s sister\n\n\n\n\n\nPhotographer - Show additional context\n\nParking Information\nAddress: Oranjerie Hydepark Doorn \nDriebergsestraatweg 50 \n3941 ZX Doorn \n \nFrom Utrecht Central Station: 30 minutes by car, 40 minutes by bus, 1 hour by bike. \nWe will reimburse travel expenses. \n\nContact Information\nDerek: 06 - 40 83 03 61\nMatthew: 06 - 45 43 20 39\nAudra: 06 - 27 59 13 63\nLocation Manager: to be announced on the day\n\n\nKey People \n\n1st priority (see profile photos)\n*Fleur: daughter \n*Samuel: son \n*Leo and Gonnie: Katinka’s parents, deceased—we want to be photographed holding their photo  \n*Wilma: Jorik’s mother \n*Cor: Jorik’s father \n*Grandpa: Jorik’s grandfather \n*Lisa: Jorik’s sister \n\n2nd priority (see profile photos)\n\n*Wil: Katinka’s aunt \n*Sara: Jorik’s half-sister \n*Rob: stepfather \n*Anca: stepmother \n*Arthur: stepbrother \n*Rinske: Katinka’s sister",
+    "location": "Palm Greenhouse/Terrace"
+  },
+  {
+    "id": 10,
+    "time": "12.45 - 13.00",
+    "action": "Escorting guests to ‘the hedge’",
+    "photographer": "Photos of:\n*Guests waiting for the bride and groom at ‘de haag’,\n*Scenes from the event.",
+    "attachments": "",
+    "location": "Outside by 'the hedge'"
+  },
+  {
+    "id": 11,
+    "time": "13.00 - 13.10",
+    "action": "Arrival of the civil officiant",
+    "photographer": "For your information",
+    "attachments": "",
+    "location": ""
+  },
+  {
+    "id": 12,
+    "time": "13.00 - 13.05",
+    "action": "Arrival of the bride and groom at ‘the hedge’",
+    "photographer": "Photos of the arrival at ‘the hedge’, always with the Orangery in the foreground:\n*The car from the rear as the bride and groom drive up, \n*The car with the guests surrounding it at ‘the hedge,’ \n*Jorik helping Katinka out of the car.",
+    "attachments": "",
+    "location": "Outside by 'the hedge'"
+  },
+  {
+    "id": 13,
+    "time": "13.05 - 13.15",
+    "action": "Procession to the Oranjerie",
+    "photographer": "Photos of the procession:\n*Of the bride and groom with the procession behind them as they walk toward the Orangery (photos from behind with the Orangery in the foreground).",
+    "attachments": "",
+    "location": "Walking toward the Orangery"
+  },
+  {
+    "id": 14,
+    "time": "13.15 - 13.25",
+    "action": "Private room and break",
+    "photographer": "Photos of:\n*Guests in attendance,\n*Close-up shots of the venue or decorations.",
     "attachments": "",
     "location": "Private area"
   },
@@ -871,7 +1191,7 @@ const photographerTasks = [
     "id": 15,
     "time": "13.15 - 13.25",
     "action": "Guests take their seats in the Oranjekas",
-    "photographer": "Taking photos of guests and the atmosphere\n*Photos of the guests in attendance,\n*Close-up shots of the venue or decorations.",
+    "photographer": "Photos of:\n*Guests in attendance,\n*Close-up shots of the venue or decorations.",
     "attachments": "",
     "location": "Orange Greenhouse"
   },
@@ -879,7 +1199,7 @@ const photographerTasks = [
     "id": 16,
     "time": "13.15 - 13.25",
     "action": "Welcome by the civil officiant",
-    "photographer": "Taking photos of the event\n*Photos of the venue,\n*Photos of the guests/setting.",
+    "photographer": "Photos of:\n*Guests in attendance,\n*Close-up shots of the venue or decorations.",
     "attachments": "",
     "location": "Orange Greenhouse"
   },
@@ -887,7 +1207,7 @@ const photographerTasks = [
     "id": 17,
     "time": "13.25 - 13.27",
     "action": "Entrance of Jorik with his grandfather",
-    "photographer": "Jorik walks to the front\n*Jorik walking to the front with his grandfather,\n*Jorik standing at the front with his grandfather,\n*Jorik standing alone at the front, facing the entrance, waiting for Katinka.",
+    "photographer": "Photos of:\n*Jorik walking to the front with his grandfather,\n*Jorik standing at the front with his grandfather,\n*Jorik standing alone at the front, waiting for Katinka with his face toward the entrance.",
     "attachments": "",
     "location": "Orange Greenhouse"
   },
@@ -895,7 +1215,7 @@ const photographerTasks = [
     "id": 18,
     "time": "13.27 - 13.30",
     "action": "Entrance of Katinka with Fleur and Samuel",
-    "photographer": "Lead Katinka to the front\n*Of Katinka walking toward Jorik with her children,\n*Of Jorik and Katinka meeting at the front and hugging,\n*Of Jorik and Katinka standing together at the front.",
+    "photographer": "Photos of:\n*Katinka walking toward Jorik with the children,\n*Jorik and Katinka meeting at the front and hugging,\n*Jorik and Katinka standing together at the front.",
     "attachments": "",
     "location": "Orange Greenhouse"
   },
@@ -903,7 +1223,7 @@ const photographerTasks = [
     "id": 19,
     "time": "13.30 - 14.00",
     "action": "Wedding ceremony",
-    "photographer": "Ceremony \n*Jorik and Katinka during the ceremony,\n*The exchange of vows,\n*Sara bringing the rings,\n*The exchange of rings,\n*The exchange of vows,\n*The kiss,\n*The signing by the bride and groom, the witnesses, and the officiant.",
+    "photographer": "Photos of:\n*Jorik and Katinka during the ceremony,\n*Exchanging wedding vows,\n*Saying “I do,”\n*Sara bringing the rings,\n*Exchanging rings,\n*The kiss,\n*The signing by the bride and groom, the witnesses, and the officiant.",
     "attachments": "",
     "location": "Orange Greenhouse"
   },
@@ -911,31 +1231,31 @@ const photographerTasks = [
     "id": 20,
     "time": "13.45 - 14.45",
     "action": "Setting up the wedding cake",
-    "photographer": "for your information",
-    "attachments": "for your information",
+    "photographer": "For your information",
+    "attachments": "",
     "location": "Palm Greenhouse"
   },
   {
     "id": 21,
     "time": "14.00 - 14.05",
-    "action": "Closing remarks by the officiant",
-    "photographer": "for your information",
-    "attachments": "for your information",
+    "action": "Closing remarks by the BABS",
+    "photographer": "For your information",
+    "attachments": "",
     "location": "Orange Greenhouse"
   },
   {
     "id": 22,
     "time": "14.05 - 14.20",
     "action": "Blessing and speeches",
-    "photographer": "Speeches\n*By Jorik and Katinka during Derek's blessing, during Wilma's speech, and during Fleur's speech, \n*Also photos of Derek, Wilma, and Fleur.",
+    "photographer": "Photos of:\n*Jorik and Katinka during Derek’s blessing, during Wilma’s speech, and during Fleur’s speech, \n*Derek, Wilma, and Fleur.",
     "attachments": "",
     "location": "Orange Greenhouse"
   },
   {
     "id": 23,
     "time": "14.20 - 14.25",
-    "action": "Flower tribute",
-    "photographer": "Path lined with flowers\n*The bride and groom walk down the path toward the entrance while everyone scatters flower petals.",
+    "action": "Flower arch",
+    "photographer": "Photos of: \n*The bride and groom walking down the aisle toward the entrance while flower petals are thrown into the air.",
     "attachments": "",
     "location": "Orange Greenhouse"
   },
@@ -943,7 +1263,7 @@ const photographerTasks = [
     "id": 24,
     "time": "14.25 - 14.45",
     "action": "Congratulations",
-    "photographer": "Congratulations\n*A glimpse of the celebration.",
+    "photographer": "Photos of: \n*The guests walking from the front rows to the entrance of the hall to congratulate the bride and groom and present gifts. \n*Mood shots of the congratulatory moment.",
     "attachments": "",
     "location": "Orange Greenhouse"
   },
@@ -951,15 +1271,15 @@ const photographerTasks = [
     "id": 25,
     "time": "14.35 - 14.50",
     "action": "Moving the Maserati",
-    "photographer": "for your information",
-    "attachments": "for your information",
+    "photographer": "For your information",
+    "attachments": "",
     "location": "Side of the Orangery"
   },
   {
     "id": 26,
     "time": "14.45 - 15.00",
-    "action": "To the Palm House and short break",
-    "photographer": "Taking photos of guests and the atmosphere\n*Photos of the guests in attendance,\n*Close-up shots of the venue or decorations.",
+    "action": "To the Palm Greenhouse and short break",
+    "photographer": "Photos of:\n*Guests in attendance,\n*Close-up shots of the venue or decorations.",
     "attachments": "",
     "location": "Palm Greenhouse/Private Area"
   },
@@ -967,7 +1287,7 @@ const photographerTasks = [
     "id": 27,
     "time": "15.00 - 15.30",
     "action": "Toast",
-    "photographer": "Toast \n*of cutting the cake,\n*of Cor's speech,\n*of Roelfien's song,\n*of Lisa's poem.",
+    "photographer": "Photos of:\n*Cutting the cake,\n*Cor’s speech,\n*Roelfien’s song,\n*Lisa’s poem.",
     "attachments": "",
     "location": "Palm Greenhouse"
   },
@@ -975,99 +1295,108 @@ const photographerTasks = [
     "id": 28,
     "time": "15.00 - 17.30",
     "action": "Rearranging the Oranjekas for dinner",
-    "photographer": "for your information",
-    "attachments": "for your information",
-    "location": "Oranje Greenhouse"
+    "photographer": "For your information",
+    "attachments": "",
+    "location": "Orange Greenhouse"
   },
   {
     "id": 29,
     "time": "15.30 - 16.00",
-    "action": "Group photos",
-    "photographer": "Group photos 3:30–4:00 p.m.\n*30–40 min\n*Masters of ceremonies will help organize the groups.",
-    "attachments": "Wedding couple photos \n*Wedding couple alone \n*With Fleur and Samuel \n*Parents from both sides: Wilma and Cor & Leo and Gonnie photo \n*Mekking family: Grandpa, Wilma, Rob, Arthur, Lisa, Jai, Fleur, and Samuel  \n*Prins family: Cor, Anca, Sara, Lisa, Jai, Fleur, and Samuel  \n*With the Uiterwijk family: Fleur, Samuel, Wil, Rinske, Emma, Anna, Jet \n*With the masters of ceremonies \n \nJorik photos \n*With parents: Wilma and Cor \n*With Grandpa \n*With sisters Lisa, Sara \n*With the Mekking family and their partners \n*With the Prins family and their partners \n*With a group of friends  \n \nKatinka photos \n*With Wil \n*With Rinske \n*Katinka, Fleur, Samuel, Wil, Rinske, Emma, Anna, Jet \n*Uiterwijk family: Katinka, Fleur, Samuel, Rinske, Emma, Anna, Jet, Norbert with wife, Jurjen with wife \n*The Herlaar family: Katinka, Fleur, Samuel, Rinske, Emma, Anna, Jet, Wil, Lize, Monique, Sander, Erwin, and Anja \n*With colleagues \n*With Karima \n*With Suzanne \n\nEnd \n*All guests present",
+    "action": "Reception begins & group photos",
+    "photographer": "Group photos 3:30–4:00 PM\n*30 min\n*Masters of ceremonies will help organize the groups.\n*See ‘Show additional context’ below for the names. \n*During this half-hour, the photographer will take group photos in 5 large groups:\n1. Prince’s family 2. Mekking family 3. Uiterwijk family 4. Herlaar family 5. Friends & Colleagues.",
+    "attachments": "Group photos \n\n1. The Prins family & guests (and Wilma, Fleur, and Samuel)\n*The Prins family with guests \n*The Prins family (children): Cor, Anca, Sara, Lisa, Jai, Fleur, and Samuel  \n*Parents of the bride and groom: Wilma and Cor & Gonnie and Leo\n*(Sisters-in-law) Lisa, Sara \n*Fleur and Samuel \n\n2. The Mekking family & guests (and Fleur and Samuel)\n*The Mekking family with guests \n*The Mekking family (close relatives): Grandpa, Wilma, Rob, Arthur, Lisa, Jai, Fleur, and Samuel  \n*Grandpa Mekking \n\n3. The Uiterwijk family & guests (and Fleur and Samuel)\n*The Uiterwijk family: Katinka, Fleur, Samuel, Rinske, Emma, Anna, Jet, Norbert, Jessica, Jurjen, and Miriam \n*The Uiterwijk family (small group): Fleur, Samuel, Wil, Rinske, Emma, Anna, Jet \n*Rinske \n\n4. The Herlaar family & friends (and Fleur and Samuel)\n*Herlaar family: Katinka, Fleur, Samuel, Rinske, Emma, Anna, Jet, Wil, Lize, Ruud, Monique, Sander, Erwin, and Anja \n*Wil  \n\n5. Miscellaneous\n*Jorik's group of friends \n*Katinka’s colleagues\n*Karima and Felix\n*Suzanne and Gijsbert\n*Masters of Ceremonies  \n\n6. Total\n*All guests",
     "location": "Palm Greenhouse/Terrace"
   },
   {
     "id": 30,
     "time": "16.00 - 17.30",
-    "action": "Reception",
-    "photographer": "Reception 4:00 PM – 5:30 PM\n*A glimpse of the atmosphere",
+    "action": "Reception continues",
+    "photographer": "Photos of:\n*Atmosphere",
     "attachments": "",
-    "location": ""
+    "location": "Palm Greenhouse/Terrace"
   },
   {
     "id": 31,
     "time": "17.15 - 17.20",
     "action": "Moving the Maserati",
-    "photographer": "for your information",
-    "attachments": "for your information",
-    "location": "Outside by ‘The hedge’"
+    "photographer": "For your information",
+    "attachments": "",
+    "location": "Outside by 'the hedge'"
   },
   {
     "id": 32,
     "time": "17.25 - 17.30",
     "action": "Announcement of the end of the festivities",
-    "photographer": "for your information",
-    "attachments": "for your information",
+    "photographer": "For your information",
+    "attachments": "",
     "location": ""
   },
   {
     "id": 33,
     "time": "17.30 - 17.45",
     "action": "End of the reception and seeing off the bride and groom",
-    "photographer": "Seeing them off\n*The bride and groom with their wedding procession behind them, shot from the front so you can also see the Orangery.",
+    "photographer": "Photos of, always with the Orangery in the foreground:\n*The bride and groom from the front with the procession behind them and the Orangery in the foreground,\n*The car driving away, also from the front, so that the Orangery is once again in the foreground,\n*So both upon arrival (bride and groom from behind, Orangery from the front) and upon departure (bride and groom from the front, Orangery from the front), the Orangery is in the foreground.",
     "attachments": "",
-    "location": "‘The hedge’ outside"
+    "location": "Hedge outside"
   },
   {
     "id": 34,
     "time": "17.45 - 18.00",
     "action": "Departure of reception guests",
-    "photographer": "Taking photos of guests and the atmosphere\n*Photos of guests leaving.",
+    "photographer": "Photos of:\n*Guests leaving,\n*Atmosphere.",
     "attachments": "",
-    "location": "‘The hedge’ outside/parking lot"
+    "location": "'the hedge' outside/parking lot"
   },
   {
     "id": 35,
-    "time": "18.00 - 18.30",
+    "time": "18.00 - 19.00",
     "action": "Final check of dinner tables and break",
-    "photographer": "for your information",
-    "attachments": "for your information",
-    "location": "Oranje Greenhouse/Palm Greenhouse/Terrace"
+    "photographer": "For your information",
+    "attachments": "",
+    "location": "Orange Greenhouse/Palm Greenhouse/Terrace"
   },
   {
     "id": 36,
     "time": "18.00 - 18.30",
-    "action": "Photo shoot with the bride and groom",
-    "photographer": "Photographing the bride and groom\n*Photos of the bride and groom in ‘The hedge’,\n*Photos of the bride and groom taken from a distance by the fountain with the building as a backdrop,\n*Photos of the bride and groom standing at an angle in front of the building,\n*Photos of the bride and groom at the entrance,\n*Photos of the bride and groom at the entrance with the garden as a backdrop.",
+    "action": "Break for the bride and groom and crew meal for the photographer",
+    "photographer": "Crew meal photographer",
     "attachments": "",
-    "location": "Palm greenhouse/Terrace"
+    "location": ""
   },
   {
     "id": 37,
-    "time": "18.30 - 20.30",
-    "action": "Shared dining with close family",
-    "photographer": "Shared dining\n*Atmosphere pictures will be taken during the first half hour while dining.",
+    "time": "18.30 - 19.00",
+    "action": "Photo shoot with the bride and groom",
+    "photographer": "Photos of the bride and groom: \n*In ‘the 'the hedge',\n*Shot from a distance by the fountain with the building as a backdrop,\n*Slightly to the side in front of the building,\n*At the entrance,\n*At the entrance with the garden as a backdrop.",
     "attachments": "",
-    "location": "Oranje Greenhouse"
+    "location": "Palm Greenhouse/Terrace"
   },
   {
     "id": 38,
-    "time": "20.30 - 20.45",
-    "action": "Farewells and seeing off",
-    "photographer": "for your information",
-    "attachments": "for your information",
-    "location": "Terrace"
+    "time": "19.00 - 21.00",
+    "action": "Shared dining with close family",
+    "photographer": "Photos from 7:00 PM - 7:30 PM:\n*Atmosphere.",
+    "attachments": "",
+    "location": "Orange Greenhouse"
   },
   {
     "id": 39,
-    "time": "20.45 - 21.15",
+    "time": "21.00 - 21.15",
+    "action": "Farewells and seeing off",
+    "photographer": "For your information",
+    "attachments": "",
+    "location": ""
+  },
+  {
+    "id": 40,
+    "time": "21.15 - 21.45",
     "action": "Cleanup",
-    "photographer": "for your information",
-    "attachments": "for your information",
-    "location": "Palm Greenhouse/Oranje Greenhouse/Terrace and parking lot"
+    "photographer": "For your information",
+    "attachments": "",
+    "location": ""
   }
 ];
+
 
 // ----------------------------------------------------------------------------
 // FIREBASE UTILS
@@ -1103,6 +1432,15 @@ const getFirebaseApp = () => {
 // MAIN APP
 // ----------------------------------------------------------------------------
 
+interface SupportTicket {
+  id: string;
+  name: string;
+  category: string;
+  message: string;
+  timestamp: number;
+  status: 'pending' | 'replied';
+  reply?: string;
+}
 
 export default function App() {
   const [role, setRole] = useState<'guest'|'cm'|'photographer'>(() => {
@@ -1127,8 +1465,21 @@ export default function App() {
   const [supportEmail, setSupportEmail] = useState('');
   const [supportMessage, setSupportMessage] = useState('');
   const [supportCategory, setSupportCategory] = useState('Probleem met design / lay-out');
+  const [supportActiveTab, setSupportActiveTab] = useState<'create' | 'list'>('create');
+  const [selectedSupportTicketId, setSelectedSupportTicketId] = useState<string | null>(null);
+  const [supportTickets, setSupportTickets] = useState<SupportTicket[]>(() => {
+    try {
+      const saved = localStorage.getItem('wedding_support_tickets');
+      return saved ? JSON.parse(saved) : [];
+    } catch (e) {
+      return [];
+    }
+  });
   const [isSendingSupport, setIsSendingSupport] = useState(false);
   const [supportSuccess, setSupportSuccess] = useState(false);
+  const [hasSupportReply, setHasSupportReply] = useState(() => {
+    return localStorage.getItem('wedding_support_reply_unread') === 'true';
+  });
 
 
 
@@ -1249,6 +1600,8 @@ export default function App() {
       setDismissedPages([]);
       setIsInboxDismissed(false);
       setReadNotifications([]);
+      setHasSupportReply(false);
+      setSupportTickets([]);
       localStorage.removeItem('wedding_dismissed_notifications');
       localStorage.removeItem('wedding_dismissed_pages');
       localStorage.removeItem('wedding_inbox_dismissed');
@@ -1262,12 +1615,28 @@ export default function App() {
 
   const handleSupportSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!supportName.trim() || !supportEmail.trim() || !supportMessage.trim()) return;
+    if (!supportName.trim() || !supportMessage.trim()) return;
     
     setIsSendingSupport(true);
+    
+    // Create new ticket object
+    const ticketId = 'ticket_' + Math.random().toString(36).substring(2, 11) + '_' + Date.now();
+    const newTicket: SupportTicket = {
+      id: ticketId,
+      name: supportName,
+      category: supportCategory,
+      message: supportMessage,
+      timestamp: Date.now(),
+      status: 'pending'
+    };
+
+    // Save ticket locally first
+    const updatedTickets = [newTicket, ...supportTickets];
+    setSupportTickets(updatedTickets);
+    localStorage.setItem('wedding_support_tickets', JSON.stringify(updatedTickets));
 
     try {
-      // Submit to Formspree
+      // Submit ONLY to Formspree, bypassing Firestore completely
       const response = await fetch('https://formspree.io/f/xvzywpaa', {
         method: 'POST',
         headers: {
@@ -1275,27 +1644,51 @@ export default function App() {
           'Accept': 'application/json'
         },
         body: JSON.stringify({
+          ticketId: ticketId,
           name: supportName,
-          email: supportEmail,
+          email: supportEmail.trim() || 'no-reply@example.com',
           category: supportCategory,
           message: supportMessage
         })
       });
-
-      if (!response.ok) {
-        throw new Error('Formspree response not ok');
+      
+      if (response.ok) {
+        setIsSendingSupport(false);
+        setSupportSuccess(true);
+        setSupportMessage('');
+      } else {
+        alert(langEN ? "Something went wrong. Please try again." : "Er is iets misgegaan. Probeer het opnieuw.");
+        setIsSendingSupport(false);
       }
-
-      setIsSendingSupport(false);
-      setSupportSuccess(true);
-      setSupportMessage('');
-      setSupportEmail('');
     } catch (err) {
-      console.error('Formspree connection error:', err);
-      alert(langEN ? "Connection error with Formspree. Please try again." : "Verbindingsfout met Formspree. Probeer het opnieuw.");
+      console.error(err);
+      alert(langEN ? "Connection error. Please try again." : "Verbindingsfout. Probeer het opnieuw.");
       setIsSendingSupport(false);
     }
   };
+
+  const handleDeleteSupportTicket = (ticketId: string, e: React.MouseEvent) => {
+    e.stopPropagation(); // Prevent opening details view
+    if (window.confirm(langEN ? "Are you sure you want to delete this support request?" : "Weet je zeker dat je dit hulpverzoek wilt verwijderen?")) {
+      const updated = supportTickets.filter(t => t.id !== ticketId);
+      setSupportTickets(updated);
+      localStorage.setItem('wedding_support_tickets', JSON.stringify(updated));
+      if (selectedSupportTicketId === ticketId) {
+        setSelectedSupportTicketId(null);
+      }
+    }
+  };
+
+  // Clear unread support reply flag when viewing the replied ticket
+  useEffect(() => {
+    if (selectedSupportTicketId) {
+      const selectedTicket = supportTickets.find(t => t.id === selectedSupportTicketId);
+      if (selectedTicket && selectedTicket.status === 'replied') {
+        setHasSupportReply(false);
+        localStorage.setItem('wedding_support_reply_unread', 'false');
+      }
+    }
+  }, [selectedSupportTicketId, supportTickets]);
 
 
 
@@ -1661,6 +2054,7 @@ export default function App() {
   const [settingsCode, setSettingsCode] = useState('');
   const [isFullscreenMap, setIsFullscreenMap] = useState(false);
   const [isFullscreenMoodboard, setIsFullscreenMoodboard] = useState(false);
+  const [isFullscreenBijlage, setIsFullscreenBijlage] = useState(false);
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   const [isSettingsExpanded, setIsSettingsExpanded] = useState(false);
   
@@ -1695,6 +2089,10 @@ export default function App() {
     setReadNotifications(newRead);
     localStorage.setItem('wedding_read_notifications', JSON.stringify(newRead));
     markInboxAsRead(true);
+    
+    // Clear support reply unread state when inbox is opened
+    setHasSupportReply(false);
+    localStorage.setItem('wedding_support_reply_unread', 'false');
   };
 
   const markInboxAsRead = (val: boolean) => {
@@ -1882,9 +2280,18 @@ export default function App() {
     pages.splice(3, 0, { id: 'cm', icon: <Filter size={20}/>, label: langEN ? 'Photographer Tasks' : 'CM Takenlijst' });
   }
 
+  if (role === 'cm') {
+    pages.splice(4, 0, { id: 'bijlage', icon: <FileText size={20}/>, label: 'Bijlage' });
+  }
+
   if (role === 'photographer') {
-    pages.splice(4, 0, { id: 'moodboard', icon: <Image size={20}/>, label: 'Moodboard' });
-    pages.splice(5, 0, { id: 'gasten', icon: <Camera size={20}/>, label: langEN ? 'Guest Directory' : 'Fotolijst' });
+    pages.splice(4, 0, { id: 'group_photos', icon: <Camera size={20}/>, label: 'Group photos' });
+    pages.splice(5, 0, { id: 'moodboard', icon: <Image size={20}/>, label: 'Moodboard' });
+    pages.splice(6, 0, { id: 'gasten', icon: <Camera size={20}/>, label: langEN ? 'Guest Directory' : 'Fotolijst' });
+  }
+
+  if (role === 'guest') {
+    pages.splice(4, 0, { id: 'groepsfotos', icon: <Camera size={20}/>, label: 'Groepsfoto’s' });
   }
 
   if (isFloatingChatOpen) {
@@ -1926,7 +2333,7 @@ export default function App() {
         <div className="text-center md:text-left mb-6 md:mb-12">
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-serif text-[#1A1A2E] dark:text-slate-100 font-bold mb-2 break-words">
             <span className="md:hidden">Jorik & Katinka</span>
-            <span className="hidden md:block">Jorik&<br/>Katinka</span>
+            <span className="hidden md:block">Jorik &<br/>Katinka</span>
           </h1>
           <p className="text-xs lg:text-sm uppercase tracking-widest text-[#c7b272] font-semibold leading-relaxed">
             {langEN ? 'June 14, 2026' : '14 juni 2026'} <br/> Oranjerie Hydepark
@@ -2175,11 +2582,10 @@ export default function App() {
                   <div className="flex items-center gap-3">
                     <button 
                       onClick={() => handleDismissPage('programma')}
-                      className="text-[11px] text-red-500/60 hover:text-red-600 transition-colors cursor-pointer hover:underline flex items-center gap-1 font-medium"
+                      className="p-2 text-red-500/50 hover:text-red-500 hover:bg-red-500/10 rounded-full transition-colors cursor-pointer"
                       title={langEN ? "Don't show this page again" : "Ik wil dit niet meer zien."}
                     >
-                      <Trash2 size={12}/>
-                      <span>{langEN ? "Hide page" : "Ik wil dit niet meer zien."}</span>
+                      <Trash2 size={16}/>
                     </button>
                     <button onClick={(e) => togglePin('programma', e)} className="md:hidden flex items-center gap-2 text-xs font-bold text-[#c7b272] bg-white dark:bg-slate-900 px-3 py-1.5 rounded-full shadow-sm border border-gray-100 dark:border-slate-800">
                       {pinnedPages.includes('programma') ? <PinOff size={14}/> : <Pin size={14}/>}
@@ -2256,11 +2662,10 @@ export default function App() {
                   <div className="flex items-center gap-3">
                     <button 
                       onClick={() => handleDismissPage('locatie')}
-                      className="text-[11px] text-red-500/60 hover:text-red-600 transition-colors cursor-pointer hover:underline flex items-center gap-1 font-medium"
+                      className="p-2 text-red-500/50 hover:text-red-500 hover:bg-red-500/10 rounded-full transition-colors cursor-pointer"
                       title={langEN ? "Don't show this page again" : "Ik wil dit niet meer zien."}
                     >
-                      <Trash2 size={12}/>
-                      <span>{langEN ? "Hide page" : "Ik wil dit niet meer zien."}</span>
+                      <Trash2 size={16}/>
                     </button>
                     <button onClick={(e) => togglePin('locatie', e)} className="md:hidden w-fit flex items-center gap-2 text-xs font-bold text-[#c7b272] bg-white dark:bg-slate-900 px-3 py-1.5 rounded-full shadow-sm border border-gray-100 dark:border-slate-800">
                       {pinnedPages.includes('locatie') ? <PinOff size={14}/> : <Pin size={14}/>}
@@ -2294,11 +2699,10 @@ export default function App() {
                     </button>
                     <button 
                       onClick={() => handleDismissPage('plattegrond')}
-                      className="text-[11px] text-red-500/60 hover:text-red-600 transition-colors cursor-pointer hover:underline flex items-center gap-1 font-medium"
+                      className="p-2 text-red-500/50 hover:text-red-500 hover:bg-red-500/10 rounded-full transition-colors cursor-pointer"
                       title={langEN ? "Don't show this page again" : "Ik wil dit niet meer zien."}
                     >
-                      <Trash2 size={12}/>
-                      <span>{langEN ? "Hide page" : "Ik wil dit niet meer zien."}</span>
+                      <Trash2 size={16}/>
                     </button>
                     <button onClick={(e) => togglePin('plattegrond', e)} className="md:hidden flex items-center gap-2 text-xs font-bold text-[#c7b272] bg-white dark:bg-slate-900 px-3 py-1.5 rounded-full shadow-sm border border-gray-100 dark:border-slate-800">
                       {pinnedPages.includes('plattegrond') ? <PinOff size={14}/> : <Pin size={14}/>}
@@ -2339,11 +2743,10 @@ export default function App() {
                   <div className="flex items-center gap-3">
                     <button 
                       onClick={() => handleDismissPage('cm')}
-                      className="text-[11px] text-red-500/60 hover:text-red-600 transition-colors cursor-pointer hover:underline flex items-center gap-1 font-medium"
+                      className="p-2 text-red-500/50 hover:text-red-500 hover:bg-red-500/10 rounded-full transition-colors cursor-pointer"
                       title={langEN ? "Don't show this page again" : "Ik wil dit niet meer zien."}
                     >
-                      <Trash2 size={12}/>
-                      <span>{langEN ? "Hide page" : "Ik wil dit niet meer zien."}</span>
+                      <Trash2 size={16}/>
                     </button>
                     <button onClick={(e) => togglePin('cm', e)} className="md:hidden flex items-center gap-2 text-xs font-bold text-[#c7b272] bg-white dark:bg-slate-900 px-3 py-1.5 rounded-full shadow-sm border border-gray-100 dark:border-slate-800">
                       {pinnedPages.includes('cm') ? <PinOff size={14}/> : <Pin size={14}/>}
@@ -2351,12 +2754,12 @@ export default function App() {
                   </div>
                 </div>
                 {role === 'photographer' ? (
-                  /* PHOTOGRAPHER PROGRAM (SCHEDULE STYLE) */
+                  /* PHOTOGRAPHER PROGRAM (SCHEDULE STYLE, ALWAYS EXPANDED) */
                   <div className="space-y-0 relative">
                     {photographerTasks.map((task) => (
                       <div 
                         key={task.id} 
-                        className="py-6 border-b border-[#1A1A2E]/5 dark:border-white/5 -mx-6 px-6"
+                        className="group relative py-6 border-b border-[#1A1A2E]/5 dark:border-white/5 transition-colors hover:bg-white/50 dark:hover:bg-slate-800/20 -mx-6 px-6 rounded-2xl"
                       >
                         <div className="flex flex-col md:flex-row md:items-baseline gap-2 md:gap-8">
                           <div className="text-[#c7b272] font-semibold text-sm md:text-base tracking-widest shrink-0 w-32 font-mono">
@@ -2375,38 +2778,14 @@ export default function App() {
                             )}
 
                             {task.photographer && (
-                              <p className="mt-2 text-sm text-gray-700 dark:text-slate-300 leading-relaxed whitespace-pre-wrap font-normal">
+                              <p className="mt-3 text-sm text-[#666666] dark:text-slate-300 leading-relaxed whitespace-pre-wrap font-normal">
                                 {task.photographer}
                               </p>
                             )}
 
-                            {task.attachments && task.attachments !== "for your information" && (
-                              <div className="mt-3">
-                                <button
-                                  onClick={() => setExpandedPhotoTask(expandedPhotoTask === task.id ? null : task.id)}
-                                  className="flex items-center gap-1.5 text-xs font-bold text-[#c7b272] hover:text-[#b8a15f] cursor-pointer focus:outline-none bg-[#c7b272]/5 hover:bg-[#c7b272]/10 px-3 py-1.5 rounded-xl border border-[#c7b272]/15 transition"
-                                >
-                                  <span>{langEN ? 'Attachment' : 'Bijlage'}</span>
-                                  <ChevronRight 
-                                    size={12} 
-                                    className={`transition-transform duration-300 ${expandedPhotoTask === task.id ? 'rotate-90' : ''}`} 
-                                  />
-                                </button>
-                                <AnimatePresence>
-                                  {expandedPhotoTask === task.id && (
-                                    <motion.div
-                                      initial={{ height: 0, opacity: 0 }}
-                                      animate={{ height: 'auto', opacity: 1 }}
-                                      exit={{ height: 0, opacity: 0 }}
-                                      transition={{ duration: 0.3, ease: 'easeInOut' }}
-                                      className="overflow-hidden"
-                                    >
-                                      <div className="mt-2 text-xs text-gray-600 dark:text-slate-400 bg-gray-50/50 dark:bg-slate-800/40 p-4 rounded-xl border border-gray-100 dark:border-slate-800 whitespace-pre-wrap leading-relaxed">
-                                        {task.attachments}
-                                      </div>
-                                    </motion.div>
-                                  )}
-                                </AnimatePresence>
+                            {task.attachments && task.attachments !== "for your information" && task.attachments !== "" && (
+                              <div className="mt-3 bg-gray-50/50 dark:bg-slate-800/40 p-4 rounded-xl border border-gray-100 dark:border-slate-800 text-xs text-gray-500 dark:text-slate-400 whitespace-pre-wrap leading-relaxed">
+                                {task.attachments}
                               </div>
                             )}
                           </div>
@@ -2415,8 +2794,8 @@ export default function App() {
                     ))}
                   </div>
                 ) : (
-                  /* CM TAKENLIST (ORIGINAL STYLE) */
-                  <div className="space-y-6">
+                  /* CM TAKENLIST (SCHEDULE STYLE, ALWAYS EXPANDED) */
+                  <div className="space-y-0 relative">
                     {cmTasksData.filter(task => !!task.who?.trim()).map(task => {
                       // Extract roles based on mentions in text
                       const fullText = (task.action + ' ' + task.who + ' ' + task.desc).toLowerCase();
@@ -2426,43 +2805,54 @@ export default function App() {
                       if (fullText.includes('katinka') || fullText.includes(' k ')) roles.push('K');
                       if (fullText.includes('fleur') || fullText.includes('samuel') || fullText.includes('f/s')) roles.push('F/S');
                       if (fullText.includes('wilma') || fullText.includes(' w ')) roles.push('W');
-                      // Always add CM as it is the CM tab and they are generally involved if it's in this list,
-                      // but we strictly follow mentions if requested, however 'CM' is mostly implied.
                       if (roles.length === 0) roles.push('CM');
 
                       return (
-                        <div key={task.id} className="bg-white dark:bg-slate-900 p-5 rounded-2xl shadow-sm border border-gray-100 dark:border-slate-800 border-l-[6px] border-[#c7b272] flex flex-col hover:shadow-md transition">
-                          <span className="text-[#c7b272] text-xs md:text-sm font-bold font-mono bg-[#c7b272]/10 w-fit px-3 py-1 rounded-md mb-3">{task.time}</span>
-                          <h4 className="font-bold text-[#1A1A2E] dark:text-slate-100 text-lg mb-2">{task.action}</h4>
-                          
-                          <div className="mb-4 text-sm text-gray-800 dark:text-slate-200 font-medium leading-relaxed">
-                            <span className="whitespace-pre-wrap">{task.who}</span>
-                          </div>
+                        <div 
+                          key={task.id} 
+                          className="group relative py-6 border-b border-[#1A1A2E]/5 dark:border-white/5 transition-colors hover:bg-white/50 dark:hover:bg-slate-800/20 -mx-6 px-6 rounded-2xl"
+                        >
+                          <div className="flex flex-col md:flex-row md:items-baseline gap-2 md:gap-8">
+                            <div className="text-[#c7b272] font-semibold text-sm md:text-base tracking-widest shrink-0 w-32 font-mono">
+                              {task.time}
+                            </div>
+                            <div className="flex-1">
+                              <h3 className="font-serif text-xl md:text-2xl font-medium text-[#1A1A2E] dark:text-slate-100">
+                                {task.action}
+                              </h3>
+                              
+                              {task.location && (
+                                <div className="flex items-center text-xs text-[#666666] dark:text-slate-400 font-medium tracking-wide mt-1.5 gap-1">
+                                  <MapPin size={12} className="text-[#c7b272] shrink-0" />
+                                  <span>{task.location}</span>
+                                </div>
+                              )}
 
-                          {task.desc && (
-                            <details className="text-sm group">
-                              <summary className="cursor-pointer text-gray-500 hover:text-[#c7b272] font-medium transition-colors outline-none pb-1">
-                                {langEN ? 'Show additional context' : 'Toon aanvullende context'}
-                              </summary>
-                              <div className="mt-2 text-gray-500 dark:text-slate-400 bg-gray-50 dark:bg-slate-800/50 p-4 rounded-xl border border-gray-100 dark:border-slate-800">
-                                <span className="whitespace-pre-wrap">{task.desc}</span>
+                              {task.who && (
+                                <p className="mt-3 text-sm text-[#666666] dark:text-slate-300 leading-relaxed whitespace-pre-wrap font-normal">
+                                  {task.who}
+                                </p>
+                              )}
+
+                              {task.desc && (
+                                <div className="mt-3 bg-gray-50/50 dark:bg-slate-800/40 p-4 rounded-xl border border-gray-100 dark:border-slate-800 text-xs text-gray-500 dark:text-slate-400 whitespace-pre-wrap leading-relaxed">
+                                  {task.desc}
+                                </div>
+                              )}
+
+                              <div className="mt-4 flex flex-wrap gap-1.5 justify-end">
+                                {roles.map((p, idx) => {
+                                  let bgClass = "bg-gray-200 dark:bg-slate-700 text-gray-800 dark:text-slate-200";
+                                  if (p === 'CM') bgClass = "bg-[#1A1A2E] dark:bg-slate-800 text-white";
+                                  else if (p === 'J' || p === 'K') bgClass = "bg-[#c7b272] text-white";
+                                  else if (p === 'F/S') bgClass = "bg-[#E2725B] text-white";
+                                  if (p === 'W') bgClass = "bg-[#8A9A5B] text-white";
+                                  
+                                  return (
+                                    <span key={idx} className={`${bgClass} px-3 py-1 rounded-full text-xs font-bold`}>{p}</span>
+                                  );
+                                })}
                               </div>
-                            </details>
-                          )}
-
-                          <div className="mt-4 pt-3 border-t border-gray-100 dark:border-slate-800 flex justify-end">
-                            <div className="flex flex-wrap gap-1.5">
-                              {roles.map((p, idx) => {
-                                let bgClass = "bg-gray-200 dark:bg-slate-700 text-gray-800 dark:text-slate-200";
-                                if (p === 'CM') bgClass = "bg-[#1A1A2E] dark:bg-slate-800 text-white";
-                                else if (p === 'J' || p === 'K') bgClass = "bg-[#c7b272] text-white";
-                                else if (p === 'F/S') bgClass = "bg-[#E2725B] text-white";
-                                if (p === 'W') bgClass = "bg-[#8A9A5B] text-white";
-                                
-                                return (
-                                  <span key={idx} className={`${bgClass} px-3 py-1 rounded-full text-xs font-bold`}>{p}</span>
-                                );
-                              })}
                             </div>
                           </div>
                         </div>
@@ -2502,11 +2892,10 @@ export default function App() {
                     </button>
                     <button 
                       onClick={() => handleDismissPage('moodboard')}
-                      className="text-[11px] text-red-500/60 hover:text-red-600 transition-colors cursor-pointer hover:underline flex items-center gap-1 font-medium"
+                      className="p-2 text-red-500/50 hover:text-red-500 hover:bg-red-500/10 rounded-full transition-colors cursor-pointer"
                       title={langEN ? "Don't show this page again" : "Ik wil dit niet meer zien."}
                     >
-                      <Trash2 size={12}/>
-                      <span>{langEN ? "Hide page" : "Ik wil dit niet meer zien."}</span>
+                      <Trash2 size={16}/>
                     </button>
                     <button onClick={(e) => togglePin('moodboard', e)} className="md:hidden flex items-center gap-2 text-xs font-bold text-[#c7b272] bg-white dark:bg-slate-900 px-3 py-1.5 rounded-full shadow-sm border border-gray-100 dark:border-slate-800">
                       {pinnedPages.includes('moodboard') ? <PinOff size={14}/> : <Pin size={14}/>}
@@ -2530,6 +2919,415 @@ export default function App() {
                          target.style.display = 'none';
                       }}
                     />
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          )}
+
+          {/* TAB: BIJLAGE */}
+          {activeTab === 'bijlage' && role === 'cm' && (
+            <motion.div 
+              key="bijlage" 
+              initial={{ opacity: 0, y: 10 }} 
+              animate={{ opacity: 1, y: 0 }} 
+              exit={{ opacity: 0, scale: 0.98 }} 
+              className="absolute inset-0 overflow-y-auto p-6 md:p-12 pb-32 md:pb-12"
+            >
+              <div className="max-w-4xl mx-auto">
+                <div className="flex justify-between items-end border-b border-[#1A1A2E]/10 dark:border-white/10 pb-6 mb-8 mt-4">
+                  <div>
+                    <h2 className="font-serif text-4xl md:text-5xl font-medium tracking-tight text-[#1A1A2E] dark:text-slate-100 flex items-center gap-3">
+                      <FileText className="text-[#c7b272]" size={32} />
+                      Bijlage
+                    </h2>
+                    <p className="text-xs md:text-sm text-gray-500 dark:text-slate-400 mt-2">
+                      Plaatsing borden
+                    </p>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <button onClick={() => setIsFullscreenBijlage(true)} className="flex items-center gap-2 text-xs font-bold text-[#1A1A2E] dark:text-slate-100 bg-[#c7b272]/20 hover:bg-[#c7b272] hover:text-white dark:bg-[#c7b272]/20 dark:hover:bg-[#c7b272] px-4 py-2 rounded-full transition-colors duration-300 cursor-pointer">
+                      <Maximize size={14}/> <span className="hidden md:inline">Volledig scherm</span>
+                    </button>
+                    <button 
+                      onClick={() => handleDismissPage('bijlage')}
+                      className="p-2 text-red-500/50 hover:text-red-500 hover:bg-red-500/10 rounded-full transition-colors cursor-pointer"
+                      title="Ik wil dit niet meer zien."
+                    >
+                      <Trash2 size={16}/>
+                    </button>
+                    <button onClick={(e) => togglePin('bijlage', e)} className="md:hidden flex items-center gap-2 text-xs font-bold text-[#c7b272] bg-white dark:bg-slate-900 px-3 py-1.5 rounded-full shadow-sm border border-gray-100 dark:border-slate-800">
+                      {pinnedPages.includes('bijlage') ? <PinOff size={14}/> : <Pin size={14}/>}
+                    </button>
+                  </div>
+                </div>
+                
+                <div className="bg-white dark:bg-slate-900 p-6 rounded-[2rem] shadow-sm border border-[#1A1A2E]/5 dark:border-white/5 overflow-hidden flex flex-col items-center group cursor-pointer" onClick={() => setIsFullscreenBijlage(true)}>
+                  <div className="w-full relative rounded-2xl overflow-hidden shadow-inner border border-gray-100 dark:border-slate-800 bg-[#F5F0E6]/30 dark:bg-slate-950/30">
+                    <div className="absolute inset-0 bg-[#1A1A2E]/0 group-hover:bg-[#1A1A2E]/10 transition-colors z-10 flex items-center justify-center">
+                      <div className="bg-white/95 backdrop-blur-md text-[#1A1A2E] px-6 py-3 rounded-full font-bold shadow-xl opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-4 group-hover:translate-y-0 flex items-center gap-2">
+                        <Maximize size={16} className="text-[#c7b272]"/> Klik om te vergroten
+                      </div>
+                    </div>
+                    <img 
+                      src="/plaatsing_borden.jpg" 
+                      alt="Plaatsing borden" 
+                      className="w-full h-auto object-contain max-h-[80vh] mx-auto rounded-2xl"
+                      onError={(e) => {
+                         const target = e.target as HTMLImageElement;
+                         target.style.display = 'none';
+                      }}
+                    />
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          )}
+
+          {/* TAB: GROUP PHOTOS (PHOTOGRAPHER) */}
+          {activeTab === 'group_photos' && role === 'photographer' && (
+            <motion.div 
+              key="group_photos" 
+              initial={{ opacity: 0, y: 10 }} 
+              animate={{ opacity: 1, y: 0 }} 
+              exit={{ opacity: 0, scale: 0.98 }} 
+              className="absolute inset-0 overflow-y-auto p-6 md:p-12 pb-32 md:pb-12"
+            >
+              <div className="max-w-4xl mx-auto">
+                <div className="flex justify-between items-end border-b border-[#1A1A2E]/10 dark:border-white/10 pb-6 mb-8 mt-4">
+                  <div>
+                    <h2 className="font-serif text-4xl md:text-5xl font-medium tracking-tight text-[#1A1A2E] dark:text-slate-100 flex items-center gap-3">
+                      <Camera className="text-[#c7b272]" size={32} />
+                      Group photos
+                    </h2>
+                    <p className="text-xs md:text-sm text-gray-500 dark:text-slate-400 mt-2">
+                      Structured checklist to seamlessly manage the group photo queue.
+                    </p>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <button 
+                      onClick={() => handleDismissPage('group_photos')}
+                      className="p-2 text-red-500/50 hover:text-red-500 hover:bg-red-500/10 rounded-full transition-colors cursor-pointer"
+                      title="Don't show this page again"
+                    >
+                      <Trash2 size={16}/>
+                    </button>
+                    <button onClick={(e) => togglePin('group_photos', e)} className="md:hidden flex items-center gap-2 text-xs font-bold text-[#c7b272] bg-white dark:bg-slate-900 px-3 py-1.5 rounded-full shadow-sm border border-gray-100 dark:border-slate-800">
+                      {pinnedPages.includes('group_photos') ? <PinOff size={14}/> : <Pin size={14}/>}
+                    </button>
+                  </div>
+                </div>
+                
+                <div className="bg-white dark:bg-slate-900 rounded-[2rem] shadow-sm border border-[#1A1A2E]/5 dark:border-white/5 overflow-hidden p-6 md:p-8 space-y-6">
+                  {/* Group 1 */}
+                  <div className="border-b border-[#1A1A2E]/5 dark:border-white/5 pb-6">
+                    <h3 className="font-serif text-xl font-bold text-[#1A1A2E] dark:text-slate-100 mb-4 flex items-center gap-3">
+                      <span className="text-sm font-mono text-[#c7b272] bg-[#c7b272]/10 px-2.5 py-1 rounded-md">1</span>
+                      The Prins family & guests (and Wilma, Fleur, and Samuel)
+                    </h3>
+                    <ul className="pl-6 space-y-3.5 text-sm md:text-base text-gray-600 dark:text-slate-300 font-medium">
+                      <li className="flex items-center gap-3">
+                        <input type="checkbox" className="w-4 h-4 accent-[#c7b272]" />
+                        <span>The Prins family with guests</span>
+                      </li>
+                      <li className="flex items-center gap-3">
+                        <input type="checkbox" className="w-4 h-4 accent-[#c7b272]" />
+                        <span>The Prins family (children): Cor, Anca, Sara, Lisa, Jai, Fleur, and Samuel</span>
+                      </li>
+                      <li className="flex items-center gap-3">
+                        <input type="checkbox" className="w-4 h-4 accent-[#c7b272]" />
+                        <span>Parents of the bride and groom: Wilma and Cor & Gonnie and Leo</span>
+                      </li>
+                      <li className="flex items-center gap-3">
+                        <input type="checkbox" className="w-4 h-4 accent-[#c7b272]" />
+                        <span>(Sisters-in-law) Lisa, Sara</span>
+                      </li>
+                      <li className="flex items-center gap-3">
+                        <input type="checkbox" className="w-4 h-4 accent-[#c7b272]" />
+                        <span>Fleur and Samuel</span>
+                      </li>
+                    </ul>
+                  </div>
+
+                  {/* Group 2 */}
+                  <div className="border-b border-[#1A1A2E]/5 dark:border-white/5 pb-6">
+                    <h3 className="font-serif text-xl font-bold text-[#1A1A2E] dark:text-slate-100 mb-4 flex items-center gap-3">
+                      <span className="text-sm font-mono text-[#c7b272] bg-[#c7b272]/10 px-2.5 py-1 rounded-md">2</span>
+                      The Mekking family & guests (and Fleur and Samuel)
+                    </h3>
+                    <ul className="pl-6 space-y-3.5 text-sm md:text-base text-gray-600 dark:text-slate-300 font-medium">
+                      <li className="flex items-center gap-3">
+                        <input type="checkbox" className="w-4 h-4 accent-[#c7b272]" />
+                        <span>The Mekking family with guests</span>
+                      </li>
+                      <li className="flex items-center gap-3">
+                        <input type="checkbox" className="w-4 h-4 accent-[#c7b272]" />
+                        <span>The Mekking family (close relatives): Grandpa, Wilma, Rob, Arthur, Lisa, Jai, Fleur, and Samuel</span>
+                      </li>
+                      <li className="flex items-center gap-3">
+                        <input type="checkbox" className="w-4 h-4 accent-[#c7b272]" />
+                        <span>Grandpa Mekking</span>
+                      </li>
+                    </ul>
+                  </div>
+
+                  {/* Group 3 */}
+                  <div className="border-b border-[#1A1A2E]/5 dark:border-white/5 pb-6">
+                    <h3 className="font-serif text-xl font-bold text-[#1A1A2E] dark:text-slate-100 mb-4 flex items-center gap-3">
+                      <span className="text-sm font-mono text-[#c7b272] bg-[#c7b272]/10 px-2.5 py-1 rounded-md">3</span>
+                      The Uiterwijk family & guests (and Fleur and Samuel)
+                    </h3>
+                    <ul className="pl-6 space-y-3.5 text-sm md:text-base text-gray-600 dark:text-slate-300 font-medium">
+                      <li className="flex items-center gap-3">
+                        <input type="checkbox" className="w-4 h-4 accent-[#c7b272]" />
+                        <span>The Uiterwijk family: Katinka, Fleur, Samuel, Rinske, Emma, Anna, Jet, Norbert, Jessica, Jurjen, and Miriam</span>
+                      </li>
+                      <li className="flex items-center gap-3">
+                        <input type="checkbox" className="w-4 h-4 accent-[#c7b272]" />
+                        <span>The Uiterwijk family (small group): Fleur, Samuel, Wil, Rinske, Emma, Anna, Jet</span>
+                      </li>
+                      <li className="flex items-center gap-3">
+                        <input type="checkbox" className="w-4 h-4 accent-[#c7b272]" />
+                        <span>Rinske</span>
+                      </li>
+                    </ul>
+                  </div>
+
+                  {/* Group 4 */}
+                  <div className="border-b border-[#1A1A2E]/5 dark:border-white/5 pb-6">
+                    <h3 className="font-serif text-xl font-bold text-[#1A1A2E] dark:text-slate-100 mb-4 flex items-center gap-3">
+                      <span className="text-sm font-mono text-[#c7b272] bg-[#c7b272]/10 px-2.5 py-1 rounded-md">4</span>
+                      The Herlaar family & friends (and Fleur and Samuel)
+                    </h3>
+                    <ul className="pl-6 space-y-3.5 text-sm md:text-base text-gray-600 dark:text-slate-300 font-medium">
+                      <li className="flex items-center gap-3">
+                        <input type="checkbox" className="w-4 h-4 accent-[#c7b272]" />
+                        <span>Herlaar family: Katinka, Fleur, Samuel, Rinske, Emma, Anna, Jet, Wil, Lize, Ruud, Monique, Sander, Erwin, and Anja</span>
+                      </li>
+                      <li className="flex items-center gap-3">
+                        <input type="checkbox" className="w-4 h-4 accent-[#c7b272]" />
+                        <span>Wil</span>
+                      </li>
+                    </ul>
+                  </div>
+
+                  {/* Group 5 */}
+                  <div className="border-b border-[#1A1A2E]/5 dark:border-white/5 pb-6">
+                    <h3 className="font-serif text-xl font-bold text-[#1A1A2E] dark:text-slate-100 mb-4 flex items-center gap-3">
+                      <span className="text-sm font-mono text-[#c7b272] bg-[#c7b272]/10 px-2.5 py-1 rounded-md">5</span>
+                      Miscellaneous
+                    </h3>
+                    <ul className="pl-6 space-y-3.5 text-sm md:text-base text-gray-600 dark:text-slate-300 font-medium">
+                      <li className="flex items-center gap-3">
+                        <input type="checkbox" className="w-4 h-4 accent-[#c7b272]" />
+                        <span>Jorik's group of friends</span>
+                      </li>
+                      <li className="flex items-center gap-3">
+                        <input type="checkbox" className="w-4 h-4 accent-[#c7b272]" />
+                        <span>Katinka’s colleagues</span>
+                      </li>
+                      <li className="flex items-center gap-3">
+                        <input type="checkbox" className="w-4 h-4 accent-[#c7b272]" />
+                        <span>Karima and Felix</span>
+                      </li>
+                      <li className="flex items-center gap-3">
+                        <input type="checkbox" className="w-4 h-4 accent-[#c7b272]" />
+                        <span>Suzanne and Gijsbert</span>
+                      </li>
+                      <li className="flex items-center gap-3">
+                        <input type="checkbox" className="w-4 h-4 accent-[#c7b272]" />
+                        <span>Masters of Ceremonies</span>
+                      </li>
+                    </ul>
+                  </div>
+
+                  {/* Group 6 */}
+                  <div>
+                    <h3 className="font-serif text-xl font-bold text-[#1A1A2E] dark:text-slate-100 mb-4 flex items-center gap-3">
+                      <span className="text-sm font-mono text-[#c7b272] bg-[#c7b272]/10 px-2.5 py-1 rounded-md">6</span>
+                      Total
+                    </h3>
+                    <ul className="pl-6 space-y-3.5 text-sm md:text-base text-gray-600 dark:text-slate-300 font-medium">
+                      <li className="flex items-center gap-3">
+                        <input type="checkbox" className="w-4 h-4 accent-[#c7b272]" />
+                        <span>All guests</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          )}
+
+          {/* TAB: GROEPSFOTO'S (GUEST) */}
+          {activeTab === 'groepsfotos' && role === 'guest' && (
+            <motion.div 
+              key="groepsfotos" 
+              initial={{ opacity: 0, y: 10 }} 
+              animate={{ opacity: 1, y: 0 }} 
+              exit={{ opacity: 0, scale: 0.98 }} 
+              className="absolute inset-0 overflow-y-auto p-6 md:p-12 pb-32 md:pb-12"
+            >
+              <div className="max-w-4xl mx-auto">
+                <div className="flex justify-between items-end border-b border-[#1A1A2E]/10 dark:border-white/10 pb-6 mb-8 mt-4">
+                  <div>
+                    <h2 className="font-serif text-4xl md:text-5xl font-medium tracking-tight text-[#1A1A2E] dark:text-slate-100 flex items-center gap-3">
+                      <Camera className="text-[#c7b272]" size={32} />
+                      Groepsfoto’s
+                    </h2>
+                    <p className="text-xs md:text-sm text-gray-500 dark:text-slate-400 mt-2">
+                      Handig overzicht zodat bruiloftsgasten hun beurt in de gaten kunnen houden.
+                    </p>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <button 
+                      onClick={() => handleDismissPage('groepsfotos')}
+                      className="p-2 text-red-500/50 hover:text-red-500 hover:bg-red-500/10 rounded-full transition-colors cursor-pointer"
+                      title="Ik wil dit niet meer zien."
+                    >
+                      <Trash2 size={16}/>
+                    </button>
+                    <button onClick={(e) => togglePin('groepsfotos', e)} className="md:hidden flex items-center gap-2 text-xs font-bold text-[#c7b272] bg-white dark:bg-slate-900 px-3 py-1.5 rounded-full shadow-sm border border-gray-100 dark:border-slate-800">
+                      {pinnedPages.includes('groepsfotos') ? <PinOff size={14}/> : <Pin size={14}/>}
+                    </button>
+                  </div>
+                </div>
+                
+                <div className="bg-white dark:bg-slate-900 rounded-[2rem] shadow-sm border border-[#1A1A2E]/5 dark:border-white/5 overflow-hidden p-6 md:p-8 space-y-6">
+                  {/* Group 1 */}
+                  <div className="border-b border-[#1A1A2E]/5 dark:border-white/5 pb-6">
+                    <h3 className="font-serif text-xl font-bold text-[#1A1A2E] dark:text-slate-100 mb-4 flex items-center gap-3">
+                      <span className="text-sm font-mono text-[#c7b272] bg-[#c7b272]/10 px-2.5 py-1 rounded-md">1</span>
+                      De familie Prins & gasten
+                    </h3>
+                    <ul className="pl-6 space-y-3.5 text-sm md:text-base text-gray-600 dark:text-slate-300 font-medium">
+                      <li className="flex items-center gap-3">
+                        <input type="checkbox" className="w-4 h-4 accent-[#c7b272]" />
+                        <span>De familie Prins met gasten</span>
+                      </li>
+                      <li className="flex items-center gap-3">
+                        <input type="checkbox" className="w-4 h-4 accent-[#c7b272]" />
+                        <span>De familie Prins (kinderen): Cor, Anca, Sara, Lisa, Jai, Fleur en Samuel</span>
+                      </li>
+                      <li className="flex items-center gap-3">
+                        <input type="checkbox" className="w-4 h-4 accent-[#c7b272]" />
+                        <span>Ouders van de bruid en bruidegom: Wilma en Cor & Gonnie en Leo</span>
+                      </li>
+                      <li className="flex items-center gap-3">
+                        <input type="checkbox" className="w-4 h-4 accent-[#c7b272]" />
+                        <span>(Schoonzussen) Lisa, Sara</span>
+                      </li>
+                      <li className="flex items-center gap-3">
+                        <input type="checkbox" className="w-4 h-4 accent-[#c7b272]" />
+                        <span>Fleur en Samuel</span>
+                      </li>
+                    </ul>
+                  </div>
+
+                  {/* Group 2 */}
+                  <div className="border-b border-[#1A1A2E]/5 dark:border-white/5 pb-6">
+                    <h3 className="font-serif text-xl font-bold text-[#1A1A2E] dark:text-slate-100 mb-4 flex items-center gap-3">
+                      <span className="text-sm font-mono text-[#c7b272] bg-[#c7b272]/10 px-2.5 py-1 rounded-md">2</span>
+                      De familie Mekking & gasten
+                    </h3>
+                    <ul className="pl-6 space-y-3.5 text-sm md:text-base text-gray-600 dark:text-slate-300 font-medium">
+                      <li className="flex items-center gap-3">
+                        <input type="checkbox" className="w-4 h-4 accent-[#c7b272]" />
+                        <span>De familie Mekking met gasten</span>
+                      </li>
+                      <li className="flex items-center gap-3">
+                        <input type="checkbox" className="w-4 h-4 accent-[#c7b272]" />
+                        <span>De familie Mekking (naaste familieleden): Opa, Wilma, Rob, Arthur, Lisa, Jai, Fleur en Samuel</span>
+                      </li>
+                      <li className="flex items-center gap-3">
+                        <input type="checkbox" className="w-4 h-4 accent-[#c7b272]" />
+                        <span>Opa Mekking</span>
+                      </li>
+                    </ul>
+                  </div>
+
+                  {/* Group 3 */}
+                  <div className="border-b border-[#1A1A2E]/5 dark:border-white/5 pb-6">
+                    <h3 className="font-serif text-xl font-bold text-[#1A1A2E] dark:text-slate-100 mb-4 flex items-center gap-3">
+                      <span className="text-sm font-mono text-[#c7b272] bg-[#c7b272]/10 px-2.5 py-1 rounded-md">3</span>
+                      De familie Uiterwijk & gasten (en Fleur en Samuel)
+                    </h3>
+                    <ul className="pl-6 space-y-3.5 text-sm md:text-base text-gray-600 dark:text-slate-300 font-medium">
+                      <li className="flex items-center gap-3">
+                        <input type="checkbox" className="w-4 h-4 accent-[#c7b272]" />
+                        <span>De familie Uiterwijk: Katinka, Fleur, Samuel, Rinske, Emma, Anna, Jet, Norbert, Jessica, Jurjen en Miriam</span>
+                      </li>
+                      <li className="flex items-center gap-3">
+                        <input type="checkbox" className="w-4 h-4 accent-[#c7b272]" />
+                        <span>De familie Uiterwijk (kleine groep): Fleur, Samuel, Wil, Rinske, Emma, Anna, Jet</span>
+                      </li>
+                      <li className="flex items-center gap-3">
+                        <input type="checkbox" className="w-4 h-4 accent-[#c7b272]" />
+                        <span>Rinske</span>
+                      </li>
+                    </ul>
+                  </div>
+
+                  {/* Group 4 */}
+                  <div className="border-b border-[#1A1A2E]/5 dark:border-white/5 pb-6">
+                    <h3 className="font-serif text-xl font-bold text-[#1A1A2E] dark:text-slate-100 mb-4 flex items-center gap-3">
+                      <span className="text-sm font-mono text-[#c7b272] bg-[#c7b272]/10 px-2.5 py-1 rounded-md">4</span>
+                      De familie Herlaar & vrienden (en Fleur en Samuel)
+                    </h3>
+                    <ul className="pl-6 space-y-3.5 text-sm md:text-base text-gray-600 dark:text-slate-300 font-medium">
+                      <li className="flex items-center gap-3">
+                        <input type="checkbox" className="w-4 h-4 accent-[#c7b272]" />
+                        <span>Familie Herlaar: Katinka, Fleur, Samuel, Rinske, Emma, Anna, Jet, Wil, Lize, Ruud, Monique, Sander, Erwin en Anja</span>
+                      </li>
+                      <li className="flex items-center gap-3">
+                        <input type="checkbox" className="w-4 h-4 accent-[#c7b272]" />
+                        <span>Wil</span>
+                      </li>
+                    </ul>
+                  </div>
+
+                  {/* Group 5 */}
+                  <div className="border-b border-[#1A1A2E]/5 dark:border-white/5 pb-6">
+                    <h3 className="font-serif text-xl font-bold text-[#1A1A2E] dark:text-slate-100 mb-4 flex items-center gap-3">
+                      <span className="text-sm font-mono text-[#c7b272] bg-[#c7b272]/10 px-2.5 py-1 rounded-md">5</span>
+                      Diversen
+                    </h3>
+                    <ul className="pl-6 space-y-3.5 text-sm md:text-base text-gray-600 dark:text-slate-300 font-medium">
+                      <li className="flex items-center gap-3">
+                        <input type="checkbox" className="w-4 h-4 accent-[#c7b272]" />
+                        <span>Vriendengroep Jorik</span>
+                      </li>
+                      <li className="flex items-center gap-3">
+                        <input type="checkbox" className="w-4 h-4 accent-[#c7b272]" />
+                        <span>Collega's van Katinka</span>
+                      </li>
+                      <li className="flex items-center gap-3">
+                        <input type="checkbox" className="w-4 h-4 accent-[#c7b272]" />
+                        <span>Karima en Felix</span>
+                      </li>
+                      <li className="flex items-center gap-3">
+                        <input type="checkbox" className="w-4 h-4 accent-[#c7b272]" />
+                        <span>Suzanne en Gijsbert</span>
+                      </li>
+                      <li className="flex items-center gap-3">
+                        <input type="checkbox" className="w-4 h-4 accent-[#c7b272]" />
+                        <span>Ceremoniemeesters</span>
+                      </li>
+                    </ul>
+                  </div>
+
+                  {/* Group 6 */}
+                  <div>
+                    <h3 className="font-serif text-xl font-bold text-[#1A1A2E] dark:text-slate-100 mb-4 flex items-center gap-3">
+                      <span className="text-sm font-mono text-[#c7b272] bg-[#c7b272]/10 px-2.5 py-1 rounded-md">6</span>
+                      Totaal
+                    </h3>
+                    <ul className="pl-6 space-y-3.5 text-sm md:text-base text-gray-600 dark:text-slate-300 font-medium">
+                      <li className="flex items-center gap-3">
+                        <input type="checkbox" className="w-4 h-4 accent-[#c7b272]" />
+                        <span>Alle gasten</span>
+                      </li>
+                    </ul>
                   </div>
                 </div>
               </div>
@@ -2561,11 +3359,10 @@ export default function App() {
                   <div className="flex items-center gap-3">
                     <button 
                       onClick={() => handleDismissPage('gasten')}
-                      className="text-[11px] text-red-500/60 hover:text-red-600 transition-colors cursor-pointer hover:underline flex items-center gap-1 font-medium"
+                      className="p-2 text-red-500/50 hover:text-red-500 hover:bg-red-500/10 rounded-full transition-colors cursor-pointer"
                       title={langEN ? "Don't show this page again" : "Ik wil dit niet meer zien."}
                     >
-                      <Trash2 size={12}/>
-                      <span>{langEN ? "Hide page" : "Ik wil dit niet meer zien."}</span>
+                      <Trash2 size={16}/>
                     </button>
                     <button onClick={(e) => togglePin('gasten', e)} className="md:hidden flex items-center gap-2 text-xs font-bold text-[#c7b272] bg-white dark:bg-slate-900 px-3 py-1.5 rounded-full shadow-sm border border-gray-100 dark:border-slate-800">
                       {pinnedPages.includes('gasten') ? <PinOff size={14}/> : <Pin size={14}/>}
@@ -2702,11 +3499,10 @@ export default function App() {
                   <div className="flex items-center gap-3">
                     <button 
                       onClick={() => handleDismissPage('extra')}
-                      className="text-[11px] text-red-500/60 hover:text-red-600 transition-colors cursor-pointer hover:underline flex items-center gap-1 font-medium"
+                      className="p-2 text-red-500/50 hover:text-red-500 hover:bg-red-500/10 rounded-full transition-colors cursor-pointer"
                       title={langEN ? "Don't show this page again" : "Ik wil dit niet meer zien."}
                     >
-                      <Trash2 size={12}/>
-                      <span>{langEN ? "Hide page" : "Ik wil dit niet meer zien."}</span>
+                      <Trash2 size={16}/>
                     </button>
                     <button onClick={(e) => togglePin('extra', e)} className="md:hidden flex items-center gap-2 text-xs font-bold text-[#c7b272] bg-white dark:bg-slate-900 px-3 py-1.5 rounded-full shadow-sm border border-gray-100 dark:border-slate-800">
                       {pinnedPages.includes('extra') ? <PinOff size={14}/> : <Pin size={14}/>}
@@ -3339,7 +4135,7 @@ export default function App() {
       </AnimatePresence>
 
       {/* Global Inbox Button */}
-      {!isFloatingChatOpen && !isInboxDismissed && (
+      {!isFloatingChatOpen && (!isInboxDismissed || hasSupportReply) && (
         <div className="fixed top-4 right-4 md:top-6 md:right-6 z-[90]">
           <button
             onClick={() => {
@@ -3350,7 +4146,7 @@ export default function App() {
             className="w-12 h-12 md:w-14 md:h-14 bg-transparent text-[#c7b272] rounded-full flex items-center justify-center transition-all hover:bg-[#c7b272]/10 relative cursor-pointer"
           >
             <Mail size={24} />
-            {(!inboxRead || (role === 'photographer' && !dismissedNotifications.includes('photo_priority') && !readNotifications.includes('photo_priority')) || (role === 'cm' && !dismissedNotifications.includes('cm_maserati') && !readNotifications.includes('cm_maserati')) || (role === 'guest' && !dismissedNotifications.includes('guest_parking') && !readNotifications.includes('guest_parking'))) && (
+            {(!inboxRead || (role === 'photographer' && !dismissedNotifications.includes('photo_priority') && !readNotifications.includes('photo_priority')) || (role === 'cm' && !dismissedNotifications.includes('cm_maserati') && !readNotifications.includes('cm_maserati')) || (role === 'guest' && !dismissedNotifications.includes('guest_parking') && !readNotifications.includes('guest_parking')) || hasSupportReply) && (
               <span className="absolute top-0 right-0 w-3 h-3 bg-red-500 border-2 border-[#F5F0E6] dark:border-slate-950 rounded-full">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-500 opacity-75"></span>
               </span>
@@ -3515,7 +4311,17 @@ export default function App() {
                       targetTab: 'extra',
                       urgent: false,
                       isChatTrigger: true
-                    }
+                    },
+                    ...(localStorage.getItem('wedding_support_reply_exists') === 'true' ? [{
+                      id: 'support_reply',
+                      role: role,
+                      category: 'Support',
+                      time: 'Support',
+                      title: langEN ? 'Support Response' : 'Support Reactie',
+                      content: localStorage.getItem('wedding_support_reply_text') || '',
+                      targetTab: 'overzicht',
+                      urgent: hasSupportReply
+                    }] : [])
                   ];
 
                   const activeNotifications = notificationsList.map(n => {
@@ -3560,11 +4366,23 @@ export default function App() {
                       <div className="flex items-center justify-between mt-2 pt-2 border-t border-[#1A1A2E]/5 dark:border-white/5">
                         <button
                           onClick={() => {
-                            setActiveTab(n.targetTab);
-                            setShowInboxPopup(false);
-                            if (n.isChatTrigger) {
-                              setIsFloatingChatOpen(true);
-                              scrollToBottom();
+                            if (n.id === 'support_reply') {
+                              setShowInboxPopup(false);
+                              setShowHelpModal(true);
+                              setSupportActiveTab('list');
+                              const repliedTicket = supportTickets.find(t => t.status === 'replied');
+                              if (repliedTicket) {
+                                setSelectedSupportTicketId(repliedTicket.id);
+                              } else if (supportTickets.length > 0) {
+                                setSelectedSupportTicketId(supportTickets[0].id);
+                              }
+                            } else {
+                              setActiveTab(n.targetTab);
+                              setShowInboxPopup(false);
+                              if (n.isChatTrigger) {
+                                setIsFloatingChatOpen(true);
+                                scrollToBottom();
+                              }
                             }
                           }}
                           className="text-[10px] font-bold text-[#c7b272] hover:text-[#b8a15f] flex items-center gap-1 cursor-pointer transition-colors"
@@ -3573,13 +4391,21 @@ export default function App() {
                         </button>
                         <button
                           onClick={() => handleDismissNotification(n.id)}
-                          className="text-[10px] text-gray-400 hover:text-red-500 cursor-pointer transition-colors"
+                          className="p-1 text-gray-400 hover:text-red-500 hover:bg-red-500/10 rounded-full transition-colors cursor-pointer"
+                          title={langEN ? "Don't show this again" : "Ik wil dit niet meer zien."}
                         >
-                          {langEN ? 'Don\'t show this again' : 'Ik wil dit niet meer zien.'}
+                          <Trash2 size={12} />
                         </button>
                       </div>
                     </div>
                   ));
+                })()}
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       {/* Help & Support Modal */}
       <AnimatePresence>
         {showHelpModal && (
@@ -3591,6 +4417,7 @@ export default function App() {
             onClick={() => {
               setShowHelpModal(false);
               setSupportSuccess(false);
+              setSelectedSupportTicketId(null);
             }}
           >
             <motion.div 
@@ -3610,6 +4437,7 @@ export default function App() {
                   onClick={() => {
                     setShowHelpModal(false);
                     setSupportSuccess(false);
+                    setSelectedSupportTicketId(null);
                   }}
                   className="p-2 text-[#1A1A2E]/50 dark:text-slate-400 hover:text-[#1A1A2E] dark:hover:text-slate-100 hover:bg-[#1A1A2E]/5 dark:hover:bg-white/5 rounded-full transition-colors cursor-pointer"
                 >
@@ -3617,9 +4445,254 @@ export default function App() {
                 </button>
               </div>
 
+              {/* Sub Navigation Tabs */}
+              <div className="flex border-b border-[#1A1A2E]/5 dark:border-white/5 bg-gray-50/50 dark:bg-slate-900/50 shrink-0">
+                <button
+                  onClick={() => { setSupportActiveTab('create'); setSelectedSupportTicketId(null); }}
+                  className={`flex-1 py-3 text-xs font-bold uppercase tracking-wider transition-colors border-b-2 ${
+                    supportActiveTab === 'create'
+                      ? 'border-[#c7b272] text-[#c7b272]'
+                      : 'border-transparent text-gray-400 hover:text-gray-600 dark:hover:text-slate-300'
+                  }`}
+                >
+                  {langEN ? 'New Ticket' : 'Nieuw ticket'}
+                </button>
+                <button
+                  onClick={() => { setSupportActiveTab('list'); setSelectedSupportTicketId(null); }}
+                  className={`flex-1 py-3 text-xs font-bold uppercase tracking-wider transition-colors border-b-2 relative ${
+                    supportActiveTab === 'list'
+                      ? 'border-[#c7b272] text-[#c7b272]'
+                      : 'border-transparent text-gray-400 hover:text-gray-600 dark:hover:text-slate-300'
+                  }`}
+                >
+                  {langEN ? 'My Tickets' : 'Mijn tickets'}
+                  {supportTickets.length > 0 && (
+                    <span className="ml-1.5 px-2 py-0.5 text-[9px] bg-[#c7b272] text-white rounded-full font-bold">
+                      {supportTickets.length}
+                    </span>
+                  )}
+                </button>
+              </div>
+
               {/* Content Panel */}
               <div className="p-6 md:p-8 overflow-y-auto flex-1 scrollbar-thin">
-                {supportSuccess ? (
+                {supportActiveTab === 'list' ? (
+                  selectedSupportTicketId ? (() => {
+                    const ticket = supportTickets.find(t => t.id === selectedSupportTicketId);
+                    if (!ticket) return null;
+                    return (
+                      <div className="flex flex-col gap-5 text-left">
+                        {/* Back Button */}
+                        <button 
+                          onClick={() => setSelectedSupportTicketId(null)} 
+                          className="inline-flex items-center gap-1.5 text-xs font-bold text-[#c7b272] hover:text-[#b8a15f] transition-colors cursor-pointer select-none self-start"
+                        >
+                          <ArrowLeft size={14} />
+                          {langEN ? 'Back to tickets' : 'Terug naar overzicht'}
+                        </button>
+
+                        {/* Stepper (Process Tracker) */}
+                        <div className="flex flex-col gap-3 bg-gray-50/50 dark:bg-slate-950/40 p-4 rounded-2xl border border-[#1A1A2E]/5 dark:border-white/5 shadow-sm">
+                          <h4 className="text-[10px] font-bold uppercase tracking-wider text-gray-400 dark:text-slate-500">
+                            {langEN ? 'Ticket Progress' : 'Voortgang status'}
+                          </h4>
+                          <div className="flex flex-col gap-4 relative pl-5 mt-2">
+                            {/* Stepper line */}
+                            <div className="absolute left-[6px] top-1.5 bottom-1.5 w-0.5 bg-gray-200 dark:bg-slate-800"></div>
+                            
+                            {/* Step 1 */}
+                            <div className="flex items-start gap-3 relative">
+                              <div className="absolute left-[-24px] top-0.5 w-3.5 h-3.5 rounded-full bg-green-500 border-2 border-white dark:border-slate-900 flex items-center justify-center">
+                                <Check size={8} className="text-white font-bold" />
+                              </div>
+                              <div>
+                                <p className="text-xs font-bold text-gray-700 dark:text-slate-200">{langEN ? 'Ticket Submitted' : 'Ticket ingediend'}</p>
+                                <p className="text-[9px] text-gray-400 dark:text-slate-500">{langEN ? 'Your request has been logged successfully' : 'Hulpverzoek is geregistreerd'}</p>
+                              </div>
+                            </div>
+                            
+                            {/* Step 2 */}
+                            <div className="flex items-start gap-3 relative">
+                              <div className="absolute left-[-24px] top-0.5 w-3.5 h-3.5 rounded-full bg-green-500 border-2 border-white dark:border-slate-900 flex items-center justify-center">
+                                <Check size={8} className="text-white font-bold" />
+                              </div>
+                              <div>
+                                <p className="text-xs font-bold text-gray-700 dark:text-slate-200">{langEN ? 'Delivered to Support' : 'Verzonden naar Support'}</p>
+                                <p className="text-[9px] text-gray-400 dark:text-slate-500">
+                                  {langEN ? 'Sent email notification to jorik.katinkainfo@gmail.com' : 'E-mail verstuurd naar jorik.katinkainfo@gmail.com'}
+                                </p>
+                              </div>
+                            </div>
+
+                            {/* Step 3 */}
+                            <div className="flex items-start gap-3 relative">
+                              <div className={`absolute left-[-24px] top-0.5 w-3.5 h-3.5 rounded-full border-2 border-white dark:border-slate-900 flex items-center justify-center ${
+                                ticket.status === 'replied' ? 'bg-green-500' : 'bg-amber-500 animate-pulse'
+                              }`}>
+                                {ticket.status === 'replied' ? <Check size={8} className="text-white font-bold" /> : <div className="w-1.5 h-1.5 bg-white rounded-full"></div>}
+                              </div>
+                              <div>
+                                <p className="text-xs font-bold text-gray-700 dark:text-slate-200">{langEN ? 'Under Review' : 'In behandeling'}</p>
+                                <p className="text-[9px] text-gray-400 dark:text-slate-500">
+                                  {ticket.status === 'replied' 
+                                    ? (langEN ? 'Review completed' : 'Beoordeeld door Jorik & Katinka') 
+                                    : (langEN ? 'Awaiting response from Jorik & Katinka' : 'Wachten op reactie van Jorik & Katinka')}
+                                </p>
+                              </div>
+                            </div>
+
+                            {/* Step 4 */}
+                            <div className="flex items-start gap-3 relative">
+                              <div className={`absolute left-[-24px] top-0.5 w-3.5 h-3.5 rounded-full border-2 border-white dark:border-slate-900 flex items-center justify-center ${
+                                ticket.status === 'replied' ? 'bg-[#c7b272]' : 'bg-gray-200 dark:bg-slate-800'
+                              }`}>
+                                {ticket.status === 'replied' ? <Check size={8} className="text-white font-bold" /> : null}
+                              </div>
+                              <div>
+                                <p className={`text-xs font-bold ${ticket.status === 'replied' ? 'text-[#c7b272]' : 'text-gray-400 dark:text-slate-500'}`}>
+                                  {langEN ? 'Reply Received' : 'Antwoord ontvangen'}
+                                </p>
+                                <p className="text-[9px] text-gray-400 dark:text-slate-500 font-medium">
+                                  {ticket.status === 'replied' 
+                                    ? (langEN ? 'Check response in conversation below' : 'Reactie toegevoegd aan de chat') 
+                                    : (langEN ? 'A notification will pop up on the site when resolved' : 'Melding volgt op de site zodra er antwoord is')}
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Chat Messages */}
+                        <div className="flex flex-col gap-4 mt-2">
+                          <div className="flex justify-between items-center mb-1">
+                            <h4 className="text-[10px] font-bold uppercase tracking-wider text-gray-400 dark:text-slate-500">
+                              {langEN ? 'Conversation' : 'Gesprek'}
+                            </h4>
+                            <button
+                              onClick={(e) => handleDeleteSupportTicket(ticket.id, e)}
+                              className="flex items-center gap-1 text-[9px] font-bold text-red-500 hover:text-white hover:bg-red-500/90 transition-all cursor-pointer bg-red-500/10 px-2 py-1 rounded-lg border border-red-500/20"
+                            >
+                              <Trash2 size={10} />
+                              <span>{langEN ? 'Delete Ticket' : 'Verwijder ticket'}</span>
+                            </button>
+                          </div>
+                          
+                          <div className="flex flex-col gap-4 bg-gray-50/30 dark:bg-slate-950/20 p-4 rounded-2xl border border-[#1A1A2E]/5 dark:border-white/5 min-h-[120px]">
+                            {/* User original request */}
+                            <div className="flex flex-col gap-1 items-end self-end max-w-[85%]">
+                              <div className="flex items-center gap-1.5 text-[9px] text-gray-400 dark:text-slate-500 mr-1 font-mono">
+                                <span className="font-bold">{ticket.name}</span>
+                                <span>•</span>
+                                <span>{new Date(ticket.timestamp).toLocaleTimeString(langEN ? 'en-US' : 'nl-NL', { hour: '2-digit', minute: '2-digit' })}</span>
+                              </div>
+                              <div className="bg-[#1A1A2E]/5 dark:bg-slate-800 text-[#1A1A2E] dark:text-slate-100 rounded-2xl rounded-tr-none px-4 py-2.5 text-xs leading-relaxed shadow-sm font-medium whitespace-pre-wrap text-left">
+                                {ticket.message}
+                              </div>
+                              <span className="text-[8px] uppercase tracking-wider text-[#c7b272] font-semibold bg-[#c7b272]/5 px-2 py-0.5 rounded border border-[#c7b272]/10 mt-1">
+                                {ticket.category}
+                              </span>
+                            </div>
+
+                            {/* Reply message */}
+                            {ticket.status === 'replied' && ticket.reply ? (
+                              <div className="flex flex-col gap-1 items-start self-start max-w-[85%] mt-1">
+                                <div className="flex items-center gap-1.5 text-[9px] text-[#c7b272] ml-1 font-mono">
+                                  <span className="font-bold flex items-center gap-1">
+                                    <Heart size={10} className="fill-[#c7b272] text-[#c7b272]" /> 
+                                    Jorik & Katinka Support
+                                  </span>
+                                  <span>•</span>
+                                  <span>{langEN ? 'Organizer' : 'Organisator'}</span>
+                                </div>
+                                <div className="bg-[#c7b272]/10 dark:bg-[#c7b272]/15 border border-[#c7b272]/30 text-[#1A1A2E] dark:text-slate-100 rounded-2xl rounded-tl-none px-4 py-2.5 text-xs leading-relaxed shadow-sm border-l-4 border-l-[#c7b272] text-left font-medium whitespace-pre-wrap">
+                                  {ticket.reply}
+                                </div>
+                              </div>
+                            ) : (
+                              <div className="flex items-center gap-3 bg-amber-50/50 dark:bg-slate-950/20 border border-dashed border-amber-200/50 dark:border-slate-800/80 p-4 rounded-xl mt-1 text-left">
+                                <div className="flex shrink-0 items-center justify-center w-8 h-8 rounded-full bg-amber-100 dark:bg-slate-900 text-amber-500">
+                                  <Clock size={16} className="animate-spin" style={{ animationDuration: '3s' }} />
+                                </div>
+                                <div>
+                                  <h5 className="text-xs font-bold text-amber-600 dark:text-amber-500">
+                                    {langEN ? 'Awaiting response...' : 'Wachten op antwoord...'}
+                                  </h5>
+                                  <p className="text-[10px] text-gray-500 dark:text-slate-400 leading-relaxed mt-0.5">
+                                    {langEN 
+                                      ? 'Your ticket is forwarded. Once Jorik replies to the email notification, the response will show up here instantly!' 
+                                      : 'Je hulpverzoek is doorgestuurd. Zodra Jorik de e-mail beantwoordt, verschijnt het antwoord direct hier!'}
+                                  </p>
+                                </div>
+                              </div>
+                            )}
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })() : (
+                    supportTickets.length === 0 ? (
+                      <div className="text-center py-10 flex flex-col items-center justify-center">
+                        <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-gray-100 dark:bg-slate-800 mb-3 text-gray-400 dark:text-slate-500">
+                          <Mail size={20} />
+                        </div>
+                        <p className="text-sm text-gray-500 dark:text-slate-400 font-medium">
+                          {langEN ? 'You have not submitted any tickets yet.' : 'Je hebt nog geen hulpverzoeken ingediend.'}
+                        </p>
+                      </div>
+                    ) : (
+                      <div className="space-y-3">
+                        {supportTickets.map(ticket => (
+                          <div 
+                            key={ticket.id} 
+                            onClick={() => setSelectedSupportTicketId(ticket.id)}
+                            className="group bg-gray-50/50 hover:bg-white dark:bg-slate-950/20 dark:hover:bg-slate-900/50 border border-gray-100 hover:border-[#c7b272]/30 dark:border-slate-800/80 rounded-2xl p-4 text-left flex flex-col gap-3 shadow-sm transition-all cursor-pointer relative"
+                          >
+                            <div className="flex justify-between items-center">
+                              <span className="text-[9px] font-bold text-[#c7b272] uppercase tracking-wider bg-[#c7b272]/5 px-2 py-0.5 rounded border border-[#c7b272]/10">
+                                {ticket.category}
+                              </span>
+                              <div className="flex items-center gap-2">
+                                <span className={`text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded flex items-center gap-1.5 ${
+                                  ticket.status === 'replied' 
+                                    ? 'bg-green-500/10 text-green-500' 
+                                    : 'bg-yellow-500/10 text-yellow-500'
+                                }`}>
+                                  {ticket.status !== 'replied' && <span className="w-1.5 h-1.5 bg-yellow-500 rounded-full inline-block animate-pulse"></span>}
+                                  {ticket.status === 'replied' 
+                                    ? (langEN ? 'Replied' : 'Beantwoord') 
+                                    : (langEN ? 'Sent' : 'Verzonden')}
+                                </span>
+                                <button
+                                  onClick={(e) => handleDeleteSupportTicket(ticket.id, e)}
+                                  className="p-1.5 text-gray-400 hover:text-red-500 hover:bg-red-500/10 rounded-full transition-colors cursor-pointer"
+                                  title={langEN ? "Delete request" : "Verzoek verwijderen"}
+                                >
+                                  <Trash2 size={12} />
+                                </button>
+                              </div>
+                            </div>
+                            <div className="text-xs text-gray-600 dark:text-slate-300 font-medium line-clamp-2 leading-relaxed">
+                              {ticket.message}
+                            </div>
+                            <div className="flex justify-between items-center pt-2 border-t border-[#1A1A2E]/5 dark:border-white/5 text-[9px] text-gray-400 dark:text-slate-500 font-mono">
+                              <span>
+                                {new Date(ticket.timestamp).toLocaleString(langEN ? 'en-US' : 'nl-NL', {
+                                  day: 'numeric',
+                                  month: 'short',
+                                  hour: '2-digit',
+                                  minute: '2-digit'
+                                })}
+                              </span>
+                              <span className="text-[#c7b272] font-semibold group-hover:translate-x-0.5 transition-transform flex items-center gap-1">
+                                {langEN ? 'View status & chat' : 'Bekijk status & chat'} →
+                              </span>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    )
+                  )
+                ) : supportSuccess ? (
                   <div className="text-center py-6 flex flex-col items-center">
                     <div className="w-16 h-16 bg-green-500/10 rounded-full flex items-center justify-center mb-4">
                       <svg className="w-8 h-8 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -3637,11 +4710,12 @@ export default function App() {
                     <button
                       onClick={() => {
                         setSupportSuccess(false);
-                        setShowHelpModal(false);
+                        setSupportActiveTab('list');
+                        setSelectedSupportTicketId(null);
                       }}
                       className="bg-[#c7b272] hover:bg-[#b8a15f] text-white px-6 py-2.5 rounded-xl text-xs font-semibold uppercase tracking-wider transition-colors shadow-sm cursor-pointer"
                     >
-                      {langEN ? 'Close' : 'Sluiten'}
+                      {langEN ? 'View Tickets' : 'Bekijk hulpverzoeken'}
                     </button>
                   </div>
                 ) : (
@@ -3659,21 +4733,18 @@ export default function App() {
                         className="w-full border border-gray-200 dark:border-slate-800 bg-[#F5F0E6]/30 dark:bg-slate-950/30 text-[#1A1A2E] dark:text-slate-100 rounded-xl px-4 py-2.5 focus:ring-2 focus:ring-[#c7b272] focus:border-[#c7b272] outline-none text-[16px] md:text-sm transition-all"
                       />
                     </div>
-
                     <div>
                       <label className="block text-xs font-bold text-gray-500 dark:text-slate-400 uppercase tracking-wider mb-2">
-                        {langEN ? 'Your Email' : 'Je e-mailadres'}
+                        {langEN ? 'Your Email (Optional)' : 'Je e-mailadres (optioneel)'}
                       </label>
                       <input
                         type="email"
-                        required
                         value={supportEmail}
                         onChange={e => setSupportEmail(e.target.value)}
-                        placeholder={langEN ? 'Enter your email...' : 'Vul je e-mailadres in...'}
+                        placeholder={langEN ? 'Enter your email (optional)...' : 'Vul je e-mailadres in (optioneel)...'}
                         className="w-full border border-gray-200 dark:border-slate-800 bg-[#F5F0E6]/30 dark:bg-slate-950/30 text-[#1A1A2E] dark:text-slate-100 rounded-xl px-4 py-2.5 focus:ring-2 focus:ring-[#c7b272] focus:border-[#c7b272] outline-none text-[16px] md:text-sm transition-all"
                       />
                     </div>
-
                     <div>
                       <label className="block text-xs font-bold text-gray-500 dark:text-slate-400 uppercase tracking-wider mb-2">
                         {langEN ? 'Category' : 'Categorie'}
@@ -3729,20 +4800,60 @@ export default function App() {
         )}
       </AnimatePresence>
 
-      {/* Scroll to Top QoL Button */}
-      <button
-        onClick={() => {
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-          const scrollables = document.querySelectorAll('main .overflow-y-auto');
-          scrollables.forEach(el => el.scrollTo({ top: 0, behavior: 'smooth' }));
-        }}
-        className="fixed bottom-6 right-6 z-[80] w-10 h-10 bg-[#c7b272] bg-opacity-90 hover:bg-[#b8a15f] text-white rounded-full shadow-lg transition-all hover:scale-105 active:scale-95 flex items-center justify-center cursor-pointer border border-white border-opacity-20"
-        title={langEN ? 'Scroll to top' : 'Naar boven'}
-      >
-        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-          <path d="m18 15-6-6-6 6"></path>
-        </svg>
-      </button>
+      {/* Global Support Reply Popup Alert */}
+      <AnimatePresence>
+        {hasSupportReply && (
+          <motion.div
+            initial={{ opacity: 0, y: 50, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 20, scale: 0.95 }}
+            className="fixed bottom-6 left-6 right-6 md:left-auto md:w-96 bg-white dark:bg-slate-900 border-2 border-[#c7b272] rounded-3xl shadow-2xl p-5 z-[150] flex flex-col gap-3 font-sans"
+          >
+            <div className="flex justify-between items-center">
+              <span className="text-[10px] font-bold uppercase tracking-widest text-red-500 bg-red-500/10 px-2 py-0.5 rounded flex items-center gap-1.5 animate-pulse">
+                <span className="w-1.5 h-1.5 bg-red-500 rounded-full inline-block"></span>
+                {langEN ? 'Support Response' : 'Support Reactie'}
+              </span>
+              <button 
+                onClick={() => {
+                  setHasSupportReply(false);
+                  localStorage.setItem('wedding_support_reply_unread', 'false');
+                }}
+                className="p-1 text-[#1A1A2E]/50 dark:text-slate-400 hover:text-red-500 hover:bg-red-500/10 rounded-full transition-colors cursor-pointer"
+              >
+                <X size={16} />
+              </button>
+            </div>
+            <div>
+              <h4 className="font-serif font-bold text-sm text-[#1A1A2E] dark:text-slate-200 mb-1">
+                {langEN ? 'Message from jorik.katinkainfo@gmail.com' : 'Bericht van jorik.katinkainfo@gmail.com'}
+              </h4>
+              <p className="text-xs text-gray-600 dark:text-slate-400 leading-relaxed italic">
+                "{localStorage.getItem('wedding_support_reply_text') || ''}"
+              </p>
+            </div>
+            <div className="flex justify-end gap-2 pt-2 border-t border-[#1A1A2E]/5 dark:border-white/5">
+              <button
+                onClick={() => {
+                  setHasSupportReply(false);
+                  localStorage.setItem('wedding_support_reply_unread', 'false');
+                  setShowHelpModal(true);
+                  setSupportActiveTab('list');
+                  const repliedTicket = supportTickets.find(t => t.status === 'replied');
+                  if (repliedTicket) {
+                    setSelectedSupportTicketId(repliedTicket.id);
+                  } else if (supportTickets.length > 0) {
+                    setSelectedSupportTicketId(supportTickets[0].id);
+                  }
+                }}
+                className="bg-[#c7b272] hover:bg-[#b8a15f] text-white px-4 py-2 rounded-xl text-[10px] font-bold uppercase tracking-wider transition-colors shadow-sm cursor-pointer"
+              >
+                {langEN ? 'View Response' : 'Bekijk reactie'}
+              </button>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
     </div>
   );
