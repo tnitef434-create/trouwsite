@@ -2282,6 +2282,7 @@ export default function App() {
 
   if (role === 'cm') {
     pages.splice(4, 0, { id: 'bijlage', icon: <FileText size={20}/>, label: 'Bijlage' });
+    pages.splice(5, 0, { id: 'groepsfotos', icon: <Camera size={20}/>, label: 'Groepsfoto’s' });
   }
 
   if (role === 'photographer') {
@@ -3159,8 +3160,8 @@ export default function App() {
             </motion.div>
           )}
 
-          {/* TAB: GROEPSFOTO'S (GUEST) */}
-          {activeTab === 'groepsfotos' && role === 'guest' && (
+          {/* TAB: GROEPSFOTO'S (GUEST / CM) */}
+          {activeTab === 'groepsfotos' && (role === 'guest' || role === 'cm') && (
             <motion.div 
               key="groepsfotos" 
               initial={{ opacity: 0, y: 10 }} 
@@ -3868,6 +3869,32 @@ export default function App() {
                 <img 
                   src="/moodboard.jpg" 
                   alt="Moodboard Fullscreen" 
+                  className="max-h-[95vh] max-w-[95vw] object-contain rounded-xl shadow-2xl" 
+                />
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* Fullscreen Bijlage Modal */}
+        <AnimatePresence>
+          {isFullscreenBijlage && (
+            <motion.div 
+              initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+              className="fixed inset-0 bg-[#1A1A2E]/90 dark:bg-slate-950/90 backdrop-blur-sm z-[100] flex flex-col"
+            >
+              <div className="flex justify-end p-4">
+                <button 
+                  onClick={() => setIsFullscreenBijlage(false)} 
+                  className="w-12 h-12 bg-white/10 hover:bg-white/20 text-white rounded-full flex items-center justify-center transition-colors shadow-lg backdrop-blur-md border border-white/20 cursor-pointer"
+                >
+                  <X size={24}/>
+                </button>
+              </div>
+              <div className="flex-1 overflow-auto flex items-center justify-center p-4" onClick={() => setIsFullscreenBijlage(false)}>
+                <img 
+                  src="/plaatsing_borden.jpg" 
+                  alt="Plaatsing borden Fullscreen" 
                   className="max-h-[95vh] max-w-[95vw] object-contain rounded-xl shadow-2xl" 
                 />
               </div>
