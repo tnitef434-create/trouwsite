@@ -4220,27 +4220,6 @@ export default function App() {
         )}
       </AnimatePresence>
 
-      {/* Global Inbox Button */}
-      {!isFloatingChatOpen && (!isInboxDismissed || hasSupportReply) && (
-        <div className="fixed top-4 right-4 md:top-6 md:right-6 z-[90]">
-          <button
-            onClick={() => {
-              setShowInboxPopup(true);
-              markInboxAsRead(true);
-              markAllAsRead();
-            }}
-            className="w-12 h-12 md:w-14 md:h-14 bg-transparent text-[#c7b272] rounded-full flex items-center justify-center transition-all hover:bg-[#c7b272]/10 relative cursor-pointer"
-          >
-            <Mail size={24} />
-            {(!inboxRead || (role === 'photographer' && !dismissedNotifications.includes('photo_priority') && !readNotifications.includes('photo_priority')) || (role === 'cm' && !dismissedNotifications.includes('cm_maserati') && !readNotifications.includes('cm_maserati')) || (role === 'guest' && !dismissedNotifications.includes('guest_parking') && !readNotifications.includes('guest_parking')) || hasSupportReply) && (
-              <span className="absolute top-0 right-0 w-3 h-3 bg-red-500 border-2 border-[#F5F0E6] dark:border-slate-950 rounded-full">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-500 opacity-75"></span>
-              </span>
-            )}
-          </button>
-        </div>
-      )}
-
       {/* Inbox Popup */}
       <AnimatePresence>
         {showInboxPopup && (
