@@ -941,8 +941,8 @@ export const cmTasksEN = [
     "id": 30,
     "time": "**16.00 - 17.30**",
     "action": "**Reception continues**",
-    "who": "*CM ensure the Italian playlist is turned on.\n*CM facilitate the photographer to get the correct groups together.\n*See printed overview of Group Photos near the guestbook on the drawing table in the Palm House.\n*See 'Show additional context' below for the overview of Group Photos and Music.\n*Useful to call people in 6 large groups:\n1. Prins family 2. Mekking family 3. Uiterwijk family 4. Herlaar family 5. Friends, Colleagues & MC 6. Everyone\nNB Fleur and Samuel, like the bride and groom, are in all photos.",
-    "context": "Music during reception and break:\n\n15.30 - 19.00 Reception & break (Palm House)\n*Italian playlist. \n\nGroup photos \n\n1. The Prins family & partners (and Wilma, Fleur, and Samuel)\n*The Prins family with partners \n*The Prins family (small group): Cor, Anca, Sara, Lisa, Jai, Fleur, and Samuel  \n*Parents of the bride and groom: Wilma and Cor & Gonnie and Leo (Leo & Gonnie added via Photoshop) \n*(Sisters-in-law) Lisa, Sara \n*Fleur and Samuel \n\n2. The Mekking family & partners (and Fleur and Samuel)\n*The Mekking family with partners  \n*The Mekking family (small group): Grandpa, Wilma, Rob, Arthur, Lisa, Jai, Fleur, and Samuel  \n*Grandpa Mekking \n\n3. The Uiterwijk family & partners (and Fleur and Samuel)\n*The Uiterwijk family: Fleur, Samuel, Rinske, Emma, Anna, Jet, Norbert, Jessica, Jurjen, and Miriam \n*The Uiterwijk family (small group): Fleur, Samuel, Wil, Rinske, Emma, Anna, Jet \n*Rinske \n\n4. The Herlaar family & partners (and Fleur and Samuel)\n*Herlaar family: Fleur, Samuel, Rinske, Emma, Anna, Jet, Wil, Lize, Ruud, Monique, Sander, Erwin, and Anja\n*Familie Herlaar (small group): Fleur, Samuel, Wil, Rinske, Emma, Anna, Jet  \n*Wil  \n\n5. Friends, Colleagues & Masters of Ceremony \n*Group of friends \n*Colleagues \n*Karima and Felix\n*Suzanne and Gijsbert\n*Masters of Ceremonies  \n\n6. Total\n*All guests ",
+    "who": "  ***Ensure that the Italian playlist remains on.\n*Call the bride twice so that she can eat/drink/freshen up in the private room. So at 16.00 and at 17.00. \n*Please also take Jorik once, so that the bride and groom can be together for a moment in the private room.**   ",
+    "context": "",
     "location": ""
   },
   {
@@ -2557,7 +2557,7 @@ export default function App() {
 
                 <p className="text-sm text-gray-500 dark:text-slate-400 mb-6 font-medium bg-[#c7b272]/5 dark:bg-[#c7b272]/10 px-4 py-3 rounded-2xl border border-[#c7b272]/10 flex items-center gap-2.5">
                   <Info size={16} className="text-[#c7b272] shrink-0" />
-                  <span>{langEN ? 'Tip: Tap "Show additional context" for extra details' : 'Tip: Tik op "Toon aanvullende informatie" voor extra details'}</span>
+                  <span>{langEN ? 'Tip: Tap "Show additional context" for extra details' : 'Tip: Tik op "Toon aanvullende context" voor extra details'}</span>
                 </p>
 
                 <div className="space-y-0 relative">
@@ -2598,7 +2598,7 @@ export default function App() {
                                 className="inline-flex items-center gap-2 text-xs font-bold text-[#c7b272] bg-[#c7b272]/10 hover:bg-[#c7b272]/20 px-4 py-2 rounded-full transition-colors duration-300 cursor-pointer"
                               >
                                 <ChevronDown size={14} className={`transition-transform duration-300 ${expandedContexts[`guest-${item.id}`] ? 'rotate-180' : ''}`} />
-                                {langEN ? 'Show additional context' : 'Toon aanvullende informatie'}
+                                {langEN ? 'Show additional context' : 'Toon aanvullende context'}
                               </button>
                               
                               <AnimatePresence>
@@ -2751,7 +2751,7 @@ export default function App() {
                                   className="inline-flex items-center gap-2 text-xs font-bold text-[#c7b272] bg-[#c7b272]/10 hover:bg-[#c7b272]/20 px-4 py-2 rounded-full transition-colors duration-300 cursor-pointer"
                                 >
                                   <ChevronDown size={14} className={`transition-transform duration-300 ${expandedContexts[`photo-${task.id}`] ? 'rotate-180' : ''}`} />
-                                  {langEN ? 'Show additional context' : 'Toon aanvullende informatie'}
+                                  {langEN ? 'Show additional context' : 'Toon aanvullende context'}
                                 </button>
                                 
                                 <AnimatePresence>
@@ -2827,7 +2827,7 @@ export default function App() {
                                     className="inline-flex items-center gap-2 text-xs font-bold text-[#c7b272] bg-[#c7b272]/10 hover:bg-[#c7b272]/20 px-4 py-2 rounded-full transition-colors duration-300 cursor-pointer"
                                   >
                                     <ChevronDown size={14} className={`transition-transform duration-300 ${expandedContexts[`cm-${task.id}`] ? 'rotate-180' : ''}`} />
-                                    {langEN ? 'Show additional context' : 'Toon aanvullende informatie'}
+                                    {langEN ? 'Show additional context' : 'Toon aanvullende context'}
                                   </button>
                                   
                                   <AnimatePresence>
