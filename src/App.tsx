@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Search, Filter, MessageSquare, MapPin, Clock, Calendar, Info, Heart, Send, ChevronRight, ChevronDown, Settings, Map as MapIcon, Pin, PinOff, X, Zap, Maximize, Menu, Cloud, Sun, Droplets, Trash2, Plus, Mail, Music, Camera, LogOut, FileText, Image, ArrowLeft, Check } from 'lucide-react';
+import { Search, Filter, MessageSquare, MapPin, Clock, Calendar, Info, Heart, Send, ChevronRight, ChevronDown, RotateCcw, Settings, Map as MapIcon, Pin, PinOff, X, Zap, Maximize, Menu, Cloud, Sun, Droplets, Plus, Mail, Music, Camera, LogOut, FileText, Image, ArrowLeft, Check } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 
 const LiveClock = ({ langEN }: { langEN: boolean }) => {
@@ -166,13 +166,6 @@ const NotesWidget = ({ langEN }: { langEN: boolean }) => {
         {notes.map((note, idx) => (
           <div key={idx} className="bg-[#F5F0E6] dark:bg-slate-950 p-4 rounded-xl flex justify-between gap-4 group">
             <p className="text-sm text-[#1A1A2E] dark:text-slate-200 break-words flex-1">{note}</p>
-            <button 
-              onClick={() => handleDelete(idx)}
-              className="text-gray-400 hover:text-red-500 transition-colors shrink-0"
-              title={langEN ? "Delete note" : "Notitie verwijderen"}
-            >
-              <Trash2 size={16} />
-            </button>
           </div>
         ))}
       </div>
@@ -1104,7 +1097,7 @@ export const photographerTasks = [
     "time": "**12.15 - 12.45** ",
     "action": "**Arrival of other guests (68 people)**",
     "photographer": "*A total of 78 guests throughout the day.\n\n",
-    "context": "**Important people \n\nTop priority (see profile photos)\n*Fleur: daughter \n*Samuel: son \n*Leo and Gonnie: Katinka’s parents, deceased—we’ll photoshop them in later  \n*Wilma: Jorik’s mother \n*Cor: Jorik’s father \n*Grandpa: Jorik’s grandfather \n*Lisa: Jorik’s sister \n\n2nd priority (see profile photos)\n\n*Wil: Katinka’s aunt \n*Sara: Jorik’s half-sister \n*Rob: stepfather \n*Anca: stepmother \n*Arthur: stepbrother \n*Rinske: Katinka’s sister**",
+    "context": "**Important people \n\nTop priority (see profile photos)\n*Fleur: daughter \n*Samuel: son \n*Leo and Gonnie: Katinka’s parents, deceased—we’ll photoshop them in later  \n*Wilma: Jorik’s mother \n*Cor: Jorik’s father \n*Grandpa: Jorik’s grandfather \n*Lisa: Jorik’s sister \n*Sara: Jorik’s half-sister \n\n2nd priority (see profile photos)\n\n*Wil: Katinka’s aunt \n*Rob: stepfather \n*Anca: stepmother \n*Arthur: stepbrother \n*Rinske: Katinka’s sister**",
     "location": "Palm House/Terrace "
   },
   {
@@ -2025,7 +2018,7 @@ export default function App() {
   const [settingsCode, setSettingsCode] = useState('');
   const [isFullscreenMap, setIsFullscreenMap] = useState(false);
   const [isFullscreenMoodboard, setIsFullscreenMoodboard] = useState(false);
-  const [isFullscreenBijlage, setIsFullscreenBijlage] = useState(false);
+  const [selectedBijlageImage, setSelectedBijlageImage] = useState<string | null>(null);
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   const [isSettingsExpanded, setIsSettingsExpanded] = useState(false);
   
@@ -2181,7 +2174,7 @@ export default function App() {
       id: 11, 
       firstName: "Sara", 
       relationship: langEN ? "Sister of Jorik" : "Zus van Jorik", 
-      group: "2nd priority", 
+      group: "1st priority", 
       initials: "S", 
       photo: "/jpegs/Jorik - Sister Sara.jpg" 
     },
@@ -2410,7 +2403,7 @@ export default function App() {
                       onClick={handleResetHidden}
                       className="w-full bg-transparent text-gray-500 dark:text-slate-400 hover:text-red-500 py-1.5 rounded-lg text-[10px] font-semibold uppercase tracking-wider transition-colors flex items-center justify-center gap-1.5 cursor-pointer border border-gray-300 dark:border-slate-800 hover:border-red-500/30 mb-2"
                     >
-                      <Trash2 size={12} />
+                      <RotateCcw size={12} />
                       {langEN ? 'Reset Hidden Items' : 'Herstel verborgen items'}
                     </button>
                     <button
@@ -2448,7 +2441,7 @@ export default function App() {
                       onClick={handleResetHidden}
                       className="w-full bg-transparent text-gray-500 dark:text-slate-400 hover:text-red-500 py-1.5 rounded-lg text-[10px] font-semibold uppercase tracking-wider transition-colors flex items-center justify-center gap-1.5 cursor-pointer border border-gray-300 dark:border-slate-800 hover:border-red-500/30"
                     >
-                      <Trash2 size={12} />
+                      <RotateCcw size={12} />
                       {langEN ? 'Reset Hidden Items' : 'Herstel verborgen items'}
                     </button>
                     <button
@@ -2552,13 +2545,6 @@ export default function App() {
                 <div className="flex justify-between items-end border-b border-[#1A1A2E]/10 dark:border-white/10 pb-6 mb-8 mt-4">
                   <h2 className="font-serif text-4xl md:text-5xl font-medium tracking-tight text-[#1A1A2E] dark:text-slate-100">{langEN ? 'Schedule' : 'Programma'}</h2>
                   <div className="flex items-center gap-3">
-                    <button 
-                      onClick={() => handleDismissPage('programma')}
-                      className="p-2 text-red-500/50 hover:text-red-500 hover:bg-red-500/10 rounded-full transition-colors cursor-pointer"
-                      title={langEN ? "Don't show this page again" : "Ik wil dit niet meer zien."}
-                    >
-                      <Trash2 size={16}/>
-                    </button>
                     <button onClick={(e) => togglePin('programma', e)} className="md:hidden flex items-center gap-2 text-xs font-bold text-[#c7b272] bg-white dark:bg-slate-900 px-3 py-1.5 rounded-full shadow-sm border border-gray-100 dark:border-slate-800">
                       {pinnedPages.includes('programma') ? <PinOff size={14}/> : <Pin size={14}/>}
                     </button>
@@ -2649,13 +2635,6 @@ export default function App() {
                     </p>
                   </div>
                   <div className="flex items-center gap-3">
-                    <button 
-                      onClick={() => handleDismissPage('locatie')}
-                      className="p-2 text-red-500/50 hover:text-red-500 hover:bg-red-500/10 rounded-full transition-colors cursor-pointer"
-                      title={langEN ? "Don't show this page again" : "Ik wil dit niet meer zien."}
-                    >
-                      <Trash2 size={16}/>
-                    </button>
                     <button onClick={(e) => togglePin('locatie', e)} className="md:hidden w-fit flex items-center gap-2 text-xs font-bold text-[#c7b272] bg-white dark:bg-slate-900 px-3 py-1.5 rounded-full shadow-sm border border-gray-100 dark:border-slate-800">
                       {pinnedPages.includes('locatie') ? <PinOff size={14}/> : <Pin size={14}/>}
                     </button>
@@ -2685,13 +2664,6 @@ export default function App() {
                   <div className="flex items-center gap-3">
                     <button onClick={() => setIsFullscreenMap(true)} className="flex items-center gap-2 text-xs font-bold text-[#1A1A2E] dark:text-slate-100 bg-[#c7b272]/20 hover:bg-[#c7b272] hover:text-white dark:bg-[#c7b272]/20 dark:hover:bg-[#c7b272] px-4 py-2 rounded-full transition-colors duration-300">
                       <Maximize size={14}/> <span className="hidden md:inline">{langEN ? 'Fullscreen' : 'Volledig scherm'}</span>
-                    </button>
-                    <button 
-                      onClick={() => handleDismissPage('plattegrond')}
-                      className="p-2 text-red-500/50 hover:text-red-500 hover:bg-red-500/10 rounded-full transition-colors cursor-pointer"
-                      title={langEN ? "Don't show this page again" : "Ik wil dit niet meer zien."}
-                    >
-                      <Trash2 size={16}/>
                     </button>
                     <button onClick={(e) => togglePin('plattegrond', e)} className="md:hidden flex items-center gap-2 text-xs font-bold text-[#c7b272] bg-white dark:bg-slate-900 px-3 py-1.5 rounded-full shadow-sm border border-gray-100 dark:border-slate-800">
                       {pinnedPages.includes('plattegrond') ? <PinOff size={14}/> : <Pin size={14}/>}
@@ -2730,13 +2702,6 @@ export default function App() {
                     </span>
                   </h2>
                   <div className="flex items-center gap-3">
-                    <button 
-                      onClick={() => handleDismissPage('cm')}
-                      className="p-2 text-red-500/50 hover:text-red-500 hover:bg-red-500/10 rounded-full transition-colors cursor-pointer"
-                      title={langEN ? "Don't show this page again" : "Ik wil dit niet meer zien."}
-                    >
-                      <Trash2 size={16}/>
-                    </button>
                     <button onClick={(e) => togglePin('cm', e)} className="md:hidden flex items-center gap-2 text-xs font-bold text-[#c7b272] bg-white dark:bg-slate-900 px-3 py-1.5 rounded-full shadow-sm border border-gray-100 dark:border-slate-800">
                       {pinnedPages.includes('cm') ? <PinOff size={14}/> : <Pin size={14}/>}
                     </button>
@@ -2929,13 +2894,6 @@ export default function App() {
                     <button onClick={() => setIsFullscreenMoodboard(true)} className="flex items-center gap-2 text-xs font-bold text-[#1A1A2E] dark:text-slate-100 bg-[#c7b272]/20 hover:bg-[#c7b272] hover:text-white dark:bg-[#c7b272]/20 dark:hover:bg-[#c7b272] px-4 py-2 rounded-full transition-colors duration-300 cursor-pointer">
                       <Maximize size={14}/> <span className="hidden md:inline">{langEN ? 'Fullscreen' : 'Volledig scherm'}</span>
                     </button>
-                    <button 
-                      onClick={() => handleDismissPage('moodboard')}
-                      className="p-2 text-red-500/50 hover:text-red-500 hover:bg-red-500/10 rounded-full transition-colors cursor-pointer"
-                      title={langEN ? "Don't show this page again" : "Ik wil dit niet meer zien."}
-                    >
-                      <Trash2 size={16}/>
-                    </button>
                     <button onClick={(e) => togglePin('moodboard', e)} className="md:hidden flex items-center gap-2 text-xs font-bold text-[#c7b272] bg-white dark:bg-slate-900 px-3 py-1.5 rounded-full shadow-sm border border-gray-100 dark:border-slate-800">
                       {pinnedPages.includes('moodboard') ? <PinOff size={14}/> : <Pin size={14}/>}
                     </button>
@@ -2980,44 +2938,47 @@ export default function App() {
                       <FileText className="text-[#c7b272]" size={32} />
                       Bijlage
                     </h2>
-                    <p className="text-xs md:text-sm text-gray-500 dark:text-slate-400 mt-2">
-                      Plaatsing borden
-                    </p>
                   </div>
                   <div className="flex items-center gap-3">
-                    <button onClick={() => setIsFullscreenBijlage(true)} className="flex items-center gap-2 text-xs font-bold text-[#1A1A2E] dark:text-slate-100 bg-[#c7b272]/20 hover:bg-[#c7b272] hover:text-white dark:bg-[#c7b272]/20 dark:hover:bg-[#c7b272] px-4 py-2 rounded-full transition-colors duration-300 cursor-pointer">
-                      <Maximize size={14}/> <span className="hidden md:inline">Volledig scherm</span>
-                    </button>
-                    <button 
-                      onClick={() => handleDismissPage('bijlage')}
-                      className="p-2 text-red-500/50 hover:text-red-500 hover:bg-red-500/10 rounded-full transition-colors cursor-pointer"
-                      title="Ik wil dit niet meer zien."
-                    >
-                      <Trash2 size={16}/>
-                    </button>
                     <button onClick={(e) => togglePin('bijlage', e)} className="md:hidden flex items-center gap-2 text-xs font-bold text-[#c7b272] bg-white dark:bg-slate-900 px-3 py-1.5 rounded-full shadow-sm border border-gray-100 dark:border-slate-800">
                       {pinnedPages.includes('bijlage') ? <PinOff size={14}/> : <Pin size={14}/>}
                     </button>
                   </div>
                 </div>
                 
-                <div className="bg-white dark:bg-slate-900 p-6 rounded-[2rem] shadow-sm border border-[#1A1A2E]/5 dark:border-white/5 overflow-hidden flex flex-col items-center group cursor-pointer" onClick={() => setIsFullscreenBijlage(true)}>
-                  <div className="w-full relative rounded-2xl overflow-hidden shadow-inner border border-gray-100 dark:border-slate-800 bg-[#F5F0E6]/30 dark:bg-slate-950/30">
-                    <div className="absolute inset-0 bg-[#1A1A2E]/0 group-hover:bg-[#1A1A2E]/10 transition-colors z-10 flex items-center justify-center">
-                      <div className="bg-white/95 backdrop-blur-md text-[#1A1A2E] px-6 py-3 rounded-full font-bold shadow-xl opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-4 group-hover:translate-y-0 flex items-center gap-2">
-                        <Maximize size={16} className="text-[#c7b272]"/> Klik om te vergroten
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  {[
+                    { title: langEN ? "Signs Layout" : "Borden opstelling", src: "/plaatsing_borden.jpg" },
+                    { title: langEN ? "Ceremony Seating" : "Ceremonie stoelschikking", src: "/ceremonie_stoelschikking.jpg" },
+                    { title: langEN ? "Dinner Seating" : "Diner stoelschikking", src: "/diner_stoelschikking.jpg" },
+                    { title: langEN ? "Dinner Table Setting" : "Diner tafeldekking", src: "/diner_tafeldekking.jpg" }
+                  ].map((bijlage, idx) => (
+                    <div 
+                      key={idx}
+                      onClick={() => setSelectedBijlageImage(bijlage.src)}
+                      className="bg-white dark:bg-slate-900 p-5 rounded-[2rem] shadow-sm border border-[#1A1A2E]/5 dark:border-white/5 overflow-hidden flex flex-col gap-4 group cursor-pointer hover:shadow-md transition-all duration-300"
+                    >
+                      <h3 className="font-serif text-lg font-bold text-[#1A1A2E] dark:text-slate-100 px-2">
+                        {bijlage.title}
+                      </h3>
+                      <div className="w-full relative rounded-2xl overflow-hidden shadow-inner border border-gray-100 dark:border-slate-800 bg-[#F5F0E6]/30 dark:bg-slate-950/30 aspect-[4/3] flex items-center justify-center">
+                        <div className="absolute inset-0 bg-[#1A1A2E]/0 group-hover:bg-[#1A1A2E]/10 transition-colors z-10 flex items-center justify-center">
+                          <div className="bg-white/95 backdrop-blur-md text-[#1A1A2E] px-5 py-2.5 rounded-full text-xs font-bold shadow-xl opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-4 group-hover:translate-y-0 flex items-center gap-1.5">
+                            <Maximize size={12} className="text-[#c7b272]"/> {langEN ? "Click to Enlarge" : "Klik om te vergroten"}
+                          </div>
+                        </div>
+                        <img 
+                          src={bijlage.src} 
+                          alt={bijlage.title} 
+                          className="w-full h-full object-cover rounded-2xl"
+                          onError={(e) => {
+                             const target = e.target as HTMLImageElement;
+                             target.style.display = 'none';
+                          }}
+                        />
                       </div>
                     </div>
-                    <img 
-                      src="/plaatsing_borden.jpg" 
-                      alt="Plaatsing borden" 
-                      className="w-full h-auto object-contain max-h-[80vh] mx-auto rounded-2xl"
-                      onError={(e) => {
-                         const target = e.target as HTMLImageElement;
-                         target.style.display = 'none';
-                      }}
-                    />
-                  </div>
+                  ))}
                 </div>
               </div>
             </motion.div>
@@ -3044,13 +3005,6 @@ export default function App() {
                     </p>
                   </div>
                   <div className="flex items-center gap-3">
-                    <button 
-                      onClick={() => handleDismissPage('group_photos')}
-                      className="p-2 text-red-500/50 hover:text-red-500 hover:bg-red-500/10 rounded-full transition-colors cursor-pointer"
-                      title="Don't show this page again"
-                    >
-                      <Trash2 size={16}/>
-                    </button>
                     <button onClick={(e) => togglePin('group_photos', e)} className="md:hidden flex items-center gap-2 text-xs font-bold text-[#c7b272] bg-white dark:bg-slate-900 px-3 py-1.5 rounded-full shadow-sm border border-gray-100 dark:border-slate-800">
                       {pinnedPages.includes('group_photos') ? <PinOff size={14}/> : <Pin size={14}/>}
                     </button>
@@ -3223,13 +3177,6 @@ export default function App() {
                     </p>
                   </div>
                   <div className="flex items-center gap-3">
-                    <button 
-                      onClick={() => handleDismissPage('groepsfotos')}
-                      className="p-2 text-red-500/50 hover:text-red-500 hover:bg-red-500/10 rounded-full transition-colors cursor-pointer"
-                      title="Ik wil dit niet meer zien."
-                    >
-                      <Trash2 size={16}/>
-                    </button>
                     <button onClick={(e) => togglePin('groepsfotos', e)} className="md:hidden flex items-center gap-2 text-xs font-bold text-[#c7b272] bg-white dark:bg-slate-900 px-3 py-1.5 rounded-full shadow-sm border border-gray-100 dark:border-slate-800">
                       {pinnedPages.includes('groepsfotos') ? <PinOff size={14}/> : <Pin size={14}/>}
                     </button>
@@ -3404,13 +3351,6 @@ export default function App() {
                     </p>
                   </div>
                   <div className="flex items-center gap-3">
-                    <button 
-                      onClick={() => handleDismissPage('gasten')}
-                      className="p-2 text-red-500/50 hover:text-red-500 hover:bg-red-500/10 rounded-full transition-colors cursor-pointer"
-                      title={langEN ? "Don't show this page again" : "Ik wil dit niet meer zien."}
-                    >
-                      <Trash2 size={16}/>
-                    </button>
                     <button onClick={(e) => togglePin('gasten', e)} className="md:hidden flex items-center gap-2 text-xs font-bold text-[#c7b272] bg-white dark:bg-slate-900 px-3 py-1.5 rounded-full shadow-sm border border-gray-100 dark:border-slate-800">
                       {pinnedPages.includes('gasten') ? <PinOff size={14}/> : <Pin size={14}/>}
                     </button>
@@ -3544,13 +3484,6 @@ export default function App() {
                     <h2 className="font-serif text-3xl md:text-5xl font-bold">{langEN ? 'Extra' : 'Extra'}</h2>
                   </div>
                   <div className="flex items-center gap-3">
-                    <button 
-                      onClick={() => handleDismissPage('extra')}
-                      className="p-2 text-red-500/50 hover:text-red-500 hover:bg-red-500/10 rounded-full transition-colors cursor-pointer"
-                      title={langEN ? "Don't show this page again" : "Ik wil dit niet meer zien."}
-                    >
-                      <Trash2 size={16}/>
-                    </button>
                     <button onClick={(e) => togglePin('extra', e)} className="md:hidden flex items-center gap-2 text-xs font-bold text-[#c7b272] bg-white dark:bg-slate-900 px-3 py-1.5 rounded-full shadow-sm border border-gray-100 dark:border-slate-800">
                       {pinnedPages.includes('extra') ? <PinOff size={14}/> : <Pin size={14}/>}
                     </button>
@@ -3772,7 +3705,7 @@ export default function App() {
                             }}
                             className="w-full bg-transparent text-gray-500 dark:text-slate-400 hover:text-red-500 py-1.5 rounded-lg text-[10px] font-semibold uppercase tracking-wider transition-colors flex items-center justify-center gap-1.5 cursor-pointer border border-gray-300 dark:border-slate-800 hover:border-red-500/30 mb-2"
                           >
-                            <Trash2 size={12} />
+                            <RotateCcw size={12} />
                             {langEN ? 'Reset Hidden Items' : 'Herstel verborgen items'}
                           </button>
                           <button
@@ -3817,7 +3750,7 @@ export default function App() {
                             }}
                             className="w-full bg-transparent text-gray-500 dark:text-slate-400 hover:text-red-500 py-1.5 rounded-lg text-[10px] font-semibold uppercase tracking-wider transition-colors flex items-center justify-center gap-1.5 cursor-pointer border border-gray-300 dark:border-slate-800 hover:border-red-500/30 mb-2"
                           >
-                            <Trash2 size={12} />
+                            <RotateCcw size={12} />
                             {langEN ? 'Reset Hidden Items' : 'Herstel verborgen items'}
                           </button>
                           <button
@@ -3924,23 +3857,23 @@ export default function App() {
 
         {/* Fullscreen Bijlage Modal */}
         <AnimatePresence>
-          {isFullscreenBijlage && (
+          {selectedBijlageImage && (
             <motion.div 
               initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
               className="fixed inset-0 bg-[#1A1A2E]/90 dark:bg-slate-950/90 backdrop-blur-sm z-[100] flex flex-col"
             >
               <div className="flex justify-end p-4">
                 <button 
-                  onClick={() => setIsFullscreenBijlage(false)} 
+                  onClick={() => setSelectedBijlageImage(null)} 
                   className="w-12 h-12 bg-white/10 hover:bg-white/20 text-white rounded-full flex items-center justify-center transition-colors shadow-lg backdrop-blur-md border border-white/20 cursor-pointer"
                 >
                   <X size={24}/>
                 </button>
               </div>
-              <div className="flex-1 overflow-auto flex items-center justify-center p-4" onClick={() => setIsFullscreenBijlage(false)}>
+              <div className="flex-1 overflow-auto flex items-center justify-center p-4" onClick={() => setSelectedBijlageImage(null)}>
                 <img 
-                  src="/plaatsing_borden.jpg" 
-                  alt="Plaatsing borden Fullscreen" 
+                  src={selectedBijlageImage} 
+                  alt="Bijlage Fullscreen" 
                   className="max-h-[95vh] max-w-[95vw] object-contain rounded-xl shadow-2xl" 
                 />
               </div>
@@ -4251,13 +4184,6 @@ export default function App() {
                   {langEN ? 'Inbox' : 'Postvak IN'}
                 </h3>
                 <div className="flex items-center gap-2">
-                  <button
-                    onClick={handleDismissInbox}
-                    className="p-2 text-gray-400 hover:text-red-500 hover:bg-[#1A1A2E]/5 dark:hover:bg-white/5 rounded-full transition-colors cursor-pointer"
-                    title={langEN ? "Hide entire Inbox feature" : "Verberg postvak volledig"}
-                  >
-                    <Trash2 size={18} />
-                  </button>
                   <button 
                     onClick={() => setShowInboxPopup(false)}
                     className="p-2 text-[#1A1A2E]/50 dark:text-slate-400 hover:text-[#1A1A2E] dark:hover:text-slate-100 hover:bg-[#1A1A2E]/5 dark:hover:bg-white/5 rounded-full transition-colors cursor-pointer"
@@ -4462,13 +4388,6 @@ export default function App() {
                         >
                           {langEN ? 'Bring me here →' : 'Breng me hierheen →'}
                         </button>
-                        <button
-                          onClick={() => handleDismissNotification(n.id)}
-                          className="p-1 text-gray-400 hover:text-red-500 hover:bg-red-500/10 rounded-full transition-colors cursor-pointer"
-                          title={langEN ? "Don't show this again" : "Ik wil dit niet meer zien."}
-                        >
-                          <Trash2 size={12} />
-                        </button>
                       </div>
                     </div>
                   ));
@@ -4641,13 +4560,6 @@ export default function App() {
                             <h4 className="text-[10px] font-bold uppercase tracking-wider text-gray-400 dark:text-slate-500">
                               {langEN ? 'Conversation' : 'Gesprek'}
                             </h4>
-                            <button
-                              onClick={(e) => handleDeleteSupportTicket(ticket.id, e)}
-                              className="flex items-center gap-1 text-[9px] font-bold text-red-500 hover:text-white hover:bg-red-500/90 transition-all cursor-pointer bg-red-500/10 px-2 py-1 rounded-lg border border-red-500/20"
-                            >
-                              <Trash2 size={10} />
-                              <span>{langEN ? 'Delete Ticket' : 'Verwijder ticket'}</span>
-                            </button>
                           </div>
                           
                           <div className="flex flex-col gap-4 bg-gray-50/30 dark:bg-slate-950/20 p-4 rounded-2xl border border-[#1A1A2E]/5 dark:border-white/5 min-h-[120px]">
@@ -4735,13 +4647,6 @@ export default function App() {
                                     ? (langEN ? 'Replied' : 'Beantwoord') 
                                     : (langEN ? 'Sent' : 'Verzonden')}
                                 </span>
-                                <button
-                                  onClick={(e) => handleDeleteSupportTicket(ticket.id, e)}
-                                  className="p-1.5 text-gray-400 hover:text-red-500 hover:bg-red-500/10 rounded-full transition-colors cursor-pointer"
-                                  title={langEN ? "Delete request" : "Verzoek verwijderen"}
-                                >
-                                  <Trash2 size={12} />
-                                </button>
                               </div>
                             </div>
                             <div className="text-xs text-gray-600 dark:text-slate-300 font-medium line-clamp-2 leading-relaxed">
