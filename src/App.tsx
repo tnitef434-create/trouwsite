@@ -1097,7 +1097,7 @@ export const photographerTasks = [
     "time": "**12.15 - 12.45** ",
     "action": "**Arrival of other guests (68 people)**",
     "photographer": "*A total of 78 guests throughout the day.\n\n",
-    "context": "**Important people \n\nTop priority (see profile photos)\n*Fleur: daughter \n*Samuel: son \n*Leo and Gonnie: Katinka’s parents, deceased—we’ll photoshop them in later  \n*Wilma: Jorik’s mother \n*Cor: Jorik’s father \n*Grandpa: Jorik’s grandfather \n*Lisa: Jorik’s sister \n*Sara: Jorik’s half-sister \n\n2nd priority (see profile photos)\n\n*Wil: Katinka’s aunt \n*Rob: stepfather \n*Anca: stepmother \n*Arthur: stepbrother \n*Rinske: Katinka’s sister**",
+    "context": "**Important people \n\nPriority (see profile photos)\n*Fleur: daughter \n*Samuel: son \n*Leo and Gonnie: Katinka’s parents, deceased—we’ll photoshop them in later  \n*Wilma: Jorik’s mother \n*Cor: Jorik’s father \n*Grandpa: Jorik’s grandfather \n*Lisa: Jorik’s sister \n*Sara: Jorik’s half-sister \n*Wil: Katinka’s aunt \n*Rob: stepfather \n*Anca: stepmother \n*Arthur: stepbrother \n*Rinske: Katinka’s sister**",
     "location": "Palm House/Terrace "
   },
   {
@@ -2111,7 +2111,7 @@ export default function App() {
       id: 3, 
       firstName: "Fleur", 
       relationship: langEN ? "Daughter of Jorik & Katinka" : "Dochter van Jorik & Katinka", 
-      group: "1st priority", 
+      group: "Priority", 
       initials: "F", 
       photo: "/jpegs/J&K - Daugther Fleur.jpg" 
     },
@@ -2119,7 +2119,7 @@ export default function App() {
       id: 4, 
       firstName: "Samuel", 
       relationship: langEN ? "Son of Jorik & Katinka" : "Zoon van Jorik & Katinka", 
-      group: "1st priority", 
+      group: "Priority", 
       initials: "S", 
       photo: "/jpegs/J&K - Son Samuel.jpg" 
     },
@@ -2127,7 +2127,7 @@ export default function App() {
       id: 5, 
       firstName: "Leo and Gonnie", 
       relationship: langEN ? "Father and mother of Katinka (deceased)" : "Vader en moeder van Katinka (overleden)", 
-      group: "1st priority", 
+      group: "Priority", 
       initials: "L&G", 
       photo: "/jpegs/Katinka - Elders Leo & Gonnie.jpg", 
       note: langEN 
@@ -2138,7 +2138,7 @@ export default function App() {
       id: 6, 
       firstName: "Wilma", 
       relationship: langEN ? "Mother of Jorik" : "Moeder van Jorik", 
-      group: "1st priority", 
+      group: "Priority", 
       initials: "W", 
       photo: "/jpegs/Jorik - Mother Wilma.jpg" 
     },
@@ -2146,7 +2146,7 @@ export default function App() {
       id: 7, 
       firstName: "Cor", 
       relationship: langEN ? "Father of Jorik" : "Vader van Jorik", 
-      group: "1st priority", 
+      group: "Priority", 
       initials: "C", 
       photo: "/jpegs/Jorik - Father Cornelis.jpg" 
     },
@@ -2154,7 +2154,7 @@ export default function App() {
       id: 8, 
       firstName: "Grandpa", 
       relationship: langEN ? "Grandfather of Jorik" : "Opa van Jorik", 
-      group: "1st priority", 
+      group: "Priority", 
       initials: "G", 
       photo: "/jpegs/Jorik - Grandpa.jpg" 
     },
@@ -2162,7 +2162,7 @@ export default function App() {
       id: 9, 
       firstName: "Lisa", 
       relationship: langEN ? "Sister of Jorik" : "Zus van Jorik", 
-      group: "1st priority", 
+      group: "Priority", 
       initials: "L", 
       photo: "/jpegs/Jorik - Sister Lisa.jpg" 
     },
@@ -2170,7 +2170,7 @@ export default function App() {
       id: 10, 
       firstName: "Wil", 
       relationship: langEN ? "Aunt of Katinka" : "Tante van Katinka", 
-      group: "2nd priority", 
+      group: "Priority", 
       initials: "W", 
       photo: "/jpegs/Katinka - Aunt Wil.jpg" 
     },
@@ -2178,7 +2178,7 @@ export default function App() {
       id: 11, 
       firstName: "Sara", 
       relationship: langEN ? "Sister of Jorik" : "Zus van Jorik", 
-      group: "1st priority", 
+      group: "Priority", 
       initials: "S", 
       photo: "/jpegs/Jorik - Sister Sara.jpg" 
     },
@@ -2186,7 +2186,7 @@ export default function App() {
       id: 12, 
       firstName: "Rob", 
       relationship: langEN ? "Stepfather of Jorik" : "Stiefvader van Jorik", 
-      group: "2nd priority", 
+      group: "Priority", 
       initials: "R", 
       photo: "/jpegs/Jorik - Step father Rob.jpg" 
     },
@@ -2194,7 +2194,7 @@ export default function App() {
       id: 13, 
       firstName: "Anca", 
       relationship: langEN ? "Stepmother of Jorik" : "Stiefmoeder van Jorik", 
-      group: "2nd priority", 
+      group: "Priority", 
       initials: "A", 
       photo: "/jpegs/Jorik - Step mother Anca.jpg" 
     },
@@ -2202,7 +2202,7 @@ export default function App() {
       id: 15, 
       firstName: "Rinske", 
       relationship: langEN ? "Sister of Katinka" : "Zus van Katinka", 
-      group: "2nd priority", 
+      group: "Priority", 
       initials: "R", 
       photo: "/jpegs/Katinka - Sister Rinske.jpg" 
     }
@@ -3385,11 +3385,10 @@ export default function App() {
 
                   {/* Filter Pills */}
                   <div className="flex flex-wrap gap-2 overflow-x-auto pb-1 scrollbar-thin">
-                    {['All', '1st priority', '2nd priority', 'Master of ceremony'].map((cat) => {
+                    {['All', 'Priority', 'Master of ceremony'].map((cat) => {
                       const labelMap: Record<string, string> = {
                         'All': langEN ? 'All' : 'Alles',
-                        '1st priority': langEN ? '1st priority' : '1e prioriteit',
-                        '2nd priority': langEN ? '2nd priority' : '2e prioriteit',
+                        'Priority': langEN ? 'Priority' : 'Prioriteit',
                         'Master of ceremony': langEN ? 'Master of ceremony' : 'Ceremoniemeester'
                       };
                       const isActive = guestFilter === cat;
@@ -3412,16 +3411,16 @@ export default function App() {
 
                 {/* Directory Grid */}
                 {filteredGuests.length > 0 ? (
-                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                  <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-6">
                     {filteredGuests.map((guest) => (
                       <div 
                         key={guest.id}
-                        className="bg-white dark:bg-slate-900 border border-[#1A1A2E]/5 dark:border-white/5 p-5 rounded-[2rem] shadow-sm hover:shadow-md hover:scale-[1.02] transition-all flex items-center gap-4 group font-sans"
+                        className="bg-white dark:bg-slate-900 border border-[#1A1A2E]/5 dark:border-white/5 p-3.5 sm:p-5 rounded-[1.5rem] sm:rounded-[2rem] shadow-sm hover:shadow-md hover:scale-[1.02] transition-all flex flex-col items-center text-center sm:flex-row sm:items-center sm:text-left gap-2.5 sm:gap-4 group font-sans"
                       >
                         {/* Profile Picture Frame */}
-                        <div className="relative w-16 h-16 shrink-0 rounded-full bg-gradient-to-tr from-[#1A1A2E] via-[#c7b272]/30 to-[#c7b272] p-[1.5px] shadow-sm group-hover:rotate-6 transition-transform duration-300">
+                        <div className="relative w-12 h-12 sm:w-16 sm:h-16 shrink-0 rounded-full bg-gradient-to-tr from-[#1A1A2E] via-[#c7b272]/30 to-[#c7b272] p-[1.5px] shadow-sm group-hover:rotate-6 transition-transform duration-300">
                           <div className="w-full h-full rounded-full bg-[#F5F0E6] dark:bg-slate-950 flex items-center justify-center overflow-hidden relative">
-                            <span className="absolute text-[#1A1A2E] dark:text-[#c7b272] font-serif font-bold text-lg select-none">
+                            <span className="absolute text-[#1A1A2E] dark:text-[#c7b272] font-serif font-bold text-sm sm:text-lg select-none">
                               {guest.initials}
                             </span>
                             {guest.photo && (
@@ -3440,26 +3439,25 @@ export default function App() {
                         </div>
 
                         {/* Guest Text Details */}
-                        <div className="flex-1 min-w-0 text-left">
-                          <h3 className="font-serif font-semibold text-lg md:text-xl text-[#1A1A2E] dark:text-slate-100 truncate">
+                        <div className="flex-1 min-w-0 text-center sm:text-left w-full">
+                          <h3 className="font-serif font-semibold text-sm sm:text-lg md:text-xl text-[#1A1A2E] dark:text-slate-100 truncate w-full">
                             {guest.firstName}
                           </h3>
-                          <p className="text-xs text-[#666666] dark:text-slate-400 italic mt-0.5 leading-snug">
+                          <p className="text-[10px] sm:text-xs text-[#666666] dark:text-slate-400 italic mt-0.5 leading-snug truncate w-full">
                             {guest.relationship}
                           </p>
                           {guest.mobile && (
-                            <p className="text-[11px] text-[#c7b272] font-semibold font-mono mt-1">
+                            <p className="text-[10px] sm:text-[11px] text-[#c7b272] font-semibold font-mono mt-1 truncate w-full">
                               {guest.mobile}
                             </p>
                           )}
                           {guest.note && (
-                            <p className="text-[11px] text-gray-500 dark:text-slate-400 mt-1 leading-snug">
+                            <p className="text-[10px] sm:text-[11px] text-gray-500 dark:text-slate-400 mt-1 leading-snug line-clamp-1 sm:line-clamp-2 w-full">
                               {guest.note}
                             </p>
                           )}
-                          <span className="inline-block mt-2 text-[9px] font-bold uppercase tracking-widest text-[#c7b272] bg-[#c7b272]/10 px-2 py-0.5 rounded">
-                            {guest.group === '1st priority' ? (langEN ? '1st priority' : '1e prioriteit') :
-                             guest.group === '2nd priority' ? (langEN ? '2nd priority' : '2e prioriteit') :
+                          <span className="inline-block mt-2 text-[8px] sm:text-[9px] font-bold uppercase tracking-widest text-[#c7b272] bg-[#c7b272]/10 px-1.5 py-0.5 sm:px-2 rounded">
+                            {guest.group === 'Priority' ? (langEN ? 'Priority' : 'Prioriteit') :
                              guest.group === 'Master of ceremony' ? (langEN ? 'Master of ceremony' : 'Ceremoniemeester') :
                              guest.group === 'General' ? (langEN ? 'General' : 'Algemeen') : guest.group}
                           </span>
@@ -4205,8 +4203,8 @@ export default function App() {
                       role: 'photographer',
                       category: 'Urgent',
                       time: '11:00',
-                      title: '1st Priority Photography',
-                      content: 'Prioriteit 1 gasten moeten vandaag absoluut gefotografeerd worden: Fleur, Samuel, Cor, Wilma, Opa, en een foto vasthoudend van Leo & Gonnie.',
+                      title: 'Priority Photography',
+                      content: 'Prioriteit gasten moeten vandaag absoluut gefotografeerd worden: Fleur, Samuel, Cor, Wilma, Opa, en een foto vasthoudend van Leo & Gonnie.',
                       targetTab: 'gasten',
                       urgent: true
                     },
