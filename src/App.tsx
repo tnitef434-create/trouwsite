@@ -1369,6 +1369,7 @@ let firebaseAppPromise: Promise<any> | null = null;
 const getFirebaseApp = () => {
   if (!firebaseAppPromise) {
     firebaseAppPromise = (async () => {
+      // @ts-ignore
       const { initializeApp, getApps, getApp } = await import('https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js');
       const apps = getApps();
       if (apps.length === 0) {
@@ -1746,6 +1747,7 @@ export default function App() {
 
     try {
       const app = await getFirebaseApp();
+      // @ts-ignore
       const { getFirestore, doc, setDoc, updateDoc, arrayUnion } = await import('https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js');
       const db = getFirestore(app);
       const chatDocRef = doc(db, 'matches', 'chat_room');
@@ -1903,6 +1905,7 @@ export default function App() {
         await estimateSkew();
 
         const app = await getFirebaseApp();
+        // @ts-ignore
         const { getFirestore, doc, setDoc, deleteDoc, onSnapshot, collection, query, where } = await import('https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js');
 
         deleteDocFn = deleteDoc;
@@ -1983,6 +1986,7 @@ export default function App() {
     const initFirestoreChat = async () => {
       try {
         const app = await getFirebaseApp();
+        // @ts-ignore
         const { getFirestore, doc, onSnapshot } = await import('https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js');
         const db = getFirestore(app);
         const chatDocRef = doc(db, 'matches', 'chat_room');
