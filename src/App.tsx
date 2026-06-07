@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Search, Filter, MessageSquare, MapPin, Clock, Calendar, Info, Heart, Send, ChevronRight, ChevronDown, RotateCcw, Settings, Map as MapIcon, Pin, PinOff, X, Zap, Maximize, Menu, Cloud, Sun, Droplets, Plus, Mail, Music, Camera, LogOut, FileText, Image, ArrowLeft, Check } from 'lucide-react';
+import { Search, Filter, MessageSquare, MapPin, Clock, Calendar, Info, Heart, Send, ChevronRight, ChevronDown, RotateCcw, Settings, Map as MapIcon, Pin, PinOff, X, Zap, Maximize, Menu, Cloud, Sun, Droplets, Plus, Mail, Music, Camera, LogOut, FileText, Image, ArrowLeft, Check, Home, Grid, CheckSquare, Users, HelpCircle, Moon, Minus } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 
 const LiveClock = ({ langEN }: { langEN: boolean }) => {
@@ -2023,7 +2023,13 @@ export default function App() {
   const [isFullscreenMap, setIsFullscreenMap] = useState(false);
   const [isFullscreenMoodboard, setIsFullscreenMoodboard] = useState(false);
   const [selectedBijlageImage, setSelectedBijlageImage] = useState<string | null>(null);
-  const [showMobileMenu, setShowMobileMenu] = useState(false);
+  const [showMoreTray, setShowMoreTray] = useState(false);
+  const [zoomScale, setZoomScale] = useState(1);
+  
+  useEffect(() => {
+    setZoomScale(1);
+  }, [isFullscreenMap, isFullscreenMoodboard, selectedBijlageImage]);
+
   const [isSettingsExpanded, setIsSettingsExpanded] = useState(false);
   
   // Theme state
@@ -2081,9 +2087,9 @@ export default function App() {
   const [guestFilter, setGuestFilter] = useState('All');
 
   const getFloorPlanImage = () => {
-    if (role === 'photographer') return '/plattegrond_fotograaf.jpg';
-    if (role === 'cm') return '/plattegrond_cm.jpg';
-    return '/plattegrond_gasten.jpg';
+    if (role === 'photographer') return '/plattegrond_fotograaf.webp';
+    if (role === 'cm') return '/plattegrond_cm.webp';
+    return '/plattegrond_gasten.webp';
   };
 
   const guestDirectoryData = [
@@ -2288,207 +2294,131 @@ export default function App() {
     setPinnedPages(prev => prev.includes(id) ? prev.filter(p => p !== id) : [...prev, id]);
   };
 
-  return (
-    <div className="h-[100dvh] w-full bg-[#F5F0E6] dark:bg-slate-950 text-[#1A1A2E] dark:text-slate-100 font-sans flex flex-col md:flex-row shadow-2xl overflow-hidden relative">
-      
-      {/* Sidebar */}
-      <header className="md:w-72 lg:w-80 shrink-0 bg-[#F5F0E6] dark:bg-slate-950 md:bg-white dark:bg-slate-900 md:border-r border-[#1A1A2E]/10 dark:border-white/10 z-20 flex flex-col pt-16 md:pt-10 pb-6 px-6 md:p-8 relative">
-        <button 
-          onClick={() => setShowMobileMenu(true)}
-          className="md:hidden absolute top-4 left-4 p-2 text-[#1A1A2E] dark:text-slate-100 hover:bg-[#1A1A2E]/5 dark:hover:bg-white/5 rounded-full transition-colors"
-        >
-          <Menu size={24} />
-        </button>
-        <div className="text-center md:text-left mb-6 md:mb-12">
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-serif text-[#1A1A2E] dark:text-slate-100 font-bold mb-2 break-words">
-            <span className="md:hidden">Jorik & Katinka</span>
-            <span className="hidden md:block">Jorik &<br/>Katinka</span>
-          </h1>
-          <p className="text-xs lg:text-sm uppercase tracking-widest text-[#c7b272] font-semibold leading-relaxed">
-            {langEN ? 'June 14, 2026' : '14 juni 2026'} <br/> Oranjerie Hydepark
-          </p>
-        </div>
-        
-        {/* Desktop Nav */}
-        <nav className="hidden md:flex flex-col gap-2 flex-1">
-          {sortedPages.map(nav => {
-            const isSpecial = nav.id === 'cm' || nav.id === 'gasten';
-            const isSelected = activeTab === nav.id;
-            return (
-              <div key={nav.id} className="relative group">
-                <button
-                  onClick={() => handleNavClick(nav.id)}
-                  className={`w-full flex items-center gap-4 px-5 py-4 rounded-xl font-medium transition-all duration-300 ${
-                    isSelected 
-                      ? 'bg-[#1A1A2E] dark:bg-slate-800 text-white shadow-lg translate-x-2' 
-                      : isSpecial 
-                        ? 'border border-[#c7b272]/30 bg-[#c7b272]/5 text-[#c7b272] dark:text-[#ebd197] hover:bg-[#c7b272]/15' 
-                        : 'hover:bg-[#F5F0E6] dark:bg-slate-950 text-[#666666] dark:text-slate-400 hover:text-[#1A1A2E] dark:text-slate-100'
-                  }`}
-                >
-                  <div className={`${isSelected ? 'text-[#c7b272]' : ''}`}>{nav.icon}</div>
-                  <div className="flex-1 text-left flex items-center justify-between min-w-0">
-                    <span className="truncate">{nav.label}</span>
-                    {isSpecial && (
-                      <span className="border border-[#c7b272]/40 bg-gradient-to-r from-[#c7b272]/25 to-[#c7b272]/5 text-[#1A1A2E] dark:text-[#ebd197] text-[10px] font-bold px-2.5 py-0.5 rounded-full uppercase tracking-widest flex items-center gap-1.5 ml-2 shadow-sm shrink-0">
-                        <span className="flex h-1.5 w-1.5 relative">
-                          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#c7b272] opacity-75"></span>
-                          <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-[#c7b272]"></span>
-                        </span>
-                        {langEN ? 'For You' : 'Voor jou'}
-                      </span>
-                    )}
-                    {nav.id === 'inbox_temp' && role === 'cm' && !inboxRead && (
-                      <span className="w-2.5 h-2.5 bg-red-500 rounded-full shrink-0 shadow-sm border border-white dark:border-slate-900 mr-2"></span>
-                    )}
-                  </div>
-                  {isSelected && <ChevronRight size={16} className="opacity-50 shrink-0" />}
-                </button>
-                {nav.id !== 'inbox_temp' && (
-                  <button 
-                    onClick={(e) => togglePin(nav.id, e)}
-                    className={`absolute right-[-10px] top-1/2 -translate-y-1/2 p-2 rounded-full transition-opacity ${pinnedPages.includes(nav.id) ? 'opacity-100 text-[#c7b272]' : 'opacity-0 group-hover:opacity-50 hover:!opacity-100 text-[#666666] dark:text-slate-400'}`}
-                  >
-                    {pinnedPages.includes(nav.id) ? <Pin size={14} className="fill-current" /> : <Pin size={14} />}
-                  </button>
-                )}
-              </div>
-            );
-          })}
-        </nav>
+  const getMoreOptions = () => {
+    const options = [];
+    
+    if (role === 'guest') {
+      options.push(
+        { id: 'locatie', label: langEN ? 'Parking' : 'Parkeren', icon: <MapPin size={22} />, action: () => { setActiveTab('locatie'); setShowMoreTray(false); } },
+        { id: 'groepsfotos', label: langEN ? 'Group Photos' : 'Groepsfoto’s', icon: <Camera size={22} />, action: () => { setActiveTab('groepsfotos'); setShowMoreTray(false); } },
+        { id: 'chat', label: langEN ? 'Chat' : 'Groepschat', icon: <MessageSquare size={22} />, action: () => { setIsFloatingChatOpen(true); scrollToBottom(); setShowMoreTray(false); } },
+        { id: 'extra', label: langEN ? 'Extras' : 'Extra\'s', icon: <Zap size={22} />, action: () => { setActiveTab('extra'); setShowMoreTray(false); } }
+      );
+    } else if (role === 'cm') {
+      options.push(
+        { id: 'bijlage', label: langEN ? 'Bijlage' : 'Bijlage', icon: <FileText size={22} />, action: () => { setActiveTab('bijlage'); setShowMoreTray(false); } },
+        { id: 'groepsfotos', label: langEN ? 'Group Photos' : 'Groepsfoto’s', icon: <Camera size={22} />, action: () => { setActiveTab('groepsfotos'); setShowMoreTray(false); } },
+        { id: 'locatie', label: langEN ? 'Parking' : 'Parkeren', icon: <MapPin size={22} />, action: () => { setActiveTab('locatie'); setShowMoreTray(false); } },
+        { id: 'chat', label: langEN ? 'Chat' : 'Groepschat', icon: <MessageSquare size={22} />, action: () => { setIsFloatingChatOpen(true); scrollToBottom(); setShowMoreTray(false); } },
+        { id: 'extra', label: langEN ? 'Extras' : 'Extra\'s', icon: <Zap size={22} />, action: () => { setActiveTab('extra'); setShowMoreTray(false); } }
+      );
+    } else if (role === 'photographer') {
+      options.push(
+        { id: 'group_photos', label: langEN ? 'Group Photos' : 'Groepsfoto’s', icon: <Camera size={22} />, action: () => { setActiveTab('group_photos'); setShowMoreTray(false); } },
+        { id: 'moodboard', label: langEN ? 'Moodboard' : 'Moodboard', icon: <Image size={22} />, action: () => { setActiveTab('moodboard'); setShowMoreTray(false); } },
+        { id: 'plattegrond', label: langEN ? 'Map' : 'Plattegrond', icon: <MapIcon size={22} />, action: () => { setActiveTab('plattegrond'); setShowMoreTray(false); } },
+        { id: 'locatie', label: langEN ? 'Parking' : 'Parkeren', icon: <MapPin size={22} />, action: () => { setActiveTab('locatie'); setShowMoreTray(false); } },
+        { id: 'chat', label: langEN ? 'Chat' : 'Groepschat', icon: <MessageSquare size={22} />, action: () => { setIsFloatingChatOpen(true); scrollToBottom(); setShowMoreTray(false); } },
+        { id: 'extra', label: langEN ? 'Extras' : 'Extra\'s', icon: <Zap size={22} />, action: () => { setActiveTab('extra'); setShowMoreTray(false); } }
+      );
+    }
 
-        <div className="mt-auto pt-8 border-t border-[#1A1A2E]/10 dark:border-white/10 hidden md:flex flex-col gap-4 mb-4">
-          <div className="flex items-center justify-between px-4 py-2">
-            <span className="text-sm font-semibold text-[#1A1A2E] dark:text-slate-400">{langEN ? 'Theme' : 'Thema'}</span>
-            <button 
-              onClick={toggleDarkTheme}
-              className="w-12 h-6 bg-[#1A1A2E] dark:bg-[#c7b272] rounded-full relative transition-colors duration-300 shadow-inner"
+    // Always append Support & Settings
+    options.push(
+      { id: 'support', label: langEN ? 'Support' : 'Support', icon: <HelpCircle size={22} />, action: () => { setShowHelpModal(true); setShowMoreTray(false); } },
+      { id: 'settings', label: langEN ? 'Settings' : 'Instellingen', icon: <Settings size={22} />, action: () => { setIsSettingsExpanded(true); setShowMoreTray(false); } }
+    );
+
+    return options;
+  };
+
+  return (
+    <div className="h-[100dvh] w-full bg-[#1A1A2E] dark:bg-slate-950 flex items-center justify-center relative overflow-hidden">
+      {/* Blurred background image for desktop simulator context */}
+      <div 
+        className="absolute inset-0 bg-cover bg-center filter blur-2xl scale-110 opacity-30 select-none pointer-events-none hidden md:block" 
+        style={{ backgroundImage: "url('/cover_foto.webp')" }}
+      />
+      <div className="absolute inset-0 bg-gradient-to-tr from-[#1A1A2E]/80 via-transparent to-[#1a1a2e]/40 hidden md:block select-none pointer-events-none" />
+
+      {/* Smartphone Simulator Viewport Container */}
+      <div className="w-full h-full md:h-[92vh] md:max-w-[430px] md:rounded-[3rem] md:border-[10px] md:border-slate-900 dark:md:border-slate-800 md:shadow-[0_25px_50px_-12px_rgba(0,0,0,0.6)] bg-[#F5F0E6] dark:bg-slate-950 text-[#1A1A2E] dark:text-slate-100 font-sans flex flex-col overflow-hidden relative md:my-auto md:mx-auto">
+        
+        {/* Sticky Header */}
+        <header className="h-16 shrink-0 bg-[#F5F0E6]/95 dark:bg-slate-950/95 backdrop-blur-md border-b border-[#1A1A2E]/5 dark:border-white/5 z-20 flex items-center justify-between px-6 select-none">
+          <div className="flex items-center gap-2">
+            <h1 className="text-xl font-serif text-[#1A1A2E] dark:text-slate-100 font-bold tracking-tight">
+              Jorik & Katinka
+            </h1>
+            {/* Live active users presence count badge */}
+            <div 
+              onClick={() => setShowPresenceHistory(true)}
+              className="flex items-center gap-1 bg-[#c7b272]/10 dark:bg-[#c7b272]/20 px-2.5 py-0.5 rounded-full text-[10px] font-bold text-[#c7b272] cursor-pointer hover:bg-[#c7b272]/25 transition-all select-none"
+              title={langEN ? "View activity history" : "Bekijk activiteit geschiedenis"}
             >
-              <div className={`absolute top-1 w-4 h-4 rounded-full bg-white transition-transform duration-300 ${isDark ? 'left-7' : 'left-1'}`} />
+              <span className="relative flex h-1.5 w-1.5">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#c7b272] opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-[#c7b272]"></span>
+              </span>
+              <span>{activeUsersCount}</span>
+            </div>
+          </div>
+          
+          <div className="flex items-center gap-1">
+            {/* Live Chat bubble launcher */}
+            <button 
+              onClick={() => { setIsFloatingChatOpen(true); scrollToBottom(); }}
+              className="p-2 text-[#666666] dark:text-slate-400 hover:text-[#c7b272] dark:hover:text-[#c7b272] rounded-full transition-all relative cursor-pointer"
+              title={langEN ? 'Live Chat' : 'Live Groepschat'}
+            >
+              <MessageSquare size={20} />
+              {chatMessages.length > 0 && (
+                <span className="absolute top-1 right-1 w-2.5 h-2.5 bg-red-500 rounded-full border-2 border-[#F5F0E6] dark:border-slate-950 shadow-sm">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-500 opacity-75"></span>
+                </span>
+              )}
+            </button>
+
+            {/* Global notifications Inbox */}
+            {(!isInboxDismissed || hasSupportReply) && (
+              <button
+                onClick={() => {
+                  setShowInboxPopup(true);
+                  markInboxAsRead(true);
+                  markAllAsRead();
+                }}
+                className="p-2 text-[#666666] dark:text-slate-400 hover:text-[#c7b272] dark:hover:text-[#c7b272] rounded-full transition-all relative cursor-pointer"
+                title={langEN ? 'Notifications' : 'Meldingen'}
+              >
+                <Mail size={20} />
+                {(!inboxRead || hasSupportReply) && (
+                  <span className="absolute top-1 right-1 w-2.5 h-2.5 bg-red-500 rounded-full border-2 border-[#F5F0E6] dark:border-slate-950 shadow-sm">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-500 opacity-75"></span>
+                  </span>
+                )}
+              </button>
+            )}
+
+            {/* Access Code Settings */}
+            <button 
+              onClick={() => setIsSettingsExpanded(true)}
+              className={`p-2 rounded-full transition-all cursor-pointer ${
+                role !== 'guest' 
+                  ? 'text-[#c7b272] bg-[#c7b272]/10 hover:bg-[#c7b272]/20' 
+                  : 'text-[#666666] dark:text-slate-400 hover:text-[#c7b272] dark:hover:text-[#c7b272]'
+              }`}
+              title={langEN ? 'Settings & Access' : 'Instellingen & Toegang'}
+            >
+              <Settings size={20} />
             </button>
           </div>
-          <button 
-            onClick={() => setIsSettingsExpanded(!isSettingsExpanded)} 
-            className="flex items-center justify-between px-4 py-2 text-sm text-[#666666] dark:text-slate-400 hover:text-[#1A1A2E] dark:hover:text-slate-100 transition-colors font-medium w-full"
-          >
-            <div className="flex items-center gap-3">
-              <Settings size={20} />
-              {langEN ? 'Login' : 'Login'}
-            </div>
-            <ChevronRight size={16} className={`transition-transform ${isSettingsExpanded ? 'rotate-90' : ''}`} />
-          </button>
-          <AnimatePresence>
-            {isSettingsExpanded && (
-              <motion.div 
-                initial={{ height: 0, opacity: 0 }} 
-                animate={{ height: 'auto', opacity: 1 }} 
-                exit={{ height: 0, opacity: 0 }}
-                className="overflow-hidden px-4"
-              >
-                {role === 'guest' ? (
-                  <div className="flex flex-col gap-2">
-                    <form onSubmit={handleCodeSubmit} className="flex gap-2 pt-2 pb-2">
-                      <input 
-                        type="password" 
-                        value={settingsCode}
-                        onChange={(e) => setSettingsCode(e.target.value)}
-                        placeholder={langEN ? 'Access Code' : 'Toegangscode'}
-                        className="flex-1 min-w-0 border border-gray-200 dark:border-slate-800 bg-[#F5F0E6]/50 dark:bg-slate-900 text-[#1A1A2E] dark:text-slate-100 rounded-xl px-4 py-2 focus:ring-2 focus:ring-[#c7b272] focus:border-[#c7b272] outline-none text-[16px] md:text-sm transition-all"
-                      />
-                      <button 
-                        type="submit" 
-                        className="bg-[#c7b272] hover:bg-[#b8a15f] text-white rounded-xl w-10 shrink-0 flex items-center justify-center transition-colors shadow-sm cursor-pointer"
-                        aria-label="Submit code"
-                      >
-                        <Send size={16} />
-                      </button>
-                    </form>
-                    <button
-                      onClick={handleResetHidden}
-                      className="w-full bg-transparent text-gray-500 dark:text-slate-400 hover:text-red-500 py-1.5 rounded-lg text-[10px] font-semibold uppercase tracking-wider transition-colors flex items-center justify-center gap-1.5 cursor-pointer border border-gray-300 dark:border-slate-800 hover:border-red-500/30 mb-2"
-                    >
-                      <RotateCcw size={12} />
-                      {langEN ? 'Reset Hidden Items' : 'Herstel verborgen items'}
-                    </button>
-                    <button
-                      onClick={() => setShowHelpModal(true)}
-                      className="w-full text-center text-[10px] font-bold uppercase tracking-wider text-[#c7b272] hover:text-[#b8a15f] transition-colors cursor-pointer flex items-center justify-center gap-1.5 py-1"
-                    >
-                      <Info size={12} />
-                      {langEN ? 'Help & Support' : 'Hulp & Support'}
-                    </button>
-                  </div>
-                ) : (
-                  <div className="flex flex-col gap-3 pt-2 pb-4">
-                    <div className="bg-[#c7b272]/10 dark:bg-[#c7b272]/20 border border-[#c7b272]/20 rounded-xl p-3.5 flex flex-col gap-1.5 items-center text-center">
-                      <span className="text-[10px] uppercase tracking-widest text-[#c7b272] font-bold">
-                        {langEN ? 'Active Access' : 'Actieve Toegang'}
-                      </span>
-                      <span className="font-serif font-bold text-[#1A1A2E] dark:text-slate-100 text-sm">
-                        {role === 'cm' 
-                          ? (langEN ? 'Ceremony Master' : 'Ceremoniemeester') 
-                          : (langEN ? 'Photographer' : 'Fotograaf')}
-                      </span>
-                    </div>
-                    <button
-                      onClick={() => {
-                        setRole('guest');
-                        setActiveTab('overzicht');
-                        setIsSettingsExpanded(false);
-                      }}
-                      className="w-full bg-[#1A1A2E] dark:bg-slate-800 hover:bg-[#c7b272] dark:hover:bg-[#c7b272] text-white py-2.5 rounded-xl text-xs font-semibold uppercase tracking-wider transition-colors shadow-sm flex items-center justify-center gap-2 cursor-pointer"
-                    >
-                      <LogOut size={14} />
-                      {langEN ? 'Log Out' : 'Uitloggen'}
-                    </button>
-                    <button
-                      onClick={handleResetHidden}
-                      className="w-full bg-transparent text-gray-500 dark:text-slate-400 hover:text-red-500 py-1.5 rounded-lg text-[10px] font-semibold uppercase tracking-wider transition-colors flex items-center justify-center gap-1.5 cursor-pointer border border-gray-300 dark:border-slate-800 hover:border-red-500/30"
-                    >
-                      <RotateCcw size={12} />
-                      {langEN ? 'Reset Hidden Items' : 'Herstel verborgen items'}
-                    </button>
-                    <button
-                      onClick={() => setShowHelpModal(true)}
-                      className="w-full text-center text-[10px] font-bold uppercase tracking-wider text-[#c7b272] hover:text-[#b8a15f] transition-colors cursor-pointer flex items-center justify-center gap-1.5 py-1"
-                    >
-                      <Info size={12} />
-                      {langEN ? 'Help & Support' : 'Hulp & Support'}
-                    </button>
-                  </div>
-                )}
-              </motion.div>
-            )}
-          </AnimatePresence>
-          {/* Active Presence Counter */}
-          <div 
-            onClick={() => setShowPresenceHistory(true)}
-            className="flex items-center gap-2 text-[10px] text-gray-400 dark:text-slate-500 font-sans tracking-wide px-4 mt-2 cursor-pointer hover:underline"
-            title={langEN ? "View activity history" : "Bekijk activiteit geschiedenis"}
-          >
-            <span className="relative flex h-1.5 w-1.5">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#c7b272] opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-[#c7b272]"></span>
-            </span>
-            <span>
-              {activeUsersCount <= 1 ? (
-                langEN ? '1 person online' : '1 persoon online'
-              ) : (
-                langEN 
-                  ? `${activeUsersCount} people online` 
-                  : `${activeUsersCount} mensen online`
-              )}
-            </span>
-          </div>
-        </div>
-      </header>
+        </header>
 
-      {/* Main Content Area */}
-      <main className="flex-1 w-full bg-[#F5F0E6] dark:bg-slate-950 md:bg-white dark:bg-slate-900 relative z-0 overflow-hidden">
-        <AnimatePresence mode="wait">
-          {/* TAB: OVERZICHT */}
-          {activeTab === 'overzicht' && (
-            <motion.div key="overzicht" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, scale: 0.98 }} className="absolute inset-0 overflow-y-auto p-6 md:p-12 pb-32 md:pb-12">
+        {/* Main Scrollable Content Area */}
+        <main className="flex-1 w-full bg-[#F5F0E6] dark:bg-slate-950 relative z-0 overflow-hidden">
+          <AnimatePresence mode="wait">
+            {activeTab === 'overzicht' && (
+              <motion.div key="overzicht" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, scale: 0.98 }} className="absolute inset-0 overflow-y-auto p-6 md:p-12 pb-32 md:pb-12">
               <div className="max-w-3xl mx-auto mt-2">
                 <div className="flex justify-end md:hidden mb-4">
                   <button onClick={(e) => togglePin('overzicht', e)} className="flex items-center gap-2 text-xs font-bold text-[#c7b272] bg-white dark:bg-slate-900 px-3 py-1.5 rounded-full shadow-sm border border-gray-100 dark:border-slate-800">
@@ -2498,7 +2428,7 @@ export default function App() {
 
                 <div className="relative w-full aspect-[4/3] md:aspect-[21/9] rounded-[2rem] overflow-hidden shadow-sm mb-10 border border-[#1A1A2E]/5 dark:border-white/5">
                   <img 
-                    src="/cover_foto.jpg" 
+                    src="/cover_foto.webp" 
                     alt="Oranjerie Hydepark" 
                     className="w-full h-full object-cover"
                     onError={(e) => {
@@ -2912,9 +2842,10 @@ export default function App() {
                       </div>
                     </div>
                     <img 
-                      src="/moodboard.jpg" 
+                      src="/moodboard.webp" 
                       alt="Wedding Moodboard" 
                       className="w-full h-auto object-contain max-h-[80vh] mx-auto rounded-2xl"
+                      loading="lazy"
                       onError={(e) => {
                          const target = e.target as HTMLImageElement;
                          target.style.display = 'none';
@@ -2952,10 +2883,10 @@ export default function App() {
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   {[
-                    { title: langEN ? "Signs Layout" : "Borden opstelling", src: "/plaatsing_borden.jpg" },
-                    { title: langEN ? "Ceremony Seating" : "Ceremonie stoelschikking", src: "/ceremonie_stoelschikking.jpg" },
-                    { title: langEN ? "Dinner Seating" : "Diner stoelschikking", src: "/diner_stoelschikking.jpg" },
-                    { title: langEN ? "Dinner Table Setting" : "Diner tafeldekking", src: "/diner_tafeldekking.jpg" }
+                    { title: langEN ? "Signs Layout" : "Borden opstelling", src: "/plaatsing_borden.webp" },
+                    { title: langEN ? "Ceremony Seating" : "Ceremonie stoelschikking", src: "/ceremonie_stoelschikking.webp" },
+                    { title: langEN ? "Dinner Seating" : "Diner stoelschikking", src: "/diner_stoelschikking.webp" },
+                    { title: langEN ? "Dinner Table Setting" : "Diner tafeldekking", src: "/diner_tafeldekking.webp" }
                   ].map((bijlage, idx) => (
                     <div 
                       key={idx}
@@ -2975,6 +2906,7 @@ export default function App() {
                           src={bijlage.src} 
                           alt={bijlage.title} 
                           className="w-full h-full object-cover rounded-2xl"
+                          loading="lazy"
                           onError={(e) => {
                              const target = e.target as HTMLImageElement;
                              target.style.display = 'none';
@@ -3594,216 +3526,275 @@ export default function App() {
         </AnimatePresence>
       </main>
       
-      {/* Mobile Menu Drawer */}
-      <AnimatePresence>
-        {showMobileMenu && (
-          <motion.div 
-            initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.3 }}
-            className="fixed inset-0 bg-[#1A1A2E]/60 dark:bg-slate-950/90 z-[100] md:hidden"
-            onClick={() => setShowMobileMenu(false)}
-          >
-            <motion.div 
-              initial={{ x: '-100%' }} animate={{ x: 0 }} exit={{ x: '-100%' }} transition={{ type: 'tween', ease: [0.16, 1, 0.3, 1], duration: 0.4 }}
-              className="absolute top-0 bottom-0 left-0 w-3/4 max-w-sm bg-[#F5F0E6] dark:bg-slate-950 shadow-2xl flex flex-col pt-16 px-6 pb-6 border-r border-[#1A1A2E]/10 dark:border-white/10 overflow-y-auto will-change-transform"
-              onClick={e => e.stopPropagation()}
-            >
-              <button 
-                onClick={() => setShowMobileMenu(false)}
-                className="absolute top-4 right-4 p-2 text-[#1A1A2E] dark:text-slate-100 hover:bg-[#1A1A2E]/5 dark:hover:bg-white/5 rounded-full transition-colors"
-              >
-                <X size={24} />
-              </button>
+      {/* Floating Bottom Nav Bar */}
+      <nav className="absolute bottom-4 left-4 right-4 h-16 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border border-white/20 dark:border-slate-800/40 rounded-2xl shadow-[0_10px_30px_-5px_rgba(0,0,0,0.15)] dark:shadow-black/40 z-30 flex items-center justify-around px-2 select-none shrink-0">
+        {(() => {
+          const bottomTabs = [];
+          
+          bottomTabs.push({ id: 'overzicht', label: langEN ? 'Home' : 'Start', icon: <Home size={20} /> });
+          
+          if (role === 'guest') {
+            bottomTabs.push(
+              { id: 'programma', label: langEN ? 'Schedule' : 'Programma', icon: <Calendar size={20} /> },
+              { id: 'plattegrond', label: langEN ? 'Map' : 'Kaart', icon: <MapIcon size={20} /> }
+            );
+          } else if (role === 'cm') {
+            bottomTabs.push(
+              { id: 'cm', label: langEN ? 'Tasks' : 'Taken', icon: <CheckSquare size={20} /> },
+              { id: 'plattegrond', label: langEN ? 'Map' : 'Kaart', icon: <MapIcon size={20} /> }
+            );
+          } else if (role === 'photographer') {
+            bottomTabs.push(
+              { id: 'cm', label: langEN ? 'Tasks' : 'Taken', icon: <CheckSquare size={20} /> },
+              { id: 'gasten', label: langEN ? 'Guests' : 'Gasten', icon: <Users size={20} /> }
+            );
+          }
+          
+          return (
+            <>
+              {bottomTabs.map((tab) => {
+                const isSelected = activeTab === tab.id && !showMoreTray;
+                return (
+                  <button
+                    key={tab.id}
+                    onClick={() => {
+                      setActiveTab(tab.id);
+                      setShowMoreTray(false);
+                    }}
+                    className={`flex flex-col items-center justify-center flex-1 h-full gap-1 transition-all cursor-pointer ${
+                      isSelected 
+                        ? 'text-[#c7b272] font-bold scale-105' 
+                        : 'text-gray-400 dark:text-slate-500 hover:text-gray-600 dark:hover:text-slate-300'
+                    }`}
+                  >
+                    <div className="transition-transform duration-300">{tab.icon}</div>
+                    <span className="text-[10px] tracking-wider font-semibold uppercase">{tab.label}</span>
+                  </button>
+                );
+              })}
               
-              <div className="mb-8">
-                <h2 className="text-2xl font-serif text-[#1A1A2E] dark:text-slate-100 font-bold mb-1">
-                  Jorik & Katinka
-                </h2>
-                <p className="text-xs uppercase tracking-widest text-[#c7b272] font-semibold">
-                  {langEN ? 'June 14, 2026' : '14 juni 2026'}
-                </p>
+              {/* Meer / More Button */}
+              <button
+                onClick={() => setShowMoreTray(!showMoreTray)}
+                className={`flex flex-col items-center justify-center flex-1 h-full gap-1 transition-all cursor-pointer ${
+                  showMoreTray 
+                    ? 'text-[#c7b272] font-bold scale-105' 
+                    : 'text-gray-400 dark:text-slate-500 hover:text-gray-600 dark:hover:text-slate-300'
+                }`}
+              >
+                <div className="transition-transform duration-300"><Grid size={20} /></div>
+                <span className="text-[10px] tracking-wider font-semibold uppercase">{langEN ? 'More' : 'Meer'}</span>
+              </button>
+            </>
+          );
+        })()}
+      </nav>
+
+      {/* More Tray Bottom Sheet */}
+      <AnimatePresence>
+        {showMoreTray && (
+          <>
+            <motion.div 
+              initial={{ opacity: 0 }} 
+              animate={{ opacity: 1 }} 
+              exit={{ opacity: 0 }}
+              className="absolute inset-0 bg-[#1A1A2E]/50 dark:bg-slate-950/80 z-[80]"
+              onClick={() => setShowMoreTray(false)}
+            />
+            <motion.div 
+              initial={{ y: '100%' }} 
+              animate={{ y: 0 }} 
+              exit={{ y: '100%' }}
+              transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+              className="absolute bottom-0 left-0 right-0 max-h-[85%] bg-white dark:bg-slate-900 rounded-t-[2.5rem] shadow-2xl z-[85] flex flex-col pt-4 px-6 pb-8 border-t border-[#1A1A2E]/5 dark:border-white/5"
+            >
+              <div className="w-12 h-1 bg-gray-200 dark:bg-slate-800 rounded-full mx-auto mb-6 shrink-0" onClick={() => setShowMoreTray(false)} />
+              
+              <div className="flex justify-between items-center mb-6 shrink-0">
+                <h3 className="font-serif text-2xl font-bold text-[#1A1A2E] dark:text-slate-100">
+                  {langEN ? 'More Options' : 'Meer Opties'}
+                </h3>
+                <button 
+                  onClick={() => setShowMoreTray(false)}
+                  className="p-1.5 hover:bg-[#1A1A2E]/5 dark:hover:bg-white/5 rounded-full text-gray-500 dark:text-slate-400 cursor-pointer"
+                >
+                  <X size={20} />
+                </button>
               </div>
 
-              <nav className="flex flex-col gap-2 flex-1">
-                {sortedPages.map(nav => {
-                  const isSpecial = nav.id === 'cm' || nav.id === 'gasten';
-                  const isSelected = activeTab === nav.id;
-                  return (
-                    <button
-                      key={nav.id}
-                      onClick={() => {
-                        handleNavClick(nav.id);
-                        if (nav.id !== 'inbox_temp') setShowMobileMenu(false);
-                      }}
-                      className={`w-full flex items-center gap-4 px-4 py-3 rounded-xl font-medium transition-all duration-300 ${
-                        isSelected 
-                          ? 'bg-[#1A1A2E] dark:bg-slate-800 text-white shadow-md' 
-                          : isSpecial 
-                            ? 'border border-[#c7b272]/30 bg-[#c7b272]/5 text-[#c7b272] dark:text-[#ebd197]' 
-                            : 'hover:bg-[#1A1A2E]/5 dark:hover:bg-white/5 text-[#666666] dark:text-slate-400'
-                      }`}
-                    >
-                      <div className={`${isSelected ? 'text-[#c7b272]' : ''}`}>{nav.icon}</div>
-                      <div className="flex-1 text-left flex items-center justify-between text-sm min-w-0">
-                        <span className="truncate">{nav.label}</span>
-                        {isSpecial && (
-                          <span className="border border-[#c7b272]/40 bg-gradient-to-r from-[#c7b272]/25 to-[#c7b272]/5 text-[#1A1A2E] dark:text-[#ebd197] text-[9px] font-bold px-2 py-0.5 rounded-full uppercase tracking-widest flex items-center gap-1 shrink-0 ml-2">
-                            <span className="flex h-1 w-1 relative">
-                              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#c7b272] opacity-75"></span>
-                              <span className="relative inline-flex rounded-full h-1 w-1 bg-[#c7b272]"></span>
-                            </span>
-                            {langEN ? 'For You' : 'Voor jou'}
-                          </span>
-                        )}
-                        {nav.id === 'inbox_temp' && role === 'cm' && !inboxRead && (
-                          <span className="w-2 h-2 bg-red-500 rounded-full shrink-0 border border-[#F5F0E6] dark:border-slate-950 shadow-sm ml-2"></span>
-                        )}
-                      </div>
-                    </button>
-                  );
-                })}
-              </nav>
-
-              <div className="mt-auto pt-6 border-t border-[#1A1A2E]/10 dark:border-white/10 flex flex-col gap-2">
-                <button 
-                  onClick={() => setIsSettingsExpanded(!isSettingsExpanded)} 
-                  className="w-full flex items-center justify-between px-4 py-3 rounded-xl font-medium text-[#666666] dark:text-slate-400 hover:bg-[#1A1A2E]/5 dark:hover:bg-white/5 transition-all text-sm"
-                >
-                  <div className="flex items-center gap-3">
-                    <Settings size={18} />
-                    {langEN ? 'Login' : 'Login'}
-                  </div>
-                  <ChevronRight size={16} className={`transition-transform ${isSettingsExpanded ? 'rotate-90' : ''}`} />
-                </button>
-                <AnimatePresence>
-                  {isSettingsExpanded && (
-                    <motion.div 
-                      initial={{ height: 0, opacity: 0 }} 
-                      animate={{ height: 'auto', opacity: 1 }} 
-                      exit={{ height: 0, opacity: 0 }}
-                      className="overflow-hidden px-4"
-                    >
-                      {role === 'guest' ? (
-                        <div className="flex flex-col gap-2">
-                          <form onSubmit={(e) => { handleCodeSubmit(e); setShowMobileMenu(false); }} className="flex gap-2 pt-2 pb-2">
-                            <input 
-                              type="password" 
-                              value={settingsCode}
-                              onChange={(e) => setSettingsCode(e.target.value)}
-                              placeholder={langEN ? 'Access Code' : 'Toegangscode'}
-                              className="flex-1 min-w-0 border border-gray-200 dark:border-slate-800 bg-[#F5F0E6]/50 dark:bg-slate-900 text-[#1A1A2E] dark:text-slate-100 rounded-xl px-4 py-2 focus:ring-2 focus:ring-[#c7b272] focus:border-[#c7b272] outline-none text-[16px] md:text-sm transition-all"
-                            />
-                            <button 
-                              type="submit" 
-                              className="bg-[#c7b272] hover:bg-[#b8a15f] text-white rounded-xl w-10 shrink-0 flex items-center justify-center transition-colors shadow-sm cursor-pointer"
-                              aria-label="Submit code"
-                            >
-                              <Send size={16} />
-                            </button>
-                          </form>
-                          <button
-                            onClick={() => {
-                              handleResetHidden();
-                              setShowMobileMenu(false);
-                            }}
-                            className="w-full bg-transparent text-gray-500 dark:text-slate-400 hover:text-red-500 py-1.5 rounded-lg text-[10px] font-semibold uppercase tracking-wider transition-colors flex items-center justify-center gap-1.5 cursor-pointer border border-gray-300 dark:border-slate-800 hover:border-red-500/30 mb-2"
-                          >
-                            <RotateCcw size={12} />
-                            {langEN ? 'Reset Hidden Items' : 'Herstel verborgen items'}
-                          </button>
-                          <button
-                            onClick={() => {
-                              setShowHelpModal(true);
-                              setShowMobileMenu(false);
-                            }}
-                            className="w-full text-center text-[10px] font-bold uppercase tracking-wider text-[#c7b272] hover:text-[#b8a15f] transition-colors cursor-pointer flex items-center justify-center gap-1.5 py-1"
-                          >
-                            <Info size={12} />
-                            {langEN ? 'Help & Support' : 'Hulp & Support'}
-                          </button>
+              <div className="overflow-y-auto flex-1 pb-6 scrollbar-none">
+                <div className="grid grid-cols-4 gap-x-2 gap-y-6">
+                  {getMoreOptions().map((opt) => {
+                    const isActive = activeTab === opt.id;
+                    return (
+                      <button
+                        key={opt.id}
+                        onClick={opt.action}
+                        className="flex flex-col items-center gap-2 text-center group cursor-pointer focus:outline-none"
+                      >
+                        <div className={`w-14 h-14 rounded-2xl flex items-center justify-center transition-all ${
+                          isActive 
+                            ? 'bg-[#c7b272] text-white shadow-md shadow-[#c7b272]/20' 
+                            : 'bg-gray-50 dark:bg-slate-800 text-[#1A1A2E] dark:text-slate-300 group-hover:bg-[#c7b272]/15 group-hover:text-[#c7b272]'
+                        }`}>
+                          {opt.icon}
                         </div>
-                      ) : (
-                        <div className="flex flex-col gap-3 pt-2 pb-2">
-                          <div className="bg-[#c7b272]/10 dark:bg-[#c7b272]/20 border border-[#c7b272]/20 rounded-xl p-3.5 flex flex-col gap-1.5 items-center text-center">
-                            <span className="text-[10px] uppercase tracking-widest text-[#c7b272] font-bold">
-                              {langEN ? 'Active Access' : 'Actieve Toegang'}
-                            </span>
-                            <span className="font-serif font-bold text-[#1A1A2E] dark:text-slate-100 text-sm">
-                              {role === 'cm' 
-                                ? (langEN ? 'Ceremony Master' : 'Ceremoniemeester') 
-                                : (langEN ? 'Photographer' : 'Fotograaf')}
-                            </span>
-                          </div>
-                          <button
-                            onClick={() => {
-                              setRole('guest');
-                              setActiveTab('overzicht');
-                              setIsSettingsExpanded(false);
-                              setShowMobileMenu(false);
-                            }}
-                            className="w-full bg-[#1A1A2E] dark:bg-slate-800 hover:bg-[#c7b272] dark:hover:bg-[#c7b272] text-white py-2.5 rounded-xl text-xs font-semibold uppercase tracking-wider transition-colors shadow-sm flex items-center justify-center gap-2 cursor-pointer"
-                          >
-                            <LogOut size={14} />
-                            {langEN ? 'Log Out' : 'Uitloggen'}
-                          </button>
-                          <button
-                            onClick={() => {
-                              handleResetHidden();
-                              setShowMobileMenu(false);
-                            }}
-                            className="w-full bg-transparent text-gray-500 dark:text-slate-400 hover:text-red-500 py-1.5 rounded-lg text-[10px] font-semibold uppercase tracking-wider transition-colors flex items-center justify-center gap-1.5 cursor-pointer border border-gray-300 dark:border-slate-800 hover:border-red-500/30 mb-2"
-                          >
-                            <RotateCcw size={12} />
-                            {langEN ? 'Reset Hidden Items' : 'Herstel verborgen items'}
-                          </button>
-                          <button
-                            onClick={() => {
-                              setShowHelpModal(true);
-                              setShowMobileMenu(false);
-                            }}
-                            className="w-full text-center text-[10px] font-bold uppercase tracking-wider text-[#c7b272] hover:text-[#b8a15f] transition-colors cursor-pointer flex items-center justify-center gap-1.5 py-1"
-                          >
-                            <Info size={12} />
-                            {langEN ? 'Help & Support' : 'Hulp & Support'}
-                          </button>
-                        </div>
-                      )}
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-                <div className="flex items-center justify-between px-4 py-3 mt-auto">
-                  <span className="text-sm font-medium text-[#666666] dark:text-slate-400">{langEN ? 'Theme' : 'Thema'}</span>
-                  <button 
-                    onClick={toggleDarkTheme}
-                    className="w-12 h-6 bg-[#1A1A2E] dark:bg-[#c7b272] rounded-full relative transition-colors duration-300 shadow-inner"
-                  >
-                    <div className={`absolute top-1 w-4 h-4 rounded-full bg-white transition-transform duration-300 ${isDark ? 'left-7' : 'left-1'}`} />
-                  </button>
-                </div>
-                {/* Active Presence Counter */}
-                <div 
-                  onClick={() => { setShowPresenceHistory(true); setShowMobileMenu(false); }}
-                  className="flex items-center gap-2 text-[10px] text-gray-400 dark:text-slate-500 font-sans tracking-wide px-4 mt-1 pb-2 cursor-pointer hover:underline"
-                  title={langEN ? "View activity history" : "Bekijk activiteit geschiedenis"}
-                >
-                  <span className="relative flex h-1.5 w-1.5">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#c7b272] opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-[#c7b272]"></span>
-                  </span>
-                  <span>
-                    {activeUsersCount <= 1 ? (
-                      langEN ? '1 person online' : '1 persoon online'
-                    ) : (
-                      langEN 
-                        ? `${activeUsersCount} people online` 
-                        : `${activeUsersCount} mensen online`
-                    )}
-                  </span>
+                        <span className={`text-[11px] font-semibold tracking-wide ${
+                          isActive ? 'text-[#c7b272] font-bold' : 'text-gray-600 dark:text-slate-400'
+                        }`}>
+                          {opt.label}
+                        </span>
+                      </button>
+                    );
+                  })}
                 </div>
               </div>
             </motion.div>
-          </motion.div>
+          </>
         )}
       </AnimatePresence>
+
+      {/* Settings Bottom Sheet */}
+      <AnimatePresence>
+        {isSettingsExpanded && (
+          <>
+            <motion.div 
+              initial={{ opacity: 0 }} 
+              animate={{ opacity: 1 }} 
+              exit={{ opacity: 0 }}
+              className="absolute inset-0 bg-[#1A1A2E]/50 dark:bg-slate-950/80 z-[80]"
+              onClick={() => setIsSettingsExpanded(false)}
+            />
+            <motion.div 
+              initial={{ y: '100%' }} 
+              animate={{ y: 0 }} 
+              exit={{ y: '100%' }}
+              transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+              className="absolute bottom-0 left-0 right-0 max-h-[85%] bg-white dark:bg-slate-900 rounded-t-[2.5rem] shadow-2xl z-[85] flex flex-col pt-4 px-6 pb-8 border-t border-[#1A1A2E]/5 dark:border-white/5"
+            >
+              <div className="w-12 h-1 bg-gray-200 dark:bg-slate-800 rounded-full mx-auto mb-6 shrink-0" onClick={() => setIsSettingsExpanded(false)} />
+              
+              <div className="flex justify-between items-center mb-6 shrink-0">
+                <h3 className="font-serif text-2xl font-bold text-[#1A1A2E] dark:text-slate-100">
+                  {langEN ? 'Settings & Access' : 'Instellingen & Toegang'}
+                </h3>
+                <button 
+                  onClick={() => setIsSettingsExpanded(false)}
+                  className="p-1.5 hover:bg-[#1A1A2E]/5 dark:hover:bg-white/5 rounded-full text-gray-500 dark:text-slate-400 cursor-pointer"
+                >
+                  <X size={20} />
+                </button>
+              </div>
+
+              <div className="overflow-y-auto flex-1 space-y-6 pb-6 scrollbar-none">
+                {/* Theme Switcher Card */}
+                <div className="bg-[#F5F0E6]/50 dark:bg-slate-950/40 p-5 rounded-2xl border border-[#1A1A2E]/5 dark:border-white/5 flex items-center justify-between">
+                  <div>
+                    <h4 className="font-semibold text-sm text-[#1A1A2E] dark:text-slate-200">
+                      {langEN ? 'Visual Appearance' : 'Visuele Weergave'}
+                    </h4>
+                    <p className="text-xs text-gray-500 dark:text-slate-400 mt-0.5">
+                      {isDark ? (langEN ? 'Dark Theme Active' : 'Donker Thema Actief') : (langEN ? 'Light Theme Active' : 'Licht Thema Actief')}
+                    </p>
+                  </div>
+                  <button 
+                    onClick={toggleDarkTheme}
+                    className="w-14 h-7 bg-[#1A1A2E] dark:bg-[#c7b272] rounded-full relative transition-colors duration-300 shadow-inner flex items-center px-1 cursor-pointer"
+                  >
+                    <div className={`w-5 h-5 rounded-full bg-white transition-transform duration-300 flex items-center justify-center ${isDark ? 'translate-x-7' : 'translate-x-0'}`}>
+                      {isDark ? <Moon size={10} className="text-[#c7b272]" /> : <Sun size={10} className="text-amber-500" />}
+                    </div>
+                  </button>
+                </div>
+
+                {/* Active Access Card */}
+                {role === 'guest' ? (
+                  <div className="bg-[#F5F0E6]/50 dark:bg-slate-950/40 p-5 rounded-2xl border border-[#1A1A2E]/5 dark:border-white/5 space-y-3">
+                    <div>
+                      <h4 className="font-semibold text-sm text-[#1A1A2E] dark:text-slate-200">
+                        {langEN ? 'Unlock Special Roles' : 'Speciale Rol Ontgrendelen'}
+                      </h4>
+                      <p className="text-xs text-gray-500 dark:text-slate-400 mt-0.5">
+                        {langEN ? 'Enter code to unlock CM or photographer functions:' : 'Voer de code in voor CM of fotograaf functionaliteiten:'}
+                      </p>
+                    </div>
+                    <form onSubmit={handleCodeSubmit} className="flex gap-2">
+                      <input 
+                        type="password" 
+                        value={settingsCode}
+                        onChange={(e) => setSettingsCode(e.target.value)}
+                        placeholder={langEN ? 'Access Code...' : 'Toegangscode...'}
+                        className="flex-1 min-w-0 border border-gray-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-[#1A1A2E] dark:text-slate-100 rounded-xl px-4 py-2.5 focus:ring-2 focus:ring-[#c7b272] focus:border-[#c7b272] outline-none text-sm transition-all"
+                      />
+                      <button 
+                        type="submit" 
+                        className="bg-[#c7b272] hover:bg-[#b8a15f] text-white rounded-xl px-4 shrink-0 flex items-center justify-center transition-colors shadow-sm cursor-pointer font-bold text-xs uppercase tracking-wider"
+                      >
+                        {langEN ? 'Verify' : 'Verifieer'}
+                      </button>
+                    </form>
+                  </div>
+                ) : (
+                  <div className="bg-[#c7b272]/10 dark:bg-[#c7b272]/20 p-5 rounded-2xl border border-[#c7b272]/20 space-y-4">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-full bg-[#c7b272] flex items-center justify-center text-white font-bold text-sm">
+                        {role.substring(0, 2).toUpperCase()}
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-sm text-[#1A1A2E] dark:text-slate-200">
+                          {langEN ? 'Logged in as' : 'Ingelogd als'}
+                        </h4>
+                        <p className="text-xs font-serif font-bold text-[#c7b272]">
+                          {role === 'cm' 
+                            ? (langEN ? 'Ceremony Master' : 'Ceremoniemeester') 
+                            : (langEN ? 'Photographer' : 'Fotograaf')}
+                        </p>
+                      </div>
+                    </div>
+                    <button
+                      onClick={() => {
+                        setRole('guest');
+                        setActiveTab('overzicht');
+                        setIsSettingsExpanded(false);
+                      }}
+                      className="w-full bg-[#1A1A2E] dark:bg-slate-800 hover:bg-[#c7b272] text-white py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider transition-colors shadow-sm flex items-center justify-center gap-2 cursor-pointer"
+                    >
+                      <LogOut size={14} />
+                      {langEN ? 'Log Out' : 'Uitloggen'}
+                    </button>
+                  </div>
+                )}
+
+                {/* Actions & Support */}
+                <div className="space-y-2">
+                  <button
+                    onClick={() => {
+                      handleResetHidden();
+                      setIsSettingsExpanded(false);
+                    }}
+                    className="w-full bg-transparent text-gray-500 dark:text-slate-400 hover:text-red-500 py-3 rounded-xl text-xs font-bold uppercase tracking-wider transition-colors flex items-center justify-center gap-2 cursor-pointer border border-gray-200 dark:border-slate-800 hover:border-red-500/20"
+                  >
+                    <RotateCcw size={14} />
+                    {langEN ? 'Reset Hidden Items' : 'Herstel verborgen items'}
+                  </button>
+                  <button
+                    onClick={() => {
+                      setShowHelpModal(true);
+                      setIsSettingsExpanded(false);
+                    }}
+                    className="w-full text-center text-xs font-bold uppercase tracking-wider text-[#c7b272] hover:text-[#b8a15f] transition-colors cursor-pointer flex items-center justify-center gap-2 py-3 border border-[#c7b272]/20 rounded-xl bg-[#c7b272]/5"
+                  >
+                    <HelpCircle size={14} />
+                    {langEN ? 'Help & Support' : 'Hulp & Ondersteuning'}
+                  </button>
+                </div>
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
+
+      </div>
 
         {/* Fullscreen Map Modal */}
         <AnimatePresence>
@@ -3812,10 +3803,10 @@ export default function App() {
               initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
               className="fixed inset-0 bg-[#1A1A2E]/90 dark:bg-slate-950/90 backdrop-blur-sm z-[100] flex flex-col"
             >
-              <div className="flex justify-end p-4">
+              <div className="flex justify-end p-4 z-10 shrink-0">
                 <button 
                   onClick={() => setIsFullscreenMap(false)} 
-                  className="w-12 h-12 bg-white/10 hover:bg-white/20 text-white rounded-full flex items-center justify-center transition-colors shadow-lg backdrop-blur-md border border-white/20"
+                  className="w-12 h-12 bg-white/10 hover:bg-white/20 text-white rounded-full flex items-center justify-center transition-colors shadow-lg backdrop-blur-md border border-white/20 cursor-pointer"
                 >
                   <X size={24}/>
                 </button>
@@ -3824,8 +3815,37 @@ export default function App() {
                 <img 
                   src={getFloorPlanImage()} 
                   alt="Plattegrond Fullscreen" 
-                  className="max-h-[200vh] max-w-[200vw] object-contain rounded-xl shadow-2xl" 
+                  className="max-h-[90vh] max-w-[95vw] object-contain rounded-xl shadow-2xl origin-center" 
+                  style={{ transform: `scale(${zoomScale})`, transition: 'transform 0.15s ease-out' }}
                 />
+              </div>
+
+              {/* Zoom Controls */}
+              <div className="absolute bottom-6 left-1/2 -translate-x-1/2 bg-slate-900/80 backdrop-blur-md border border-white/10 rounded-full px-4 py-2 flex items-center gap-3 shadow-xl z-50">
+                <button 
+                  onClick={(e) => { e.stopPropagation(); setZoomScale(prev => Math.max(0.5, prev - 0.25)); }}
+                  className="w-10 h-10 bg-white/10 hover:bg-white/20 text-white rounded-full flex items-center justify-center transition-colors cursor-pointer select-none"
+                  title="Zoom Out"
+                >
+                  <Minus size={18} />
+                </button>
+                <span className="text-white text-xs font-bold font-mono min-w-[45px] text-center select-none">
+                  {Math.round(zoomScale * 100)}%
+                </span>
+                <button 
+                  onClick={(e) => { e.stopPropagation(); setZoomScale(prev => Math.min(3, prev + 0.25)); }}
+                  className="w-10 h-10 bg-white/10 hover:bg-white/20 text-white rounded-full flex items-center justify-center transition-colors cursor-pointer select-none"
+                  title="Zoom In"
+                >
+                  <Plus size={18} />
+                </button>
+                <div className="w-px h-5 bg-white/10 mx-1" />
+                <button 
+                  onClick={(e) => { e.stopPropagation(); setZoomScale(1); }}
+                  className="text-xs text-white/80 hover:text-white font-semibold cursor-pointer select-none"
+                >
+                  Reset
+                </button>
               </div>
             </motion.div>
           )}
@@ -3838,7 +3858,7 @@ export default function App() {
               initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
               className="fixed inset-0 bg-[#1A1A2E]/90 dark:bg-slate-950/90 backdrop-blur-sm z-[100] flex flex-col"
             >
-              <div className="flex justify-end p-4">
+              <div className="flex justify-end p-4 z-10 shrink-0">
                 <button 
                   onClick={() => setIsFullscreenMoodboard(false)} 
                   className="w-12 h-12 bg-white/10 hover:bg-white/20 text-white rounded-full flex items-center justify-center transition-colors shadow-lg backdrop-blur-md border border-white/20 cursor-pointer"
@@ -3846,12 +3866,41 @@ export default function App() {
                   <X size={24}/>
                 </button>
               </div>
-              <div className="flex-1 overflow-auto flex items-center justify-center p-4" onClick={() => setIsFullscreenMoodboard(false)}>
+              <div className="flex-1 overflow-auto flex items-center justify-center p-4">
                 <img 
-                  src="/moodboard.jpg" 
+                  src="/moodboard.webp" 
                   alt="Moodboard Fullscreen" 
-                  className="max-h-[95vh] max-w-[95vw] object-contain rounded-xl shadow-2xl" 
+                  className="max-h-[90vh] max-w-[95vw] object-contain rounded-xl shadow-2xl origin-center" 
+                  style={{ transform: `scale(${zoomScale})`, transition: 'transform 0.15s ease-out' }}
                 />
+              </div>
+
+              {/* Zoom Controls */}
+              <div className="absolute bottom-6 left-1/2 -translate-x-1/2 bg-slate-900/80 backdrop-blur-md border border-white/10 rounded-full px-4 py-2 flex items-center gap-3 shadow-xl z-50">
+                <button 
+                  onClick={(e) => { e.stopPropagation(); setZoomScale(prev => Math.max(0.5, prev - 0.25)); }}
+                  className="w-10 h-10 bg-white/10 hover:bg-white/20 text-white rounded-full flex items-center justify-center transition-colors cursor-pointer select-none"
+                  title="Zoom Out"
+                >
+                  <Minus size={18} />
+                </button>
+                <span className="text-white text-xs font-bold font-mono min-w-[45px] text-center select-none">
+                  {Math.round(zoomScale * 100)}%
+                </span>
+                <button 
+                  onClick={(e) => { e.stopPropagation(); setZoomScale(prev => Math.min(3, prev + 0.25)); }}
+                  className="w-10 h-10 bg-white/10 hover:bg-white/20 text-white rounded-full flex items-center justify-center transition-colors cursor-pointer select-none"
+                  title="Zoom In"
+                >
+                  <Plus size={18} />
+                </button>
+                <div className="w-px h-5 bg-white/10 mx-1" />
+                <button 
+                  onClick={(e) => { e.stopPropagation(); setZoomScale(1); }}
+                  className="text-xs text-white/80 hover:text-white font-semibold cursor-pointer select-none"
+                >
+                  Reset
+                </button>
               </div>
             </motion.div>
           )}
@@ -3864,7 +3913,7 @@ export default function App() {
               initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
               className="fixed inset-0 bg-[#1A1A2E]/90 dark:bg-slate-950/90 backdrop-blur-sm z-[100] flex flex-col"
             >
-              <div className="flex justify-end p-4">
+              <div className="flex justify-end p-4 z-10 shrink-0">
                 <button 
                   onClick={() => setSelectedBijlageImage(null)} 
                   className="w-12 h-12 bg-white/10 hover:bg-white/20 text-white rounded-full flex items-center justify-center transition-colors shadow-lg backdrop-blur-md border border-white/20 cursor-pointer"
@@ -3872,12 +3921,41 @@ export default function App() {
                   <X size={24}/>
                 </button>
               </div>
-              <div className="flex-1 overflow-auto flex items-center justify-center p-4" onClick={() => setSelectedBijlageImage(null)}>
+              <div className="flex-1 overflow-auto flex items-center justify-center p-4">
                 <img 
                   src={selectedBijlageImage} 
                   alt="Bijlage Fullscreen" 
-                  className="max-h-[95vh] max-w-[95vw] object-contain rounded-xl shadow-2xl" 
+                  className="max-h-[90vh] max-w-[95vw] object-contain rounded-xl shadow-2xl origin-center" 
+                  style={{ transform: `scale(${zoomScale})`, transition: 'transform 0.15s ease-out' }}
                 />
+              </div>
+
+              {/* Zoom Controls */}
+              <div className="absolute bottom-6 left-1/2 -translate-x-1/2 bg-slate-900/80 backdrop-blur-md border border-white/10 rounded-full px-4 py-2 flex items-center gap-3 shadow-xl z-50">
+                <button 
+                  onClick={(e) => { e.stopPropagation(); setZoomScale(prev => Math.max(0.5, prev - 0.25)); }}
+                  className="w-10 h-10 bg-white/10 hover:bg-white/20 text-white rounded-full flex items-center justify-center transition-colors cursor-pointer select-none"
+                  title="Zoom Out"
+                >
+                  <Minus size={18} />
+                </button>
+                <span className="text-white text-xs font-bold font-mono min-w-[45px] text-center select-none">
+                  {Math.round(zoomScale * 100)}%
+                </span>
+                <button 
+                  onClick={(e) => { e.stopPropagation(); setZoomScale(prev => Math.min(3, prev + 0.25)); }}
+                  className="w-10 h-10 bg-white/10 hover:bg-white/20 text-white rounded-full flex items-center justify-center transition-colors cursor-pointer select-none"
+                  title="Zoom In"
+                >
+                  <Plus size={18} />
+                </button>
+                <div className="w-px h-5 bg-white/10 mx-1" />
+                <button 
+                  onClick={(e) => { e.stopPropagation(); setZoomScale(1); }}
+                  className="text-xs text-white/80 hover:text-white font-semibold cursor-pointer select-none"
+                >
+                  Reset
+                </button>
               </div>
             </motion.div>
           )}
@@ -4224,7 +4302,7 @@ export default function App() {
                       category: 'System',
                       time: 'System',
                       title: 'Dynamic Floor Plan Active',
-                      content: "Je dashboard toont automatisch de fotorelevante plattegrond via '/plattegrond_fotograaf.jpg'.",
+                      content: "Je dashboard toont automatisch de fotorelevante plattegrond via '/plattegrond_fotograaf.webp'.",
                       targetTab: 'plattegrond',
                       urgent: false
                     },
