@@ -411,7 +411,7 @@ export const cmTasksNL = [
     "time": "**10.30 - 11.00**",
     "action": "**Aankomst bruidspaar**",
     "who": "*Koffie/drinken met lekkers.\n*Het bruidspaar heeft de bloemdecoratie bij zich, die kan nu neergezet worden.\n*Het bruidspaar zet zelf de auto aan de zijkant van het pand.\n*En vertrekt om 11.45 uur naar een rustige plek.\n\n",
-    "context": "\n",
+    "context": "",
     "location": "Palmenkas/Terras/privéruimte"
   },
   {
@@ -734,7 +734,7 @@ export const cmTasksEN = [
     "time": "**10.30 - 11.00**",
     "action": "**Arrival of the bride and groom**",
     "who": "*Koffie/drinken met lekkers.\n*Het bruidspaar heeft de bloemdecoratie bij zich, die kan nu neergezet worden.\n*Het bruidspaar zet zelf de auto aan de zijkant van het pand.\n*En vertrekt om 11.45 uur naar een rustige plek.",
-    "context": "\n",
+    "context": "",
     "location": "Palmenkas/Terras/privéruimte"
   },
   {
