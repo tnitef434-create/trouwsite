@@ -2088,26 +2088,6 @@ export default function App() {
 
   const guestDirectoryData = [
     { 
-      id: 1, 
-      firstName: "Matthew", 
-      relationship: langEN ? "Master of ceremony" : "Ceremoniemeester", 
-      group: "Master of ceremony", 
-      initials: "M", 
-      photo: "/jpegs/Jorik - Cousin Matthew.jpg", 
-      mobile: "06-45 43 20 39", 
-      note: langEN ? "Cousin of Jorik" : "Neef van Jorik" 
-    },
-    { 
-      id: 2, 
-      firstName: "Derek", 
-      relationship: langEN ? "Master of ceremony" : "Ceremoniemeester", 
-      group: "Master of ceremony", 
-      initials: "D", 
-      photo: "/jpegs/Jorik - Cousin Derek.jpg", 
-      mobile: "06-30 13 12 83", 
-      note: langEN ? "Cousin of Jorik" : "Neef van Jorik" 
-    },
-    { 
       id: 3, 
       firstName: "Fleur", 
       relationship: langEN ? "Daughter of Jorik & Katinka" : "Dochter van Jorik & Katinka", 
@@ -2167,20 +2147,20 @@ export default function App() {
       photo: "/jpegs/Jorik - Sister Lisa.jpg" 
     },
     { 
-      id: 10, 
-      firstName: "Wil", 
-      relationship: langEN ? "Aunt of Katinka" : "Tante van Katinka", 
-      group: "Priority", 
-      initials: "W", 
-      photo: "/jpegs/Katinka - Aunt Wil.jpg" 
-    },
-    { 
       id: 11, 
       firstName: "Sara", 
       relationship: langEN ? "Sister of Jorik" : "Zus van Jorik", 
       group: "Priority", 
       initials: "S", 
       photo: "/jpegs/Jorik - Sister Sara.jpg" 
+    },
+    { 
+      id: 15, 
+      firstName: "Rinske", 
+      relationship: langEN ? "Sister of Katinka" : "Zus van Katinka", 
+      group: "Priority", 
+      initials: "R", 
+      photo: "/jpegs/Katinka - Sister Rinske.jpg" 
     },
     { 
       id: 12, 
@@ -2199,12 +2179,32 @@ export default function App() {
       photo: "/jpegs/Jorik - Step mother Anca.jpg" 
     },
     { 
-      id: 15, 
-      firstName: "Rinske", 
-      relationship: langEN ? "Sister of Katinka" : "Zus van Katinka", 
+      id: 10, 
+      firstName: "Wil", 
+      relationship: langEN ? "Aunt of Katinka" : "Tante van Katinka", 
       group: "Priority", 
-      initials: "R", 
-      photo: "/jpegs/Katinka - Sister Rinske.jpg" 
+      initials: "W", 
+      photo: "/jpegs/Katinka - Aunt Wil.jpg" 
+    },
+    { 
+      id: 1, 
+      firstName: "Matthew", 
+      relationship: langEN ? "Master of ceremony" : "Ceremoniemeester", 
+      group: "Master of ceremony", 
+      initials: "M", 
+      photo: "/jpegs/Jorik - Cousin Matthew.jpg", 
+      mobile: "06-45 43 20 39", 
+      note: langEN ? "Cousin of Jorik" : "Neef van Jorik" 
+    },
+    { 
+      id: 2, 
+      firstName: "Derek", 
+      relationship: langEN ? "Master of ceremony" : "Ceremoniemeester", 
+      group: "Master of ceremony", 
+      initials: "D", 
+      photo: "/jpegs/Jorik - Cousin Derek.jpg", 
+      mobile: "06-30 13 12 83", 
+      note: langEN ? "Cousin of Jorik" : "Neef van Jorik" 
     }
   ];
 
@@ -2256,7 +2256,7 @@ export default function App() {
   if (role === 'photographer') {
     pages.splice(4, 0, { id: 'group_photos', icon: <Camera size={20}/>, label: 'Group photos' });
     pages.splice(5, 0, { id: 'moodboard', icon: <Image size={20}/>, label: 'Moodboard' });
-    pages.splice(6, 0, { id: 'gasten', icon: <Camera size={20}/>, label: langEN ? 'Guest Directory' : 'Fotolijst' });
+    pages.splice(6, 0, { id: 'gasten', icon: <Camera size={20}/>, label: langEN ? 'Guests' : 'Fotolijst' });
   }
 
   if (role === 'guest') {
