@@ -2977,9 +2977,10 @@ export default function App() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   {[
                     { title: langEN ? "Signs Layout" : "Borden opstelling", src: "/plaatsing_borden.webp" },
-                    { title: langEN ? "Ceremony Seating" : "Ceremonie stoelschikking", src: "/ceremonie_stoelschikking.webp" },
+                    { title: langEN ? "Ceremony Seating" : "Ceremonie opstelling", src: "/ceremonie_opstelling.webp" },
                     { title: langEN ? "Dinner Seating" : "Diner stoelschikking", src: "/diner_stoelschikking.webp" },
-                    { title: langEN ? "Table Setting Setup" : "Tafeldekking opzet", src: "/tafeldekking_opzet.webp" }
+                    { title: langEN ? "Table Setting Setup" : "Tafeldekking opzet", src: "/tafeldekking_opzet.webp" },
+                    { title: langEN ? "Table Setting Moodboard" : "Tafeldekking moodboard", src: "/tafeldekking_moodboard.webp" }
                   ].map((bijlage, idx) => (
                     <div 
                       key={idx}
