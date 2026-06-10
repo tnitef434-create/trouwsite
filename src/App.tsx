@@ -1403,6 +1403,14 @@ const renderFormattedText = (text: string) => {
   );
 };
 
+const renderFormattedTime = (text: string) => {
+  if (!text) return null;
+  const parts = text.split('**');
+  return parts.map((part, index) => 
+    index % 2 === 1 ? <strong key={index} className="font-extrabold text-[#c1a96b]">{part}</strong> : part
+  );
+};
+
 export default function App() {
   const [role, setRole] = useState<'guest'|'cm'|'photographer'>(() => {
     const saved = localStorage.getItem('wedding_role');
@@ -2583,7 +2591,7 @@ export default function App() {
                     >
                       <div className="flex flex-col md:flex-row md:items-baseline gap-2 md:gap-8">
                         <div className="text-[#c1a96b] font-semibold text-sm md:text-base tracking-widest shrink-0 w-32 font-mono">
-                          {renderFormattedText(item.time)}
+                          {renderFormattedTime(item.time)}
                         </div>
                         <div className="flex-1">
                           <h3 className="font-serif text-xl md:text-2xl font-medium text-[#1A1A2E] dark:text-slate-100">
@@ -2736,7 +2744,7 @@ export default function App() {
                       >
                         <div className="flex flex-col md:flex-row md:items-baseline gap-2 md:gap-8">
                           <div className="text-[#c1a96b] font-semibold text-sm md:text-base tracking-widest shrink-0 w-32 font-mono">
-                            {renderFormattedText(task.time)}
+                            {renderFormattedTime(task.time)}
                           </div>
                           <div className="flex-1">
                             <h3 className="font-serif text-xl md:text-2xl font-medium text-[#1A1A2E] dark:text-slate-100">
@@ -2812,7 +2820,7 @@ export default function App() {
                         >
                           <div className="flex flex-col md:flex-row md:items-baseline gap-2 md:gap-8">
                             <div className="text-[#c1a96b] font-semibold text-sm md:text-base tracking-widest shrink-0 w-32 font-mono">
-                              {renderFormattedText(task.time)}
+                              {renderFormattedTime(task.time)}
                             </div>
                             <div className="flex-1">
                               <h3 className="font-serif text-xl md:text-2xl font-medium text-[#1A1A2E] dark:text-slate-100">
@@ -2970,7 +2978,7 @@ export default function App() {
                   {[
                     { title: langEN ? "Signs Layout" : "Borden opstelling", src: "/plaatsing_borden.webp" },
                     { title: langEN ? "Ceremony Seating" : "Ceremonie stoelschikking", src: "/ceremonie_stoelschikking.webp" },
-                    { title: langEN ? "Dinner Seating" : "Diner stoelschikking", src: "/diner_seating.webp" },
+                    { title: langEN ? "Dinner Seating" : "Diner stoelschikking", src: "/diner_stoelschikking.webp" },
                     { title: langEN ? "Table Setting Setup" : "Tafeldekking opzet", src: "/diner_tafeldekking.webp" },
                     { title: langEN ? "Table Setting Moodboard" : "Tafeldekking moodboard", src: "/Tafeldekking moodboard.webp" }
                   ].map((bijlage, idx) => (
