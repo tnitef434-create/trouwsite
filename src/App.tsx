@@ -2970,10 +2970,9 @@ export default function App() {
                   {[
                     { title: langEN ? "Signs Layout" : "Borden opstelling", src: "/plaatsing_borden.webp" },
                     { title: langEN ? "Ceremony Seating" : "Ceremonie stoelschikking", src: "/ceremonie_stoelschikking.webp" },
-                    { title: langEN ? "Dinner Seating" : "Diner stoelschikking", src: "/diner_stoelschikking.webp" },
-                    { title: langEN ? "Dinner Table Setting" : "Diner tafeldekking", src: "/diner_tafeldekking.webp" },
-                    { title: langEN ? "Table Setting Moodboard" : "Moodboard tafeldekking", src: "/Tafeldekking moodboard.webp" },
-                    { title: langEN ? "Table Setting Moodboard 2" : "Moodboard tafeldekking 2", src: "/Tafeldekking moodboard2.webp" }
+                    { title: langEN ? "Dinner Seating" : "Diner stoelschikking", src: "/diner_seating.webp" },
+                    { title: langEN ? "Table Setting Setup" : "Tafeldekking opzet", src: "/diner_tafeldekking.webp" },
+                    { title: langEN ? "Table Setting Moodboard" : "Tafeldekking moodboard", src: "/Tafeldekking moodboard.webp" }
                   ].map((bijlage, idx) => (
                     <div 
                       key={idx}
@@ -3018,31 +3017,21 @@ export default function App() {
                     <div className="bg-white dark:bg-slate-900 p-6 rounded-[2rem] shadow-sm border border-[#1A1A2E]/5 dark:border-white/5 space-y-4">
                       <h3 className="font-serif text-xl font-bold text-[#1A1A2E] dark:text-slate-100 flex items-center gap-2">
                         <span className="w-1.5 h-6 bg-[#c7b272] rounded-full"></span>
-                        Decoratie pakket
+                        {langEN ? "Decoration package" : "Decoratie pakket"}
                       </h3>
                       <ul className="space-y-3">
                         {[
-                          { text: "1x bankje", link: "/Ceremonie opstelling.webp" },
-                          { text: "20x eucalyptus tak ong 50 cm", link: "/Tafeldekking moodboard.webp" },
-                          { text: "14 gouden kandelaren", link: "/Tafeldekking moodboard.webp" },
-                          { text: "14 dinerkaars wit", link: "/Tafeldekking moodboard.webp" },
-                          { text: "4x Tafellinnen zand 230×140 cm", link: "/Tafeldekking moodboard.webp" },
-                          { text: "20x zand servetten", link: "/Tafeldekking moodboard.webp" },
-                          { text: "20x vaasjes", link: "/Tafeldekking moodboard.webp" }
-                        ].map((item, idx) => (
+                          "1x bankje",
+                          "20x eucalyptus tak ong 50 cm",
+                          "14 gouden kandelaren",
+                          "14 dinerkaars wit",
+                          "4x Tafellinnen zand 230×140 cm",
+                          "20x zand servetten",
+                          "20x vaasjes"
+                        ].map((text, idx) => (
                           <li key={idx} className="flex items-center gap-3 text-sm md:text-base text-gray-600 dark:text-slate-300 font-medium">
                             <input type="checkbox" className="w-4 h-4 accent-[#c7b272]" />
-                            <span className="flex-1">
-                              {item.text}
-                              <a 
-                                href={item.link} 
-                                target="_blank" 
-                                rel="noopener noreferrer" 
-                                className="text-[#c7b272] hover:underline font-semibold ml-1.5 inline-block text-xs"
-                              >
-                                [Bekijk Visueel]
-                              </a>
-                            </span>
+                            <span className="flex-1">{text}</span>
                           </li>
                         ))}
                       </ul>
@@ -3052,7 +3041,7 @@ export default function App() {
                     <div className="bg-white dark:bg-slate-900 p-6 rounded-[2rem] shadow-sm border border-[#1A1A2E]/5 dark:border-white/5 space-y-4">
                       <h3 className="font-serif text-xl font-bold text-[#1A1A2E] dark:text-slate-100 flex items-center gap-2">
                         <span className="w-1.5 h-6 bg-[#c7b272] rounded-full"></span>
-                        Privé pakket
+                        {langEN ? "Private package" : "Privé pakket"}
                       </h3>
                       <ul className="space-y-3">
                         {[
@@ -3075,6 +3064,186 @@ export default function App() {
                           </li>
                         ))}
                       </ul>
+                    </div>
+
+                    {/* Checklist 3: Venue Setup / Opbouw locatie */}
+                    <div className="md:col-span-2 bg-white dark:bg-slate-900 p-6 md:p-8 rounded-[2rem] shadow-sm border border-[#1A1A2E]/5 dark:border-white/5 space-y-6">
+                      <h3 className="font-serif text-2xl font-bold text-[#1A1A2E] dark:text-slate-100 flex items-center gap-2">
+                        <span className="w-1.5 h-6 bg-[#c7b272] rounded-full"></span>
+                        {langEN ? "Venue Setup" : "Opbouw locatie"}
+                      </h3>
+                      
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+                        {/* Column 1 */}
+                        <div className="space-y-6">
+                          <div>
+                            <h4 className="font-serif text-lg font-bold text-[#1A1A2E] dark:text-slate-200 border-b border-gray-100 dark:border-slate-800 pb-2 mb-3">
+                              {langEN ? "Parking Lot" : "Parkeerplaats"}
+                            </h4>
+                            <ul className="space-y-2.5">
+                              <li className="flex items-start gap-3 text-sm text-gray-600 dark:text-slate-300 font-medium">
+                                <input type="checkbox" className="w-4 h-4 accent-[#c7b272] mt-0.5" />
+                                <span>{langEN ? "See 'Bijlage' page." : "Zie pagina 'Bijlage'."}</span>
+                              </li>
+                            </ul>
+                          </div>
+
+                          <div>
+                            <h4 className="font-serif text-lg font-bold text-[#1A1A2E] dark:text-slate-200 border-b border-gray-100 dark:border-slate-800 pb-2 mb-3">
+                              {langEN ? "Entrance" : "Entree"}
+                            </h4>
+                            <ul className="space-y-2.5">
+                              <li className="flex items-start gap-3 text-sm text-gray-600 dark:text-slate-300 font-medium">
+                                <input type="checkbox" className="w-4 h-4 accent-[#c7b272] mt-0.5" />
+                                <span>{langEN ? "easel with welcome sign on it" : "schildersezel met welkomstbord erop"}</span>
+                              </li>
+                              <li className="flex items-start gap-3 text-sm text-gray-600 dark:text-slate-300 font-medium">
+                                <input type="checkbox" className="w-4 h-4 accent-[#c7b272] mt-0.5" />
+                                <span>{langEN ? "if there are ashtrays, remove them from the entrance and from the corner where the Maserati will be parked - relocate to the other side of the building" : "asbakken indien ze daar staan, weghalen bij entree en ook niet bij de hoek waar de Maserati komt te staan - verplaatsen naar de andere kant van het gebouw"}</span>
+                              </li>
+                            </ul>
+                          </div>
+
+                          <div>
+                            <h4 className="font-serif text-lg font-bold text-[#1A1A2E] dark:text-slate-200 border-b border-gray-100 dark:border-slate-800 pb-2 mb-3">
+                              {langEN ? "Palm House" : "Palmenkas"}
+                            </h4>
+                            <ul className="space-y-2.5">
+                              <li className="flex items-start gap-3 text-sm text-gray-600 dark:text-slate-300 font-medium">
+                                <input type="checkbox" className="w-4 h-4 accent-[#c7b272] mt-0.5" />
+                                <span>{langEN ? "vases with flowers on the tables" : "op de tafels vaasjes met bloemen"}</span>
+                              </li>
+                              <li className="flex items-start gap-3 text-sm text-gray-600 dark:text-slate-300 font-medium">
+                                <input type="checkbox" className="w-4 h-4 accent-[#c7b272] mt-0.5" />
+                                <span>{langEN ? "prepare one of the venue's vases with water for the bridal bouquet" : "een van de vazen van de locatie klaarzetten met water voor het bruidsboeket"}</span>
+                              </li>
+                              <li className="flex items-start gap-3 text-sm text-gray-600 dark:text-slate-300 font-medium">
+                                <input type="checkbox" className="w-4 h-4 accent-[#c7b272] mt-0.5" />
+                                <span>{langEN ? "ensure the Orangery knows that the cake goes on a high, round table in the middle of the Palm House, with a white tablecloth underneath" : "ervoor zorgen dat de Oranjerie weet dat de taart op een hoge, ronde tafel in het midden van de Palmenkas moet komen te staan, met een wit tafelkleed eronder"}</span>
+                              </li>
+                              <li className="flex items-start gap-3 text-sm text-gray-600 dark:text-slate-300 font-medium">
+                                <input type="checkbox" className="w-4 h-4 accent-[#c7b272] mt-0.5" />
+                                <span>{langEN ? "high, round table with a basket on it (Fleur and Wilma put the gifts for guests in it), the guestbook with pen and printed program, and group photo overview print" : "hoge, ronde tafel met een mandje erop (Fleur en Wilma doen in dat mandje de presentjes voor de gasten), het gastenboek met pen en uitgeprint programma en print van overzicht groepsfoto's"}</span>
+                              </li>
+                              <li className="flex items-start gap-3 text-sm text-gray-600 dark:text-slate-300 font-medium">
+                                <input type="checkbox" className="w-4 h-4 accent-[#c7b272] mt-0.5" />
+                                <span>{langEN ? "layout the printed drinks package overview" : "drankarrangement uitgeprint neerleggen"}</span>
+                              </li>
+                            </ul>
+                          </div>
+
+                          <div>
+                            <h4 className="font-serif text-lg font-bold text-[#1A1A2E] dark:text-slate-200 border-b border-gray-100 dark:border-slate-800 pb-2 mb-3">
+                              {langEN ? "Grounds and Terrace" : "Terrein en terras"}
+                            </h4>
+                            <ul className="space-y-2.5">
+                              <li className="flex items-start gap-3 text-sm text-gray-600 dark:text-slate-300 font-medium">
+                                <input type="checkbox" className="w-4 h-4 accent-[#c7b272] mt-0.5" />
+                                <span>{langEN ? "ask the venue to clear cigarette butts, trash, and left glasses from the entire area" : "aan locatie vragen om van het hele terrein peuken/afval/achtergebleven glazen etc te verwijderen"}</span>
+                              </li>
+                              <li className="flex items-start gap-3 text-sm text-gray-600 dark:text-slate-300 font-medium">
+                                <input type="checkbox" className="w-4 h-4 accent-[#c7b272] mt-0.5" />
+                                <span>{langEN ? "check if the grounds were left tidy after the previous day's wedding" : "is het netjes achtergelaten na de bruiloft van de dag ervoor?"}</span>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+
+                        {/* Column 2 */}
+                        <div className="space-y-6">
+                          <div>
+                            <h4 className="font-serif text-lg font-bold text-[#1A1A2E] dark:text-slate-200 border-b border-gray-100 dark:border-slate-800 pb-2 mb-3">
+                              {langEN ? "Orange House Ceremony" : "Oranjekas ceremonie"}
+                            </h4>
+                            <ul className="space-y-2.5">
+                              <li className="flex items-start gap-3 text-sm text-gray-600 dark:text-slate-300 font-medium">
+                                <input type="checkbox" className="w-4 h-4 accent-[#c7b272] mt-0.5" />
+                                <span>{langEN ? "place name cards for reserved seating (see 'Bijlage' page)" : "namen neerleggen ivm gereserveerde plekken (zie pagina 'Bijlage')"}</span>
+                              </li>
+                              <li className="flex items-start gap-3 text-sm text-gray-600 dark:text-slate-300 font-medium">
+                                <input type="checkbox" className="w-4 h-4 accent-[#c7b272] mt-0.5" />
+                                <span>{langEN ? "reserve two chairs (further back at the sides) for the CM for overview" : "twee stoelen reserveren (meer aan de zijkanten achteraan) voor de CM zodat jullie overzicht hebben"}</span>
+                              </li>
+                              <li className="flex items-start gap-3 text-sm text-gray-600 dark:text-slate-300 font-medium">
+                                <input type="checkbox" className="w-4 h-4 accent-[#c7b272] mt-0.5" />
+                                <span>{langEN ? "remove two chairs at the back aisle to make room for the congratulations line later" : "twee stoelen bij het gangpad achter alvast weghalen om ruimte te maken voor de felicitatierij straks"}</span>
+                              </li>
+                              <li className="flex items-start gap-3 text-sm text-gray-600 dark:text-slate-300 font-medium">
+                                <input type="checkbox" className="w-4 h-4 accent-[#c7b272] mt-0.5" />
+                                <span>{langEN ? "place a low table in the Orange House, immediately to the right after the entrance (right next to the door – the couple will stand there for congratulations after the ceremony)" : "lage tafel neerzetten in de Oranjekas, direct na de ingang rechts (direct naast de deur – het bruidspaar gaat daar na de ceremonie voor de felicitaties staan)"}</span>
+                              </li>
+                              <li className="flex items-start gap-3 text-sm text-gray-600 dark:text-slate-300 font-medium">
+                                <input type="checkbox" className="w-4 h-4 accent-[#c7b272] mt-0.5" />
+                                <span>{langEN ? "place the card box and space for other gifts on it" : "daarop het kistje voor de cadeaus en ruimte voor andere cadeaus"}</span>
+                              </li>
+                              <li className="flex items-start gap-3 text-sm text-gray-600 dark:text-slate-300 font-medium">
+                                <input type="checkbox" className="w-4 h-4 accent-[#c7b272] mt-0.5" />
+                                <span>{langEN ? "leave this table during dinner (creates atmosphere)" : "deze tafel laten staan tijdens het diner (staat sfeervol)"}</span>
+                              </li>
+                              <li className="flex items-start gap-3 text-sm text-gray-600 dark:text-slate-300 font-medium">
+                                <input type="checkbox" className="w-4 h-4 accent-[#c7b272] mt-0.5" />
+                                <span>{langEN ? "place a basket of flower petals under the first chairs along the aisle (alternating, 4 per row, 8 total; flowers arrive at 10:30)" : "aan het gangpad om en om een mandje met bloemblaadjes neerzetten onder de eerste stoel. Per rijen 4 mandjes, dus 8 mandjes totaal (bloemen volgen om 10.30)"}</span>
+                              </li>
+                              <li className="flex items-start gap-3 text-sm text-gray-600 dark:text-slate-300 font-medium">
+                                <input type="checkbox" className="w-4 h-4 accent-[#c7b272] mt-0.5" />
+                                <span>{langEN ? "our bench is placed diagonally on the left" : "ons bankje staat links schuin"}</span>
+                              </li>
+                              <li className="flex items-start gap-3 text-sm text-gray-600 dark:text-slate-300 font-medium">
+                                <input type="checkbox" className="w-4 h-4 accent-[#c7b272] mt-0.5" />
+                                <span>{langEN ? "high, round table at the front (near the BABS lectern) for signing" : "hoge, ronde tafel vooraan (vlakbij de spreekstoel voor de BABS) voor het ondertekenen"}</span>
+                              </li>
+                              <li className="flex items-start gap-3 text-sm text-gray-600 dark:text-slate-300 font-medium">
+                                <input type="checkbox" className="w-4 h-4 accent-[#c7b272] mt-0.5" />
+                                <span>{langEN ? "place a photo of Katinka's parents, a flower vase, and the tealight holder on it" : "daarop een foto van de ouders van Katinka, vaasje met bloemen en de houder met waxinelichtje"}</span>
+                              </li>
+                              <li className="flex items-start gap-3 text-sm text-gray-600 dark:text-slate-300 font-medium">
+                                <input type="checkbox" className="w-4 h-4 accent-[#c7b272] mt-0.5" />
+                                <span>{langEN ? "note: in case of bad weather, the dark green double doors can remain open for the view, while the glass doors stay closed" : "nb bij slecht weer kunnen de donkergroene voorzet-deuren open in de Oranjekas voor het zicht, de glazen deuren blijven dan dicht"}</span>
+                              </li>
+                              <li className="flex items-start gap-3 text-sm text-gray-600 dark:text-slate-300 font-medium">
+                                <input type="checkbox" className="w-4 h-4 accent-[#c7b272] mt-0.5" />
+                                <span>{langEN ? "in nice weather, both the dark green double doors and the glass doors will be open" : "bij mooi weer gaan zowel de donkergroene voorzet-deuren als de glazen deuren open"}</span>
+                              </li>
+                            </ul>
+                          </div>
+
+                          <div>
+                            <h4 className="font-serif text-lg font-bold text-[#1A1A2E] dark:text-slate-200 border-b border-gray-100 dark:border-slate-800 pb-2 mb-3">
+                              {langEN ? "Restrooms" : "Toiletruimte"}
+                            </h4>
+                            <ul className="space-y-2.5">
+                              <li className="flex items-start gap-3 text-sm text-gray-600 dark:text-slate-300 font-medium">
+                                <input type="checkbox" className="w-4 h-4 accent-[#c7b272] mt-0.5" />
+                                <span>{langEN ? "check for sufficient toilet paper/hand towels" : "zijn er voldoende toiletpapier/handdoekjes"}</span>
+                              </li>
+                              <li className="flex items-start gap-3 text-sm text-gray-600 dark:text-slate-300 font-medium">
+                                <input type="checkbox" className="w-4 h-4 accent-[#c7b272] mt-0.5" />
+                                <span>{langEN ? "check cleanliness" : "is het schoon"}</span>
+                              </li>
+                              <li className="flex items-start gap-3 text-sm text-gray-600 dark:text-slate-300 font-medium">
+                                <input type="checkbox" className="w-4 h-4 accent-[#c7b272] mt-0.5" />
+                                <span>{langEN ? "check occasionally throughout the day" : "ook tijdens de dag af en toe controleren"}</span>
+                              </li>
+                              <li className="flex items-start gap-3 text-sm text-gray-600 dark:text-slate-300 font-medium">
+                                <input type="checkbox" className="w-4 h-4 accent-[#c7b272] mt-0.5" />
+                                <span>{langEN ? "report to the manager if action is needed" : "doorgeven aan manager als er iets gedaan moet worden"}</span>
+                              </li>
+                            </ul>
+                          </div>
+
+                          <div>
+                            <h4 className="font-serif text-lg font-bold text-[#1A1A2E] dark:text-slate-200 border-b border-gray-100 dark:border-slate-800 pb-2 mb-3">
+                              {langEN ? "Private Room" : "Privéruimte"}
+                            </h4>
+                            <ul className="space-y-2.5">
+                              <li className="flex items-start gap-3 text-sm text-gray-600 dark:text-slate-300 font-medium">
+                                <input type="checkbox" className="w-4 h-4 accent-[#c7b272] mt-0.5" />
+                                <span>{langEN ? "ensure the door from the private room to the restroom is open, and also the door leading outside from there" : "zorgen dat de deur van de privéruimte naar het toilet open is en ook de deur die vanaf daar naar buiten gaat"}</span>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -3137,6 +3306,14 @@ export default function App() {
                         <input type="checkbox" className="w-4 h-4 accent-[#c7b272]" />
                         <span>Fleur and Samuel</span>
                       </li>
+                      <li className="flex items-center gap-3">
+                        <input type="checkbox" className="w-4 h-4 accent-[#c7b272]" />
+                        <span>Jorik, Lisa & Cor</span>
+                      </li>
+                      <li className="flex items-center gap-3">
+                        <input type="checkbox" className="w-4 h-4 accent-[#c7b272]" />
+                        <span>Katinka, Fleur and Samuel</span>
+                      </li>
                     </ul>
                   </div>
 
@@ -3158,6 +3335,10 @@ export default function App() {
                       <li className="flex items-center gap-3">
                         <input type="checkbox" className="w-4 h-4 accent-[#c7b272]" />
                         <span>Grandpa Mekking</span>
+                      </li>
+                      <li className="flex items-center gap-3">
+                        <input type="checkbox" className="w-4 h-4 accent-[#c7b272]" />
+                        <span>Jorik, Lisa & Wilma</span>
                       </li>
                     </ul>
                   </div>
@@ -3312,6 +3493,10 @@ export default function App() {
                       <li className="flex items-center gap-3">
                         <input type="checkbox" className="w-4 h-4 accent-[#c7b272]" />
                         <span>Jorik, Lisa & Cor</span>
+                      </li>
+                      <li className="flex items-center gap-3">
+                        <input type="checkbox" className="w-4 h-4 accent-[#c7b272]" />
+                        <span>Katinka, Fleur en Samuel</span>
                       </li>
                     </ul>
                   </div>
@@ -3518,10 +3703,10 @@ export default function App() {
                         key={guest.id}
                         className="bg-white dark:bg-slate-900 border border-[#1A1A2E]/5 dark:border-white/5 p-3.5 sm:p-5 rounded-[1.5rem] sm:rounded-[2rem] shadow-sm hover:shadow-md hover:scale-[1.02] transition-all flex flex-col items-center text-center sm:flex-row sm:items-center sm:text-left gap-2.5 sm:gap-4 group font-sans"
                       >
-                        {/* Profile Picture Frame */}
-                        <div className="relative w-12 h-12 sm:w-16 sm:h-16 shrink-0 rounded-full bg-gradient-to-tr from-[#1A1A2E] via-[#c7b272]/30 to-[#c7b272] p-[1.5px] shadow-sm group-hover:rotate-6 transition-transform duration-300">
+                         {/* Profile Picture Frame */}
+                        <div className="relative w-20 h-20 sm:w-28 sm:h-28 shrink-0 rounded-full bg-gradient-to-tr from-[#1A1A2E] via-[#c7b272]/30 to-[#c7b272] p-[1.5px] shadow-sm group-hover:rotate-6 transition-transform duration-300">
                           <div className="w-full h-full rounded-full bg-[#F5F0E6] dark:bg-slate-950 flex items-center justify-center overflow-hidden relative">
-                            <span className="absolute text-[#1A1A2E] dark:text-[#c7b272] font-serif font-bold text-sm sm:text-lg select-none">
+                            <span className="absolute text-[#1A1A2E] dark:text-[#c7b272] font-serif font-bold text-xl sm:text-3xl select-none">
                               {guest.initials}
                             </span>
                             {guest.photo && (
