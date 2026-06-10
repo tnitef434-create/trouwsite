@@ -2979,8 +2979,7 @@ export default function App() {
                     { title: langEN ? "Signs Layout" : "Borden opstelling", src: "/plaatsing_borden.webp" },
                     { title: langEN ? "Ceremony Seating" : "Ceremonie stoelschikking", src: "/ceremonie_stoelschikking.webp" },
                     { title: langEN ? "Dinner Seating" : "Diner stoelschikking", src: "/diner_stoelschikking.webp" },
-                    { title: langEN ? "Table Setting Setup" : "Tafeldekking opzet", src: "/diner_tafeldekking.webp" },
-                    { title: langEN ? "Table Setting Moodboard" : "Tafeldekking moodboard", src: "/Tafeldekking moodboard.webp" }
+                    { title: langEN ? "Table Setting Setup" : "Tafeldekking opzet", src: "/tafeldekking_opzet.webp" }
                   ].map((bijlage, idx) => (
                     <div 
                       key={idx}
