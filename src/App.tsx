@@ -385,7 +385,7 @@ export const cmTasksNL = [
   {
     "id": 1,
     "time": "**9.30 - 11.00** ",
-    "action": "**Opbouw locatie**",
+    "action": "Opbouw locatie",
     "who": "*Aanwezig op locatie, alles klaarzetten en controleren. Met hulp van Team Oranjerie. \n*Jullie plannen terplekke een meeting in met Team Oranjerie.\n*Matthew is eerste aanspreekpunt. \n*Decoratie hebben jullie meegekregen van Jorik.\n*Bloemdecoratie volgt om 10.30 van Jorik, daarna graag overal neerzetten.\n*Zie pagina 'Bijlage' voor: Borden Parkeerplaats, Ceremonie Stoelschikking, Diner Stoelschikking en Diner Tafeldekking.\n*Zie 'Toon aanvullende context' hieronder voor de Opbouw van de locatie.",
     "context": "Opbouw locatie \n\nParkeerplaats\nZie pagina 'Bijlage'.\n\nEntree \n*schildersezel met welkomstbord erop, \n*asbakken indien ze daar staan, weghalen bij entree en ook niet bij de hoek waar de Maserati komt te staan - verplaatsen naar de andere kant van het gebouw.  \n\nPalmenkas \n*op de tafels vaasjes met bloemen, \n*een van de vazen van de locatie klaarzetten met water voor het bruidsboeket, \n*ervoor zorgen dat de Oranjerie weet dat de taart op een hoge, ronde tafel in het midden van de Palmenkas moet komen te staan, met een wit tafelkleed eronder, \n*hoge, ronde tafel met een mandje erop (Fleur en Wilma doen in dat mandje de presentjes voor de gasten), het gastenboek met pen en uitgeprint programma en print van overzicht groepsfoto's, \n*drankarrangement uitgeprint neerleggen. \n\nOranjekas ceremonie\n*namen neerleggen ivm gereserveerde plekken (zie pagina 'Bijlage'), \n*twee stoelen reserveren (meer aan de zijkanten achteraan) voor de CM zodat jullie overzicht hebben, \n*twee stoelen bij het gangpad achter alvast weghalen om ruimte te maken voor de felicitatierij straks, \n*lage tafel neerzetten in de Oranjekas, direct na de ingang rechts (direct naast de deur – het bruidspaar gaat daar na de ceremonie voor de felicitaties staan), \n*daarop het kistje voor de cadeaus en ruimte voor andere cadeaus, \n*deze tafel laten staan tijdens het diner (staat sfeervol), \n*aan het gangpad om en om een mandje met bloemblaadjes neerzetten onder de eerste stoel. Per rijen 4 mandjes, dus 8 mandjes totaal (bloemen volgen om 10.30), \n*ons bankje staat links schuin,\n*hoge, ronde tafel vooraan (vlakbij de spreekstoel voor de BABS) voor het ondertekenen,  \n*daarop een foto van de ouders van Katinka, vaasje met bloemen en de houder met waxinelichtje, \n*nb bij slecht weer kunnen de donkergroene voorzet-deuren open in de Oranjekas voor het zicht, de glazen deuren blijven dan dicht, \n*bij mooi weer gaan zowel de donkergroene voorzet-deuren als de glazen deuren open. \n\nTerrein en terras \n*aan locatie vragen om van het hele terrein peuken/afval/achtergebleven glazen etc te verwijderen, \n*is het netjes achtergelaten na de bruiloft van de dag ervoor? \n\nToiletruimte \n*zijn er voldoende toiletpapier/handdoekjes, \n*is het schoon, \n*ook tijdens de dag af en toe controleren, \n*doorgeven aan manager als er iets gedaan moet worden. \n\nPrivéruimte \n*zorgen dat de deur van de privéruimte naar het toilet open is en ook de deur die vanaf daar naar buiten gaat. \n\n\n \n\n  \n\n\n\n",
     "location": "Palmenkas/Oranjekas/Terras/Tuin en parkeerplaats "
@@ -393,7 +393,7 @@ export const cmTasksNL = [
   {
     "id": 2,
     "time": "**9.00 - 9.30** ",
-    "action": "**Bruidspaar thuis met gezin**",
+    "action": "Bruidspaar thuis met gezin",
     "who": "Ter info",
     "context": "",
     "location": "Thuis in Rijswijk"
@@ -401,7 +401,7 @@ export const cmTasksNL = [
   {
     "id": 3,
     "time": "**9.30 - 10.30** ",
-    "action": "**Bruidspaar onderweg naar de Oranjerie**",
+    "action": "Bruidspaar onderweg naar de Oranjerie",
     "who": "*De Italiaanse playlist laten spelen in de Palmenkas als \nwelkom voor het bruidspaar. Aan laten totdat jullie met alle gasten richting 'de haag' gaan om 12.45.\n*Zie 'Toon aanvullende context' hieronder voor de Muziek. ",
     "context": "Hoe moet de muziek aangeleverd worden? \n\n*Offline bestand. \n*Werktelefoon Katinka op vliegtuigstand. \n*Spotify (Joriks account) ivm geen reclame. \n*Back-up: Katinka's huidige telefoon. \n*Muziek gaat apart in beide zalen. \n*Playlist op repeat. \n* 'Holy Forever' (bij het naar voren lopen van het bruidspaar) wordt los aangeleverd omdat dat liedje ook los aangezet moet worden.\n \nMuziek bij de ontvangst van het bruidspaar en de gasten:\n\n10.30 - 12.45 \n*Italiaanse playlist.   \n\n",
     "location": "Reistijd"
@@ -409,7 +409,7 @@ export const cmTasksNL = [
   {
     "id": 4,
     "time": "**10.30 - 11.00**",
-    "action": "**Aankomst bruidspaar**",
+    "action": "Aankomst bruidspaar",
     "who": "*Koffie/drinken met lekkers.\n*Het bruidspaar heeft de bloemdecoratie bij zich, die kan nu neergezet worden.\n*Het bruidspaar zet zelf de auto aan de zijkant van het pand.\n*En vertrekt om 11.45 uur naar een rustige plek.\n\n",
     "context": "",
     "location": "Palmenkas/Terras/privéruimte"
@@ -417,7 +417,7 @@ export const cmTasksNL = [
   {
     "id": 5,
     "time": "**10.45 - 11.00**",
-    "action": "**Aankomst Wilma/Rob en Wil** ",
+    "action": "Aankomst Wilma/Rob en Wil ",
     "who": "*Koffie/drinken met lekkers.\n*Wilma heeft de bruidstaart bij zich.",
     "context": "",
     "location": "Palmenkas/Terras"
@@ -425,7 +425,7 @@ export const cmTasksNL = [
   {
     "id": 6,
     "time": "**11.00 - 12.00** ",
-    "action": "**Eindcheck door Wilma en Fleur**",
+    "action": "Eindcheck door Wilma en Fleur",
     "who": "*Wilma en Fleur doen een eindcheck op de decoratie.\nIn principe is alles voor die tijd al klaar.\n",
     "context": "",
     "location": "Palmenkas/Oranjekas/Terras/Tuin en parkeerplaats"
@@ -433,7 +433,7 @@ export const cmTasksNL = [
   {
     "id": 7,
     "time": "**11.30 - 11.45**   ",
-    "action": "**Bruidspaar vertrekt van de Oranjerie** ",
+    "action": "Bruidspaar vertrekt van de Oranjerie ",
     "who": "Het bruidspaar komt om 13.00 uur weer terug.",
     "context": "",
     "location": "Reistijd"
@@ -441,7 +441,7 @@ export const cmTasksNL = [
   {
     "id": 8,
     "time": "**12.00 - 12.15**",
-    "action": "**Aankomst fotograaf**",
+    "action": "Aankomst fotograaf",
     "who": "Audra: 06 - 27 59 13 63\nZet zelf zijn spullen klaar.",
     "context": "",
     "location": ""
@@ -449,7 +449,7 @@ export const cmTasksNL = [
   {
     "id": 9,
     "time": "**12.15 - 12.45** ",
-    "action": "**Aankomst overige gasten (68 p)**",
+    "action": "Aankomst overige gasten (68 p)",
     "who": "*Koffie/drinken met lekkers.\n*Derek: gasten welkom heten bij de ingang van de Oranjerie. \n*CM zijn aanspreekpunt voor gasten.\n*In totaal zijn we deze dag met 78 personen, zie bijlage Gastenlijst.\n*Zie 'Toon aanvullende context' hieronder voor de Gastenlijst. \n",
     "context": "Gastenlijst:\n\n1.\tJorik\n2.\tKatinka\n3.\tFleur\n4.\tSamuel\n5.\tRinske \n6.\tWil\n7.\tEmma\n8.\tJet\n9.\tAnna\n10.\tOpa\n11.\tWilma\n12.\tRob\n13.\tLisa\n14.\tJaikishen\n15.\tArthur\n16.\tCor\n17.\tAnca\n18.\tSara\n19.\tHerman\n20.\tMylene\n21.\tMerian\n22.\tJim\n23.\tLeanne\n24.\tJasper\n25.\tBernhard\n26.\tYvonne\n27.\tRoos\n28.\tDerek\n29.\tMarianne\n30.\tMatthew\n31.\tJoke\n32.\tGerard\n33.\tSander (neef J)\n34.\tIneke\n35.\tNicole\n36.\tWilfred \n37.\tPatricia\n38.\tArjan \n39.\tMike\n40.\tMercedes\n41.\tMaik\n42.\tJustin\n43.\tRik\n44.\tLorena\n45.\tMark\n46.\tSander Uphus\n47.\tLydia\n48.\tChris\n49.\tDesi\n50.\tBas\n51.\tCharlotte\n52.\tTim\n53.\tSanne\n54.\tKarima\n55.\tFelix \n56.\tThalita\n57.\tNaomi\n58.\tRoelfien\n59.\tAda \n60.\tPaul (man van Ada) \n61.\tDara\n62.\tAnne\n63.\tHelian\n64.\tBarbara\n65.\tAnita\n66.\tAnnette\n67.\tNorbert\n68.\tJessica\n69.\tJurjen\n70.\tMiriam \n71.\tMonique\n72.\tSander (neef K)\n73.\tLize\n74.\tErwin\n75.\tAnja\n76.\tRuud\n77.\tSuzanne\n78.\tGijsbert\n",
     "location": "Palmenkas/Terras"
@@ -457,7 +457,7 @@ export const cmTasksNL = [
   {
     "id": 10,
     "time": "**12.45 - 13.00** ",
-    "action": "**Gasten meenemen naar 'de haag'**",
+    "action": "Gasten meenemen naar 'de haag'",
     "who": "*Gasten om 12.45 uur leiden naar 'de haag' om het bruidspaar op te wachten.\n*De gasten vormen een haag in 'de haag'. \n*Alle gasten moeten om 12.55 klaar staan. \n*Ervoor zorgen dat Fleur, Samuel en opa (en de naaste familie) vooraan staat in 'de haag' omdat zij het bruidspaar straks ook als eerste volgen.  ",
     "context": "\n\n",
     "location": "Buiten bij de haag"
@@ -465,7 +465,7 @@ export const cmTasksNL = [
   {
     "id": 11,
     "time": "**13.00 - 13.10** ",
-    "action": "**Aankomst BABS**",
+    "action": "Aankomst BABS",
     "who": "Matthew: BABS welkom heten en eventuele vragen beantwoorden.",
     "context": "",
     "location": ""
@@ -473,7 +473,7 @@ export const cmTasksNL = [
   {
     "id": 12,
     "time": "**13.00 - 13.05** ",
-    "action": "**Aankomst bruidspaar bij 'de haag'** ",
+    "action": "Aankomst bruidspaar bij 'de haag' ",
     "who": "De auto stopt halverwege.\nJorik laat Katinka uitstappen.\n ",
     "context": "",
     "location": "Buiten bij de haag"
@@ -481,7 +481,7 @@ export const cmTasksNL = [
   {
     "id": 13,
     "time": "**13.05 - 13.15** ",
-    "action": "**Stoet naar de Oranjerie** ",
+    "action": "Stoet naar de Oranjerie ",
     "who": "*Het bruidspaar loopt rechtsom.\n*Zorgen dat de gasten achter ons aanlopen. \n*Fleur, Samuel en opa direct achter ons omdat zij naar een aparte ruimte met ons gaan.  ",
     "context": "",
     "location": "Lopend naar de Oranjerie"
@@ -489,7 +489,7 @@ export const cmTasksNL = [
   {
     "id": 14,
     "time": "**13.15 - 13.25** ",
-    "action": "**Privé-ruimte en pauze**",
+    "action": "Privé-ruimte en pauze",
     "who": "*Het bruidspaar, Fleur, Samuel en opa nemen plaats in de privé-ruimte.\n*Vanaf daar lopen zij achterlangs weer naar de ingang van de Oranjerie als alle gasten zitten. ",
     "context": "",
     "location": "Privéruimte"
@@ -497,7 +497,7 @@ export const cmTasksNL = [
   {
     "id": 15,
     "time": "**13.15 - 13.25** ",
-    "action": "**Gasten plaatsnemen in de Oranjekas** ",
+    "action": "Gasten plaatsnemen in de Oranjekas ",
     "who": "*Aangeven dat de gasten plaats mogen nemen in de Oranjekas. \n*Zie pagina 'Bijlage' voor de Ceremonie Stoelschikking, de eerste 2 rijen zijn met naambordjes gereserveerd voor hoofdgasten.\n*2 stoelen achter aan de zijkant reserveren voor de CM zodat jullie goed overzicht hebben.",
     "context": "",
     "location": "Oranjekas"
@@ -505,7 +505,7 @@ export const cmTasksNL = [
   {
     "id": 16,
     "time": "**13.15 - 13.25** ",
-    "action": "**Welkom door de BABS**",
+    "action": "Welkom door de BABS",
     "who": "De BABS heet iedereen welkom en vertelt de gasten wat van hen verwacht wordt.\n\"Geen foto's tijdens ceremonie en dat alle gasten moeten gaan staan op haar teken.\"",
     "context": "",
     "location": "Oranjekas"
@@ -513,23 +513,23 @@ export const cmTasksNL = [
   {
     "id": 17,
     "time": "**13.25 - 13.27** ",
-    "action": "**Intocht Jorik met opa**",
-    "who": "*Zorgen dat het liedje **'Holy Forever'** afspeelt zodra Jorik met opa bij de ingang klaarstaat. \n*Jorik en opa lopen naar voren als de muziek begint. \n*Ze blijven even samen vooraan staan, waarna opa plaats neemt op zijn gereserveerde stoel. \n*Jorik wacht daar vooraan staand in het midden met zijn gezicht richting de voordeur op Katinka. \n*Zie 'Toon aanvullende context' hieronder voor de Muziek.",
-    "context": "**Muziek bij het naar voren lopen van het bruidspaar\nNB dit wordt los aangeleverd, gaat om 1 liedje dat doorspeelt bij Jorik en Katinka:**\n\n**13.25 - 13.30**\n***Holy Forever** \nSax Instrumental / Chris Tomlin (cover) / Uriel Vega\n\n",
+    "action": "Intocht Jorik met opa",
+    "who": "*Zorgen dat het liedje 'Holy Forever' afspeelt zodra Jorik met opa bij de ingang klaarstaat. \n*Jorik en opa lopen naar voren als de muziek begint. \n*Ze blijven even samen vooraan staan, waarna opa plaats neemt op zijn gereserveerde stoel. \n*Jorik wacht daar vooraan staand in het midden met zijn gezicht richting de voordeur op Katinka. \n*Zie 'Toon aanvullende context' hieronder voor de Muziek.",
+    "context": "Muziek bij het naar voren lopen van het bruidspaar\nNB dit wordt los aangeleverd, gaat om 1 liedje dat doorspeelt bij Jorik en Katinka:\n\n13.25 - 13.30\n*Holy Forever \nSax Instrumental / Chris Tomlin (cover) / Uriel Vega\n\n",
     "location": "Oranjekas"
   },
   {
     "id": 18,
     "time": "**13.27 - 13.30** ",
-    "action": "**Intocht Katinka met Fleur en Samuel**",
-    "who": "*Zorgen dat het liedje **'Holy Forever'** blijft doorspelen.  \n*Katinka loopt met de kinderen naar voren, deuren achter haar sluiten.\n*Vooraan komt het bruidspaar samen en gaan de kinderen zitten.\n*Het bruidspaar blijft staan totdat de muziek vervaagt.\n*De BABS zegt dat de iedereen moet gaan zitten.\n*Zorgen dat de muziek stopt.\n*Zie 'Toon aanvullende context' hieronder voor de Muziek. ",
-    "context": "**Muziek bij het naar voren lopen van het bruidspaar\nNB dit wordt los aangeleverd, gaat om 1 liedje dat doorspeelt bij Jorik en Katinka:**\n\n**13.25 - 13.30**\n***Holy Forever** \nSax Instrumental / Chris Tomlin (cover) / Uriel Vega\n\n\n\n",
+    "action": "Intocht Katinka met Fleur en Samuel",
+    "who": "*Zorgen dat het liedje 'Holy Forever' blijft doorspelen.  \n*Katinka loopt met de kinderen naar voren, deuren achter haar sluiten.\n*Vooraan komt het bruidspaar samen en gaan de kinderen zitten.\n*Het bruidspaar blijft staan totdat de muziek vervaagt.\n*De BABS zegt dat de iedereen moet gaan zitten.\n*Zorgen dat de muziek stopt.\n*Zie 'Toon aanvullende context' hieronder voor de Muziek. ",
+    "context": "Muziek bij het naar voren lopen van het bruidspaar\nNB dit wordt los aangeleverd, gaat om 1 liedje dat doorspeelt bij Jorik en Katinka:\n\n13.25 - 13.30\n*Holy Forever \nSax Instrumental / Chris Tomlin (cover) / Uriel Vega\n\n\n\n",
     "location": "Oranjekas"
   },
   {
     "id": 19,
     "time": "**13.30 - 14.00** ",
-    "action": "**Huwelijksvoltrekking**",
+    "action": "Huwelijksvoltrekking",
     "who": "Het ja-woord, de ringen en de geloften.",
     "context": "",
     "location": "Oranjekas"
@@ -537,7 +537,7 @@ export const cmTasksNL = [
   {
     "id": 20,
     "time": "**13.45 - 14.45** ",
-    "action": "**Opbouw bruidstaart**",
+    "action": "Opbouw bruidstaart",
     "who": "Door Team Oranjerie wordt ondertussen in de Palmenkas de bruidstaart klaargezet.\nCM: zorgen dat Team Oranjerie weet dat de taart op een ronde, hoge tafel in het midden van de Palmenkas moet komen, met tafelkleed eronder. ",
     "context": "",
     "location": "Palmenkas"
@@ -545,7 +545,7 @@ export const cmTasksNL = [
   {
     "id": 21,
     "time": "**14.00 - 14.05** ",
-    "action": "**Afronding door de BABS** ",
+    "action": "Afronding door de BABS ",
     "who": "De BABS vertelt dat Derek een zegen gaat uitspreken.\nDaarna gaat zij weg.\n",
     "context": "",
     "location": "Oranjekas"
@@ -553,7 +553,7 @@ export const cmTasksNL = [
   {
     "id": 22,
     "time": "**14.05 - 14.20** ",
-    "action": "**Zegen en speeches** ",
+    "action": "Zegen en speeches ",
     "who": "*Er is een microfoon aanwezig en jullie staan op de plek van de BABS.\n\nDerek spreekt een zegen uit.\n\nDaarna vertelt hij wat hierna komt:\n*Bijdragen van de moeder van de bruidegom: Wilma, en de kinderen van Katinka: Fleur en Samuel.\n\n",
     "context": "",
     "location": "Oranjekas"
@@ -561,23 +561,23 @@ export const cmTasksNL = [
   {
     "id": 23,
     "time": "**14.20 - 14.25** ",
-    "action": "**Erehaag met bloemen**",
-    "who": "Derek komt weer naar voren en vertelt dat: \n*Iedereen moet gaan staan terwijl het bruidspaar naar voren loopt.\n*De mensen aan het gangpad met een bloemenmandje onder hun stoel bloemblaadjes mogen pakken en straks hoog in de lucht mogen werpen als het bruidspaar langsloopt. \n*De gasten vanaf de voorste rijen kunnen gaan feliciteren en gelegenheid tot het geven van hun cadeaus.\n\nCM: Zorgen dat het liedje **'Felicita'** aangaat en daarna de rest van de Italiaanse playlist. \n*Zie 'Toon aanvullende context' hieronder voor de Muziek en aanvullende info.\n*Het bruidspaar loopt door de rij naar de ingang van de zaal en blijft naast de deur staan.\n",
-    "context": "*De CM hebben vooraf twee stoelen achterin weggehaald om ruimte te creeeren.\n*De mandjes staan onder de stoelen bij het gangpad om en om, dus 4 mandjes per rij, dat zijn in totaal 8 mandjes langs het gehele gangpad. \n\n**Muziek bij de erehaag met bloemen\nNB Is het eerste nummer van de Italiaanse playlist, met dit nummer wordt begonnen. Daarna kan de Italiaanse playlist verder gaan:**\n\n**14.20 - 14.25**\n***Felicita\n**\n**\n**\n",
+    "action": "Erehaag met bloemen",
+    "who": "Derek komt weer naar voren en vertelt dat: \n*Iedereen moet gaan staan terwijl het bruidspaar naar voren loopt.\n*De mensen aan het gangpad met een bloemenmandje onder hun stoel bloemblaadjes mogen pakken en straks hoog in de lucht mogen werpen als het bruidspaar langsloopt. \n*De gasten vanaf de voorste rijen kunnen gaan feliciteren en gelegenheid tot het geven van hun cadeaus.\n\nCM: Zorgen dat het liedje 'Felicita' aangaat en daarna de rest van de Italiaanse playlist. \n*Zie 'Toon aanvullende context' hieronder voor de Muziek en aanvullende info.\n*Het bruidspaar loopt door de rij naar de ingang van de zaal en blijft naast de deur staan.\n",
+    "context": "*De CM hebben vooraf twee stoelen achterin weggehaald om ruimte te creeeren.\n*De mandjes staan onder de stoelen bij het gangpad om en om, dus 4 mandjes per rij, dat zijn in totaal 8 mandjes langs het gehele gangpad. \n\nMuziek bij de erehaag met bloemen\nNB Is het eerste nummer van de Italiaanse playlist, met dit nummer wordt begonnen. Daarna kan de Italiaanse playlist verder gaan:\n\n14.20 - 14.25\n*Felicita\n\n\n\n",
     "location": "Oranjekas"
   },
   {
     "id": 24,
     "time": "**14.25 - 14.45** ",
-    "action": "**Felicitaties**",
+    "action": "Felicitaties",
     "who": "*De gasten komen vanaf de voorste rijen naar de ingang van de zaal om het bruidspaar te feliciteren en cadeaus te overhandigen. \n*Achter het bruidspaar staat een tafel met een mooi kistje waarin het bruidspaar de enveloppen kan doen en waar andere cadeaus op gelegd kunnen worden.\n*Zie 'Toon aanvullende context' hieronder voor de Muziek en aanvullende info.",
-    "context": "**Muziek bij de felicitaties:\n\n**14.25 - 14.45\n***Na Felicita speelt nu de Italiaanse playlist door\n**\n*Derek staat naast het bruidspaar om de cadeaus aan te pakken en het bruidsboeket erbij te leggen (niet in water).\n*Matthew staat bij de ingang van de Palmenkas om de gasten door te geleiden.\n*NB de bloemblaadjes moeten hierna opgeruimd worden, door Wilma en Fleur.\n\n",
+    "context": "Muziek bij de felicitaties:\n\n14.25 - 14.45\n*Na Felicita speelt nu de Italiaanse playlist door\n\n*Derek staat naast het bruidspaar om de cadeaus aan te pakken en het bruidsboeket erbij te leggen (niet in water).\n*Matthew staat bij de ingang van de Palmenkas om de gasten door te geleiden.\n*NB de bloemblaadjes moeten hierna opgeruimd worden, door Wilma en Fleur.\n\n",
     "location": "Oranjekas"
   },
   {
     "id": 25,
     "time": "**14.35 - 14.50** ",
-    "action": "**Maserati verplaatsen**",
+    "action": "Maserati verplaatsen",
     "who": "Matthew: de Maserati naar de zijkant van het gebouw rijden. \nAls je met je rug naar de Oranjerie staat dan rechtsvoor op het terras. \n",
     "context": "",
     "location": "Zijkant Oranjerie"
@@ -585,23 +585,23 @@ export const cmTasksNL = [
   {
     "id": 26,
     "time": "**14.45 - 15.00** ",
-    "action": "**Naar Palmenkas en korte pauze**",
-    "who": "*Zorgen dat de gasten naar de Palmenkas gaan.\n*Zorgen dat in de Palmenkas de **Italiaanse playlist** aan gaat. \n*Bruidspaar heeft korte pauze in privéruimte.  \n*Zie 'Toon aanvullende context' hieronder voor de Muziek.\n",
-    "context": "**Muziek in pauze\nNB dit moet met de tweede telefoon (de andere telefoon is nog met muziek in de Oranjekas):\n\n**14.45 - 15.00 \n***Italiaanse playlist** aan vanaf 14.45 uur en uit vanaf het moment dat Cor gaat toosten, lied vriendin Katinka en gedicht Lisa. \n\n\n\n \n",
+    "action": "Naar Palmenkas en korte pauze",
+    "who": "*Zorgen dat de gasten naar de Palmenkas gaan.\n*Zorgen dat in de Palmenkas de Italiaanse playlist aan gaat. \n*Bruidspaar heeft korte pauze in privéruimte.  \n*Zie 'Toon aanvullende context' hieronder voor de Muziek.\n",
+    "context": "Muziek in pauze\nNB dit moet met de tweede telefoon (de andere telefoon is nog met muziek in de Oranjekas):\n\n14.45 - 15.00 \n*Italiaanse playlist aan vanaf 14.45 uur en uit vanaf het moment dat Cor gaat toosten, lied vriendin Katinka en gedicht Lisa. \n\n\n\n \n",
     "location": "Palmenkas/privéruimte"
   },
   {
     "id": 27,
     "time": "**15.00 - 15.30** ",
-    "action": "**Toost & Bruidstaart** ",
-    "who": "*Zorgen dat alle gasten in de Palmenkas zijn, dus niet op het terras.\n*Bruidspaar komt aan in Palmenkas.\n*Zorgen dat Fleur en Samuel bij de bruidstaart staan.\n*Gasten in een cirkel om het bruidspaar heen.\n*Derek: vertellen dat na de toost de receptie begint en dat mensen tijdens de receptie worden opgeroepen voor de groepsfoto's: de lijst vinden ze uitgeprint in de Palmenkas en in de app en ze worden in 6 keer meegeroepen per familie/groep. \n*Muziek uit zodra Cor begint met de toost.\nNB Er wordt een microfoon geregeld met boxen voor Cor, Lisa en Roelfien. \n*Zorgen dat de **muziek van Roelfien** aangaat op haar signaal.\n*Zie 'Toon aanvullende context' hieronder voor de Muziek.\n\n\n",
-    "context": "**Muziek:\n\n***Muziek uit vanaf moment dat Cor gaat speechen,\n*15.15 muziek van Roelfien, vriendin Katinka (zij levert dit bij Derek aan),\n*Daarna stilte voor gedicht Lisa,\n*Daarna de Italiaanse playlist op repeat.    \n",
+    "action": "Toost & Bruidstaart ",
+    "who": "*Zorgen dat alle gasten in de Palmenkas zijn, dus niet op het terras.\n*Bruidspaar komt aan in Palmenkas.\n*Zorgen dat Fleur en Samuel bij de bruidstaart staan.\n*Gasten in een cirkel om het bruidspaar heen.\n*Derek: vertellen dat na de toost de receptie begint en dat mensen tijdens de receptie worden opgeroepen voor de groepsfoto's: de lijst vinden ze uitgeprint in de Palmenkas en in de app en ze worden in 6 keer meegeroepen per familie/groep. \n*Muziek uit zodra Cor begint met de toost.\nNB Er wordt een microfoon geregeld met boxen voor Cor, Lisa en Roelfien. \n*Zorgen dat de muziek van Roelfien aangaat op haar signaal.\n*Zie 'Toon aanvullende context' hieronder voor de Muziek.\n\n\n",
+    "context": "Muziek:\n\n*Muziek uit vanaf moment dat Cor gaat speechen,\n*15.15 muziek van Roelfien, vriendin Katinka (zij levert dit bij Derek aan),\n*Daarna stilte voor gedicht Lisa,\n*Daarna de Italiaanse playlist op repeat.    \n",
     "location": "Palmenkas"
   },
   {
     "id": 28,
     "time": "**15.00 - 17.30** ",
-    "action": "**Ombouw Oranjekas voor diner**",
+    "action": "Ombouw Oranjekas voor diner",
     "who": "*Tijdens de receptie wordt door Team Oranjerie de Oranjekas in de basis omgebouwd voor het diner. \n*De CM zijn indien nodig beschikbaar voor het geven van aanwijzingen.\n*Wilma en Fleur voegen de decoratie en tafelschikking toe tussen 18.00 - 19.00 als alle gasten weg zijn. \n*Zie pagina 'Bijlage' voor Diner Tafelschikking en Diner Tafeldekking.",
     "context": "",
     "location": "Oranjekas"
@@ -609,23 +609,23 @@ export const cmTasksNL = [
   {
     "id": 29,
     "time": "**15.30 - 16.00**  ",
-    "action": "**Receptie start & groepsfoto's**",
-    "who": "*CM zorgen dat de Italiaanse playlist aan gaat.\n*CM faciliteren fotograaf om de juiste groepen bij elkaar te krijgen.\n*Zie uitgeprint overzicht van de Groepsfoto's bij het gastenboek op de tekentafel in Palmenkas.\n*Zie 'Toon aanvullende context' hieronder voor het overzicht Groepsfoto's en Muziek.\n*Handig om de mensen per 6 grote groepen mee te nemen:\n1. Familie Prins 2. Familie Mekking 3. Familie Uiterwijk 4. Familie Herlaar 5. Vrienden, Collega's & CM 6. Iedereen\n**NB Fleur en Samuel zijn net als het bruidspaar bij alle foto's.**",
-    "context": "**Muziek tijdens receptie en pauze:\n\n**15.30 - 19.00 Receptie & pauze (Palmenkas)\n***Italiaanse playlist. \n\nGroepsfoto's \n\n1. Familie Prins & aanhang (en Wilma, Fleur en Samuel)\n***Familie Prins met aanhang** \n*Familie Prins klein: Cor, Anca, Sara, Lisa, Jai, Fleur en Samuel  \n*Ouders bruidspaar: Wilma en Cor & Gonnie en Leo (via fotoshop)\n*(Schoon)zussen Lisa, Sara \n*Fleur en Samuel \n**\n2. Familie Mekking & aanhang (en Fleur en Samuel)\n***Familie Mekking met aanhang** \n*Familie Mekking klein: Opa, Wilma, Rob, Arthur, Lisa, Jai, Fleur en Samuel  \n*Opa Mekking \n**\n3. Familie Uiterwijk & aanhang (en Fleur en Samuel)\n***Familie Uiterwijk: Fleur, Samuel, Rinske, Emma, Anna, Jet, Norbert, Jessica, Jurjen en Miriam** \n*Familie Uiterwijk klein: Fleur, Samuel, Rinske, Emma, Anna, Jet \n*Rinske \n**\n4. Familie Herlaar & aanhang (en Fleur en Samuel)\n***Familie Herlaar: Fleur, Samuel, Rinske, Emma, Anna, Jet, Wil, Lize, Ruud, Monique, Sander, Erwin en Anja** \n*Familie Herlaar klein: Fleur, Samuel, Wil, Rinske, Emma, Anna, Jet \n*Wil  \n**\n5. Vrienden, Collega's & CM\n***Vriendengroep**  \n*Collega's \n*Karima en Felix\n*Suzanne en Gijsbert\n*Ceremoniemeesters  \n**\n6. Totaal\n***Alle gasten \n\n\n\n \n\n",
+    "action": "Receptie start & groepsfoto's",
+    "who": "*CM zorgen dat de Italiaanse playlist aan gaat.\n*CM faciliteren fotograaf om de juiste groepen bij elkaar te krijgen.\n*Zie uitgeprint overzicht van de Groepsfoto's bij het gastenboek op de tekentafel in Palmenkas.\n*Zie 'Toon aanvullende context' hieronder voor het overzicht Groepsfoto's en Muziek.\n*Handig om de mensen per 6 grote groepen mee te nemen:\n1. Familie Prins 2. Familie Mekking 3. Familie Uiterwijk 4. Familie Herlaar 5. Vrienden, Collega's & CM 6. Iedereen\nNB Fleur en Samuel zijn net als het bruidspaar bij alle foto's.",
+    "context": "Muziek tijdens receptie en pauze:\n\n15.30 - 19.00 Receptie & pauze (Palmenkas)\n*Italiaanse playlist. \n\nGroepsfoto's \n\n1. Familie Prins & aanhang (en Wilma, Fleur en Samuel)\n*Familie Prins met aanhang \n*Familie Prins klein: Cor, Anca, Sara, Lisa, Jai, Fleur en Samuel  \n*Ouders bruidspaar: Wilma en Cor & Gonnie en Leo (via fotoshop)\n*(Schoon)zussen Lisa, Sara \n*Fleur en Samuel \n\n2. Familie Mekking & aanhang (en Fleur en Samuel)\n*Familie Mekking met aanhang \n*Familie Mekking klein: Opa, Wilma, Rob, Arthur, Lisa, Jai, Fleur en Samuel  \n*Opa Mekking \n\n3. Familie Uiterwijk & aanhang (en Fleur en Samuel)\n*Familie Uiterwijk: Fleur, Samuel, Rinske, Emma, Anna, Jet, Norbert, Jessica, Jurjen en Miriam \n*Familie Uiterwijk klein: Fleur, Samuel, Rinske, Emma, Anna, Jet \n*Rinske \n\n4. Familie Herlaar & aanhang (en Fleur en Samuel)\n*Familie Herlaar: Fleur, Samuel, Rinske, Emma, Anna, Jet, Wil, Lize, Ruud, Monique, Sander, Erwin en Anja \n*Familie Herlaar klein: Fleur, Samuel, Wil, Rinske, Emma, Anna, Jet \n*Wil  \n\n5. Vrienden, Collega's & CM\n*Vriendengroep  \n*Collega's \n*Karima en Felix\n*Suzanne en Gijsbert\n*Ceremoniemeesters  \n\n6. Totaal\n*Alle gasten \n\n\n\n \n\n",
     "location": "Palmenkas/Terras"
   },
   {
     "id": 30,
     "time": "**16.00 - 17.30**",
-    "action": "**Receptie vervolg**",
-    "who": "  ***Zorgen dat de Italiaanse playlist aan blijft.\n*Bruid twee keer even meeroepen zodat zij in de privéruimte iets kan eten/drinken/opfrissen. Dus om 16.00 en om 17.00. \n*Jorik graag ook 1 keer meenemen, zodat het bruidspaar even samen kan zijn in de privéruimte.**   ",
+    "action": "Receptie vervolg",
+    "who": "  *Zorgen dat de Italiaanse playlist aan blijft.\n*Bruid twee keer even meeroepen zodat zij in de privéruimte iets kan eten/drinken/opfrissen. Dus om 16.00 en om 17.00. \n*Jorik graag ook 1 keer meenemen, zodat het bruidspaar even samen kan zijn in de privéruimte.   ",
     "context": "",
     "location": ""
   },
   {
     "id": 31,
     "time": "**17.15 - 17.20** ",
-    "action": "**Maserati verplaatsen**",
+    "action": "Maserati verplaatsen",
     "who": "Matthew: de Maserati van de zijkant van het gebouw weer naar de haag rijden met de achterkant naar de Oranjerie toe.",
     "context": "",
     "location": "Buiten bij de haag"
@@ -633,7 +633,7 @@ export const cmTasksNL = [
   {
     "id": 32,
     "time": "**17.25 - 17.30** ",
-    "action": "**Aankondiging einde feestelijkheden**",
+    "action": "Aankondiging einde feestelijkheden",
     "who": "Derek: de gasten vertellen dat:\n*De receptie ten einde loopt.  \n*Denken aan toilet, persoonlijke spullen en presentje (ligt bij het gastenboek op de tekentafel in de Palmenkas).\n*Iedereen om 17.35 uur achter het bruidspaar aan loopt naar 'de haag'.\n*Daar het bruidspaar uitzwaaien en de dag ten einde is. \n\n\n\n",
     "context": "",
     "location": ""
@@ -641,7 +641,7 @@ export const cmTasksNL = [
   {
     "id": 33,
     "time": "**17.30 - 17.45** ",
-    "action": "**Einde receptie en uitzwaaien bruidspaar**",
+    "action": "Einde receptie en uitzwaaien bruidspaar",
     "who": "*Zorgen dat gasten met hun spullen achter het bruidspaar aan lopen. \n*Het bruidspaar loopt via de andere kant.\n*Uitzwaaien bruidspaar bij 'de haag'.\n",
     "context": "",
     "location": "Haag buiten"
@@ -649,15 +649,15 @@ export const cmTasksNL = [
   {
     "id": 34,
     "time": "**17.45 - 18.00** ",
-    "action": "**Vertrek receptiegasten**",
-    "who": "*Zorgen dat iedereen om 18.00 van het terrein is ivm de fotoshoot van het bruidspaar. \n*Napraten op de parkeerplaats kan natuurlijk wel.\n**Belangrijk dat Wilma en Fleur op tijd (uiterlijk 18.00) teruggaan naar de Oranjekas voor de decoratie van de dinertafels.**\n",
+    "action": "Vertrek receptiegasten",
+    "who": "*Zorgen dat iedereen om 18.00 van het terrein is ivm de fotoshoot van het bruidspaar. \n*Napraten op de parkeerplaats kan natuurlijk wel.\nBelangrijk dat Wilma en Fleur op tijd (uiterlijk 18.00) teruggaan naar de Oranjekas voor de decoratie van de dinertafels.\n",
     "context": "",
     "location": "Haag buiten/parkeerterrein"
   },
   {
     "id": 35,
     "time": "**18.00 - 19.00** ",
-    "action": "**Eindcontrole dinertafels en pauze** ",
+    "action": "Eindcontrole dinertafels en pauze ",
     "who": "*CM samen met Wilma en Fleur eindcontrole op dinertafels incl. tafelschikking.\n*Rust voor naaste familie.\n*Zie pagina 'Bijlage' voor Diner Stoelschikking en Diner Tafeldekking.",
     "context": "",
     "location": "Oranjekas/Palmenkas/Terras"
@@ -665,7 +665,7 @@ export const cmTasksNL = [
   {
     "id": 36,
     "time": "**18.00 - 18.30**",
-    "action": "**Bruidspaar pauze en crewmaaltijd fotograaf**",
+    "action": "Bruidspaar pauze en crewmaaltijd fotograaf",
     "who": "Ter info",
     "context": "",
     "location": ""
@@ -673,7 +673,7 @@ export const cmTasksNL = [
   {
     "id": 37,
     "time": "**18.30 - 19.00** ",
-    "action": "**Fotoshoot bruidspaar** ",
+    "action": "Fotoshoot bruidspaar ",
     "who": "*Bruidspaar is terug op locatie om 18.30 voor fotoshoot.\n*Zetten Maserati zelf bij de zijkant van het gebouw. \n*Familie wacht op hen in de Palmenkas. \n*Zij gaan om 19.00 samen met het bruidspaar naar de Oranjekas. \n",
     "context": "",
     "location": "Palmenkas/Terras"
@@ -681,15 +681,15 @@ export const cmTasksNL = [
   {
     "id": 38,
     "time": "**19.00 - 21.00**",
-    "action": "**Shared dining met naaste familie**",
-    "who": "Zorgen dat de **Italiaanse playlist** op staat.\n*Zie 'Toon aanvullende context' hieronder voor de Muziek.",
-    "context": "**Muziek tijdens diner:\n\n**19.00 - 21.00 Diner (Oranjekas)\n***Italiaanse playlist. **",
+    "action": "Shared dining met naaste familie",
+    "who": "Zorgen dat de Italiaanse playlist op staat.\n*Zie 'Toon aanvullende context' hieronder voor de Muziek.",
+    "context": "Muziek tijdens diner:\n\n19.00 - 21.00 Diner (Oranjekas)\n*Italiaanse playlist. ",
     "location": "Oranjekas"
   },
   {
     "id": 39,
     "time": "**21.00 - 21.15**",
-    "action": "**Afscheid en uitzwaaien**",
+    "action": "Afscheid en uitzwaaien",
     "who": "Tijd bewaken en zorgen dat dit afscheid om 21.15 klaar is, we zullen allemaal moe genoeg zijn en er moet ook nog opgeruimd worden. ",
     "context": "",
     "location": "Terras"
@@ -697,9 +697,9 @@ export const cmTasksNL = [
   {
     "id": 40,
     "time": "**21.15 - 21.45**",
-    "action": "**Opruimen**",
+    "action": "Opruimen",
     "who": "*Alles opruimen, met hulp van Team Oranjerie, Fleur, Samuel, Wilma en Wil. \n*Team Oranjerie ruimt hun deel op, jullie ons deel.\n*Zorgen dat alles mee naar huis gaat wat van ons is.\n*Zie 'Toon aanvullende context' hieronder voor info bij Opruimen.   \n*Fleur en Samuel rijden met Cor en Anca/Sara mee naar huis en nemen de eventuele resten van de bruidstaart mee.\n*Opa en Wil rijden mee terug met Wilma en Rob.",
-    "context": "**Opruimen:\n\n***De locatie is verantwoordelijk voor hun spullen en de CM voor die van ons,** \n*Wilma, Wil, Fleur en Samuel helpen ook mee met het opruimen van onze eigen spullen, \nDie moeten ook weer mee terug naar huis, het gaat dan om (afhankelijk van wat we huren): \n*vaasjes met bloemen \n*kandelaren \n*tafelkleden \n*servetten \n*eucalyptus \n*tafelschikking-naambordjes \n*menukaarten \n*naamkaartjes van de ceremoniestoelen \n*mandje voor gastencadeautjes \n*mandjes waarin de rozenblaadjes zaten \n*welkomstborden en bewegwijzering parkeerplaats \n*rest van de bruidstaart mee met Fleur en Samuel \n*schildersezel \n*bankje \n\n ",
+    "context": "Opruimen:\n\n*De locatie is verantwoordelijk voor hun spullen en de CM voor die van ons, \n*Wilma, Wil, Fleur en Samuel helpen ook mee met het opruimen van onze eigen spullen, \nDie moeten ook weer mee terug naar huis, het gaat dan om (afhankelijk van wat we huren): \n*vaasjes met bloemen \n*kandelaren \n*tafelkleden \n*servetten \n*eucalyptus \n*tafelschikking-naambordjes \n*menukaarten \n*naamkaartjes van de ceremoniestoelen \n*mandje voor gastencadeautjes \n*mandjes waarin de rozenblaadjes zaten \n*welkomstborden en bewegwijzering parkeerplaats \n*rest van de bruidstaart mee met Fleur en Samuel \n*schildersezel \n*bankje \n\n ",
     "location": "Palmenkas/Oranjekas/Terras en parkeerterrein"
   }
 ];
@@ -708,7 +708,7 @@ export const cmTasksEN = [
   {
     "id": 1,
     "time": "**9.30 - 11.00** ",
-    "action": "**Venue setup**",
+    "action": "Venue setup",
     "who": "*Aanwezig op locatie, alles klaarzetten en controleren. Met hulp van Team Oranjerie. \n*Jullie plannen terplekke een meeting in met Team Oranjerie.\n*Matthew is eerste aanspreekpunt. \n*Decoratie hebben jullie meegekregen van Jorik.\n*Bloemdecoratie volgt om 10.30 van Jorik, daarna graag overal neerzetten.\n*Zie pagina 'Bijlage' voor: Borden Parkeerplaats, Ceremonie Stoelschikking, Diner Stoelschikking en Diner Tafeldekking.\n*Zie 'Toon aanvullende context' hieronder voor de Opbouw van de locatie.",
     "context": "Opbouw locatie \n\nParkeerplaats\nZie pagina 'Bijlage'.\n\nEntree \n*schildersezel met welkomstbord erop, \n*asbakken indien ze daar staan, weghalen bij entree en ook niet bij de hoek waar de Maserati komt te staan - verplaatsen naar de andere kant van het gebouw.  \n\nPalmenkas \n*op de tafels vaasjes met bloemen, \n*een van de vazen van de locatie klaarzetten met water voor het bruidsboeket, \n*ervoor zorgen dat de Oranjerie weet dat de taart op een hoge, ronde tafel in het midden van de Palmenkas moet komen te staan, met een wit tafelkleed eronder, \n*hoge, ronde tafel met een mandje erop (Fleur en Wilma doen in dat mandje de presentjes voor de gasten), het gastenboek met pen en uitgeprint programma en print van overzicht groepsfoto's, \n*drankarrangement uitgeprint neerleggen. \n\nOranjekas ceremonie\n*namen neerleggen ivm gereserveerde plekken (zie pagina 'Bijlage'), \n*twee stoelen reserveren (meer aan de zijkanten achteraan) voor de CM zodat jullie overzicht hebben, \n*twee stoelen bij het gangpad achter alvast weghalen om ruimte te maken voor de felicitatierij straks, \n*lage tafel neerzetten in de Oranjekas, direct na de ingang rechts (direct naast de deur – het bruidspaar gaat daar na de ceremonie voor de felicitaties staan), \n*daarop het kistje voor de cadeaus en ruimte voor andere cadeaus, \n*deze tafel laten staan tijdens het diner (staat sfeervol), \n*aan het gangpad om en om een mandje met bloemblaadjes neerzetten onder de eerste stoel. Per rijen 4 mandjes, dus 8 mandjes totaal (bloemen volgen om 10.30), \n*ons bankje staat links schuin,\n*hoge, ronde tafel vooraan (vlakbij de spreekstoel voor de BABS) voor het ondertekenen,  \n*daarop een foto van de ouders van Katinka, vaasje met bloemen en de houder met waxinelichtje, \n*nb bij slecht weer kunnen de donkergroene voorzet-deuren open in de Oranjekas voor het zicht, de glazen deuren blijven dan dicht, \n*bij mooi weer gaan zowel de donkergroene voorzet-deuren als de glazen deuren open. \n\nTerrein en terras \n*aan locatie vragen om van het hele terrein peuken/afval/achtergebleven glazen etc te verwijderen, \n*is het netjes achtergelaten na de bruiloft van de dag ervoor? \n\nToiletruimte \n*zijn er voldoende toiletpapier/handdoekjes, \n*is het schoon, \n*ook tijdens de dag af en toe controleren, \n*doorgeven aan manager als er iets gedaan moet worden. \n\nPrivéruimte \n*zorgen dat de deur van de privéruimte naar het toilet open is en ook de deur die vanaf daar naar buiten gaat. \n\n\n \n\n  \n\n\n\n",
     "location": "Palmenkas/Oranjekas/Terras/Tuin en parkeerplaats"
@@ -716,7 +716,7 @@ export const cmTasksEN = [
   {
     "id": 2,
     "time": "**9.00 - 9.30** ",
-    "action": "**The bride and groom at home with family**",
+    "action": "The bride and groom at home with family",
     "who": "Ter info",
     "context": "",
     "location": "Thuis in Rijswijk"
@@ -724,7 +724,7 @@ export const cmTasksEN = [
   {
     "id": 3,
     "time": "**9.30 - 10.30** ",
-    "action": "**The bride and groom on their way to the Oranjerie**",
+    "action": "The bride and groom on their way to the Oranjerie",
     "who": "*De Italiaanse playlist laten spelen in de Palmenkas als \nwelkom voor het bruidspaar. Aan laten totdat jullie met alle gasten richting 'de haag' gaan om 12.45.\n*Zie 'Toon aanvullende context' hieronder voor de Muziek.",
     "context": "Hoe moet de muziek aangeleverd worden? \n\n*Offline bestand. \n*Werktelefoon Katinka op vliegtuigstand. \n*Spotify (Joriks account) ivm geen reclame. \n*Back-up: Katinka's huidige telefoon. \n*Muziek gaat apart in beide zalen. \n*Playlist op repeat. \n* 'Holy Forever' (bij het naar voren lopen van het bruidspaar) wordt los aangeleverd omdat dat liedje ook los aangezet moet worden.\n \nMuziek bij de ontvangst van het bruidspaar en de gasten:\n\n10.30 - 12.45 \n*Italiaanse playlist.   \n\n",
     "location": "Reistijd"
@@ -732,7 +732,7 @@ export const cmTasksEN = [
   {
     "id": 4,
     "time": "**10.30 - 11.00**",
-    "action": "**Arrival of the bride and groom**",
+    "action": "Arrival of the bride and groom",
     "who": "*Koffie/drinken met lekkers.\n*Het bruidspaar heeft de bloemdecoratie bij zich, die kan nu neergezet worden.\n*Het bruidspaar zet zelf de auto aan de zijkant van het pand.\n*En vertrekt om 11.45 uur naar een rustige plek.",
     "context": "",
     "location": "Palmenkas/Terras/privéruimte"
@@ -748,7 +748,7 @@ export const cmTasksEN = [
   {
     "id": 6,
     "time": "**11.00 - 12.00** ",
-    "action": "**Final check by Wilma and Fleur**",
+    "action": "Final check by Wilma and Fleur",
     "who": "*Wilma en Fleur doen een eindcheck op de decoratie.\nIn principe is alles voor die tijd al klaar.",
     "context": "",
     "location": "Palmenkas/Oranjekas/Terras/Tuin en parkeerplaats"
@@ -764,7 +764,7 @@ export const cmTasksEN = [
   {
     "id": 8,
     "time": "**12.00 - 12.15**",
-    "action": "**Arrival of the photographer**",
+    "action": "Arrival of the photographer",
     "who": "Audra: 06 - 27 59 13 63\nZet zelf zijn spullen klaar.",
     "context": "",
     "location": ""
@@ -772,7 +772,7 @@ export const cmTasksEN = [
   {
     "id": 9,
     "time": "**12.15 - 12.45** ",
-    "action": "**Arrival of other guests (68 people)**",
+    "action": "Arrival of other guests (68 people)",
     "who": "*Koffie/drinken met lekkers.\n*Derek: gasten welkom heten bij de ingang van de Oranjerie. \n*CM zijn aanspreekpunt voor gasten.\n*In totaal zijn we deze dag met 78 personen, zie bijlage Gastenlijst.\n*Zie 'Toon aanvullende context' hieronder voor de Gastenlijst.",
     "context": "Gastenlijst:\n\n1.\tJorik\n2.\tKatinka\n3.\tFleur\n4.\tSamuel\n5.\tRinske \n6.\tWil\n7.\tEmma\n8.\tJet\n9.\tAnna\n10.\tOpa\n11.\tWilma\n12.\tRob\n13.\tLisa\n14.\tJaikishen\n15.\tArthur\n16.\tCor\n17.\tAnca\n18.\tSara\n19.\tHerman\n20.\tMylene\n21.\tMerian\n22.\tJim\n23.\tLeanne\n24.\tJasper\n25.\tBernhard\n26.\tYvonne\n27.\tRoos\n28.\tDerek\n29.\tMarianne\n30.\tMatthew\n31.\tJoke\n32.\tGerard\n33.\tSander (neef J)\n34.\tIneke\n35.\tNicole\n36.\tWilfred \n37.\tPatricia\n38.\tArjan \n39.\tMike\n40.\tMercedes\n41.\tMaik\n42.\tJustin\n43.\tRik\n44.\tLorena\n45.\tMark\n46.\tSander Uphus\n47.\tLydia\n48.\tChris\n49.\tDesi\n50.\tBas\n51.\tCharlotte\n52.\tTim\n53.\tSanne\n54.\tKarima\n55.\tFelix \n56.\tThalita\n57.\tNaomi\n58.\tRoelfien\n59.\tAda \n60.\tPaul (man van Ada) \n61.\tDara\n62.\tAnne\n63.\tHelian\n64.\tBarbara\n65.\tAnita\n66.\tAnnette\n67.\tNorbert\n68.\tJessica\n69.\tJurjen\n70.\tMiriam \n71.\tMonique\n72.\tSander (neef K)\n73.\tLize\n74.\tErwin\n75.\tAnja\n76.\tRuud\n77.\tSuzanne\n78.\tGijsbert\n",
     "location": "Palm Greenhouse/Terrace"
@@ -780,7 +780,7 @@ export const cmTasksEN = [
   {
     "id": 10,
     "time": "**12.45 - 13.00** ",
-    "action": "**Taking guests to 'the hedge'**",
+    "action": "Taking guests to 'the hedge'",
     "who": "*Gasten om 12.45 uur leiden naar 'de haag' om het bruidspaar op te wachten.\n*De gasten vormen een haag in 'de haag'. \n*Alle gasten moeten om 12.55 klaar staan. \n*Ervoor zorgen dat Fleur, Samuel en opa (en de naaste familie) vooraan staat in 'de haag' omdat zij het bruidspaar straks ook als eerste volgen.",
     "context": "\n\n",
     "location": "Outside by 'the hedge'"
@@ -788,7 +788,7 @@ export const cmTasksEN = [
   {
     "id": 11,
     "time": "**13.00 - 13.10** ",
-    "action": "**Arrival of the BABS**",
+    "action": "Arrival of the BABS",
     "who": "Matthew: BABS welkom heten en eventuele vragen beantwoorden.",
     "context": "",
     "location": ""
@@ -812,7 +812,7 @@ export const cmTasksEN = [
   {
     "id": 14,
     "time": "**13.15 - 13.25** ",
-    "action": "**Private room and break**",
+    "action": "Private room and break",
     "who": "*Het bruidspaar, Fleur, Samuel en opa nemen plaats in de privé-ruimte.\n*Vanaf daar lopen zij achterlangs weer naar de ingang van de Oranjerie als alle gasten zitten.",
     "context": "",
     "location": "Privéruimte"
@@ -828,7 +828,7 @@ export const cmTasksEN = [
   {
     "id": 16,
     "time": "**13.15 - 13.25** ",
-    "action": "**Welcome by the BABS**",
+    "action": "Welcome by the BABS",
     "who": "De BABS heet iedereen welkom en vertelt de gasten wat van hen verwacht wordt.\n\"Geen foto's tijdens ceremonie en dat alle gasten moeten gaan staan op haar teken.\"",
     "context": "",
     "location": "Orange Greenhouse"
@@ -836,23 +836,23 @@ export const cmTasksEN = [
   {
     "id": 17,
     "time": "**13.25 - 13.27** ",
-    "action": "**Procession of Jorik with his grandfather**",
-    "who": "*Make sure the song **'Holy Forever'** plays as soon as Jorik and grandfather are ready at the entrance. \n*Jorik and grandfather walk forward when the music starts. \n*They stand together at the front for a moment, after which grandfather takes his seat in his reserved chair. \n*Jorik waits there standing at the front in the middle with his face towards the front door for Katinka. \n*See 'Show additional context' below for the Music.",
-    "context": "**Music when the bride and groom walk forward\nNB this is delivered separately, it concerns 1 song that continues playing with Jorik and Katinka:**\n\n**13.25 - 13.30**\n***Holy Forever** \nSax Instrumental / Chris Tomlin (cover) / Uriel Vega\n\n",
+    "action": "Procession of Jorik with his grandfather",
+    "who": "*Make sure the song 'Holy Forever' plays as soon as Jorik and grandfather are ready at the entrance. \n*Jorik and grandfather walk forward when the music starts. \n*They stand together at the front for a moment, after which grandfather takes his seat in his reserved chair. \n*Jorik waits there standing at the front in the middle with his face towards the front door for Katinka. \n*See 'Show additional context' below for the Music.",
+    "context": "Music when the bride and groom walk forward\nNB this is delivered separately, it concerns 1 song that continues playing with Jorik and Katinka:\n\n13.25 - 13.30\n*Holy Forever \nSax Instrumental / Chris Tomlin (cover) / Uriel Vega\n\n",
     "location": "Orange Greenhouse"
   },
   {
     "id": 18,
     "time": "**13.27 - 13.30** ",
-    "action": "**Procession of Katinka with Fleur and Samuel**",
-    "who": "*Make sure the song **'Holy Forever'** continues playing.  \n*Katinka walks forward with the children, doors behind her close.\n*At the front, the bride and groom come together and the children sit down.\n*The bride and groom remain standing until the music fades.\n*The MC says that everyone should sit down. \n*Make sure the music stops.\n*See 'Show additional context' below for the Music. ",
-    "context": "**Music when the bride and groom walk forward\nNB this is delivered separately, it concerns 1 song that continues playing with Jorik and Katinka:**\n\n**13.25 - 13.30**\n***Holy Forever** \nSax Instrumental / Chris Tomlin (cover) / Uriel Vega\n\n\n\n",
+    "action": "Procession of Katinka with Fleur and Samuel",
+    "who": "*Make sure the song 'Holy Forever' continues playing.  \n*Katinka walks forward with the children, doors behind her close.\n*At the front, the bride and groom come together and the children sit down.\n*The bride and groom remain standing until the music fades.\n*The MC says that everyone should sit down. \n*Make sure the music stops.\n*See 'Show additional context' below for the Music. ",
+    "context": "Music when the bride and groom walk forward\nNB this is delivered separately, it concerns 1 song that continues playing with Jorik and Katinka:\n\n13.25 - 13.30\n*Holy Forever \nSax Instrumental / Chris Tomlin (cover) / Uriel Vega\n\n\n\n",
     "location": "Orange Greenhouse"
   },
   {
     "id": 19,
     "time": "**13.30 - 14.00** ",
-    "action": "**Wedding ceremony**",
+    "action": "Wedding ceremony",
     "who": "Het ja-woord, de ringen en de geloften.",
     "context": "",
     "location": "Orange Greenhouse"
@@ -860,7 +860,7 @@ export const cmTasksEN = [
   {
     "id": 20,
     "time": "**13.45 - 14.45** ",
-    "action": "**Setting up the wedding cake**",
+    "action": "Setting up the wedding cake",
     "who": "Door Team Oranjerie wordt ondertussen in de Palmenkas de bruidstaart klaargezet.\nCM: zorgen dat Team Oranjerie weet dat de taart op een ronde, hoge tafel in het midden van de Palmenkas moet komen, met tafelkleed eronder.",
     "context": "",
     "location": "Palm Greenhouse"
@@ -884,23 +884,23 @@ export const cmTasksEN = [
   {
     "id": 23,
     "time": "**14.20 - 14.25** ",
-    "action": "**Flower arch**",
-    "who": "Derek comes forward again and explains that:\n*Everyone should stand while the bride and groom walk forward.\n*The people at the aisle with a flower basket under their chair are allowed to grab flower petals and throw them high in the air as the bride and groom walk past.\n*Guests from the front rows can offer congratulations and have the opportunity to give their gifts.\n\nMC: Make sure the song **'Felicita'** starts and then the rest of the Italian playlist. \n*See 'Show additional context' below for the Music and additional info.\n*The bride and groom walk through the aisle to the entrance of the hall and remain next to the door.\n",
-    "context": "*The MCs have removed two chairs in the back beforehand to create space.\n*The baskets are under the chairs along the aisle, every other chair, so 4 baskets per row, making a total of 8 baskets along the entire aisle. \n\n**Music at the guard of honor with flowers\nNB Is the first song of the Italian playlist, starts with this song. Then the Italian playlist can continue:**\n\n**14.20 - 14.25**\n***Felicita**",
+    "action": "Flower arch",
+    "who": "Derek comes forward again and explains that:\n*Everyone should stand while the bride and groom walk forward.\n*The people at the aisle with a flower basket under their chair are allowed to grab flower petals and throw them high in the air as the bride and groom walk past.\n*Guests from the front rows can offer congratulations and have the opportunity to give their gifts.\n\nMC: Make sure the song 'Felicita' starts and then the rest of the Italian playlist. \n*See 'Show additional context' below for the Music and additional info.\n*The bride and groom walk through the aisle to the entrance of the hall and remain next to the door.\n",
+    "context": "*The MCs have removed two chairs in the back beforehand to create space.\n*The baskets are under the chairs along the aisle, every other chair, so 4 baskets per row, making a total of 8 baskets along the entire aisle. \n\nMusic at the guard of honor with flowers\nNB Is the first song of the Italian playlist, starts with this song. Then the Italian playlist can continue:\n\n14.20 - 14.25\n*Felicita",
     "location": "Orange Greenhouse"
   },
   {
     "id": 24,
     "time": "**14.25 - 14.45** ",
-    "action": "**Congratulations**",
+    "action": "Congratulations",
     "who": "*De gasten komen vanaf de voorste rijen naar de ingang van de zaal om het bruidspaar te feliciteren en cadeaus te overhandigen. \n*Achter het bruidspaar staat een tafel met een mooi kistje waarin het bruidspaar de enveloppen kan doen en waar andere cadeaus op gelegd kunnen worden.\n*Zie 'Toon aanvullende context' hieronder voor de Muziek en aanvullende info.",
-    "context": "**Music during congratulations:\n\n**14.25 - 14.45\n***After Felicita the Italian playlist continues playing**\n*Derek stands next to the bride and groom to accept the gifts and place the bridal bouquet with them (not in water).\n*Matthew stands at the entrance of the Palm House to guide the guests through.\n*NB the flower petals must be cleaned up afterwards, by Wilma and Fleur.\n\n",
+    "context": "Music during congratulations:\n\n14.25 - 14.45\n*After Felicita the Italian playlist continues playing\n*Derek stands next to the bride and groom to accept the gifts and place the bridal bouquet with them (not in water).\n*Matthew stands at the entrance of the Palm House to guide the guests through.\n*NB the flower petals must be cleaned up afterwards, by Wilma and Fleur.\n\n",
     "location": "Orange Greenhouse"
   },
   {
     "id": 25,
     "time": "**14.35 - 14.50** ",
-    "action": "**Moving the Maserati**",
+    "action": "Moving the Maserati",
     "who": "Matthew: de Maserati naar de zijkant van het gebouw rijden.",
     "context": "",
     "location": "Zijkant Oranjerie"
@@ -908,23 +908,23 @@ export const cmTasksEN = [
   {
     "id": 26,
     "time": "**14.45 - 15.00** ",
-    "action": "**To the Palm Greenhouse and short break**",
-    "who": "*Make sure the guests go to the Palm House.\n*Make sure the **Italian playlist** starts in the Palm House.\n*Bride and groom have a short break in the private room.\n*See 'Show additional context' below for the Music.\n",
-    "context": "**Music in break\nNB this must be with the second phone (the other phone is still with music in the Orange Greenhouse):\n\n**14.45 - 15.00 \n***Italian playlist** on from 14.45 and off from the moment Cor starts to toast, song friend Katinka and poem Lisa.**",
+    "action": "To the Palm Greenhouse and short break",
+    "who": "*Make sure the guests go to the Palm House.\n*Make sure the Italian playlist starts in the Palm House.\n*Bride and groom have a short break in the private room.\n*See 'Show additional context' below for the Music.\n",
+    "context": "Music in break\nNB this must be with the second phone (the other phone is still with music in the Orange Greenhouse):\n\n14.45 - 15.00 \n*Italian playlist on from 14.45 and off from the moment Cor starts to toast, song friend Katinka and poem Lisa.",
     "location": "Palm Greenhouse/Private Area"
   },
   {
     "id": 27,
     "time": "**15.00 - 15.30** ",
     "action": "Toast",
-    "who": "*Make sure **Roelfien’s music** starts on her cue.\n*Preparation for the toast and wedding cake.\n*See 'Show additional context' below for the Music.\n\n",
-    "context": "**Music:\n\n***Music off from the moment Cor starts speaking,**\n*15.15 music of Roelfien, friend of Katinka (she delivers this to Derek),\n*Then silence for Lisa's poem,\n*Then the Italian playlist on repeat.    \n",
+    "who": "*Make sure Roelfien’s music starts on her cue.\n*Preparation for the toast and wedding cake.\n*See 'Show additional context' below for the Music.\n\n",
+    "context": "Music:\n\n*Music off from the moment Cor starts speaking,\n*15.15 music of Roelfien, friend of Katinka (she delivers this to Derek),\n*Then silence for Lisa's poem,\n*Then the Italian playlist on repeat.    \n",
     "location": "Palm Greenhouse"
   },
   {
     "id": 28,
     "time": "**15.00 - 17.30** ",
-    "action": "**Toast & Wedding cake**",
+    "action": "Toast & Wedding cake",
     "who": "*Make sure all guests are in the Palm House, not on the terrace.\n*Bride and groom arrive in the Palm House.\n*Make sure Fleur and Samuel are near the wedding cake.\n*Guests in a circle around the bride and groom.\n*Derek: explain that after the toast the reception starts and that people will be called for the group photos during the reception: they will find the list printed in the Palm House and in the app, and they will be called in 6 turns per family/group.\n*Music off as soon as Cor starts the toast.\nNB A microphone with speakers will be arranged for Cor, Lisa and Roelfien.\n*Make sure Roelfien’s music starts on her cue.\n*See 'Show additional context' below for Music.",
     "context": "Music:\n\n*Music off from the moment Cor starts speaking,\n*15.15 music of Roelfien, friend of Katinka (she delivers this to Derek),\n*Then silence for Lisa's poem,\n*Then the Italian playlist on repeat.    ",
     "location": "Orange Greenhouse"
@@ -932,23 +932,23 @@ export const cmTasksEN = [
   {
     "id": 29,
     "time": "**15.30 - 16.00**  ",
-    "action": "**Reception start & group photos**",
-    "who": "*MC ensure the Italian playlist is turned on.\n*MC facilitate the photographer to get the correct groups together.\n*See printed overview of Group Photos near the guestbook on the drawing table in the Palm House.\n*See 'Show additional context' below for the overview of Group Photos and Music.\n*Useful to call people in 6 large groups:\n1. Prins family 2. Mekking family 3. Uiterwijk family 4. Herlaar family 5. Friends, Colleagues & MC 6. Everyone\n**NB Fleur and Samuel, like the bride and groom, are in all photos.**",
-    "context": "**Music during reception and break:\n\n**15.30 - 19.00 Reception & break (Palm House)\n***Italian playlist. \n\nGroup photos \n\n1. The Prins family & partners (and Wilma, Fleur, and Samuel)\n***The Prins family with partners** \n*The Prins family (small group): Cor, Anca, Sara, Lisa, Jai, Fleur, and Samuel  \n*Parents of the bride and groom: Wilma and Cor & Gonnie and Leo (Leo & Gonnie added via Photoshop) \n*(Sisters-in-law) Lisa, Sara \n*Fleur and Samuel \n**\n2. The Mekking family & partners (and Fleur and Samuel)\n***The Mekking family with partners**  \n*The Mekking family (small group): Grandpa, Wilma, Rob, Arthur, Lisa, Jai, Fleur, and Samuel  \n*Grandpa Mekking \n**\n3. The Uiterwijk family & partners (and Fleur and Samuel)\n***The Uiterwijk family: Fleur, Samuel, Rinske, Emma, Anna, Jet, Norbert, Jessica, Jurjen, and Miriam** \n*The Uiterwijk family (small group): Fleur, Samuel, Wil, Rinske, Emma, Anna, Jet \n*Rinske \n**\n4. The Herlaar family & partners (and Fleur and Samuel)\n***Herlaar family: Fleur, Samuel, Rinske, Emma, Anna, Jet, Wil, Lize, Ruud, Monique, Sander, Erwin, and Anja**\n*Familie Herlaar (small group): Fleur, Samuel, Wil, Rinske, Emma, Anna, Jet  \n*Wil  \n**\n5. Friends, Colleagues & Masters of Ceremony \n***Group of friends** \n*Colleagues \n*Karima and Felix\n*Suzanne and Gijsbert\n*Masters of Ceremonies  \n**\n6. Total\n***All guests**",
+    "action": "Reception start & group photos",
+    "who": "*MC ensure the Italian playlist is turned on.\n*MC facilitate the photographer to get the correct groups together.\n*See printed overview of Group Photos near the guestbook on the drawing table in the Palm House.\n*See 'Show additional context' below for the overview of Group Photos and Music.\n*Useful to call people in 6 large groups:\n1. Prins family 2. Mekking family 3. Uiterwijk family 4. Herlaar family 5. Friends, Colleagues & MC 6. Everyone\nNB Fleur and Samuel, like the bride and groom, are in all photos.",
+    "context": "Music during reception and break:\n\n15.30 - 19.00 Reception & break (Palm House)\n*Italian playlist. \n\nGroup photos \n\n1. The Prins family & partners (and Wilma, Fleur, and Samuel)\n*The Prins family with partners \n*The Prins family (small group): Cor, Anca, Sara, Lisa, Jai, Fleur, and Samuel  \n*Parents of the bride and groom: Wilma and Cor & Gonnie and Leo (Leo & Gonnie added via Photoshop) \n*(Sisters-in-law) Lisa, Sara \n*Fleur and Samuel \n\n2. The Mekking family & partners (and Fleur and Samuel)\n*The Mekking family with partners  \n*The Mekking family (small group): Grandpa, Wilma, Rob, Arthur, Lisa, Jai, Fleur, and Samuel  \n*Grandpa Mekking \n\n3. The Uiterwijk family & partners (and Fleur and Samuel)\n*The Uiterwijk family: Fleur, Samuel, Rinske, Emma, Anna, Jet, Norbert, Jessica, Jurjen, and Miriam \n*The Uiterwijk family (small group): Fleur, Samuel, Wil, Rinske, Emma, Anna, Jet \n*Rinske \n\n4. The Herlaar family & partners (and Fleur and Samuel)\n*Herlaar family: Fleur, Samuel, Rinske, Emma, Anna, Jet, Wil, Lize, Ruud, Monique, Sander, Erwin, and Anja\n*Familie Herlaar (small group): Fleur, Samuel, Wil, Rinske, Emma, Anna, Jet  \n*Wil  \n\n5. Friends, Colleagues & Masters of Ceremony \n*Group of friends \n*Colleagues \n*Karima and Felix\n*Suzanne and Gijsbert\n*Masters of Ceremonies  \n\n6. Total\n*All guests",
     "location": "Palm Greenhouse/Terrace"
   },
   {
     "id": 30,
     "time": "**16.00 - 17.30**",
-    "action": "**Reception continues**",
-    "who": "  ***Ensure that the Italian playlist remains on.\n*Call the bride twice so that she can eat/drink/freshen up in the private room. So at 16.00 and at 17.00. \n*Please also take Jorik once, so that the bride and groom can be together for a moment in the private room.**   ",
+    "action": "Reception continues",
+    "who": "  *Ensure that the Italian playlist remains on.\n*Call the bride twice so that she can eat/drink/freshen up in the private room. So at 16.00 and at 17.00. \n*Please also take Jorik once, so that the bride and groom can be together for a moment in the private room.   ",
     "context": "",
     "location": ""
   },
   {
     "id": 31,
     "time": "**17.15 - 17.20** ",
-    "action": "**Moving the Maserati**",
+    "action": "Moving the Maserati",
     "who": "Matthew: de Maserati van de zijkant van het gebouw weer naar de haag rijden met de achterkant naar de Oranjerie toe.",
     "context": "",
     "location": "Outside by 'the hedge'"
@@ -956,7 +956,7 @@ export const cmTasksEN = [
   {
     "id": 32,
     "time": "**17.25 - 17.30** ",
-    "action": "**Announcement of the end of the festivities**",
+    "action": "Announcement of the end of the festivities",
     "who": "Derek: de gasten vertellen dat:\n*De receptie ten einde loopt.  \n*Denken aan toilet, persoonlijke spullen en presentje (ligt bij het gastenboek op de tekentafel in de Palmenkas).\n*Iedereen om 17.35 uur achter het bruidspaar aan loopt naar 'de haag'.\n*Daar het bruidspaar uitzwaaien en de dag ten einde is.",
     "context": "",
     "location": ""
@@ -964,7 +964,7 @@ export const cmTasksEN = [
   {
     "id": 33,
     "time": "**17.30 - 17.45** ",
-    "action": "**End of reception and waving off the bride and groom**",
+    "action": "End of reception and waving off the bride and groom",
     "who": "*Zorgen dat gasten met hun spullen achter het bruidspaar aan lopen. \n*Het bruidspaar loopt via de andere kant.\n*Uitzwaaien bruidspaar bij 'de haag'.",
     "context": "",
     "location": "Hedge outside"
@@ -972,8 +972,8 @@ export const cmTasksEN = [
   {
     "id": 34,
     "time": "**17.45 - 18.00** ",
-    "action": "**Departure of reception guests**",
-    "who": "*Make sure everyone is off the premises by 18.00 due to the wedding shoot.\n*Talking on the parking lot is allowed.\n**Important that Wilma and Fleur return to the Orange Greenhouse on time (no later than 18.00) for decorating the dinner tables.**\n",
+    "action": "Departure of reception guests",
+    "who": "*Make sure everyone is off the premises by 18.00 due to the wedding shoot.\n*Talking on the parking lot is allowed.\nImportant that Wilma and Fleur return to the Orange Greenhouse on time (no later than 18.00) for decorating the dinner tables.\n",
     "context": "",
     "location": "Haag buiten/parkeerterrein"
   },
@@ -988,7 +988,7 @@ export const cmTasksEN = [
   {
     "id": 36,
     "time": "**18.00 - 18.30**",
-    "action": "**Break for the bride and groom and crew meal for the photographer**",
+    "action": "Break for the bride and groom and crew meal for the photographer",
     "who": "Ter info",
     "context": "",
     "location": ""
@@ -1004,15 +1004,15 @@ export const cmTasksEN = [
   {
     "id": 38,
     "time": "**19.00 - 21.00**",
-    "action": "**Shared dining with close family**",
-    "who": "Make sure the **Italian playlist** is on.\n*See 'Show additional context' below for the Music.",
-    "context": "**Music during dinner:\n\n**19.00 - 21.00 Diner (Oranjekas)\n***Italian playlist. **",
+    "action": "Shared dining with close family",
+    "who": "Make sure the Italian playlist is on.\n*See 'Show additional context' below for the Music.",
+    "context": "Music during dinner:\n\n19.00 - 21.00 Diner (Oranjekas)\n*Italian playlist. ",
     "location": "Orange Greenhouse"
   },
   {
     "id": 39,
     "time": "**21.00 - 21.15**",
-    "action": "**Farewells and seeing off**",
+    "action": "Farewells and seeing off",
     "who": "Tijd bewaken en zorgen dat dit afscheid om 21.15 klaar is, we zullen allemaal moe genoeg zijn en er moet ook nog opgeruimd worden.",
     "context": "",
     "location": "Terras"
@@ -1020,9 +1020,9 @@ export const cmTasksEN = [
   {
     "id": 40,
     "time": "**21.15 - 21.45**",
-    "action": "**Cleanup**",
+    "action": "Cleanup",
     "who": "*Alles opruimen, met hulp van Team Oranjerie, Fleur, Samuel, Wilma en Wil. \n*Team Oranjerie ruimt hun deel op, jullie ons deel.\n*Zorgen dat alles mee naar huis gaat wat van ons is.\n*Zie 'Toon aanvullende context' hieronder voor info bij Opruimen.   \n*Fleur en Samuel rijden met Cor en Anca/Sara mee naar huis en nemen de eventuele resten van de bruidstaart mee.\n*Opa en Wil rijden mee terug met Wilma en Rob.",
-    "context": "**Cleaning up:\n\n***The location is responsible for their things and the MC for ours,** \n*Wilma, Wil, Fleur and Samuel help clean up our own things, \nThose also need to go back home, it concerns (depending on what we rent): \n*vases with flowers \n*candelabras \n*tablecloths \n*napkins \n*eucalyptus \n*seating arrangements nameplates \n*menus \n*name tags of the ceremony chairs \n*basket for guest gifts \n*baskets in which the rose petals were \n*welcome signs and signage parking lot \n*rest of the wedding cake with Fleur and Samuel \n*easel \n*bench \n\n ",
+    "context": "Cleaning up:\n\n*The location is responsible for their things and the MC for ours, \n*Wilma, Wil, Fleur and Samuel help clean up our own things, \nThose also need to go back home, it concerns (depending on what we rent): \n*vases with flowers \n*candelabras \n*tablecloths \n*napkins \n*eucalyptus \n*seating arrangements nameplates \n*menus \n*name tags of the ceremony chairs \n*basket for guest gifts \n*baskets in which the rose petals were \n*welcome signs and signage parking lot \n*rest of the wedding cake with Fleur and Samuel \n*easel \n*bench \n\n ",
     "location": "Palmenkas/Oranjekas/Terras en parkeerterrein"
   }
 ];
@@ -2078,7 +2078,7 @@ export default function App() {
 
   // Photographer Guest Directory States
   const [guestSearch, setGuestSearch] = useState('');
-  const [guestFilter, setGuestFilter] = useState('All');
+  const [guestFilter, setGuestFilter] = useState('Priority');
 
   const getFloorPlanImage = () => {
     if (role === 'photographer') return '/plattegrond_fotograaf.webp';
@@ -2527,10 +2527,25 @@ export default function App() {
                 </div>
 
                 <div className="grid grid-cols-2 gap-4 md:gap-6 max-w-2xl mx-auto">
-                  <button onClick={() => setActiveTab('programma')} className="bg-white dark:bg-slate-900 border border-[#1A1A2E]/5 dark:border-white/5 p-6 rounded-[2rem] shadow-sm hover:shadow-md hover:scale-[1.02] transition-all group text-center flex flex-col items-center justify-center aspect-square md:aspect-auto md:py-10">
-                    <div className="bg-[#c7b272]/10 dark:bg-[#c7b272]/20 w-16 h-16 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform"><Calendar className="text-[#c7b272]" size={24} /></div>
-                    <h3 className="font-serif font-bold text-[#1A1A2E] dark:text-slate-100 text-lg md:text-xl mb-1">{langEN ? 'Schedule' : 'Programma'}</h3>
-                    <p className="text-xs md:text-sm text-[#666666] dark:text-slate-400">{langEN ? 'View the timeline' : 'Bekijk de hele dag'}</p>
+                  <button 
+                    onClick={() => setActiveTab((role === 'photographer' || role === 'cm') ? 'cm' : 'programma')} 
+                    className="bg-white dark:bg-slate-900 border border-[#1A1A2E]/5 dark:border-white/5 p-6 rounded-[2rem] shadow-sm hover:shadow-md hover:scale-[1.02] transition-all group text-center flex flex-col items-center justify-center aspect-square md:aspect-auto md:py-10"
+                  >
+                    <div className="bg-[#c7b272]/10 dark:bg-[#c7b272]/20 w-16 h-16 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                      <Calendar className="text-[#c7b272]" size={24} />
+                    </div>
+                    <h3 className="font-serif font-bold text-[#1A1A2E] dark:text-slate-100 text-lg md:text-xl mb-1">
+                      {role === 'photographer' 
+                        ? (langEN ? 'Photographer Tasks' : 'Fotograaf taken') 
+                        : role === 'cm' 
+                          ? (langEN ? 'Tasks' : 'Takenlijst') 
+                          : (langEN ? 'Schedule' : 'Programma')}
+                    </h3>
+                    <p className="text-xs md:text-sm text-[#666666] dark:text-slate-400">
+                      {role === 'photographer' || role === 'cm'
+                        ? (langEN ? 'View tasks and timeline' : 'Bekijk taken en draaiboek')
+                        : (langEN ? 'View the timeline' : 'Bekijk de hele dag')}
+                    </p>
                   </button>
                   <button onClick={() => setActiveTab('locatie')} className="bg-white dark:bg-slate-900 border border-[#1A1A2E]/5 dark:border-white/5 p-6 rounded-[2rem] shadow-sm hover:shadow-md hover:scale-[1.02] transition-all group text-center flex flex-col items-center justify-center aspect-square md:aspect-auto md:py-10">
                     <div className="bg-[#c7b272]/10 dark:bg-[#c7b272]/20 w-16 h-16 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform"><MapPin className="text-[#c7b272]" size={24} /></div>
@@ -3472,9 +3487,8 @@ export default function App() {
 
                   {/* Filter Pills */}
                   <div className="flex flex-wrap gap-2 overflow-x-auto pb-1 scrollbar-thin">
-                    {['All', 'Priority', 'Master of ceremony'].map((cat) => {
+                    {['Priority', 'Master of ceremony'].map((cat) => {
                       const labelMap: Record<string, string> = {
-                        'All': langEN ? 'All' : 'Alles',
                         'Priority': langEN ? 'Priority' : 'Prioriteit',
                         'Master of ceremony': langEN ? 'Master of ceremony' : 'Ceremoniemeester'
                       };
