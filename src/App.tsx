@@ -2567,7 +2567,7 @@ export default function App() {
                       className="group relative py-6 border-b border-[#1A1A2E]/5 dark:border-white/5 transition-colors hover:bg-white/50 dark:hover:bg-slate-800/20 -mx-6 px-6 rounded-2xl"
                     >
                       <div className="flex flex-col md:flex-row md:items-baseline gap-2 md:gap-8">
-                        <div className="text-[#c7b272] font-semibold text-sm md:text-base tracking-widest shrink-0 w-32 font-mono">
+                        <div className="text-[#c1a96b] font-semibold text-sm md:text-base tracking-widest shrink-0 w-32 font-mono">
                           {renderFormattedText(item.time)}
                         </div>
                         <div className="flex-1">
@@ -2720,7 +2720,7 @@ export default function App() {
                         className="group relative py-6 border-b border-[#1A1A2E]/5 dark:border-white/5 transition-colors hover:bg-white/50 dark:hover:bg-slate-800/20 -mx-6 px-6 rounded-2xl"
                       >
                         <div className="flex flex-col md:flex-row md:items-baseline gap-2 md:gap-8">
-                          <div className="text-[#c7b272] font-semibold text-sm md:text-base tracking-widest shrink-0 w-32 font-mono">
+                          <div className="text-[#c1a96b] font-semibold text-sm md:text-base tracking-widest shrink-0 w-32 font-mono">
                             {renderFormattedText(task.time)}
                           </div>
                           <div className="flex-1">
@@ -2796,7 +2796,7 @@ export default function App() {
                           className="group relative py-6 border-b border-[#1A1A2E]/5 dark:border-white/5 transition-colors hover:bg-white/50 dark:hover:bg-slate-800/20 -mx-6 px-6 rounded-2xl"
                         >
                           <div className="flex flex-col md:flex-row md:items-baseline gap-2 md:gap-8">
-                            <div className="text-[#c7b272] font-semibold text-sm md:text-base tracking-widest shrink-0 w-32 font-mono">
+                            <div className="text-[#c1a96b] font-semibold text-sm md:text-base tracking-widest shrink-0 w-32 font-mono">
                               {renderFormattedText(task.time)}
                             </div>
                             <div className="flex-1">
@@ -2956,7 +2956,9 @@ export default function App() {
                     { title: langEN ? "Signs Layout" : "Borden opstelling", src: "/plaatsing_borden.webp" },
                     { title: langEN ? "Ceremony Seating" : "Ceremonie stoelschikking", src: "/ceremonie_stoelschikking.webp" },
                     { title: langEN ? "Dinner Seating" : "Diner stoelschikking", src: "/diner_stoelschikking.webp" },
-                    { title: langEN ? "Dinner Table Setting" : "Diner tafeldekking", src: "/diner_tafeldekking.webp" }
+                    { title: langEN ? "Dinner Table Setting" : "Diner tafeldekking", src: "/diner_tafeldekking.webp" },
+                    { title: langEN ? "Table Setting Moodboard" : "Moodboard tafeldekking", src: "/Tafeldekking moodboard.webp" },
+                    { title: langEN ? "Table Setting Moodboard 2" : "Moodboard tafeldekking 2", src: "/Tafeldekking moodboard2.webp" }
                   ].map((bijlage, idx) => (
                     <div 
                       key={idx}
@@ -2985,6 +2987,81 @@ export default function App() {
                       </div>
                     </div>
                   ))}
+                </div>
+
+                {/* Checklists Section */}
+                <div className="mt-12 pt-8 border-t border-[#1A1A2E]/10 dark:border-white/10 space-y-8">
+                  <div className="bg-[#c7b272]/5 dark:bg-[#c7b272]/10 px-5 py-4 rounded-[2rem] border border-[#c7b272]/10 flex items-center gap-3">
+                    <Info size={18} className="text-[#c7b272] shrink-0" />
+                    <p className="text-xs md:text-sm font-medium text-gray-700 dark:text-slate-200">
+                      De locatie is verantwoordelijk voor hun spullen en de CM voor die van ons.
+                    </p>
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    {/* Checklist 1: Decoratie pakket */}
+                    <div className="bg-white dark:bg-slate-900 p-6 rounded-[2rem] shadow-sm border border-[#1A1A2E]/5 dark:border-white/5 space-y-4">
+                      <h3 className="font-serif text-xl font-bold text-[#1A1A2E] dark:text-slate-100 flex items-center gap-2">
+                        <span className="w-1.5 h-6 bg-[#c7b272] rounded-full"></span>
+                        Decoratie pakket
+                      </h3>
+                      <ul className="space-y-3">
+                        {[
+                          { text: "1x bankje", link: "/Ceremonie opstelling.webp" },
+                          { text: "20x eucalyptus tak ong 50 cm", link: "/Tafeldekking moodboard.webp" },
+                          { text: "14 gouden kandelaren", link: "/Tafeldekking moodboard.webp" },
+                          { text: "14 dinerkaars wit", link: "/Tafeldekking moodboard.webp" },
+                          { text: "4x Tafellinnen zand 230×140 cm", link: "/Tafeldekking moodboard.webp" },
+                          { text: "20x zand servetten", link: "/Tafeldekking moodboard.webp" },
+                          { text: "20x vaasjes", link: "/Tafeldekking moodboard.webp" }
+                        ].map((item, idx) => (
+                          <li key={idx} className="flex items-center gap-3 text-sm md:text-base text-gray-600 dark:text-slate-300 font-medium">
+                            <input type="checkbox" className="w-4 h-4 accent-[#c7b272]" />
+                            <span className="flex-1">
+                              {item.text}
+                              <a 
+                                href={item.link} 
+                                target="_blank" 
+                                rel="noopener noreferrer" 
+                                className="text-[#c7b272] hover:underline font-semibold ml-1.5 inline-block text-xs"
+                              >
+                                [Bekijk Visueel]
+                              </a>
+                            </span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    {/* Checklist 2: Privé pakket */}
+                    <div className="bg-white dark:bg-slate-900 p-6 rounded-[2rem] shadow-sm border border-[#1A1A2E]/5 dark:border-white/5 space-y-4">
+                      <h3 className="font-serif text-xl font-bold text-[#1A1A2E] dark:text-slate-100 flex items-center gap-2">
+                        <span className="w-1.5 h-6 bg-[#c7b272] rounded-full"></span>
+                        Privé pakket
+                      </h3>
+                      <ul className="space-y-3">
+                        {[
+                          "tafelschikking-naambordjes",
+                          "20x menukaarten",
+                          "20x naamkaartjes ceremonie",
+                          "20x naamkaartjes diner",
+                          "1x mandje voor gastencadeautjes",
+                          "8x mandjes waarin de rozenblaadjes zaten",
+                          "8-9x welkomstborden en bewegwijzering parkeerplaats",
+                          "1x rest van de bruidstaart mee met Fleur en Samuel",
+                          "1x schildersezel",
+                          "1x roze kaarshouder met waxinelichtje",
+                          "1x fotolijstje met Leo & Gonnie",
+                          "1x ecru tafelkleed met lichte stippeltjes"
+                        ].map((text, idx) => (
+                          <li key={idx} className="flex items-center gap-3 text-sm md:text-base text-gray-600 dark:text-slate-300 font-medium">
+                            <input type="checkbox" className="w-4 h-4 accent-[#c7b272]" />
+                            <span className="flex-1">{text}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
                 </div>
               </div>
             </motion.div>
@@ -3217,6 +3294,10 @@ export default function App() {
                         <input type="checkbox" className="w-4 h-4 accent-[#c7b272]" />
                         <span>Fleur en Samuel</span>
                       </li>
+                      <li className="flex items-center gap-3">
+                        <input type="checkbox" className="w-4 h-4 accent-[#c7b272]" />
+                        <span>Jorik, Lisa & Cor</span>
+                      </li>
                     </ul>
                   </div>
 
@@ -3238,6 +3319,10 @@ export default function App() {
                       <li className="flex items-center gap-3">
                         <input type="checkbox" className="w-4 h-4 accent-[#c7b272]" />
                         <span>Opa Mekking</span>
+                      </li>
+                      <li className="flex items-center gap-3">
+                        <input type="checkbox" className="w-4 h-4 accent-[#c7b272]" />
+                        <span>Jorik, Lisa & Wilma</span>
                       </li>
                     </ul>
                   </div>
