@@ -1928,8 +1928,6 @@ export default function App() {
     if (navId === 'inbox_temp') {
       setShowInboxPopup(true);
       markInboxAsRead(true);
-    } else if (navId === 'trouwalbum') {
-      window.open('https://guestcam.co/guest/xvLVtGSIFN', '_blank');
     } else {
       setActiveTab(navId);
     }
@@ -2464,7 +2462,7 @@ export default function App() {
                   </div>
                   {isSelected && <ChevronRight size={16} className="opacity-50 shrink-0" />}
                 </button>
-                 {nav.id !== 'inbox_temp' && nav.id !== 'trouwalbum' && (
+                 {nav.id !== 'inbox_temp' && (
                   <button 
                     onClick={(e) => togglePin(nav.id, e)}
                     className={`absolute right-[-10px] top-1/2 -translate-y-1/2 p-2 rounded-full transition-opacity ${pinnedPages.includes(nav.id) ? 'opacity-100 text-[#c7b272]' : 'opacity-0 group-hover:opacity-50 hover:!opacity-100 text-[#666666] dark:text-slate-400'}`}
@@ -2675,11 +2673,9 @@ export default function App() {
                 </div>
 
                 <div className="max-w-2xl mx-auto mt-6">
-                  <a 
-                    href="https://guestcam.co/guest/xvLVtGSIFN" 
-                    target="_blank" 
-                    rel="noopener noreferrer" 
-                    className="block bg-gradient-to-r from-[#1A1A2E] to-[#2D2D44] dark:from-slate-900 dark:to-slate-800 text-white p-6 rounded-[2rem] shadow-sm hover:shadow-md hover:scale-[1.01] transition-all group text-center relative overflow-hidden"
+                  <button 
+                    onClick={() => setActiveTab('trouwalbum')}
+                    className="w-full block bg-gradient-to-r from-[#1A1A2E] to-[#2D2D44] dark:from-slate-900 dark:to-slate-800 text-white p-6 rounded-[2rem] shadow-sm hover:shadow-md hover:scale-[1.01] transition-all group text-center relative overflow-hidden"
                   >
                     <div className="absolute top-0 left-0 w-full h-full opacity-10 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#c7b272] via-transparent to-transparent"></div>
                     <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-4 md:px-6">
@@ -2700,7 +2696,7 @@ export default function App() {
                         {langEN ? 'Open Album' : 'Album openen'}
                       </div>
                     </div>
-                  </a>
+                  </button>
                 </div>
               </div>
             </motion.div>
@@ -3702,15 +3698,13 @@ export default function App() {
                           : 'Leg elk mooi moment van onze speciale dag vast en deel het met ons. Upload hier je foto\'s!'}
                       </p>
                       <div className="flex items-center gap-3 flex-wrap md:justify-end">
-                        <a
-                          href="https://guestcam.co/guest/xvLVtGSIFN"
-                          target="_blank"
-                          rel="noopener noreferrer"
+                        <button
+                          onClick={() => setActiveTab('trouwalbum')}
                           className="bg-[#1A1A2E] dark:bg-slate-800 hover:bg-[#c7b272] text-white px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider transition-colors shadow-sm flex items-center gap-2 cursor-pointer shrink-0"
                         >
                           <Camera size={14} />
                           {langEN ? 'Open Album' : 'Album openen'}
-                        </a>
+                        </button>
                       </div>
                     </div>
                   </div>
@@ -3791,6 +3785,84 @@ export default function App() {
                         </button>
                       </div>
                     </div>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          )}
+
+          {/* TAB: TROUWALBUM */}
+          {activeTab === 'trouwalbum' && (
+            <motion.div 
+              key="trouwalbum" 
+              initial={{ opacity: 0, y: 10 }} 
+              animate={{ opacity: 1, y: 0 }} 
+              exit={{ opacity: 0, scale: 0.98 }} 
+              className="absolute inset-0 overflow-y-auto p-6 md:p-12 pb-32 md:pb-12"
+            >
+              <div className="max-w-4xl mx-auto">
+                <div className="flex justify-between items-end border-b border-[#1A1A2E]/10 dark:border-white/10 pb-6 mb-8 mt-4">
+                  <div>
+                    <h2 className="font-serif text-4xl md:text-5xl font-medium tracking-tight text-[#1A1A2E] dark:text-slate-100 flex items-center gap-3">
+                      <Camera className="text-[#c7b272]" size={32} />
+                      {langEN ? 'Wedding Album' : 'Trouwalbum'}
+                    </h2>
+                    <p className="text-xs md:text-sm text-gray-500 dark:text-slate-400 mt-2">
+                      {langEN 
+                        ? 'Upload and share wedding photos with us.' 
+                        : 'Upload en deel hier alle trouwfoto\'s met ons.'}
+                    </p>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <button onClick={(e) => togglePin('trouwalbum', e)} className="md:hidden flex items-center gap-2 text-xs font-bold text-[#c7b272] bg-white dark:bg-slate-900 px-3 py-1.5 rounded-full shadow-sm border border-gray-100 dark:border-slate-800">
+                      {pinnedPages.includes('trouwalbum') ? <PinOff size={14}/> : <Pin size={14}/>}
+                    </button>
+                  </div>
+                </div>
+                
+                <div className="bg-white dark:bg-slate-900 rounded-[2rem] shadow-sm border border-[#1A1A2E]/5 dark:border-white/5 overflow-hidden p-8 md:p-12 text-center space-y-8 relative">
+                  <div className="absolute top-0 left-0 w-full h-full opacity-5 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#c7b272] via-transparent to-transparent"></div>
+                  
+                  <div className="mx-auto w-20 h-20 bg-[#F5F0E6] dark:bg-slate-800 rounded-full flex items-center justify-center text-[#c7b272]">
+                    <Camera size={38} strokeWidth={1.5} />
+                  </div>
+                  
+                  <div className="max-w-lg mx-auto space-y-4">
+                    <h3 className="font-serif text-2xl md:text-3xl font-bold text-[#1A1A2E] dark:text-slate-100">
+                      {langEN ? 'Jorik & Katinka\'s Wedding Album' : 'Jorik & Katinka\'s Trouwalbum'}
+                    </h3>
+                    <p className="text-sm md:text-base text-gray-600 dark:text-slate-300 leading-relaxed">
+                      {langEN 
+                        ? 'We would love to see all the photos you take on our special day! Scan the QR code or click the button below to upload your pictures directly to our GuestCam shared album.'
+                        : 'We vinden het geweldig om alle foto\'s te zien die je op onze speciale dag maakt! Scan de QR-code of klik op de knop hieronder om je foto\'s direct te uploaden naar ons gedeelde GuestCam-album.'}
+                    </p>
+                  </div>
+
+                  <div className="flex flex-col items-center justify-center gap-6 py-4">
+                    <div className="bg-white p-4 rounded-2xl shadow-md border border-gray-100 dark:border-slate-800 inline-block">
+                      <div className="w-48 h-48 bg-gray-50 flex flex-col items-center justify-center border border-gray-200 rounded-xl relative overflow-hidden">
+                        <img 
+                          src={`https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent('https://guestcam.co/guest/xvLVtGSIFN')}`} 
+                          alt="GuestCam QR Code" 
+                          className="w-full h-full object-contain p-2"
+                        />
+                      </div>
+                    </div>
+                    <span className="text-xs text-gray-400 dark:text-slate-500 font-mono">
+                      guestcam.co/guest/xvLVtGSIFN
+                    </span>
+                  </div>
+
+                  <div className="pt-4">
+                    <a 
+                      href="https://guestcam.co/guest/xvLVtGSIFN" 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="inline-flex items-center gap-2 bg-[#1A1A2E] dark:bg-slate-800 hover:bg-[#c7b272] text-white px-8 py-4 rounded-full text-sm font-bold uppercase tracking-wider transition-colors shadow-md cursor-pointer"
+                    >
+                      <Camera size={18} />
+                      {langEN ? 'Upload Photos' : 'Foto\'s uploaden'}
+                    </a>
                   </div>
                 </div>
               </div>
