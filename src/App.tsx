@@ -1928,6 +1928,8 @@ export default function App() {
     if (navId === 'inbox_temp') {
       setShowInboxPopup(true);
       markInboxAsRead(true);
+    } else if (navId === 'trouwalbum') {
+      window.open('https://guestcam.co/guest/xvLVtGSIFN', '_blank');
     } else {
       setActiveTab(navId);
     }
@@ -2358,8 +2360,8 @@ export default function App() {
     ...((role === 'photographer' || role === 'cm') ? [] : [{ id: 'programma', icon: <Calendar size={20}/>, label: langEN ? 'Schedule' : 'Programma' }]),
     { id: 'locatie', icon: <MapPin size={20}/>, label: langEN ? 'Parking Location' : 'Parkeerlocatie' },
     { id: 'plattegrond', icon: <MapIcon size={20}/>, label: langEN ? 'Map' : 'Plattegrond' },
-
-    { id: 'extra', icon: <Zap size={20}/>, label: 'Extra' }
+    { id: 'extra', icon: <Zap size={20}/>, label: 'Extra' },
+    { id: 'trouwalbum', icon: <Camera size={20}/>, label: langEN ? 'Wedding Album' : 'Trouwalbum' }
   ];
 
   if (role === 'cm' || role === 'photographer') {
@@ -2462,7 +2464,7 @@ export default function App() {
                   </div>
                   {isSelected && <ChevronRight size={16} className="opacity-50 shrink-0" />}
                 </button>
-                {nav.id !== 'inbox_temp' && (
+                 {nav.id !== 'inbox_temp' && nav.id !== 'trouwalbum' && (
                   <button 
                     onClick={(e) => togglePin(nav.id, e)}
                     className={`absolute right-[-10px] top-1/2 -translate-y-1/2 p-2 rounded-full transition-opacity ${pinnedPages.includes(nav.id) ? 'opacity-100 text-[#c7b272]' : 'opacity-0 group-hover:opacity-50 hover:!opacity-100 text-[#666666] dark:text-slate-400'}`}
