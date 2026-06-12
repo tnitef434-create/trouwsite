@@ -3464,10 +3464,12 @@ export default function App() {
                   <div>
                     <h2 className="font-serif text-4xl md:text-5xl font-medium tracking-tight text-[#1A1A2E] dark:text-slate-100 flex items-center gap-3">
                       <Camera className="text-[#c7b272]" size={32} />
-                      Groepsfoto’s
+                      {langEN ? 'Group photos' : 'Groepsfoto’s'}
                     </h2>
                     <p className="text-xs md:text-sm text-gray-500 dark:text-slate-400 mt-2">
-                      Handig overzicht zodat bruiloftsgasten hun beurt in de gaten kunnen houden.
+                      {langEN 
+                        ? 'Structured checklist for guests to keep track of their turn.' 
+                        : 'Handig overzicht zodat bruiloftsgasten hun beurt in de gaten kunnen houden.'}
                     </p>
                   </div>
                   <div className="flex items-center gap-3">
@@ -3478,10 +3480,10 @@ export default function App() {
                 </div>
                 
                 <div className="bg-white dark:bg-slate-900 rounded-[2rem] shadow-sm border border-[#1A1A2E]/5 dark:border-white/5 overflow-hidden p-6 md:p-8 space-y-6">
-                  {groupPhotosNL.map((group, groupIdx) => (
+                  {(langEN ? groupPhotosEN : groupPhotosNL).map((group, groupIdx) => (
                     <div 
                       key={groupIdx} 
-                      className={groupIdx < groupPhotosNL.length - 1 ? "border-b border-[#1A1A2E]/5 dark:border-white/5 pb-6" : ""}
+                      className={groupIdx < (langEN ? groupPhotosEN : groupPhotosNL).length - 1 ? "border-b border-[#1A1A2E]/5 dark:border-white/5 pb-6" : ""}
                     >
                       <h3 className="font-serif text-xl font-bold text-[#1A1A2E] dark:text-slate-100 mb-4 flex items-center gap-3">
                         <span className="text-sm font-mono text-[#c7b272] bg-[#c7b272]/10 px-2.5 py-1 rounded-md">{groupIdx + 1}</span>
