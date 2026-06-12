@@ -1097,7 +1097,7 @@ export const photographerTasks = [
     "time": "**12.15 - 12.45** ",
     "action": "**Arrival of other guests (68 people)**",
     "photographer": "*A total of 78 guests throughout the day.",
-    "context": "Important people \n\nTop priority (see profile photos)\n*Fleur: daughter \n*Samuel: son \n*Leo and Gonnie: Katinka’s parents, deceased—we’ll photoshop them in later  \n*Wilma: Jorik’s mother \n*Cor: Jorik’s father \n*Grandpa: Jorik’s grandfather \n*Lisa: Jorik’s sister \n\n2nd priority (see profile photos)\n\n*Wil: Katinka’s aunt \n*Sara: Jorik’s half-sister \n*Rob: stepfather \n*Anca: stepmother \n*Arthur: stepbrother \n*Rinske: Katinka’s sister",
+    "context": "Important people \n\nTop priority (see profile photos)\n*Fleur: daughter \n*Samuel: son \n*Leo and Gonnie: Katinka’s parents, deceased—we’ll photoshop them in later  \n*Wilma: Jorik’s mother \n*Cor: Jorik’s father \n*Grandpa: Jorik’s grandfather \n*Lisa: Jorik’s sister \n\n2nd priority (see profile photos)\n\n*Wil: Katinka’s aunt \n*Sara: Jorik’s half-sister \n*Rob: stepfather \n*Anca: stepmother \n*Arthur: stepbrother \n*Rinske: Katinka’s sister\n\nSee [guests](gasten)",
     "location": "Palm House/Terrace"
   },
   {
@@ -1536,6 +1536,51 @@ export default function App() {
   const [expandedContexts, setExpandedContexts] = useState<Record<string, boolean>>({});
   const toggleContext = (id: string) => {
     setExpandedContexts(prev => ({ ...prev, [id]: !prev[id] }));
+  };
+  
+  const renderFormattedTextWithLinks = (text: string) => {
+    if (!text) return null;
+    const boldParts = text.split('**');
+    return boldParts.map((part, boldIdx) => {
+      const isBold = boldIdx % 2 === 1;
+      const linkRegex = /\[([^\]]+)\]\(([^)]+)\)/g;
+      const elements = [];
+      let lastIndex = 0;
+      let match;
+      linkRegex.lastIndex = 0;
+      while ((match = linkRegex.exec(part)) !== null) {
+        if (match.index > lastIndex) {
+          elements.push(part.substring(lastIndex, match.index));
+        }
+        const linkText = match[1];
+        const tabId = match[2];
+        elements.push(
+          <span 
+            key={`link-${match.index}`}
+            onClick={(e) => {
+              e.stopPropagation();
+              setActiveTab(tabId);
+            }}
+            className="text-[#c7b272] hover:text-[#b09b5e] underline cursor-pointer font-semibold inline-block"
+          >
+            {linkText}
+          </span>
+        );
+        lastIndex = linkRegex.lastIndex;
+      }
+      if (lastIndex < part.length) {
+        elements.push(part.substring(lastIndex));
+      }
+      const content = elements.length > 0 ? elements : part;
+      if (isBold) {
+        return (
+          <strong key={boldIdx} className="font-extrabold text-[#1A1A2E] dark:text-slate-100">
+            {content}
+          </strong>
+        );
+      }
+      return <span key={boldIdx}>{content}</span>;
+    });
   };
   
   // Real-time Firebase Presence Counter
@@ -2771,7 +2816,7 @@ export default function App() {
                                     className="overflow-hidden"
                                   >
                                     <div className="mt-3 bg-gray-50/50 dark:bg-slate-800/40 p-4 rounded-xl border border-gray-100 dark:border-slate-800 text-xs text-gray-500 dark:text-slate-400 whitespace-pre-wrap leading-relaxed">
-                                      {renderFormattedText(item.context)}
+                                      {renderFormattedTextWithLinks(item.context)}
                                     </div>
                                   </motion.div>
                                 )}
@@ -2924,7 +2969,7 @@ export default function App() {
                                       className="overflow-hidden"
                                     >
                                       <div className="mt-3 bg-gray-50/50 dark:bg-slate-800/40 p-4 rounded-xl border border-gray-100 dark:border-slate-800 text-xs text-gray-500 dark:text-slate-400 whitespace-pre-wrap leading-relaxed">
-                                        {renderFormattedText(task.context)}
+                                        {renderFormattedTextWithLinks(task.context)}
                                       </div>
                                     </motion.div>
                                   )}
@@ -3000,7 +3045,7 @@ export default function App() {
                                         className="overflow-hidden"
                                       >
                                         <div className="mt-3 bg-gray-50/50 dark:bg-slate-800/40 p-4 rounded-xl border border-gray-100 dark:border-slate-800 text-xs text-gray-500 dark:text-slate-400 whitespace-pre-wrap leading-relaxed">
-                                          {renderFormattedText(task.context)}
+                                          {renderFormattedTextWithLinks(task.context)}
                                         </div>
                                       </motion.div>
                                     )}
