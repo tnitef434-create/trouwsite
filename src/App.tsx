@@ -2671,6 +2671,35 @@ export default function App() {
                     <p className="text-xs md:text-sm text-[#666666] dark:text-slate-400">{langEN ? 'Location & info' : 'Locatie & info'}</p>
                   </button>
                 </div>
+
+                <div className="max-w-2xl mx-auto mt-6">
+                  <a 
+                    href="https://guestcam.co/guest/xvLVtGSIFN" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="block bg-gradient-to-r from-[#1A1A2E] to-[#2D2D44] dark:from-slate-900 dark:to-slate-800 text-white p-6 rounded-[2rem] shadow-sm hover:shadow-md hover:scale-[1.01] transition-all group text-center relative overflow-hidden"
+                  >
+                    <div className="absolute top-0 left-0 w-full h-full opacity-10 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#c7b272] via-transparent to-transparent"></div>
+                    <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-4 md:px-6">
+                      <div className="flex items-center gap-4 text-left">
+                        <div className="bg-[#c7b272]/15 w-14 h-14 rounded-2xl flex items-center justify-center shrink-0 text-[#c7b272]">
+                          <Camera size={26} strokeWidth={1.5} />
+                        </div>
+                        <div>
+                          <h3 className="font-serif font-bold text-lg md:text-xl text-white">
+                            Jorik & Katinka's trouwalbum
+                          </h3>
+                          <p className="text-xs text-white/60 mt-0.5">
+                            {langEN ? 'Upload and view wedding photos here!' : 'Upload en bekijk hier de trouwfoto\'s!'}
+                          </p>
+                        </div>
+                      </div>
+                      <div className="bg-[#c7b272] text-white px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all hover:bg-[#b09b5e] flex items-center gap-2 cursor-pointer shadow-sm shrink-0">
+                        {langEN ? 'Open Album' : 'Album openen'}
+                      </div>
+                    </div>
+                  </a>
+                </div>
               </div>
             </motion.div>
           )}
@@ -3644,6 +3673,41 @@ export default function App() {
                     </h3>
                     <div className="relative z-10 w-full max-w-2xl mx-auto">
                       <CountdownWidget langEN={langEN} />
+                    </div>
+                  </div>
+
+                  {/* Trouwalbum */}
+                  <div className="col-span-1 md:col-span-2 bg-white dark:bg-slate-900 border border-[#1A1A2E]/5 dark:border-white/5 p-8 md:p-10 rounded-[2.5rem] shadow-sm flex flex-col md:flex-row md:items-center gap-6 transition-all hover:shadow-md">
+                    <div className="flex items-center gap-4 shrink-0">
+                      <div className="flex items-center justify-center w-14 h-14 bg-[#F5F0E6] dark:bg-slate-950 rounded-2xl text-[#c7b272] shrink-0">
+                        <Camera size={26} strokeWidth={1.5} />
+                      </div>
+                      <div>
+                        <h3 className="text-xl font-serif font-bold text-[#1A1A2E] dark:text-slate-100">
+                          Jorik & Katinka's trouwalbum
+                        </h3>
+                        <p className="text-xs tracking-widest uppercase text-[#c7b272] font-semibold mt-1">
+                          {langEN ? 'GuestCam Shared Album' : 'GuestCam Gedeeld Album'}
+                        </p>
+                      </div>
+                    </div>
+                    <div className="flex-1 flex flex-col gap-3 md:items-end">
+                      <p className="text-sm text-gray-500 dark:text-slate-400 leading-relaxed md:text-right">
+                        {langEN 
+                          ? 'Capture and share every beautiful moment from our special day with us. Upload your photos here!'
+                          : 'Leg elk mooi moment van onze speciale dag vast en deel het met ons. Upload hier je foto\'s!'}
+                      </p>
+                      <div className="flex items-center gap-3 flex-wrap md:justify-end">
+                        <a
+                          href="https://guestcam.co/guest/xvLVtGSIFN"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="bg-[#1A1A2E] dark:bg-slate-800 hover:bg-[#c7b272] text-white px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider transition-colors shadow-sm flex items-center gap-2 cursor-pointer shrink-0"
+                        >
+                          <Camera size={14} />
+                          {langEN ? 'Open Album' : 'Album openen'}
+                        </a>
+                      </div>
                     </div>
                   </div>
 
