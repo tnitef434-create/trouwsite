@@ -2715,10 +2715,6 @@ export default function App() {
                   </div>
                 </div>
 
-                <p className="text-sm text-gray-500 dark:text-slate-400 mb-6 font-medium bg-[#c7b272]/5 dark:bg-[#c7b272]/10 px-4 py-3 rounded-2xl border border-[#c7b272]/10 flex items-center gap-2.5">
-                  <Info size={16} className="text-[#c7b272] shrink-0" />
-                  <span>{langEN ? 'Tip: Tap "Show additional context" for extra details' : 'Tip: Tik op "Toon aanvullende context" voor extra details'}</span>
-                </p>
 
                 <div className="space-y-0 relative">
                   {scheduleData.map((item) => (
