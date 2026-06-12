@@ -3829,8 +3829,8 @@ export default function App() {
                     </h3>
                     <p className="text-sm md:text-base text-gray-600 dark:text-slate-300 leading-relaxed">
                       {langEN 
-                        ? 'We would love to see all the photos you take on our special day! Scan the QR code or click the button below to upload your pictures directly to our GuestCam shared album.'
-                        : 'We vinden het geweldig om alle foto\'s te zien die je op onze speciale dag maakt! Scan de QR-code of klik op de knop hieronder om je foto\'s direct te uploaden naar ons gedeelde GuestCam-album.'}
+                        ? 'Scan the QR code to open this wedding website on your mobile device, or click the button below to upload your pictures directly to our GuestCam shared album.'
+                        : 'Scan de QR-code om deze trouwsite direct op je mobiel te openen, of klik op de knop hieronder om je foto\'s direct te uploaden naar ons gedeelde GuestCam-album.'}
                     </p>
                   </div>
 
@@ -3838,14 +3838,14 @@ export default function App() {
                     <div className="bg-white p-4 rounded-2xl shadow-md border border-gray-100 dark:border-slate-800 inline-block">
                       <div className="w-48 h-48 bg-gray-50 flex flex-col items-center justify-center border border-gray-200 rounded-xl relative overflow-hidden">
                         <img 
-                          src={`https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent('https://guestcam.co/guest/xvLVtGSIFN')}`} 
-                          alt="GuestCam QR Code" 
+                          src={`https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(window.location.origin + window.location.pathname)}`} 
+                          alt="Wedding Website QR Code" 
                           className="w-full h-full object-contain p-2"
                         />
                       </div>
                     </div>
                     <span className="text-xs text-gray-400 dark:text-slate-500 font-mono">
-                      guestcam.co/guest/xvLVtGSIFN
+                      {window.location.host}
                     </span>
                   </div>
 
