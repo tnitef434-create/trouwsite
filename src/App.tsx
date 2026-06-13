@@ -359,7 +359,7 @@ export const scheduleEN = [
     "id": 9,
     "time": "**15.30 - 16.00**",
     "title": "Reception begins & group photos",
-    "desc": "De fotograaf maakt dit half uur groepsfoto's in 6 grote groepen:\n1. Familie Prins 2. Familie Mekking 3. Familie Uiterwijk 4. Familie Herlaar 5. Vrienden, Collega's & CM 6. Iedereen\nZie de lijst met namen bij 'Toon aanvullende context' en uitgeprint op de tekentafel in de Palmenkas.",
+    "desc": "During this half-hour, the photographer will take group photos in 6 large groups:\n1. Prins family 2. Mekking family 3. Uiterwijk family 4. Herlaar family 5. Friends, Colleagues & MC 6. Everyone\nSee 'Group photos' in the menu or printed on the drafting table in the Palm House.",
     "location": "Palm House/Terrace",
     "context": ""
   },
